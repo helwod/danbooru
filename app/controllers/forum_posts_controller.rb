@@ -62,13 +62,13 @@ class ForumPostsController < ApplicationController
     @forum_post = authorize ForumPost.find(params[:id])
     @forum_post.delete!(CurrentUser.user)
 
-    respond_with(@forum_post, notice: "Post deleted")
+    respond_with(@forum_post, notice: I18n.t("forum_posts.flash.deleted"))
   end
 
   def undelete
     @forum_post = authorize ForumPost.find(params[:id])
     @forum_post.undelete!(CurrentUser.user)
 
-    respond_with(@forum_post, notice: "Post undeleted")
+    respond_with(@forum_post, notice: I18n.t("forum_posts.flash.undeleted"))
   end
 end

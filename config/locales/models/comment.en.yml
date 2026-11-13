@@ -1,0 +1,4 @@
+en:
+  comment:
+    rating_mismatch_post: "can't include a %{embedded_post_pretty_rating} image on a %{post_pretty_rating} post"
+    rating_mismatch_asset: "can't include a %{embedded_asset_pretty_ai_rating} image on a %{post_pretty_rating} post"

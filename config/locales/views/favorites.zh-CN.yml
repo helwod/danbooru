@@ -1,0 +1,19 @@
+"zh-CN":
+  favorites:
+    update:
+      already_favorited: "你已经收藏了该作品"
+    index:
+      title: "收藏"
+      column_post: "作品"
+      column_tags: "标签"
+      column_uploader: "上传者"
+      column_favoriter: "收藏者"
+      hidden: "已隐藏"
+    search:
+      favoriter: "收藏者"
+      post: "作品"
+      tags: "标签"
+      submit: "搜索"
+    flash:
+      favorited: "已收藏该作品"
+      unfavorited: "已取消收藏该作品"

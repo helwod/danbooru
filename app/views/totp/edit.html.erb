@@ -1,26 +1,25 @@
-<% page_title "Setup Two-Factor Authentication" %>
+<% page_title t("totp.setup_title") %>
 
 <%= render "users/secondary_links" %>
 
 <div id="c-totp">
   <div id="a-new">
     <div class="card mt-8 p-4 max-w-540px mx-auto flex flex-col items-center">
-      <h1 class="pb-4">Two-Factor Authentication</h1>
+      <h1 class="pb-4"><%= t("totp.heading") %></h1>
 
       <% if @user.totp.present? %>
-        <p class="w-full">Two-factor authentication (2FA) is <b>enabled</b> for your account. To add a new device, scan the QR code below.</p>
+        <p class="w-full"><%= t("totp.enabled_html") %></p>
 
-        <p class="w-full">To disable 2FA, click <b>Disable</b> below.</p>
+        <p class="w-full"><%= t("totp.disable_hint_html") %></p>
       <% else %>
         <p class="w-full">
-          Enable two-factor authentication (2FA) to make it so you need both a password and a security code to login to your
-          account. This protects you in case your password gets stolen.
+          <%= t("totp.enable_intro") %>
         </p>
 
         <p class="w-full">
-          To get started, install an authenticator app like
-          <%= external_link_to "https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2", "Google Authenticator", class: "break-words" %> or
-          <%= external_link_to "https://www.microsoft.com/en-us/security/mobile-authenticator-app", "Microsoft Authenticator", class: "break-words" %>, then use it to scan the QR code below.
+          <%= t("totp.get_started_html",
+                google: external_link_to("https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2", "Google Authenticator", class: "break-words"),
+                microsoft: external_link_to("https://www.microsoft.com/en-us/security/mobile-authenticator-app", "Microsoft Authenticator", class: "break-words")) %>
         </p>
       <% end %>
 
@@ -29,10 +28,10 @@
       </div>
 
       <div x-data="{ open: false }">
-        <a href="#" @click.prevent="open = true" class="text-xs" x-show="!open">Can't scan the code?</a>
+        <a href="#" @click.prevent="open = true" class="text-xs" x-show="!open"><%= t("totp.cannot_scan") %></a>
 
         <div class="prose" x-show="open" x-cloak>
-          <p>If you can't scan the QR code, then you can enter this code into your app instead:</p>
+          <p><%= t("totp.manual_entry") %></p>
 
           <code class="block text-center"><%= @totp.secret %></code>
         </div>
@@ -44,20 +43,20 @@
 
       <% if @user.totp.present? %>
         <%= edit_form_for(@totp, url: user_totp_path(@user), method: "delete", html: { class: "w-full stacked-form stacked-hints", "data-validate-form": "true" }) do |f| %>
-          <%= f.submit "Disable", class: "button-outline-danger" %>
+          <%= f.submit t("totp.disable"), class: "button-outline-danger" %>
         <% end %>
       <% else %>
         <%= edit_form_for(@totp, url: user_totp_path(@user), method: "put", html: { class: "w-full stacked-form stacked-hints", "data-validate-form": "true" }) do |f| %>
           <%= f.input :signed_secret, as: :hidden, input_html: { value: @totp.signed_secret } %>
-          <%= f.input :verification_code, placeholder: "123456", hint: "Enter the 6-digit code from your app", required: true, minlength: 6, maxlength: 6, pattern: '\d+', input_html: { value: nil } %>
-          <p class="text-sm text-muted">Enabling 2FA will log you out on all other devices.</p>
-          <%= f.submit_button "Enable", disabled: true %>
+          <%= f.input :verification_code, placeholder: "123456", hint: t("totp.code_hint"), required: true, minlength: 6, maxlength: 6, pattern: '\d+', input_html: { value: nil } %>
+          <p class="text-sm text-muted"><%= t("totp.enable_notice") %></p>
+          <%= f.submit_button t("totp.enable"), disabled: true %>
         <% end %>
       <% end %>
     </div>
 
     <div class="mt-4 flex justify-center">
-      <%= link_to "Back to settings", settings_path %>
+      <%= link_to t("totp.back_to_settings"), settings_path %>
     </div>
   </div>
 </div>

@@ -1,0 +1,12 @@
+"zh-CN":
+  moderator:
+    post_banned: "作品已被封禁"
+    post_unbanned: "作品已解封"
+    post_permanently_deleted: "作品已被永久删除"
+    move_favorites_title: "将收藏移至父作品"
+    move_favorites_confirm: "这会把该作品的全部收藏转移到它的父作品。确定继续吗？"
+    submit: "提交"
+    cancel: "取消"
+    flash:
+      post_banned: "作品已封禁"
+      post_unbanned: "作品已解除封禁"

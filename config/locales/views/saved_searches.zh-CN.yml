@@ -1,0 +1,42 @@
+"zh-CN":
+  saved_searches:
+    destroy:
+      deleted: "搜索 '%{query}' 已删除"
+    create:
+      saved: "搜索 '%{query}' 已保存"
+    interface:
+      dialog_title: "保存搜索"
+      labels: "标签"
+      labels_hint: "用于给这个搜索分类的标签列表，以空格分隔。"
+      dont_show_again: "不再显示这个对话框"
+      cancel: "取消"
+    edit:
+      title: "编辑保存的搜索"
+    index:
+      title: "保存的搜索"
+      search_query: "查询语句"
+      search_label: "标签"
+      order_newest: "最新"
+      order_query: "查询语句"
+      order_label: "标签"
+      submit: "搜索"
+      column_query: "查询语句"
+      column_labels: "标签"
+      column_posts: "作品数"
+      column_refreshed: "刷新时间"
+      column_created: "创建时间"
+      older_than: "&gt;%{duration} 之前"
+      edit: "编辑"
+      delete: "删除"
+    secondary_links:
+      view_posts: "查看作品"
+      manage: "管理保存的搜索"
+
+  activerecord:
+    attributes:
+      saved_search:
+        query: "查询语句"
+        query_ilike: "查询语句"
+        label_string: "标签"
+        label: "标签"
+        disable_labels: "不再显示这个对话框"

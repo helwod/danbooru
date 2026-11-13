@@ -1,0 +1,4 @@
+en:
+  metrics:
+    statistics: "Statistics"
+    updated: "Updated %{time}."

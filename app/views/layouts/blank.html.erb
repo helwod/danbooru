@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="<%= I18n.locale %>">
 <head>
   <meta charset="utf-8">
   <title><%= page_title %></title>
@@ -13,7 +13,7 @@
   <%= stylesheet_pack_tag "application" %>
   <%= yield :html_header %>
 </head>
-<body lang="en">
+<body lang="<%= I18n.locale %>">
   <div id="page">
     <%= yield :layout %>
   </div>

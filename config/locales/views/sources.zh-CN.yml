@@ -1,0 +1,14 @@
+"zh-CN":
+  sources:
+    show:
+      title: "来源信息"
+      placeholder: "在这里粘贴链接"
+      submit: "查看"
+      published: "发布时间：%{time}"
+      updated: "更新时间：%{time}"
+      source_html: "来源：%{link}"
+
+  activerecord:
+    attributes:
+      source:
+        url: "链接"

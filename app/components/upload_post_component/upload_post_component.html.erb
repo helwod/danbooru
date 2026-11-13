@@ -1,12 +1,12 @@
 <div id="p-single-asset-upload" class="h-full">
   <% if upload_media_asset.loading? %>
-    <p>Processing <%= external_link_to upload_media_asset.source_url %>...</p>
+    <p><%= I18n.t("components.upload_post.processing_html", link: external_link_to(upload_media_asset.source_url)).html_safe %></p>
 
     <% content_for(:html_header) do %>
       <meta http-equiv="refresh" content="1">
     <% end %>
   <% elsif upload_media_asset.failed? %>
-    <p>Error: <%= upload_media_asset.error %>.</p>
+    <p><%= I18n.t("components.upload_post.error", error: upload_media_asset.error) %></p>
   <% else %>
     <%= tag.div class: "upload-container grid gap-2 h-full",
                 "x-data": "{ upload: new Danbooru.UploadPostComponent($el) }",
@@ -37,13 +37,13 @@
                   <%= render PopupMenuComponent.new(hide_on_click: false) do |menu| %>
                     <% menu.with_item(hide_on_click: true) do %>
                       <%= link_to "#{media_asset.original.file_url}?download=1", download: media_asset.original.file_name do %>
-                        <%= download_icon %> Download
+                        <%= download_icon %> <%= I18n.t("components.common.download") %>
                       <% end %>
                     <% end %>
 
                     <% menu.with_item(hide_on_click: true) do %>
                       <%= link_to "#", class: "media-asset-copy-id", "x-on:click.prevent": "$copyToClipboard('asset ##{j media_asset.id}')" do %>
-                        <%= hashtag_icon %> Copy ID
+                        <%= hashtag_icon %> <%= I18n.t("components.common.copy_id") %>
                       <% end %>
                     <% end %>
 
@@ -91,25 +91,25 @@
 
                 <div class="upload-warning-badges inline-block">
                   <% if upload_media_asset.file_upload? %>
-                    <%= external_link_to "https://saucenao.com/search.php?url=#{Danbooru::URL.escape(media_asset.original.file_url)}", "No Source", target: "_blank", class: "upload-no-source-warning button-danger button-xs" %>
+                    <%= external_link_to "https://saucenao.com/search.php?url=#{Danbooru::URL.escape(media_asset.original.file_url)}", I18n.t("components.upload_post.no_source"), target: "_blank", class: "upload-no-source-warning button-danger button-xs" %>
                   <% elsif upload_media_asset.bad_link? %>
-                    <%= link_to_wiki "Bad Source", bad_link_wiki_name, classes: "upload-bad-source-warning button-danger button-xs" %>
+                    <%= link_to_wiki I18n.t("components.upload_post.bad_source"), bad_link_wiki_name, classes: "upload-bad-source-warning button-danger button-xs" %>
                   <% end %>
 
                   <% if upload_media_asset.image_sample? %>
-                    <%= link_to_wiki "Image Sample", image_sample_wiki_name, classes: "upload-sample-warning button-danger button-xs" %>
+                    <%= link_to_wiki I18n.t("components.upload_post.image_sample"), image_sample_wiki_name, classes: "upload-sample-warning button-danger button-xs" %>
                   <% end %>
 
                   <% if media_asset.is_ai_generated? %>
-                    <%= link_to_wiki "AI-Generated", "ai-generated", classes: "upload-ai-warning button-danger button-xs" %>
+                    <%= link_to_wiki I18n.t("components.upload_post.ai_generated"), "ai-generated", classes: "upload-ai-warning button-danger button-xs" %>
                   <% end %>
 
                   <% if duplicates.size == 1 %>
-                    <%= link_to "Pixel-Perfect Duplicate", duplicates.first, class: "upload-pixel-perfect-duplicate-warning button-danger button-xs" %>
+                    <%= link_to I18n.t("components.upload_post.pixel_duplicate"), duplicates.first, class: "upload-pixel-perfect-duplicate-warning button-danger button-xs" %>
                   <% elsif duplicates.size > 1 %>
-                    <a class="upload-pixel-perfect-duplicate-warning button-danger button-xs" href="#" x-on:click.prevent="upload.showSimilarTab()">Pixel-Perfect Duplicate</a>
+                    <a class="upload-pixel-perfect-duplicate-warning button-danger button-xs" href="#" x-on:click.prevent="upload.showSimilarTab()"><%= I18n.t("components.upload_post.pixel_duplicate") %></a>
                   <% else %>
-                    <a class="upload-duplicate-warning button-danger button-xs hidden" href="#" x-on:click.prevent="upload.showSimilarTab()">Duplicate</a>
+                    <a class="upload-duplicate-warning button-danger button-xs hidden" href="#" x-on:click.prevent="upload.showSimilarTab()"><%= I18n.t("components.upload_post.duplicate") %></a>
                   <% end %>
                 </div>
               </div>
@@ -126,9 +126,9 @@
           <%= hidden_field_tag :upload_media_asset_id, upload_media_asset.id %>
 
           <%= render(TabPanelComponent.new do |t| %>
-            <% t.panel("Tags", active: true) do %>
+            <% t.panel(I18n.t("components.upload_post.tab_tags"), id: "tags-tab", active: true) do %>
               <%= f.input :rating,
-                          label: "Rating #{help_tooltip embed_wiki("help:rating_notice", classes: "text-xs"), link_class: "inactive-link" }".html_safe,
+                          label: I18n.t("components.upload_post.rating_html", help: help_tooltip(embed_wiki("help:rating_notice", classes: "text-xs"), link_class: "inactive-link")).html_safe,
                           wrapper_html: { class: "radio-button-group thin-x-scrollbar text-xs", "x-on:input": "$el.classList.remove('field_with_errors')" },
                           collection: Post::RATINGS.invert.reverse_each.to_h,
                           as: :radio_buttons,
@@ -136,26 +136,26 @@
                           error: false %>
               <div>
                 <div class="flex justify-between">
-                  <%= f.label :tag_string, "Tags" %>
+                  <%= f.label :tag_string, I18n.t("components.upload_post.tags_label") %>
 
                   <span data-tag-counter data-for="#post_tag_string" class="text-muted text-sm">
                     <span class="tag-count"></span>
                   </span>
                 </div>
 
-                <%= f.input :tag_string, label: false, hint: tag.span("Ctrl+Enter to submit", class: "desktop-only"), input_html: { class: "text-sm", "data-autocomplete": "tag-edit", "data-shortcut": "e", value: post.tag_string } %>
+                <%= f.input :tag_string, label: false, hint: tag.span(I18n.t("components.upload_post.ctrl_enter"), class: "desktop-only"), input_html: { class: "text-sm", "data-autocomplete": "tag-edit", "data-shortcut": "e", value: post.tag_string } %>
 
                 <div class="mb-4 flex items-center gap-2">
-                  <%= f.submit_button "Post" %>
+                  <%= f.submit_button I18n.t("components.upload_post.submit") %>
 
                   <% if current_user.is_contributor? %>
-                    <%= f.input :is_pending, as: :boolean, label: "Upload for approval", wrapper_html: { class: "!m-0" }, input_html: { checked: post.is_pending? } %>
+                    <%= f.input :is_pending, as: :boolean, label: I18n.t("components.upload_post.upload_for_approval"), wrapper_html: { class: "!m-0" }, input_html: { checked: post.is_pending? } %>
                   <% else %>
-                    <span id="upload-limit" class="fineprint">Upload limit: <%= render "users/upload_limit", user: current_user %></span>
+                    <span id="upload-limit" class="fineprint"><%= I18n.t("components.upload_post.upload_limit_html", limit: render("users/upload_limit", user: current_user)) %></span>
                   <% end %>
 
                   <% if show_upload_rules? %>
-                    <p class="fineprint my-4">Read the <%= link_to_wiki "upload rules", "help:upload_rules" %> before uploading.</p>
+                    <p class="fineprint my-4"><%= I18n.t("components.upload_post.read_rules_html", rules: link_to_wiki(I18n.t("components.upload_post.upload_rules_link"), "help:upload_rules")).html_safe %></p>
                   <% end %>
                 </div>
 
@@ -164,26 +164,26 @@
                     <% if upload_media_asset.file_upload? %>
                       <div class="upload-no-source-warning flex items-center gap-2 text-xs chip-yellow text-warning">
                         <%= exclamation_icon(class: "h-4") %>
-                        <span>If possible, upload the link to where you found the file instead (<%= link_to_wiki "help", "non-web_source" %>).</span>
+                        <span><%= I18n.t("components.upload_post.no_source_hint_html", help: link_to_wiki(I18n.t("components.common.help"), "non-web_source")).html_safe %></span>
                       </div>
                     <% elsif upload_media_asset.image_sample? %>
                       <div class="upload-sample-warning flex items-center gap-2 text-xs chip-red text-error">
                         <%= exclamation_icon(class: "h-4") %>
-                        <span>Upload the full image instead (<%= link_to_wiki "help", image_sample_wiki_name %>).</span>
+                        <span><%= I18n.t("components.upload_post.sample_hint_html", help: link_to_wiki(I18n.t("components.common.help"), image_sample_wiki_name)).html_safe %></span>
                       </div>
                     <% end %>
 
                     <% if upload_media_asset.bad_link? %>
                       <div class="upload-bad-source-warning flex items-center gap-2 text-xs chip-red text-error">
                         <%= exclamation_icon(class: "h-4") %>
-                        <span>Upload the page containing the image, not the image itself (<%= link_to_wiki "help", bad_link_wiki_name %>).</span>
+                        <span><%= I18n.t("components.upload_post.bad_source_hint_html", help: link_to_wiki(I18n.t("components.common.help"), bad_link_wiki_name)).html_safe %></span>
                       </div>
                     <% end %>
 
                     <% if media_asset.is_ai_generated? %>
                       <div class="upload-ai-warning flex items-center gap-2 text-xs chip-red text-error">
                         <%= exclamation_icon(class: "h-4") %>
-                        <span>AI-generated images are against the rules (<%= link_to_wiki "help", "help:upload_rules" %>).</span>
+                        <span><%= I18n.t("components.upload_post.ai_hint_html", help: link_to_wiki(I18n.t("components.common.help"), "help:upload_rules")).html_safe %></span>
                       </div>
                     <% end %>
 
@@ -192,12 +192,12 @@
                         <%= exclamation_icon(class: "h-4") %>
                         <span>
                           <% if duplicates.size == 1 %>
-                            Exact duplicate of <%= link_to duplicates.first.dtext_shortlink, duplicates.first %>
+                            <%= I18n.t("components.upload_post.duplicate_of_html", post: link_to(duplicates.first.dtext_shortlink, duplicates.first)).html_safe %>
                           <% elsif duplicates.size > 1%>
-                            Exact duplicate of <%= link_to pluralize(duplicates.size, "other post"), posts_path(tags: "id:#{duplicates.pluck(:id).join(",")}") %>
+                            <%= I18n.t("components.upload_post.duplicate_of_many_html", posts: link_to(I18n.t("components.upload_post.other_post", count: duplicates.size), posts_path(tags: "id:#{duplicates.pluck(:id).join(",")}"))).html_safe %>
                           <% end %>
 
-                          (<%= link_to_wiki "help", "pixel-perfect_duplicate" %>).
+                          (<%= link_to_wiki I18n.t("components.common.help"), "pixel-perfect_duplicate" %>).
                         </span>
                       </div>
                     <% end %>
@@ -208,7 +208,7 @@
               </div>
             <% end %>
 
-            <% t.panel("Source") do %>
+            <% t.panel(I18n.t("components.upload_post.tab_source"), id: "source-tab") do %>
               <% if source.present? %>
                 <%= render_source_data(source) %>
               <% end %>
@@ -217,22 +217,22 @@
 
               <%= f.simple_fields_for :artist_commentary, post.artist_commentary do |fa| %>
                 <%= fa.input :original_title, as: :string %>
-                <%= fa.input :original_description, as: :dtext, label: "Original description" %>
+                <%= fa.input :original_description, as: :dtext, label: I18n.t("components.upload_post.original_description") %>
                 <%= fa.input :translated_title, as: :string %>
-                <%= fa.input :translated_description, as: :dtext, label: "Translated description" %>
+                <%= fa.input :translated_description, as: :dtext, label: I18n.t("components.upload_post.translated_description") %>
               <% end %>
             <% end %>
 
-            <% t.panel("Similar") do %>
-              <%= f.input :parent_id, label: "Parent ID", as: :string, input_html: { value: post.parent_id } %>
+            <% t.panel(I18n.t("components.upload_post.tab_similar"), id: "similar-tab") do %>
+              <%= f.input :parent_id, label: I18n.t("components.upload_post.parent_id"), as: :string, input_html: { value: post.parent_id } %>
 
               <div class="space-y-4">
                 <% if source.present? && source.related_posts.present? %>
                   <div id="related-posts-by-source">
-                    <h2>Related Posts</h2>
+                    <h2><%= I18n.t("components.upload_post.related_posts") %></h2>
 
                     <p class="fineprint">
-                      Found <%= link_to pluralize(source.related_posts.total_count, "other post"), posts_path(tags: source.related_posts_search_query) %> from the same source.
+                      <%= I18n.t("components.upload_post.found_posts_html", posts: link_to(I18n.t("components.upload_post.other_post", count: source.related_posts.total_count), posts_path(tags: source.related_posts_search_query))).html_safe %>
                     </p>
 
                     <%= render(PostGalleryComponent.new(size: "180")) do |gallery| %>
@@ -256,7 +256,7 @@
             <% t.spacer %>
 
             <% help_icon = exclamation_icon(class: "text-warning") if help_updated? %>
-            <% t.panel("#{help_icon} Help".strip.html_safe, id: "help-tab") do %>
+            <% t.panel("#{help_icon} #{I18n.t("components.upload_post.tab_help")}".strip.html_safe, id: "help-tab") do %>
               <%= embed_wiki("help:upload_notice") %>
               <%= render "application/update_notice", record: WikiPage.find_by_title("help:upload_notice"), current_user: current_user %>
             <% end %>
@@ -264,32 +264,32 @@
             <% t.menu_item(id: "docking-menu-tab") do %>
               <% render PopupMenuComponent.new(button_classes: "inactive-link") do |menu| %>
                 <% menu.with_item do %>
-                  <%= link_to "#", "x-on:click.prevent": "upload.dock = 'auto'", id: "dock-auto-link", title: "Rotate your screen to change layout", "x-bind:class": "{ 'font-bold': upload.dock === 'auto' }" do %>
-                    <%= rotate_icon %> Automatic
+                  <%= link_to "#", "x-on:click.prevent": "upload.dock = 'auto'", id: "dock-auto-link", title: I18n.t("components.upload_post.auto_title"), "x-bind:class": "{ 'font-bold': upload.dock === 'auto' }" do %>
+                    <%= rotate_icon %> <%= I18n.t("components.upload_post.auto") %>
                   <% end %>
                 <% end %>
 
                 <% menu.with_item do %>
                   <%= link_to "#", "x-on:click.prevent": "upload.dock = 'right'", id: "dock-right-link", "data-shortcut": "shift+r", "x-bind:class": "{ 'font-bold': upload.dock === 'right' }"  do %>
-                    <%= dock_right_icon %> Dock to Right
+                    <%= dock_right_icon %> <%= I18n.t("components.upload_post.dock_right") %>
                   <% end %>
                 <% end %>
 
                 <% menu.with_item do %>
                   <%= link_to "#", "x-on:click.prevent": "upload.dock = 'bottom'", id: "dock-bottom-link", "data-shortcut": "shift+b", "x-bind:class": "{ 'font-bold': upload.dock === 'bottom' }" do %>
-                    <%= dock_bottom_icon %> Dock to Bottom
+                    <%= dock_bottom_icon %> <%= I18n.t("components.upload_post.dock_bottom") %>
                   <% end %>
                 <% end %>
 
                 <% menu.with_item do %>
                   <%= link_to "#", "x-on:click.prevent": "upload.dock = 'left'", id: "dock-left-link", "data-shortcut": "shift+l", "x-bind:class": "{ 'font-bold': upload.dock === 'left' }" do %>
-                    <%= dock_left_icon %> Dock to Left
+                    <%= dock_left_icon %> <%= I18n.t("components.upload_post.dock_left") %>
                   <% end %>
                 <% end %>
 
                 <% menu.with_item do %>
                   <%= link_to "#", id: "open-edit-dialog", "data-shortcut": "shift+e" do %>
-                    <%= external_link_icon(class: "text-xs") %> Open window
+                    <%= external_link_icon(class: "text-xs") %> <%= I18n.t("components.upload_post.open_window") %>
                   <% end %>
                 <% end %>
               <% end %>

@@ -1,0 +1,8 @@
+en:
+  counts:
+    posts:
+      page_title: "Post Counts"
+      search_tags: "Tags"
+      submit: "Search"
+      count_for_html: "Post count for %{link}:"
+      timed_out: "timed out"

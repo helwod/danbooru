@@ -1,0 +1,25 @@
+en:
+  dtext_links:
+    index:
+      column_page: "Page"
+      search_link: "Link"
+      search_page_type: "Page Type"
+      search_link_type: "Link Type"
+      has_wiki: "Wiki Exists?"
+      has_tag: "Tag Exists?"
+      'yes': "Yes"
+      'no': "No"
+      submit: "Search"
+      column_link: "Link"
+      column_type: "Type"
+      post_link: "post #%{id}"
+      asset_link: "asset #%{id}"
+    model_types:
+      WikiPage: "Wiki Page"
+      ForumPost: "Forum Post"
+      Pool: "Pool"
+    link_types:
+      external_link: "External Link"
+      wiki_link: "Wiki Link"
+      embedded_post: "Embedded Post"
+      embedded_media_asset: "Embedded Media Asset"

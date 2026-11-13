@@ -1,2 +1,2 @@
 $("tr#favorite-group-<%= @favorite_group.id %>").remove();
-Danbooru.Notice.info("Favorite group deleted.");
+Danbooru.Notice.info("<%= j t("favorite_groups.destroy.deleted") %>");

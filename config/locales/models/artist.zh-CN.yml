@@ -1,0 +1,7 @@
+"zh-CN":
+  artist:
+    too_many_urls: "最多只能有 150 个 URL。"
+    not_artist_category: "「%{name}」是%{tag_category_name}标签；画师条目只能为画师标签创建。"
+    ambiguous_tag: "「%{name}」是歧义标签，请换一个名字。"
+    aliased_tag: "「%{name}」已被别名到「%{tag_alias_consequent_name}」。"
+    other_names_too_long: "别名长度不能超过 80 个字符。"

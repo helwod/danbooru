@@ -2,50 +2,50 @@
 
 <div id="c-comment-votes">
   <div id="a-index">
-    <h1>Comment Votes</h1>
+    <h1><%= t("comment_votes.index.title") %></h1>
 
     <%= render BlacklistComponent.new(user: CurrentUser.user, inline: true) %>
     <%= render "search" %>
 
     <%= table_for @comment_votes, class: "striped autofit" do |t| %>
-      <% t.column "Post" do |vote| %>
+      <% t.column t("comment_votes.columns.post"), column: "post" do |vote| %>
         <%= post_preview(vote.comment.post, show_deleted: true) %>
       <% end %>
 
-      <% t.column "Comment", td: {class: "col-expand"} do |vote| %>
+      <% t.column t("comment_votes.columns.comment"), column: "comment", td: {class: "col-expand"} do |vote| %>
         <%= tag.div(class: ["prose", ("opacity-30" if vote.comment.is_deleted?)]) do %>
           <% if !vote.comment.is_deleted? || policy(vote.comment).can_see_deleted? %>
             <%= vote.comment.dtext_body.format_text %>
           <% else %>
-            [deleted]
+            <%= t("comment_votes.deleted_placeholder") %>
           <% end %>
         <% end %>
       <% end %>
 
-      <% t.column "Status" do |vote| %>
-        <%= "Deleted" if vote.is_deleted? %>
+      <% t.column t("comment_votes.columns.status"), column: "status" do |vote| %>
+        <%= t("comment_votes.deleted") if vote.is_deleted? %>
       <% end %>
 
-      <% t.column "Score" do |vote| %>
+      <% t.column t("comment_votes.columns.score"), column: "score" do |vote| %>
         <%= link_to sprintf("%+d", vote.score), comment_votes_path(search: { score: vote.score }) %>
       <% end %>
 
-      <% t.column "Commenter" do |vote| %>
+      <% t.column t("comment_votes.columns.commenter"), column: "commenter" do |vote| %>
         <%= tag.div(class: ("opacity-30" if vote.comment.is_deleted?)) do %>
           <% if !vote.comment.is_deleted? || policy(vote.comment).can_see_creator? %>
             <%= link_to_user vote.comment.creator %>
             <% if vote.comment.is_deleted? %>
-              [deleted]
+              <%= t("comment_votes.deleted_placeholder") %>
             <% end %>
             <%= link_to "»", comment_votes_path(search: { comment: { creator_name: vote.comment.creator.name }}) %>
           <% else %>
-            [deleted]
+            <%= t("comment_votes.deleted_placeholder") %>
           <% end %>
           <div><%= time_ago_in_words_tagged(vote.comment.created_at) %></div>
         <% end %>
       <% end %>
 
-      <% t.column "Voter" do |vote| %>
+      <% t.column t("comment_votes.columns.voter"), column: "voter" do |vote| %>
         <%= link_to_user vote.user %>
         <%= link_to "»", comment_votes_path(search: { user_name: vote.user.name }) %>
         <div><%= time_ago_in_words_tagged(vote.created_at) %></div>
@@ -55,7 +55,7 @@
         <% if policy(vote).destroy? %>
           <%= render PopupMenuComponent.new do |menu| %>
             <% menu.with_item do %>
-              <%= link_to "Remove", comment_vote_path(vote, variant: "listing"), remote: true, method: :delete %>
+              <%= link_to t("comment_votes.remove"), comment_vote_path(vote, variant: "listing"), remote: true, method: :delete %>
             <% end %>
           <% end %>
         <% end %>

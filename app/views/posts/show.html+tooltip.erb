@@ -28,13 +28,13 @@
   <% elsif @post.text_source? %>
     <%= link_to file_pen_icon(class: "h-3"), posts_path(tags: %{source:"#{@post.source.gsub(/"/, '\\"')}"}), title: @post.source, class: "post-tooltip-source inactive-link" %>
   <% else %>
-    <%= link_to link_slash_icon(class: "h-2"), posts_path(tags: "source:none"), title: "no source", class: "post-tooltip-source inactive-link" %>
+    <%= link_to link_slash_icon(class: "h-2"), posts_path(tags: "source:none"), title: t("posts.show.no_source"), class: "post-tooltip-source inactive-link" %>
   <% end %>
 
   <%= render PopupMenuComponent.new do |menu| %>
     <% menu.with_item do %>
       <%= link_to "#", class: "post-tooltip-disable"  do %>
-        <%= close_icon %> Disable tooltips
+        <%= close_icon %> <%= t("posts.show.disable_tooltips") %>
       <% end %>
     <% end %>
   <% end %>
@@ -51,12 +51,12 @@
     <% if CurrentUser.is_approver? %>
       <% if @post.is_flagged? %>
         <div class="post-tooltip-flag">
-          <strong>Flag</strong>
+          <strong><%= t("posts.show.option_flag") %></strong>
           <%= render "post_flags/reasons", flag: @post.flags.select(&:pending?).last %>
         </div>
       <% elsif @post.is_appealed? %>
         <div class="post-tooltip-appeal">
-          <strong>Appeal</strong>
+          <strong><%= t("posts.show.option_appeal") %></strong>
           <%= render "post_appeals/reasons", appeal: @post.appeals.select(&:pending?).last %>
         </div>
       <% end %>
@@ -66,7 +66,7 @@
           <% @post.disapprovals.sort_by(&:id).select { |disapproval| disapproval.message.present? }.each do |disapproval| %>
             <ul class="post-disapproval-reason">
               <li>
-                <strong>Disapproval</strong>
+                <strong><%= t("posts.show.disapproval") %></strong>
                 <span class="prose"><%= format_text(disapproval.message.strip.chomp("."), inline: true) %></span>
 
                 <% if policy(disapproval).can_view_creator? %>

@@ -1,0 +1,23 @@
+en:
+  moderation_reports:
+    title: "Moderation reports"
+    reported: "Reported"
+    reported_user: "Reported user"
+    reporter: "Reporter"
+    reason: "Reason"
+    id: "ID"
+    type: "Type"
+    status: "Status"
+    search: "Search"
+    report: "Report"
+    send_report: "Send report"
+    mark_as_handled: "Mark as handled"
+    reject: "Reject"
+    ctrl_enter_hint: "Ctrl+Enter to submit"
+    statuses:
+      pending: "Pending"
+      handled: "Handled"
+      rejected: "Rejected"
+    flash:
+      submitted: "Report submitted"
+      updated: "Report updated"

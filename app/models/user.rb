@@ -261,23 +261,23 @@ class User < ApplicationRecord
   concerning :ValidationMethods do
     def validate_enable_private_favorites
       if enable_private_favorites_was == false && enable_private_favorites == true && !Pundit.policy!(self, self).can_enable_private_favorites?
-        errors.add(:enable_private_favorites, "require a Gold account")
+        errors.add(:enable_private_favorites, I18n.t("user.private_favorites_requires_gold"))
       end
     end
 
     def validate_blacklisted_tags
       if blacklisted_tags.to_s.lines.size > MAX_BLACKLIST_RULES
-        errors.add(:blacklisted_tags, "can't have more than #{MAX_BLACKLIST_RULES} blacklist rules")
+        errors.add(:blacklisted_tags, I18n.t("user.too_many_blacklist_rules", max_blacklist_rules: MAX_BLACKLIST_RULES))
       end
 
       if blacklisted_tags.to_s.split.size > MAX_BLACKLIST_TAGS
-        errors.add(:blacklisted_tags, "can't have more than #{MAX_BLACKLIST_TAGS} blacklisted tags")
+        errors.add(:blacklisted_tags, I18n.t("user.too_many_blacklisted_tags", max_blacklist_tags: MAX_BLACKLIST_TAGS))
       end
     end
 
     def validate_favorite_tags
       if favorite_tags.to_s.split.size > 1000
-        errors.add(:favorite_tags, "can't have more than 1000 favorite tags")
+        errors.add(:favorite_tags, I18n.t("user.too_many_favorite_tags"))
       end
     end
 
@@ -323,7 +323,7 @@ class User < ApplicationRecord
         totp_verified = totp.blank? || totp.verify(verification_code)
 
         if is_deleted?
-          errors.add(:base, "You can't reset the password of a deleted account")
+          errors.add(:base, I18n.t("user.cannot_reset_deleted_password"))
           false
         elsif !totp_verified && !has_backup_code?(verification_code)
           UserEvent.create_from_request!(self, :totp_failed_reauthenticate, request)
@@ -510,9 +510,9 @@ class User < ApplicationRecord
     def send_backup_code!(current_user)
       with_lock do
         if backup_codes.blank?
-          errors.add(:base, "doesn't have backup codes")
+          errors.add(:base, I18n.t("user.no_backup_codes"))
         elsif email_address.blank?
-          errors.add(:base, "doesn't have an email address")
+          errors.add(:base, I18n.t("user.no_email_address"))
         else
           UserMailer.send_backup_code(self).deliver_later
           ModAction.log("sent backup code to user ##{id}", :backup_code_send, subject: self, user: current_user)
@@ -863,7 +863,7 @@ class User < ApplicationRecord
 
     def validate_custom_css
       if !custom_css.valid?
-        errors.add(:custom_style, "contains a syntax error. Validate it with https://codebeautify.org/cssvalidate")
+        errors.add(:custom_style, I18n.t("user.custom_style_syntax_error"))
       end
     end
   end

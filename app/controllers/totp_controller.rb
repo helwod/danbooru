@@ -36,6 +36,6 @@ class TOTPController < ApplicationController
     @user = authorize User.find(params[:user_id]), policy_class: TOTPPolicy
     @user.update_totp_secret!(nil, request: request)
 
-    respond_with(@totp, notice: "Two-factor authentication disabled", location: settings_path)
+    respond_with(@totp, notice: I18n.t("totp.flash.two_factor_disabled"), location: settings_path)
   end
 end

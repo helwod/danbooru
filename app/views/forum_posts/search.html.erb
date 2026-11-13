@@ -1,18 +1,18 @@
 <div id="c-forum-posts">
   <div id="a-search">
-    <h1>Search Forum</h1>
+    <h1><%= t("forum_posts.search.title") %></h1>
 
     <%= search_form_for(forum_posts_path) do |f| %>
       <%= f.simple_fields_for :topic do |pf| %>
-        <%= pf.input :title_matches, label: "Title" %>
+        <%= pf.input :title_matches, label: t("forum_posts.search.topic_title") %>
       <% end %>
-      <%= f.input :body_matches, label: "Body" %>
-      <%= f.input :creator_name, label: "Creator", input_html: { "data-autocomplete": "user" } %>
-      <%= f.input :linked_to, label: "Tag", hint: "Find posts mentioning a tag", input_html: { "data-autocomplete": "tag" } %>
+      <%= f.input :body_matches, label: t("forum_posts.search.body") %>
+      <%= f.input :creator_name, label: t("forum_posts.search.creator"), input_html: { "data-autocomplete": "user" } %>
+      <%= f.input :linked_to, label: t("forum_posts.search.tag"), hint: t("forum_posts.search.tag_hint"), input_html: { "data-autocomplete": "tag" } %>
       <%= f.simple_fields_for :topic do |pf| %>
         <%= pf.input :category, collection: ForumTopic.categories, include_blank: true %>
       <% end %>
-      <%= f.submit "Search" %>
+      <%= f.submit t("forum_posts.search.submit") %>
     <% end %>
   </div>
 </div>

@@ -1,0 +1,76 @@
+en:
+  artists:
+    edit:
+      title: "Edit Artist"
+    new:
+      title: "New Artist"
+    show:
+      page_title: "%{name} | Artist Profile"
+      posts_heading: "Posts"
+    form:
+      other_names: "Other names"
+      other_names_hint: "Separate names with spaces, not commas. Use underscores for spaces inside names."
+      urls: "URLs"
+      urls_hint: "You can prefix a URL with - to mark it as dead."
+      wiki_label_html: "Wiki (%{link})"
+      edit: "Edit"
+    search:
+      name: "Name"
+      url: "URL"
+      deleted: "Deleted?"
+      has_tag: "Has tag?"
+      'yes': "Yes"
+      'no': "No"
+      order_recently_created: "Recently created"
+      order_last_updated: "Last updated"
+      order_name: "Name"
+      order_post_count: "Post count"
+      submit: "Search"
+    secondary_links:
+      artists: "Artists"
+      new: "New"
+      changes: "Changes"
+      urls: "URLs"
+      posts_count: "Posts (%{count})"
+      edit: "Edit"
+      history: "History"
+      undelete: "Undelete"
+      delete: "Delete"
+      unban: "Unban"
+      ban: "Ban"
+      confirm_undelete: "Are you sure you want to undelete this artist?"
+      confirm_delete: "Are you sure you want to delete this artist?"
+      confirm_unban: "Are you sure you want to unban this artist?"
+      confirm_ban: "Are you sure you want to ban this artist?"
+    summary:
+      banned: "BANNED"
+      deleted: "DELETED"
+      takedown_notice: "This page has been removed because of a takedown request."
+      not_exist_html: "This artist entry does not exist. %{link}."
+      create_new: "Create new artist entry"
+      group: "Group"
+      members: "Members"
+      urls: "URLs"
+      edit_wiki: "Edit wiki"
+      edit_artist: "Edit artist"
+    index:
+      column_name: "Name"
+      group: "group: %{name}"
+      column_other_names: "Other Names"
+      column_status: "Status"
+      column_updated: "Updated"
+      deleted: "Deleted"
+      banned: "Banned"
+      edit: "Edit"
+    flash:
+      banned: "Artist was banned"
+      unbanned: "Artist was unbanned"
+      deleted: "Artist deleted"
+
+  activerecord:
+    attributes:
+      artist:
+        name: "Name"
+        group_name: "Group"
+        other_names_string: "Other names"
+        url_string: "URLs"

@@ -1,0 +1,35 @@
+"zh-CN":
+  pool_versions:
+    index:
+      title: "合集历史"
+    diff:
+      page_title: "合集对比：%{name}"
+      heading_html: "合集版本对比：%{link}"
+      between_html: "显示 %{this_time}（%{this_user}）与 %{other_time}（%{other_user}）之间的差异"
+      no_description_changes: "简介没有变化。"
+      latest_version: "这已是最新版本！"
+      no_versions: "没有可对比的版本！"
+    listing:
+      column_pool: "合集"
+      column_post_changes: "作品变动"
+      column_post_count: "作品数"
+      column_changes: "状态变更"
+      column_updated: "修改者"
+      revert_to: "回退到"
+    search:
+      title: "搜索变更"
+      updater: "修改者"
+      pool: "合集"
+      category: "分类"
+      category_series: "系列"
+      category_collection: "图集"
+      is_new: "新建？"
+      name_changed: "名称变更？"
+      description_changed: "简介变更？"
+      deleted: "已删除？"
+      'yes': "是"
+      'no': "否"
+      submit: "搜索"
+    secondary_links:
+      listing: "全部记录"
+      search: "搜索"

@@ -1,0 +1,5 @@
+en:
+  post_sets:
+    blank:
+      message: "Nobody here but us chickens!"
+      go_back: "Go back"

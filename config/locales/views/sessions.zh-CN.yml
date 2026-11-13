@@ -1,0 +1,13 @@
+"zh-CN":
+  sessions:
+    confirm_password: "确认密码"
+    confirm_password_hint: "请输入密码以继续。"
+    confirm_password_with_totp_hint: "请输入密码以及验证器应用中的 6 位验证码以继续。"
+    verify_login: "验证登录"
+    verify_login_hint: "请输入验证器应用中的 6 位验证码以继续。"
+    backup_code_hint: "手机不在身边？可以改用备用码。"
+    continue: "继续"
+    logout: "退出登录"
+    flash:
+      login_expired: "登录已过期，请重新登录后继续"
+      logged_out: "你已退出登录"

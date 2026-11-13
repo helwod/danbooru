@@ -153,11 +153,11 @@ class WikiPage < ApplicationRecord
 
   def validate_other_names
     if other_names.present? && tag&.artist?
-      errors.add(:base, "An artist wiki can't have other names")
+      errors.add(:base, I18n.t("wiki_page.artist_wiki_no_other_names"))
     end
 
     if other_names.any? { |name| name.length > 100 }
-      errors.add(:other_names, "can't have names more than 100 characters long")
+      errors.add(:other_names, I18n.t("wiki_page.other_names_too_long"))
     end
   end
 

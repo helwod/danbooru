@@ -1,11 +1,11 @@
 <div id="c-artist-versions">
   <div id="a-search">
-    <h1>Search Changes</h1>
+    <h1><%= t("artist_versions.search.title") %></h1>
 
     <%= search_form_for(artist_versions_path) do |f| %>
-      <%= f.input :updater_name, label: "Updater", input_html: { value: params.dig(:search, :updater_name), "data-autocomplete": "user" } %>
-      <%= f.input :name, label: "Artist", input_html: { value: params.dig(:search, :name), "data-autocomplete": "artist" } %>
-      <%= f.submit "Search" %>
+      <%= f.input :updater_name, label: t("artist_versions.search.updater"), input_html: { value: params.dig(:search, :updater_name), "data-autocomplete": "user" } %>
+      <%= f.input :name, label: t("artist_versions.search.artist"), input_html: { value: params.dig(:search, :name), "data-autocomplete": "artist" } %>
+      <%= f.submit t("artist_versions.search.submit") %>
     <% end %>
   </div>
 </div>

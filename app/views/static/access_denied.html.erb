@@ -1,14 +1,13 @@
-<% page_title "Access Denied" %>
+<% page_title t("static.access_denied_title") %>
 
-<h1>Access Denied</h1>
+<h1><%= t("static.access_denied_title") %></h1>
 
 <p>
-  You do not have permission to visit this page.
+  <%= t("static.access_denied_body") %>
 
   <% if CurrentUser.user.is_anonymous? %>
-    Try <%= link_to "logging in", main_app.login_path(url: request.fullpath) %> or
-    <%= link_to "signing up", main_app.new_user_path %>.
+    <%= t("static.access_denied_login_html", login: link_to(t("static.logging_in"), main_app.login_path(url: request.fullpath)), signup: link_to(t("static.signing_up"), main_app.new_user_path)).html_safe %>
   <% end %>
 </p>
 
-<%= link_to "Go back", :back, :rel => "prev" %>
+<%= link_to t("static.go_back"), :back, :rel => "prev" %>

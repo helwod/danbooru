@@ -1,5 +1,5 @@
-<% page_title "Account Upgrade" %>
-<% meta_description "Upgrade to a Gold account." %>
+<% page_title t("user_upgrades.page_title") %>
+<% meta_description t("user_upgrades.meta_description") %>
 
 <% content_for :html_header do %>
   <meta name="referrer" content="no-referrer">
@@ -11,34 +11,31 @@
   <div id="a-new" class="fixed-width-container mx-auto">
 
     <% if @user_upgrade.is_gift? %>
-      <h1 class="text-center mb-4">Gift Account Upgrade</h1>
+      <h1 class="text-center mb-4"><%= t("user_upgrades.new.gift_heading") %></h1>
 
       <% if @user_upgrade.recipient.is_platinum? %>
-        <p><%= link_to_user @recipient %> is already above Gold and can't be upgraded!</p>
+        <p><%= t("user_upgrades.new.already_above_gold_html", user: link_to_user(@recipient)).html_safe %></p>
       <% elsif @user_upgrade.recipient.is_gold? %>
-        <p><%= link_to_user @recipient %> is already Gold and can't be upgraded!</p>
+        <p><%= t("user_upgrades.new.already_gold_html", user: link_to_user(@recipient)).html_safe %></p>
       <% else %>
-        <h6>You are gifting this upgrade to <%= link_to_user @user_upgrade.recipient %>.</h6>
+        <h6><%= t("user_upgrades.new.gifting_to_html", user: link_to_user(@user_upgrade.recipient)).html_safe %></h6>
       <% end %>
     <% else %>
-      <h1 class="text-center mb-4">Upgrade Account</h1>
+      <h1 class="text-center mb-4"><%= t("user_upgrades.new.upgrade_heading") %></h1>
 
-      <p>Upgrading your account gives you exclusive benefits and helps support
-      <%= Danbooru.config.canonical_app_name %>. Your support helps keep the
-      site ad-free for everyone!</p>
+      <p><%= t("user_upgrades.new.benefits_intro", app_name: Danbooru.config.canonical_app_name) %></p>
 
-      <p><%= Danbooru.config.canonical_app_name %> Gold is a lifetime upgrade,
-      not a subscription. You pay only once and keep the upgrade forever!</p>
+      <p><%= t("user_upgrades.new.lifetime_upgrade", app_name: Danbooru.config.canonical_app_name) %></p>
 
       <% if !UserUpgrade.enabled? %>
-        <p><b>Notice: Gold upgrades are temporarily disabled.</b></p>
+        <p><b><%= t("user_upgrades.new.disabled_notice") %></b></p>
       <% end %>
     <% end %>
 
     <% if Danbooru.config.is_promotion? %>
       <p>
         <%= tag.img src: "/images/padoru.gif", width: 24, height: 24 %>
-        <b>Danbooru Winter Sale! Gold upgrades are 25% off. Sale ends <%= time_ago_in_words_tagged(Danbooru.config.winter_sale_end_date) %>.</b>
+        <b><%= t("user_upgrades.new.promotion", time: time_ago_in_words_tagged(Danbooru.config.winter_sale_end_date)) %></b>
         <%= tag.img src: "/images/padoru.gif", width: 24, height: 24 %>
       </p>
     <% end %>
@@ -47,8 +44,8 @@
       <thead>
         <tr>
           <th></th>
-          <th>Basic</th>
-          <th>Gold</th>
+          <th><%= t("user_upgrades.new.plan_basic") %></th>
+          <th><%= t("user_upgrades.new.plan_gold") %></th>
         </tr>
       </thead>
       <tbody>
@@ -57,63 +54,63 @@
         <colgroup id="gold" class="w-1/4"></colgroup>
         <tr>
           <td></td>
-          <td>Free</td>
+          <td><%= t("user_upgrades.new.free") %></td>
           <td>
             <% if Danbooru.config.is_promotion? %>
               <s>$20</s>
             <% end %>
             <b><%= number_to_currency(UserUpgrade.gold_price, precision: 0) %></b>
-            <div class="fineprint">One time fee</div>
+            <div class="fineprint"><%= t("user_upgrades.new.one_time_fee") %></div>
           </td>
         </tr>
         <tr>
-          <td>Tag Limit</td>
+          <td><%= t("user_upgrades.new.tag_limit") %></td>
           <td><%= User.tag_query_limit(User::Levels::MEMBER) %></td>
-          <td>Unlimited</td>
+          <td><%= t("user_upgrades.unlimited") %></td>
         </tr>
         <tr>
-          <td>Page Limit</td>
+          <td><%= t("user_upgrades.new.page_limit") %></td>
           <td><%= User.page_limit(User::Levels::MEMBER) %></td>
           <td><%= User.page_limit(User::Levels::GOLD) %></td>
         </tr>
         <tr>
-          <td>Private Favorites</td>
-          <td>No</td>
-          <td>Yes</td>
+          <td><%= t("user_upgrades.new.private_favorites") %></td>
+          <td><%= t("user_upgrades.no") %></td>
+          <td><%= t("user_upgrades.yes") %></td>
         </tr>
         <tr>
-          <td>Favorite Groups</td>
+          <td><%= t("user_upgrades.new.favorite_groups") %></td>
           <td><%= User.favorite_group_limit(User::Levels::MEMBER) %></td>
-          <td>Unlimited</td>
+          <td><%= t("user_upgrades.unlimited") %></td>
         </tr>
         <tr>
-          <td>Saved Searches</td>
+          <td><%= t("user_upgrades.new.saved_searches") %></td>
           <td><%= User.max_saved_searches(User::Levels::MEMBER) %></td>
           <td><%= User.max_saved_searches(User::Levels::GOLD) %></td>
         </tr>
         <tr>
-          <td>Max Search Duration</td>
-          <td>3 seconds</td>
-          <td>9 seconds</td>
+          <td><%= t("user_upgrades.new.max_search_duration") %></td>
+          <td><%= t("user_upgrades.new.three_seconds") %></td>
+          <td><%= t("user_upgrades.new.nine_seconds") %></td>
         </tr>
         <tr>
           <td></td>
           <td>
             <% if @user_upgrade.purchaser.is_anonymous? %>
-              <%= link_to "Create free account", new_user_path(url: new_user_upgrade_path), class: "button-outline-primary" %>
+              <%= link_to t("user_upgrades.new.create_free_account"), new_user_path(url: new_user_upgrade_path), class: "button-outline-primary" %>
             <% end %>
           </td>
           <td>
             <% if !UserUpgrade.enabled? %>
-              <%= button_to "Upgrade to Gold", nil, class: "button-primary", disabled: true %>
+              <%= button_to t("user_upgrades.new.upgrade_to_gold"), nil, class: "button-primary", disabled: true %>
             <% elsif @user_upgrade.purchaser.is_anonymous? %>
-              <%= link_to "Upgrade to Gold", new_user_path(url: new_user_upgrade_path), class: "button-primary block mb-2" %>
-              <%= link_to "Redeem upgrade code", redeem_upgrade_codes_path, class: "text-sm block" %>
+              <%= link_to t("user_upgrades.new.upgrade_to_gold"), new_user_path(url: new_user_upgrade_path), class: "button-primary block mb-2" %>
+              <%= link_to t("user_upgrades.new.redeem_upgrade_code"), redeem_upgrade_codes_path, class: "text-sm block" %>
             <% elsif @user_upgrade.recipient.level <= User::Levels::MEMBER %>
-              <%= button_to "Upgrade to Gold", user_upgrades_path(user_id: @recipient.id, upgrade_type: "gold", country: params[:country], promo: params[:promo], payment_processor: "shopify"), class: "button-primary mb-2", remote: true, disable_with: "Redirecting..." %>
-              <%= link_to "Redeem upgrade code", redeem_upgrade_codes_path, class: "text-sm" %>
+              <%= button_to t("user_upgrades.new.upgrade_to_gold"), user_upgrades_path(user_id: @recipient.id, upgrade_type: "gold", country: params[:country], promo: params[:promo], payment_processor: "shopify"), class: "button-primary mb-2", remote: true, disable_with: t("user_upgrades.new.redirecting") %>
+              <%= link_to t("user_upgrades.new.redeem_upgrade_code"), redeem_upgrade_codes_path, class: "text-sm" %>
             <% else %>
-              <%= link_to "Upgrade to Gold", user_upgrades_path(user_id: @recipient.id), class: "button-primary", disabled: true %>
+              <%= link_to t("user_upgrades.new.upgrade_to_gold"), user_upgrades_path(user_id: @recipient.id), class: "button-primary", disabled: true %>
             <% end %>
           </td>
         </tr>
@@ -122,102 +119,87 @@
 
     <% if @user_upgrade.purchaser.is_anonymous? %>
       <p class="text-center">
-        Already have an account? <%= link_to "Log in", login_path(url: new_user_upgrade_path) %>.
+        <%= t("user_upgrades.new.already_have_account_html", login: link_to(t("user_upgrades.new.log_in"), login_path(url: new_user_upgrade_path))).html_safe %>
       </p>
     <% end %>
 
-    <h2 class="mb-4">Frequently Asked Questions</h2>
+    <h2 class="mb-4"><%= t("user_upgrades.new.faq_heading") %></h2>
 
     <div id="frequently-asked-questions" class="divide-y-1">
       <details>
-        <summary>How do I upgrade my account?</summary>
+        <summary><%= t("user_upgrades.new.faq_upgrade_question") %></summary>
 
-        <p>Click the "Upgrade to Gold" button on this page. After you purchase an upgrade, you will receive a code you can
-        <%= link_to "redeem here", redeem_upgrade_codes_path %> to upgrade your account to Gold. Look for the upgrade code
-        in your email or on the order confirmation page. <%= link_to "Contact us", contact_path %> if you have any questions.</p>
+        <p><%= t("user_upgrades.new.faq_upgrade_answer_html", redeem: link_to(t("user_upgrades.new.redeem_here"), redeem_upgrade_codes_path), contact: link_to(t("user_upgrades.new.contact_us"), contact_path)).html_safe %></p>
       </details>
 
       <details>
-        <summary>What are the benefits of <%= Danbooru.config.canonical_app_name %> Gold?</summary>
+        <summary><%= t("user_upgrades.new.faq_benefits_question", app_name: Danbooru.config.canonical_app_name) %></summary>
 
-        <p><%= Danbooru.config.canonical_app_name %> Gold lets you search for more tags at once, browse
-        deeper in search results, keep your favorites private, and keep more favorite groups and saved searches.</p>
+        <p><%= t("user_upgrades.new.faq_benefits_answer", app_name: Danbooru.config.canonical_app_name) %></p>
       </details>
 
       <details>
-        <summary>What is the tag limit?</summary>
+        <summary><%= t("user_upgrades.new.faq_tag_limit_question") %></summary>
 
-        <p>The tag limit is how many tags you can search for at once. Normal users can only search for
-        <%= User.tag_query_limit(User::Levels::MEMBER) %> tags at once. Gold users can search for an
-        unlimited number of tags at once.</p>
+        <p><%= t("user_upgrades.new.faq_tag_limit_answer", limit: User.tag_query_limit(User::Levels::MEMBER)) %></p>
 
-        <p>See <%= link_to_wiki "help:cheatsheet" %> for more information on searches.</p>
+        <p><%= t("user_upgrades.new.faq_tag_limit_more_html", link: link_to_wiki(t("user_upgrades.new.wiki_cheatsheet"), "help:cheatsheet")).html_safe %></p>
       </details>
 
       <details>
-        <summary>What is the page limit?</summary>
+        <summary><%= t("user_upgrades.new.faq_page_limit_question") %></summary>
 
-        <p>Normal users can only browse posts up to page 1000. Gold users can browse posts up to page 5000.</p>
+        <p><%= t("user_upgrades.new.faq_page_limit_answer") %></p>
       </details>
 
       <details>
-        <summary>What are private favorites?</summary>
+        <summary><%= t("user_upgrades.new.faq_private_favorites_question") %></summary>
 
-        <p>Normally your favorites are visible to everyone. Gold users can make their favorites
-        private in their <%= link_to "account settings", settings_path %>.</p>
+        <p><%= t("user_upgrades.new.faq_private_favorites_answer_html", settings: link_to(t("user_upgrades.new.settings_link"), settings_path)).html_safe %></p>
       </details>
 
       <details>
-        <summary>What are favorite groups?</summary>
+        <summary><%= t("user_upgrades.new.faq_favorite_groups_question") %></summary>
 
-        <p>Favorite groups are like personal tags or pools. They let you organize your favorites
-        in groups however you wish. Gold users can have an unlimited number of favorite groups. See
-        <%= link_to_wiki "help:favorite groups" %> for more details.</p>
+        <p><%= t("user_upgrades.new.faq_favorite_groups_answer_html", link: link_to_wiki(t("user_upgrades.new.wiki_favorite_groups"), "help:favorite groups")).html_safe %></p>
       </details>
 
       <details>
-        <summary>What are saved searches?</summary>
+        <summary><%= t("user_upgrades.new.faq_saved_searches_question") %></summary>
 
-        <p>Saved searches let you save your favorite tags and searches. They let you easily check for
-        new posts under your favorite tags. Gold users can keep up to 1000 saved searches. See
-        <%= link_to_wiki "help:saved searches" %> for more details.</p>
+        <p><%= t("user_upgrades.new.faq_saved_searches_answer_html", link: link_to_wiki(t("user_upgrades.new.wiki_saved_searches"), "help:saved searches")).html_safe %></p>
       </details>
 
       <details>
-        <summary>What is the max search duration?</summary>
+        <summary><%= t("user_upgrades.new.faq_search_duration_question") %></summary>
 
-        <p>Complicated tag searches may take longer to execute. Normal users can only do
-        searches that take up to 3 seconds long. Gold users can do searches that take up to 6
-        seconds long. This means Gold users can do more complicated tag searches.</p>
+        <p><%= t("user_upgrades.new.faq_search_duration_answer") %></p>
       </details>
 
       <details>
-        <summary>Can I gift an upgrade to someone else?</summary>
+        <summary><%= t("user_upgrades.new.faq_gift_question") %></summary>
 
-        <p>Sure. You can buy an upgrade code and give it to someone else.</p>
+        <p><%= t("user_upgrades.new.faq_gift_answer") %></p>
       </details>
 
       <details>
-        <summary>What payment methods do you support?</summary>
+        <summary><%= t("user_upgrades.new.faq_payment_question") %></summary>
 
-        <p>We support all major credit and debit cards. We don't support Bitcoin at this time.</p>
+        <p><%= t("user_upgrades.new.faq_payment_answer") %></p>
       </details>
 
       <details>
-        <summary>Is this a subscription?</summary>
+        <summary><%= t("user_upgrades.new.faq_subscription_question") %></summary>
 
-        <p>No, this is not a subscription. This is a one-time payment only. You pay only once and keep the upgrade forever.</p>
+        <p><%= t("user_upgrades.new.faq_subscription_answer") %></p>
       </details>
 
       <details>
-        <summary>What is your refund policy?</summary>
+        <summary><%= t("user_upgrades.new.faq_refund_question") %></summary>
 
-        <p>You can request a refund for any reason within 48 hours of your purchase. To request a refund,
-        <%= link_to "contact us", contact_path %> or send an email to <%= mail_to Danbooru.config.contact_email %>.
-        Please include your username in your request.</p>
+        <p><%= t("user_upgrades.new.faq_refund_answer_html", contact: link_to(t("user_upgrades.new.contact_us"), contact_path), email: mail_to(Danbooru.config.contact_email)).html_safe %>
 
-        <p>Refund requests will be responded to within 1 business day. Please note that it may take up to 10 business days for refunds
-        to be processed by your bank or credit card company.</p>
+        <p><%= t("user_upgrades.new.faq_refund_note") %></p>
       </details>
     </div>
   </div>

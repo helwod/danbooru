@@ -1,0 +1,12 @@
+"zh-CN":
+  pool:
+    reserved_name: "不能使用以下名称：%{names}。"
+    cannot_update_deleted: "不能修改已删除的合集。"
+    name_commas: "不能包含逗号。"
+    name_asterisks: "不能包含星号。"
+    name_leading_underscore: "不能以下划线开头。"
+    name_trailing_underscore: "不能以下划线结尾。"
+    name_consecutive_underscores: "不能包含连续下划线。"
+    name_non_printable: "不能包含不可打印字符。"
+    name_blank: "不能为空。"
+    name_only_digits: "不能全部为数字。"

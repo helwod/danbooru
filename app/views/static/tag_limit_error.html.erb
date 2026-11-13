@@ -1,15 +1,15 @@
-<% page_title "Search Error" %>
+<% page_title t("static.search_error") %>
 
-<h1>Search Error</h1>
+<h1><%= t("static.search_error") %></h1>
 
 <p>
   <%= @message %>
 
   <% if CurrentUser.is_anonymous? %>
-    <%= link_to "Sign up", new_user_path %> to search for more tags at once.
+    <%= t("static.sign_up_for_more_tags_html", signup: link_to(t("static.sign_up_link"), new_user_path)).html_safe %>
   <% elsif !CurrentUser.is_gold? %>
-    <%= link_to "Upgrade your account", new_user_upgrade_path  %> to search for more tags at once.
+    <%= t("static.upgrade_for_more_tags_html", upgrade: link_to(t("static.upgrade_account_link"), new_user_upgrade_path)).html_safe %>
   <% end %>
 </p>
 
-<%= link_to "Go back", :back, rel: "prev" %>
+<%= link_to t("static.go_back"), :back, rel: "prev" %>

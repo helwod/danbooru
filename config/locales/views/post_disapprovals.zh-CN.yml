@@ -1,0 +1,46 @@
+"zh-CN":
+  post_disapprovals:
+    create:
+      error_on_post: "作品 #%{id} 出错：%{message}"
+      error: "错误：%{message}"
+      skipped: "作品 #%{id} 已跳过。"
+      rejected: "作品 #%{id} 已否决。"
+    index:
+      title: "否决"
+      search_creator: "否决人"
+      search_post_id: "作品 ID"
+      search_tags: "标签"
+      search_message: "留言"
+      search_reason: "理由"
+      has_message: "有留言？"
+      'yes': "是"
+      'no': "否"
+      order_id: "ID"
+      order_post_id: "作品 ID"
+      submit: "搜索"
+      column_post: "作品"
+      column_message: "留言"
+      column_reason: "理由"
+      column_created: "时间"
+      post_link: "作品 #%{id}"
+    counts:
+      reviewed: "已有 %{count} 位审批员审核过。"
+      breaks_rules: "其中 %{count} 位认为违反规则。"
+      poor_quality: "其中 %{count} 位认为质量不佳。"
+      messages: "留言："
+    dialog:
+      title: "详细否决理由"
+      intro: "你可以给上传者留一条简短留言，说明你否决这次上传的原因。"
+      ctrl_enter: "Ctrl+Enter 提交"
+      reject: "否决"
+      cancel: "取消"
+    reasons:
+      disinterest: "不感兴趣"
+      poor_quality: "质量不佳"
+      breaks_rules: "违反规则"
+
+  activerecord:
+    attributes:
+      post_disapproval:
+        reason: "理由"
+        message: "留言"

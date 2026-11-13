@@ -1,7 +1,7 @@
 <div id="c-metrics">
   <div id="a-statistics">
-    <h1 class="mb-2">Statistics</h1>
-    <p class="fineprint mb-4">Updated <%= time_ago_in_words_tagged(@metrics.updated_at) %>.</p>
+    <h1 class="mb-2"><%= t("metrics.statistics") %></h1>
+    <p class="fineprint mb-4"><%= t("metrics.updated", time: time_ago_in_words_tagged(@metrics.updated_at)) %></p>
 
     <div class="flex flex-wrap gap-4">
       <% @metrics.metrics.values.each do |metric| %>

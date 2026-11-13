@@ -1,27 +1,27 @@
-<% page_title "Order Pool" %>
+<% page_title t("pool_orders.edit.page_title") %>
 <%= render "pools/secondary_links" %>
 
 <div id="c-pool-orders">
   <div id="a-edit">
-    <h1>Order Pool: <%= @pool.pretty_name %></h1>
+    <h1><%= t("pool_orders.edit.title", name: @pool.pretty_name) %></h1>
 
     <%= edit_form_for(@pool, format: :js, html: { id: "ordering-form" }) do |f| %>
       <% if @pool.post_count <= Pool::POOL_ORDER_LIMIT %>
-        <p>Drag and drop the list below to determine ordering.</p>
+        <p><%= t("pool_orders.edit.drag_hint") %></p>
 
         <%= render BlacklistComponent.new(user: CurrentUser.user, inline: true) %>
 
         <ul id="sortable">
           <% @pool.posts.includes(:media_asset).each do |post| %>
             <%= tag.li id: "pool[post_ids]_#{post.id}" do -%>
-              <%= post_preview(post, show_deleted: true).presence || "Hidden: Post ##{post.id}" -%>
+              <%= post_preview(post, show_deleted: true).presence || t("pool_orders.edit.hidden_post", id: post.id) -%>
             <% end -%>
           <% end %>
         </ul>
       <% else %>
-        <p>Reorder the post IDs in the text box below to reorder the pool.</p>
+        <p><%= t("pool_orders.edit.text_hint") %></p>
 
-        <%= f.input :post_ids_string, as: :text, label: "Posts" %>
+        <%= f.input :post_ids_string, as: :text, label: t("pool_orders.edit.posts") %>
       <% end %>
 
       <%= f.submit_button %>

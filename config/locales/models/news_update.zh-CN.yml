@@ -1,0 +1,4 @@
+"zh-CN":
+  news_update:
+    only_one_active: "同时只能有一条生效中的公告。"
+    duration_range: "必须在 1 到 30 天之间。"

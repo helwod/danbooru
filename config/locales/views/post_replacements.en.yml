@@ -1,0 +1,39 @@
+en:
+  post_replacements:
+    index:
+      title: "Post Replacements"
+      search_replacer: "Replacer"
+      search_tags: "Tags"
+      submit: "Search"
+      column_post: "Post"
+      column_source: "Source"
+      original_source: "Original Source"
+      replacement_source: "Replacement Source"
+      file: "file"
+      column_md5: "MD5"
+      original_md5: "Original MD5"
+      replacement_md5: "Replacement MD5"
+      column_size: "Size"
+      original_size: "Original Size"
+      replacement_size: "Replacement Size"
+      column_replacer: "Replacer"
+    new:
+      dialog_title: "Replace image"
+      file: "File"
+      replacement_url: "Replacement URL"
+      replacement_url_hint: "The source URL to download the replacement from."
+      final_source: "Final Source"
+      final_source_hint: "If present, the source field will be changed to this after replacement."
+      tags: "Tags"
+      submit: "Replace"
+      cancel: "Cancel"
+    flash:
+      replaced: "Post replaced"
+
+  activerecord:
+    attributes:
+      post_replacement:
+        replacement_file: "File"
+        replacement_url: "Replacement URL"
+        final_source: "Final Source"
+        tags: "Tags"

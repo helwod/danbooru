@@ -1,0 +1,16 @@
+"zh-CN":
+  ip_geolocations:
+    ip_address: "IP 地址"
+    proxy: "是否代理？"
+    asn: "ASN"
+    network: "网段"
+    organization: "所属机构"
+    is_proxy: "是否代理"
+    continent: "大洲"
+    country: "国家"
+    region: "地区"
+    city: "城市"
+    updated: "更新时间"
+    created: "创建时间"
+    search: "搜索"
+    ip_info: "IP 信息"

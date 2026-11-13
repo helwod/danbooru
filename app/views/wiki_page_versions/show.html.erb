@@ -7,11 +7,11 @@
     <h1 id="wiki-page-title"><%= link_to_wiki @wiki_page_version.pretty_title, @wiki_page_version.title, class: "tag-type-#{@wiki_page_version.wiki_page.tag&.category.to_i}" %></h1>
 
     <p class="fineprint">
-      <%= @wiki_page_version.previous ? "Edited" : "Created" %>
-      <%= link_to humanized_time(@wiki_page_version.updated_at), diff_wiki_page_versions_path(thispage: @wiki_page_version.id) %> by <%= link_to_user @wiki_page_version.updater %>.
+      <%= @wiki_page_version.previous ? t("wiki_page_versions.show.edited") : t("wiki_page_versions.show.created") %>
+      <%= link_to humanized_time(@wiki_page_version.updated_at), diff_wiki_page_versions_path(thispage: @wiki_page_version.id) %> <%= t("wiki_page_versions.show.by", name: link_to_user(@wiki_page_version.updater)).html_safe %>.
 
       <% if @wiki_page_version.previous %>
-        Previously edited <%= link_to humanized_time(@wiki_page_version.previous.updated_at), diff_wiki_page_versions_path(thispage: @wiki_page_version.previous.id) %> by <%= link_to_user @wiki_page_version.previous.updater %>.
+        <%= t("wiki_page_versions.show.previously_edited", time: link_to(humanized_time(@wiki_page_version.previous.updated_at), diff_wiki_page_versions_path(thispage: @wiki_page_version.previous.id)), name: link_to_user(@wiki_page_version.previous.updater)).html_safe %>.
       <% end %>
     </p>
 

@@ -1,0 +1,23 @@
+en:
+  tag_versions:
+    index:
+      title: "Tag History"
+      title_with_tag_html: "Tag History: %{link}"
+      title_with_user_html: "Tag History: %{link}"
+      back: "« Back"
+      search_tag: "Tag"
+      search_user: "User"
+      order_newest: "Newest"
+      order_oldest: "Oldest"
+      submit: "Search"
+      column_tag: "Tag"
+      column_change: "Change"
+      column_date: "Date"
+      column_user: "User"
+      anonymous_created_html: "Anonymous created %{tag}."
+      anonymous_updated_html: "Anonymous updated %{tag}."
+      deprecated_html: "%{user} deprecated %{tag}."
+      undeprecated_html: "%{user} undeprecated %{tag}."
+      category_changed_html: "%{user} changed %{tag} from %{from} to %{to}."
+      edit_tag: "Edit tag"
+      tag_history: "Tag history"

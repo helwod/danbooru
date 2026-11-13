@@ -1,31 +1,28 @@
-<% page_title "Change Email" %>
+<% page_title t("emails.change_title") %>
 <%= render "users/secondary_links" %>
 
 <div id="c-emails">
   <div id="a-edit">
     <div class="card mt-4 p-4 max-w-540px mx-auto flex flex-col items-center gap-2">
       <% if CurrentUser.user == @user %>
-        <h1 class="text-center">Change Email</h1>
+        <h1 class="text-center"><%= t("emails.change_title") %></h1>
       <% else %>
-        <h1 class="text-center">Change Email: <%= link_to_user @user %></h1>
+        <h1 class="text-center"><%= t("emails.change_heading_html", user: link_to_user(@user)) %></h1>
       <% end %>
 
       <div class="prose">
         <% if CurrentUser.user != @user %>
-          <p>Don't change someone's email address unless they've lost access to their account and you've verified from
-          their <%= link_to "login history", user_user_events_path(@user) %> that they are the real account owner.</p>
+          <p><%= t("emails.other_user_warning_html", link: link_to(t("emails.login_history"), user_user_events_path(@user))) %></p>
         <% elsif @user.is_restricted? %>
-          <p>Your account is restricted because you signed up from a proxy or VPN.</p>
+          <p><%= t("emails.restricted_notice") %></p>
 
-          <p>You can still use the site, but you won't be able to leave comments, edit
-          tags, or upload posts until you add a verified email address to your
-          account.</p>
+          <p><%= t("emails.restricted_body") %></p>
 
-          <p>Disposable or throwaway email addresses can't be used to verify your account.</p>
+          <p><%= t("emails.disposable_notice") %></p>
         <% end %>
 
         <% if CurrentUser.user == @user && @user.recently_verified_account? %>
-          <p>You verified your account recently. You must wait <%= User::RECENTLY_PROMOTED_PERIOD.inspect %> before changing or removing your email address.</p>
+          <p><%= t("emails.recently_verified_notice", period: User::RECENTLY_PROMOTED_PERIOD.inspect) %></p>
         <% end %>
       </div>
 
@@ -34,11 +31,11 @@
 
         <div>
           <% if policy(@email_address).update? %>
-            <%= f.submit_button "Save" %>
+            <%= f.submit_button t("emails.save") %>
           <% end %>
 
           <% if policy(@email_address).destroy? && @email_address.persisted? %>
-            <%= f.submit "Delete", class: "button-outline-danger", form: "delete-form", "data-confirm": "Are you sure you want to delete your email address?" %>
+            <%= f.submit t("emails.delete"), class: "button-outline-danger", form: "delete-form", "data-confirm": t("emails.delete_confirm") %>
           <% end %>
         </div>
       <% end %>

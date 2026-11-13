@@ -1,0 +1,30 @@
+en:
+  comment_votes:
+    index:
+      title: "Comment Votes"
+    labels:
+      voter: "Voter"
+      commenter: "Commenter"
+      text: "Text"
+      tags: "Tags"
+      post_id: "Post ID"
+      deleted: "Deleted?"
+      search: "Search"
+    columns:
+      post: "Post"
+      comment: "Comment"
+      status: "Status"
+      score: "Score"
+      commenter: "Commenter"
+      voter: "Voter"
+      created: "Created"
+    deleted: "Deleted"
+    deleted_placeholder: "[deleted]"
+    remove: "Remove"
+    notice:
+      vote_removed: "Vote removed"
+
+  activerecord:
+    attributes:
+      comment_vote:
+        score: "Score"

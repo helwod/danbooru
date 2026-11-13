@@ -47,7 +47,7 @@ class UserNameChangeRequest < ApplicationRecord
     return if updater && updater != user
 
     if user.user_name_change_requests.exists?(created_at: (1.week.ago..))
-      errors.add(:base, "You can only submit one name change request per week")
+      errors.add(:base, I18n.t("user_name_change_request.weekly_limit"))
     end
   end
 

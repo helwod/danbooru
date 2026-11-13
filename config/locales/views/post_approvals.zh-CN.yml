@@ -1,0 +1,13 @@
+"zh-CN":
+  post_approvals:
+    create:
+      error_on_post: "作品 #%{id} 出错：%{message}"
+      error: "错误：%{message}"
+      approved: "作品 #%{id} 已批准。"
+    index:
+      title: "审批"
+      search_approver: "审批员"
+      search_tags: "标签"
+      submit: "搜索"
+      column_post: "作品"
+      column_approver: "审批员"

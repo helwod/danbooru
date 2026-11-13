@@ -1,0 +1,6 @@
+en:
+  api_key:
+    too_many_api_keys: "You can't have more than 20 API keys."
+    private_ip_address: "can't include private IP address '%{ip_addr}'"
+    overlapping_ip_ranges: "can't include overlapping IP address ranges (%{other_ip} is a subnet of %{ip_addr})"
+    invalid_permission: "can't allow invalid permission '%{permission}'"

@@ -1,29 +1,29 @@
 <% content_for(:secondary_links) do %>
   <%= quick_search_form_for(:any_name_or_url_matches, artists_path, "artists", autocomplete: "artist", redirect: true) %>
-  <%= subnav_link_to "Artists", artists_path %>
+  <%= subnav_link_to t("artists.secondary_links.artists"), artists_path, id: "artists" %>
   <% if policy(Artist).create? %>
-    <%= subnav_link_to "New", new_artist_path %>
+    <%= subnav_link_to t("artists.secondary_links.new"), new_artist_path, id: "new" %>
   <% end %>
-  <%= subnav_link_to "Changes", artist_versions_path %>
-  <%= subnav_link_to "URLs", artist_urls_path %>
+  <%= subnav_link_to t("artists.secondary_links.changes"), artist_versions_path, id: "changes" %>
+  <%= subnav_link_to t("artists.secondary_links.urls"), artist_urls_path, id: "urls" %>
   <% if @artist && !@artist.new_record? && (!@artist.is_banned? || policy(@artist).can_view_banned?) %>
     <%= subnav_divider %>
-    <%= subnav_link_to "Posts (#{@artist.tag.try(:post_count).to_i})", posts_path(:tags => @artist.name) %>
+    <%= subnav_link_to t("artists.secondary_links.posts_count", count: @artist.tag.try(:post_count).to_i), posts_path(:tags => @artist.name), id: "posts" %>
     <% if policy(@artist).update? %>
-      <%= subnav_link_to "Edit", edit_artist_path(@artist), :"data-shortcut" => "e" %>
+      <%= subnav_link_to t("artists.secondary_links.edit"), edit_artist_path(@artist), :"data-shortcut" => "e", id: "edit" %>
     <% end %>
-    <%= subnav_link_to "History", artist_versions_path(:search => {:artist_id => @artist.id}) %>
+    <%= subnav_link_to t("artists.secondary_links.history"), artist_versions_path(:search => {:artist_id => @artist.id}), id: "history" %>
     <% if current_page?(action: :edit) && policy(@artist).update? %>
       <% if @artist.is_deleted? %>
-        <%= subnav_link_to "Undelete", artist_path(@artist, format: "js"), method: :put, data: {confirm: "Are you sure you want to undelete this artist?", params: "artist[is_deleted]=false"}, remote: true %>
+        <%= subnav_link_to t("artists.secondary_links.undelete"), artist_path(@artist, format: "js"), method: :put, data: {confirm: t("artists.secondary_links.confirm_undelete"), params: "artist[is_deleted]=false"}, remote: true, id: "undelete" %>
       <% else %>
-        <%= subnav_link_to "Delete", artist_path(@artist), method: :delete, "data-shortcut": "shift+d", "data-confirm": "Are you sure you want to delete this artist?" %>
+        <%= subnav_link_to t("artists.secondary_links.delete"), artist_path(@artist), method: :delete, "data-shortcut": "shift+d", "data-confirm": t("artists.secondary_links.confirm_delete"), id: "delete" %>
       <% end %>
     <% end %>
     <% if policy(@artist).unban? %>
-      <%= subnav_link_to "Unban", unban_artist_path(@artist), :method => :put, :data => {:confirm => "Are you sure you want to unban this artist?"} %>
+      <%= subnav_link_to t("artists.secondary_links.unban"), unban_artist_path(@artist), :method => :put, :data => {:confirm => t("artists.secondary_links.confirm_unban")}, id: "unban" %>
     <% elsif policy(@artist).ban? %>
-      <%= subnav_link_to "Ban", ban_artist_path(@artist), :method => :put, :data => {:confirm => "Are you sure you want to ban this artist?"} %>
+      <%= subnav_link_to t("artists.secondary_links.ban"), ban_artist_path(@artist), :method => :put, :data => {:confirm => t("artists.secondary_links.confirm_ban")}, id: "ban" %>
     <% end %>
   <% end %>
 <% end %>

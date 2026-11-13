@@ -2,30 +2,30 @@
 
 <div id="c-ai-tags">
   <div id="a-index">
-    <h1>AI Tags</h1>
+    <h1><%= t("ai_tags.title") %></h1>
 
     <%= search_form_for(ai_tags_path) do |f| %>
-      <%= f.input :tag_name, label: "AI Tag", input_html: { value: params.dig(:search, :tag_name).presence || Tag.find_by(id: params.dig(:search, :tag_id))&.name, data: { autocomplete: "tag" } } %>
-      <%= f.input :post_tags_match, label: "Post Search", input_html: { value: params.dig(:search, :post_tags_match), data: { autocomplete: "tag-query" } } %>
-      <%= f.input :score, label: "Confidence", input_html: { value: params.dig(:search, :score) } %>
+      <%= f.input :tag_name, label: t("ai_tags.ai_tag"), input_html: { value: params.dig(:search, :tag_name).presence || Tag.find_by(id: params.dig(:search, :tag_id))&.name, data: { autocomplete: "tag" } } %>
+      <%= f.input :post_tags_match, label: t("ai_tags.post_search"), input_html: { value: params.dig(:search, :post_tags_match), data: { autocomplete: "tag-query" } } %>
+      <%= f.input :score, label: t("ai_tags.confidence"), input_html: { value: params.dig(:search, :score) } %>
       <%= f.input :is_posted, as: :hidden, input_html: { value: params.dig(:search, :is_posted) } %>
-      <%= f.input :order, collection: [%w[Newest media_asset_id], %w[Oldest media_asset_id_asc], %w[Confidence score_desc]], include_blank: true, selected: params[:search][:order] %>
-      <%= f.submit "Search" %>
+      <%= f.input :order, label: t("ai_tags.order"), collection: [[t("ai_tags.order_by.newest"), "media_asset_id"], [t("ai_tags.order_by.oldest"), "media_asset_id_asc"], [t("ai_tags.order_by.confidence"), "score_desc"]], include_blank: true, selected: params[:search][:order] %>
+      <%= f.submit t("ai_tags.search") %>
     <% end %>
 
     <div class="tab-panel-component horizontal-tab-panel">
       <div class="tab-list">
-        <%= link_to "Posted", current_page_path(search: search_params.merge(is_posted: true)), class: [(search_params[:is_posted].to_s.truthy? ? "tab active-tab" : "tab")] %>
-        <%= link_to "Unposted", current_page_path(search: search_params.merge(is_posted: false)), class: [(search_params[:is_posted].to_s.falsy? ? "tab active-tab" : "tab")] %>
+        <%= link_to t("ai_tags.posted"), current_page_path(search: search_params.merge(is_posted: true)), class: [(search_params[:is_posted].to_s.truthy? ? "tab active-tab" : "tab")] %>
+        <%= link_to t("ai_tags.unposted"), current_page_path(search: search_params.merge(is_posted: false)), class: [(search_params[:is_posted].to_s.falsy? ? "tab active-tab" : "tab")] %>
 
         <span class="flex-grow-1"></span>
 
         <%= render PreviewSizeMenuComponent.new(current_size: preview_size) %>
 
         <% if @mode == "table" %>
-          <%= link_to grid_icon, current_page_path(mode: nil), title: "Gallery", class: "tab" %>
+          <%= link_to grid_icon, current_page_path(mode: nil), title: t("ai_tags.gallery"), class: "tab" %>
         <% else %>
-          <%= link_to list_icon, current_page_path(mode: "table"), title: "Table", class: "tab" %>
+          <%= link_to list_icon, current_page_path(mode: "table"), title: t("ai_tags.table"), class: "tab" %>
         <% end %>
       </div>
     </div>

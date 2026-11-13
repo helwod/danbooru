@@ -1,7 +1,7 @@
 <div class="tag-list categorized-tag-list">
   <% categorized_tags(TagCategory.split_header_list).each do |category_name, tags| %>
     <h3 class="<%= category_name %>-tag-list">
-      <%= category_name.titleize.pluralize(tags.length) %>
+      <%= I18n.t("components.categorized_tag_list.categories.#{category_name}", count: tags.length, default: category_name.humanize) %>
     </h3>
 
     <ul class="<%= category_name %>-tag-list">

@@ -1,0 +1,23 @@
+en:
+  artist_urls:
+    index:
+      search_artist_name: "Artist Name"
+      search_url: "URL"
+      search_active: "Active?"
+      order_id: "ID"
+      order_created: "Created"
+      order_updated: "Updated"
+      'yes': "Yes"
+      'no': "No"
+      submit: "Search"
+      column_artist_name: "Artist Name"
+      column_url: "URL"
+      column_active: "Active?"
+      column_created: "Created"
+      column_updated: "Updated"
+
+  activerecord:
+    attributes:
+      artist_url:
+        is_active: "Active?"
+        url_matches: "URL"

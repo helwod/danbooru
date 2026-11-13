@@ -1,15 +1,15 @@
 <%= search_form_for(comments_path) do |f| %>
   <%= hidden_field_tag "group_by", "comment", :id => "group_by_full" %>
-  <%= f.input :creator_name, label: "Commenter", input_html: { value: params[:search][:creator_name], "data-autocomplete": "user" } %>
-  <%= f.input :body_matches, label: "Text", input_html: { value: params[:search][:body_matches] } %>
-  <%= f.input :post_tags_match, label: "Tags", input_html: { value: params[:search][:post_tags_match], "data-autocomplete": "tag-query" } %>
+  <%= f.input :creator_name, label: t("comments.search.commenter"), input_html: { value: params[:search][:creator_name], "data-autocomplete": "user" } %>
+  <%= f.input :body_matches, label: t("comments.search.text"), input_html: { value: params[:search][:body_matches] } %>
+  <%= f.input :post_tags_match, label: t("comments.search.tags"), input_html: { value: params[:search][:post_tags_match], "data-autocomplete": "tag-query" } %>
   <%= f.input :score, input_html: { value: params[:search][:score] } %>
-  <%= f.input :is_edited, label: "Edited?", collection: %w[Yes No], include_blank: true, selected: params[:search][:is_edited] %>
-  <%= f.input :is_deleted, label: "Deleted?", collection: %w[Yes No], include_blank: true, selected: params[:search][:is_deleted] %>
-  <%= f.input :is_sticky, label: "Stickied?", collection: %w[Yes No], include_blank: true, selected: params[:search][:is_sticky] %>
-  <%= f.input :do_not_bump_post, label: "Bumped?", collection: [["Yes", false], ["No", true]], include_blank: true, selected: params[:search][:do_not_bump_post] %>
-  <%= f.input :order, collection: [["Newest", "id_desc"], ["Oldest", "id_asc"], ["Updated", "updated_at_desc"], ["Score (highest)", "score_desc"], ["Score (lowest)", "score_asc"]], include_blank: true, selected: params[:search][:order] %>
-  <%= f.submit "Search" %>
+  <%= f.input :is_edited, label: t("comments.search.edited"), collection: [[t("comments.search.yes"), "Yes"], [t("comments.search.no"), "No"]], include_blank: true, selected: params[:search][:is_edited] %>
+  <%= f.input :is_deleted, label: t("comments.search.deleted"), collection: [[t("comments.search.yes"), "Yes"], [t("comments.search.no"), "No"]], include_blank: true, selected: params[:search][:is_deleted] %>
+  <%= f.input :is_sticky, label: t("comments.search.stickied"), collection: [[t("comments.search.yes"), "Yes"], [t("comments.search.no"), "No"]], include_blank: true, selected: params[:search][:is_sticky] %>
+  <%= f.input :do_not_bump_post, label: t("comments.search.bumped"), collection: [[t("comments.search.yes"), false], [t("comments.search.no"), true]], include_blank: true, selected: params[:search][:do_not_bump_post] %>
+  <%= f.input :order, collection: [[t("comments.search.order_newest"), "id_desc"], [t("comments.search.order_oldest"), "id_asc"], [t("comments.search.order_updated"), "updated_at_desc"], [t("comments.search.order_score_desc"), "score_desc"], [t("comments.search.order_score_asc"), "score_asc"]], include_blank: true, selected: params[:search][:order] %>
+  <%= f.submit t("comments.search.submit") %>
 <% end %>
 
 <%= render BlacklistComponent.new(user: CurrentUser.user, inline: true) %>

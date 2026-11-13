@@ -1,5 +1,5 @@
-<% page_title "Pools" %>
-<% meta_description "See thousands of translated anime & hentai comics, galleries, doujins, and more on #{Danbooru.config.app_name}." %>
+<% page_title t("pools.index.page_title") %>
+<% meta_description t("pools.meta_description", app_name: Danbooru.config.app_name) %>
 
 <%= render "secondary_links" %>
 
@@ -8,16 +8,16 @@
     <%= render "search", :path => pools_path %>
 
     <%= table_for @pools, width: "100%" do |t| %>
-      <% t.column "Name", width: "60%" do |pool| %>
+      <% t.column t("pools.index.column_name"), width: "60%", column: "name" do |pool| %>
         <span class="pool-category-<%= pool.category %>"><%= link_to pool.pretty_name, pool_path(pool) %></span>
         <% if pool.is_deleted? %>
-          <span class="inactive">(deleted)</span>
+          <span class="inactive"><%= t("pools.index.deleted") %></span>
         <% end %>
         <% if pool.last_page > 1 %>
-          <%= link_to "page #{pool.last_page}", pool_path(pool, :page => pool.last_page), :class => "last-page" %>
+          <%= link_to t("pools.index.page", page: pool.last_page), pool_path(pool, :page => pool.last_page), :class => "last-page" %>
         <% end %>
       <% end %>
-      <% t.column "Count", width: "10%" do |pool| %>
+      <% t.column t("pools.index.column_count"), width: "10%", column: "count" do |pool| %>
         <%= pool.post_count %>
       <% end %>
     <% end %>

@@ -1,0 +1,25 @@
+"zh-CN":
+  dtext_links:
+    index:
+      column_page: "页面"
+      search_link: "链接"
+      search_page_type: "页面类型"
+      search_link_type: "链接类型"
+      has_wiki: "维基存在？"
+      has_tag: "标签存在？"
+      'yes': "是"
+      'no': "否"
+      submit: "搜索"
+      column_link: "链接"
+      column_type: "类型"
+      post_link: "作品 #%{id}"
+      asset_link: "媒体 #%{id}"
+    model_types:
+      WikiPage: "维基页面"
+      ForumPost: "论坛帖子"
+      Pool: "合集"
+    link_types:
+      external_link: "外部链接"
+      wiki_link: "维基链接"
+      embedded_post: "嵌入作品"
+      embedded_media_asset: "嵌入媒体资源"

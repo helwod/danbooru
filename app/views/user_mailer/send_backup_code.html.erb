@@ -1,25 +1,23 @@
-<h2>Hi <%= @user.pretty_name %>,</h2>
+<h2><%= t("user_mailer.greeting_plain", user: @user.pretty_name) %></h2>
 
-<p>Here is your backup code:</p>
+<p><%= t("user_mailer.send_backup_code.here_is_code") %></p>
 
 <p style="font-size: 28px; text-align: center;"><%= @backup_code.to_s.rjust(User::BACKUP_CODE_LENGTH, "0") %></p>
 
 <p>
-  You can use this code to login to your account and change your two-factor authentication settings. You can only use
-  this code once, so be sure to update your two-factor authentication settings after using it.
+  <%= t("user_mailer.send_backup_code.usage") %>
 </p>
 
 <p>
-  After changing your two-factor authentication settings, be sure to write down your new backup codes.
+  <%= t("user_mailer.send_backup_code.after_change") %>
 </p>
 
 <div style="text-align: center">
-  <%= link_to "Login", login_url, style: "display: inline-block; padding: 8px 16px; border-radius: 4px; color: white; background-color: #0075f8;" %>
-  <%= link_to "Update 2FA", edit_user_totp_url(@user), style: "display: inline-block; padding: 8px 16px; border-radius: 4px; color: white; background-color: #0075f8;" %>
-  <%= link_to "View backup codes", user_backup_codes_url(@user), style: "display: inline-block; padding: 8px 16px; border-radius: 4px; color: white; background-color: #0075f8;" %>
+  <%= link_to t("user_mailer.send_backup_code.login"), login_url, style: "display: inline-block; padding: 8px 16px; border-radius: 4px; color: white; background-color: #0075f8;" %>
+  <%= link_to t("user_mailer.send_backup_code.update_2fa"), edit_user_totp_url(@user), style: "display: inline-block; padding: 8px 16px; border-radius: 4px; color: white; background-color: #0075f8;" %>
+  <%= link_to t("user_mailer.send_backup_code.view_backup_codes"), user_backup_codes_url(@user), style: "display: inline-block; padding: 8px 16px; border-radius: 4px; color: white; background-color: #0075f8;" %>
 </div>
 
 <p class="fineprint">
-  You received this email because someone requested an account recovery for your account. If this wasn't you, you should
-  login to your account and change your password immediately.
+  <%= t("user_mailer.send_backup_code.notice") %>
 </p>

@@ -1,7 +1,7 @@
 <%= render "wiki_pages/sidebar" %>
 
 <% content_for(:content) do %>
-  <h1>Wiki Page History</h1>
+  <h1><%= t("wiki_page_versions.index.title") %></h1>
 
   <%= render "versions/types" %>
 

@@ -1,0 +1,305 @@
+en:
+  components:
+    common:
+      edit: "Edit"
+      delete: "Delete"
+      undelete: "Undelete"
+      reply: "Reply"
+      report: "Report"
+      ban_user: "Ban User"
+      copy_id: "Copy ID"
+      copy_link: "Copy Link"
+      help: "Help"
+      search: "Search"
+      none: "None"
+      deleted: "[deleted]"
+      download: "Download"
+      chart: "Chart"
+      table: "Table"
+      size: "Size"
+      small: "Small"
+      medium: "Medium"
+      large: "Large"
+      huge: "Huge"
+      gigantic: "Gigantic"
+      absurd: "Absurd"
+
+    blacklist:
+      blacklisted: "Blacklisted"
+      autoclose: "Autoclose"
+      autoclose_title: "Whether enabling blacklists automatically closes the blacklist box"
+      show_all: "Show all"
+      show_all_title: "Show all rules, even those that don't match any posts"
+      blur_images: "Blur images"
+      blur_images_title: "Blur images instead of hiding them"
+
+    categorized_tag_list:
+      categories:
+        artist:
+          one: "Artist"
+          other: "Artists"
+        copyright:
+          one: "Copyright"
+          other: "Copyrights"
+        character:
+          one: "Character"
+          other: "Characters"
+        general:
+          one: "General"
+          other: "Generals"
+        meta:
+          one: "Meta"
+          other: "Metas"
+
+    tag_change_notice:
+      discussed_html: "This tag is being discussed in %{links}."
+      topic_link: 'topic #%{id}: "%{title}"'
+
+    post_gallery:
+      empty: "No posts found."
+
+    media_asset_gallery:
+      empty: "No results found."
+
+    favorites_tooltip:
+      empty: "No favorites yet"
+
+    time_series:
+      empty: "No results found. Try modifying your search or expanding your time range."
+      date: "Date"
+
+    media_asset:
+      removed: "Image deleted."
+      failed: "Upload failed."
+      unavailable: "Image unavailable."
+
+    media_asset_preview:
+      no_image: "No image"
+      failed: "Failed"
+      deleted: "Deleted"
+
+    file_upload:
+      paste_url: "Paste URL here"
+      source_placeholder: "Paste a pixiv link, tweet, etc"
+      see_here_html: "%{link} for a list of supported sites."
+      see_here_link: "See here"
+      upload: "Upload"
+      or: "— or —"
+      choose_file: "Choose file or drag image here"
+      max_size: "Max size: %{size}."
+
+    comment_section:
+      show_more:
+        one: "Show %{count} more comment"
+        other: "Show %{count} more comments"
+      empty: "There are no comments."
+      leave_comment: "Leave a comment"
+
+    post_preview:
+      alt: "post #%{id}"
+
+    post_navbar:
+      prev: "‹ prev"
+      next: "next ›"
+      search_html: "Search: %{link}"
+      to_page_1: "to page 1"
+      to_page: "to page %{page}"
+      pool: "Pool: %{name}"
+      page_of: "page %{page}/%{count}"
+      favgroup: "Favgroup: %{name}"
+
+    preview_size_menu:
+      size: "Size"
+
+    reaction:
+      search_emoji: "Search emoji..."
+
+    similar_images:
+      heading: "Similar Posts"
+      empty: "No similar posts found."
+      show_low:
+        one: "Show %{count} low similarity match"
+        other: "Show %{count} low similarity matches"
+      hide_low:
+        one: "Hide %{count} low similarity match"
+        other: "Hide %{count} low similarity matches"
+      score: "%{score}% similar"
+
+    source_data:
+      fetch: "Fetch source data"
+      artist: "Artist"
+      none: "None"
+      create_artist: "Create new artist"
+      tags: "Tags"
+      published: "Published"
+      updated: "Updated"
+
+    video:
+      error: "An error occurred while loading the video."
+      play_pause: "Play/Pause"
+      mute: "Mute"
+      volume: "Volume"
+      seek: "Seek"
+      seek_to_percent: "Seek to 0-90%"
+      change_speed: "Change speed"
+      quality: "Quality"
+
+    comment:
+      hidden: "[hidden]"
+      reported_html: "Reported (%{link})"
+      reports:
+        one: "%{count} report"
+        other: "%{count} reports"
+      confirm_delete: "Are you sure you want to delete this comment?"
+      confirm_sticky: "Are you sure you want to sticky this comment?"
+      sticky: "Sticky"
+      unsticky: "Unsticky"
+
+    forum_post:
+      deleted: "(deleted)"
+      reported_html: "Reported (%{link})"
+      reports:
+        one: "%{count} report"
+        other: "%{count} reports"
+      confirm_delete: "Are you sure you want to delete this forum post?"
+      approve_bur: "Approve BUR"
+      edit_bur: "Edit BUR"
+      reject_bur: "Reject BUR"
+      confirm_approve_bur: "Are you sure you want to approve this bulk update request?"
+      confirm_reject_bur: "Are you sure you want to reject this bulk update request?"
+
+    dtext_editor:
+      preview: "Preview"
+      preview_title: "Preview (Ctrl+P)"
+      edit: "Edit"
+      edit_title: "Edit (Ctrl+P)"
+      embeds: "%{count}/%{max} embeds"
+      embeds_suffix: " embeds"
+      bold_title: "Bold (Ctrl+B)"
+      italics_title: "Italics (Ctrl+I)"
+      wiki_link_title: "Wiki link (Ctrl+K)"
+      insert_image_title: "Insert image"
+      image_url_placeholder: "Paste image URL"
+      image_caption_placeholder: "Enter image caption (optional)"
+      size_label: "Size"
+      add_images: "Click, paste, or drop to add images."
+      insert_emoji_title: "Insert emoji"
+      search_emoji: "Search emoji..."
+      strikethrough: "Strikethrough"
+      strikethrough_title: "Strikethrough (Ctrl+S)"
+      underline: "Underline"
+      underline_title: "Underline (Ctrl+U)"
+      external_link: "External link"
+      external_link_title: "External link (Ctrl+L)"
+      search_link: "Search link"
+      search_link_title: "Search link (Ctrl+{)"
+      spoiler: "Spoiler"
+      spoiler_title: "Spoiler (Ctrl+/)"
+      expand: "Expand"
+      expand_title: "Expand (Ctrl+E)"
+      quote: "Quote"
+      quote_title: "Quote (Ctrl+Q)"
+      code: "Code"
+      code_title: "Code (Ctrl+M)"
+      horizontal_rule: "Horizontal rule"
+      horizontal_rule_title: "Horizontal rule"
+      no_formatting: "No formatting"
+      no_formatting_title: "No formatting"
+
+    upload_post:
+      processing_html: "Processing %{link}..."
+      error: "Error: %{error}."
+      no_source: "No Source"
+      bad_source: "Bad Source"
+      image_sample: "Image Sample"
+      ai_generated: "AI-Generated"
+      pixel_duplicate: "Pixel-Perfect Duplicate"
+      duplicate: "Duplicate"
+      tab_tags: "Tags"
+      tab_source: "Source"
+      tab_similar: "Similar"
+      tab_help: "Help"
+      rating_html: "Rating %{help}"
+      tags_label: "Tags"
+      ctrl_enter: "Ctrl+Enter to submit"
+      submit: "Post"
+      upload_for_approval: "Upload for approval"
+      upload_limit_html: "Upload limit: %{limit}"
+      read_rules_html: "Read the %{rules} before uploading."
+      upload_rules_link: "upload rules"
+      no_source_hint_html: "If possible, upload the link to where you found the file instead (%{help})."
+      sample_hint_html: "Upload the full image instead (%{help})."
+      bad_source_hint_html: "Upload the page containing the image, not the image itself (%{help})."
+      ai_hint_html: "AI-generated images are against the rules (%{help})."
+      duplicate_of_html: "Exact duplicate of %{post}"
+      duplicate_of_many_html: "Exact duplicate of %{posts}"
+      original_description: "Original description"
+      translated_description: "Translated description"
+      parent_id: "Parent ID"
+      related_posts: "Related Posts"
+      found_posts_html: "Found %{posts} from the same source."
+      other_post:
+        one: "%{count} other post"
+        other: "%{count} other posts"
+      auto: "Automatic"
+      auto_title: "Rotate your screen to change layout"
+      dock_right: "Dock to Right"
+      dock_bottom: "Dock to Bottom"
+      dock_left: "Dock to Left"
+      open_window: "Open window"
+
+    user_profile:
+      statistics: "Statistics"
+      user_id: "User ID"
+      join_date: "Join Date"
+      last_seen: "Last Seen"
+      last_ip: "Last IP"
+      unknown: "unknown"
+      user_activity: "User Activity"
+      account: "Account"
+      ip: "IP"
+      all: "All"
+      email_address: "Email Address"
+      edit: "edit"
+      verified_email: "Verified email"
+      unverified_email_link: "Unverified email. Click here to verify your email."
+      unverified_email: "Unverified email"
+      none: "none"
+      promoter: "Promoter"
+      level: "Level"
+      upgrade_account: "Upgrade account"
+      gift_upgrade: "Gift upgrade"
+      ban_reason: "Ban reason"
+      banned_for_html: "(banned %{duration})"
+      post_limit: "Post Limit"
+      posts: "Posts"
+      tag_changes_report: "tag changes report"
+      deleted_posts: "Deleted Posts"
+      favorites: "Favorites"
+      votes: "Votes"
+      votes_html: "%{posts} posts, %{comments} comments, %{forum_posts} forum posts"
+      favorite_groups: "Favorite Groups"
+      post_changes: "Post Changes"
+      refresh: "refresh"
+      note_changes: "Note Changes"
+      note_changes_in_html: "%{changes} in %{posts} posts"
+      note_changes_report: "note changes report"
+      wiki_page_changes: "Wiki Page Changes"
+      artist_changes: "Artist Changes"
+      commentary_changes: "Commentary Changes"
+      pool_changes: "Pool Changes"
+      forum_posts: "Forum Posts"
+      approvals: "Approvals"
+      comments: "Comments"
+      comments_in_html: "%{comments} in %{posts} posts"
+      appeals: "Appeals"
+      flags: "Flags"
+      feedback: "Feedback"
+      feedback_counts: "positive:%{positive} neutral:%{neutral} negative:%{negative}"
+      mod_reports: "Mod Reports"
+      mod_reports_received: "received:%{count}"
+      mod_reports_submitted: "submitted:%{count}"
+      previous_names: "Previous Names"
+      saved_searches: "Saved Searches"
+      api_key: "API Key"
+      view: "View"

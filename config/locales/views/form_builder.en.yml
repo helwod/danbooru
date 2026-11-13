@@ -1,0 +1,5 @@
+en:
+  form_builder:
+    create: "Create"
+    update: "Update"
+    cancel: "Cancel"

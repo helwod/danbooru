@@ -63,7 +63,7 @@ class EmailAddress < ApplicationRecord
 
   def validate_deliverable
     if Danbooru::EmailAddress.parse(address)&.undeliverable?
-      errors.add(:address, "is invalid or does not exist")
+      errors.add(:address, I18n.t("email_address.invalid_or_nonexistent"))
     end
   end
 

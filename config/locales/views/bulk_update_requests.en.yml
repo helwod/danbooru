@@ -1,0 +1,82 @@
+en:
+  bulk_update_requests:
+    destroy:
+      rejected: "rejected"
+    approve:
+      queued: "queued"
+    index:
+      title: "Bulk Update Requests"
+    new:
+      title: "New Bulk Update Request"
+    edit:
+      title: "Edit Bulk Update Request"
+    show:
+      title: "Bulk Update Request"
+      forum: "Forum"
+      none: "None"
+      creator: "Creator"
+      date: "Date"
+      status: "Status"
+      approver: "Approver"
+      votes: "Votes"
+      approve: "Approve"
+      reject: "Reject"
+      edit: "Edit"
+      confirm_approve: "Are you sure you want to approve this bulk update request?"
+      confirm_reject: "Are you sure you want to reject this bulk update request?"
+    form:
+      help_summary: "Help: How to make a bulk update request"
+      attached_to_html: "This request will be attached to %{link}"
+      topic_link: "topic #%{id}: %{title}"
+      will_create_topic: "This request will create a new forum topic. To attach this request to an existing topic, find the forum topic and click \"Request alias/implication\" at the top of the page."
+      forum_title: "Forum Title"
+      request: "Request"
+      reason_placeholder: "Explain your request here."
+    listing:
+      column_request: "Request"
+      topic_link: "Topic #%{id}: %{title}"
+      column_votes: "Votes"
+      column_status: "Status"
+      by: "by %{name}"
+      column_created: "Created"
+      view: "View"
+    search:
+      creator: "Creator"
+      approver: "Approver"
+      tags: "Tags"
+      status: "Status"
+      can_approve: "Can approve?"
+      'yes': "Yes"
+      'no': "No"
+      order_newest: "Newest"
+      order_oldest: "Oldest"
+      order_last_updated: "Last updated"
+      order_status: "Status"
+      order_score_desc: "Score (highest)"
+      order_score_asc: "Score (lowest)"
+      submit: "Search"
+    status:
+      pending: "Pending"
+      approved: "Approved"
+      rejected: "Rejected"
+      processing: "Processing"
+      failed: "Failed"
+    secondary_links:
+      listing: "Listing"
+      new: "New"
+      help: "Help"
+    flash:
+      updated: "BUR #%{id} updated"
+      approved: "BUR #%{id} approved"
+      rejected: "BUR #%{id} rejected"
+
+  activerecord:
+    attributes:
+      bulk_update_request:
+        script: "Request"
+        reason: "Reason"
+        title: "Forum Title"
+        forum_topic_id: "Forum topic"
+        forum_post_id: "Forum post"
+        score: "Score"
+        status: "Status"

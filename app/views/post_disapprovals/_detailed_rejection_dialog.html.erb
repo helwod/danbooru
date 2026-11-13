@@ -1,13 +1,13 @@
-<div id="detailed-rejection-dialog" title="Detailed Rejection" style="display: none;">
-  <p>You can supply a short message to the uploader explaining why you rejected this upload.</p>
+<div id="detailed-rejection-dialog" title="<%= t("post_disapprovals.dialog.title") %>" style="display: none;">
+  <p><%= t("post_disapprovals.dialog.intro") %></p>
 
   <%= edit_form_for(PostDisapproval.new, remote: true, html: { id: "detailed-rejection-form" }) do |f| %>
     <%= f.hidden_field :post_id, value: "x" %>
-    <%= f.input :reason, collection: PostDisapproval::REASONS.map { |x| [x.humanize, x] }, include_blank: false %>
-    <%= f.input :message, hint: tag.span("Ctrl+Enter to submit", class: "desktop-only"), as: :dtext, inline: true, input_html: { autofocus: true } %>
+    <%= f.input :reason, collection: PostDisapproval::REASONS.map { |x| [t("post_disapprovals.reasons.#{x}", default: x.humanize), x] }, include_blank: false %>
+    <%= f.input :message, hint: tag.span(t("post_disapprovals.dialog.ctrl_enter"), class: "desktop-only"), as: :dtext, inline: true, input_html: { autofocus: true } %>
     <div class="dialog-buttons">
-      <%= f.submit_button "Reject" %>
-      <%= f.cancel_button %>
+      <%= f.submit_button t("post_disapprovals.dialog.reject") %>
+      <%= f.cancel_button t("post_disapprovals.dialog.cancel") %>
     </div>
   <% end %>
 </div>

@@ -5,14 +5,14 @@
     <%= render "search" %>
 
     <%= table_for @artists, class: "striped autofit", tr: { class: "h-10" } do |t| %>
-      <% t.column "Name" do |artist| %>
+      <% t.column t("artists.index.column_name"), column: "name" do |artist| %>
         <%= link_to artist.name, artist, class: "tag-type-#{Tag.categories.artist}" %>
         <span class="post-count"><%= artist.tag.try(:post_count) || 0 %></span>
         <% if !artist.group_name.blank? %>
-          (group: <%= link_to artist.group_name, artist %>)
+          (<%= t("artists.index.group", name: link_to(artist.group_name, artist)).html_safe %>)
         <% end %>
       <% end %>
-      <% t.column "Other Names", td: {class: "col-expand"} do |artist| %>
+      <% t.column t("artists.index.column_other_names"), column: "other-names", td: {class: "col-expand"} do |artist| %>
         <% unless artist.is_banned? && !policy(artist).can_view_banned? %>
           <div class="flex flex-wrap gap-1">
             <% artist.other_names.each do |name| %>
@@ -21,21 +21,21 @@
           </div>
         <% end %>
       <% end %>
-      <% t.column "Status" do |artist| %>
+      <% t.column t("artists.index.column_status"), column: "status" do |artist| %>
         <% if artist.is_deleted? %>
-          <%= link_to "Deleted", artists_path(search: { is_deleted: true }) %>
+          <%= link_to t("artists.index.deleted"), artists_path(search: { is_deleted: true }) %>
         <% end %>
 
         <% if artist.is_banned? && policy(artist).can_view_banned? %>
-          <%= link_to "Banned", artists_path(search: { is_banned: true }) %>
+          <%= link_to t("artists.index.banned"), artists_path(search: { is_banned: true }) %>
         <% end %>
       <% end %>
-      <% t.column "Updated" do |artist| %>
+      <% t.column t("artists.index.column_updated"), column: "updated" do |artist| %>
         <%= time_ago_in_words_tagged(artist.updated_at) %>
       <% end %>
       <% t.column column: "control" do |artist| %>
         <% if policy(artist).update? %>
-          <%= link_to "Edit", edit_artist_path(artist) %>
+          <%= link_to t("artists.index.edit"), edit_artist_path(artist) %>
         <% end %>
       <% end %>
     <% end %>

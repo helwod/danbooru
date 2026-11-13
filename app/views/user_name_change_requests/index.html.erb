@@ -1,29 +1,29 @@
 <div id="c-user-name-change-requests">
   <div id="a-index">
-    <h1>Name Change Requests</h1>
+    <h1><%= t("user_name_change_requests.title") %></h1>
 
     <%= search_form_for(user_name_change_requests_path) do |f| %>
-      <%= f.input :user_name, label: "User", input_html: { value: params[:search][:user_name], "data-autocomplete": "user" } %>
-      <%= f.input :old_name, label: "Old Name", input_html: { value: params[:search][:old_name] } %>
-      <%= f.input :new_name, label: "New Name", input_html: { value: params[:search][:new_name] } %>
-      <%= f.submit "Search" %>
+      <%= f.input :user_name, label: t("user_name_change_requests.user"), input_html: { value: params[:search][:user_name], "data-autocomplete": "user" } %>
+      <%= f.input :old_name, label: t("user_name_change_requests.old_name"), input_html: { value: params[:search][:old_name] } %>
+      <%= f.input :new_name, label: t("user_name_change_requests.new_name"), input_html: { value: params[:search][:new_name] } %>
+      <%= f.submit t("user_name_change_requests.search") %>
     <% end %>
 
     <%= table_for @change_requests, width: "100%" do |t| %>
-      <% t.column "User" do |change_request| %>
+      <% t.column t("user_name_change_requests.user"), column: "user" do |change_request| %>
         <%= link_to_user change_request.user %>
       <% end %>
-      <% t.column "Old Name" do |change_request| %>
+      <% t.column t("user_name_change_requests.old_name"), column: "old-name" do |change_request| %>
         <%= change_request.original_name %>
       <% end %>
-      <% t.column "New Name" do |change_request| %>
+      <% t.column t("user_name_change_requests.new_name"), column: "new-name" do |change_request| %>
         <%= change_request.desired_name %>
       <% end %>
-      <% t.column "Date" do |change_request| %>
+      <% t.column t("user_name_change_requests.date"), column: "date" do |change_request| %>
         <%= compact_time change_request.created_at %>
       <% end %>
       <% t.column column: "control" do |change_request| %>
-        <%= link_to "view", user_name_change_request_path(change_request) %>
+        <%= link_to t("user_name_change_requests.view"), user_name_change_request_path(change_request) %>
       <% end %>
     <% end %>
 

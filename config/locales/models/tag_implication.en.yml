@@ -1,0 +1,12 @@
+en:
+  tag_implication:
+    circular_relation: "Tag implication can not create a circular relation with another tag implication"
+    already_implied: "%{antecedent_name} already implies %{consequent_name} through another implication"
+    antecedent_aliased: "Antecedent tag must not be aliased to another tag"
+    consequent_aliased: "Consequent tag must not be aliased to another tag"
+    category_mismatch: "Can't imply a %{antecedent_tag_category_name} tag to a %{consequent_tag_category_name} tag"
+    antecedent_too_few_posts: "[[%{antecedent_name}]] must have at least %{minimum_tag_count} posts"
+    antecedent_below_percentage: "[[%{antecedent_name}]] must have at least %{consequent_tag_post_count} posts"
+    antecedent_above_percentage: "[[%{antecedent_name}]] can't make up more than %{maximum_tag_percentage}% of [[%{consequent_name}]]"
+    antecedent_needs_wiki: "[[%{antecedent_name}]] must have a wiki page"
+    consequent_needs_wiki: "[[%{consequent_name}]] must have a wiki page"

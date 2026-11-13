@@ -196,19 +196,19 @@ class SavedSearch < ApplicationRecord
 
   def validate_query
     if post_query.total_term_count > MAX_TAGS
-      errors.add(:query, "can't have more than #{MAX_TAGS} tags")
+      errors.add(:query, I18n.t("saved_search.too_many_tags", max_tags: MAX_TAGS))
     end
   end
 
   def validate_labels
     if labels.any? { |label| label.length > 100 }
-      errors.add(:labels, "can't have labels more than 100 characters long")
+      errors.add(:labels, I18n.t("saved_search.labels_too_long"))
     end
   end
 
   def validate_count
     if user.saved_searches.count >= user.max_saved_searches
-      errors.add(:user, "can only have up to #{user.max_saved_searches} " + "saved search".pluralize(user.max_saved_searches))
+      errors.add(:user, I18n.t("saved_search.too_many_saved_searches", count: user.max_saved_searches))
     end
   end
 

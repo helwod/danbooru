@@ -1,11 +1,11 @@
 <% content_for(:secondary_links) do %>
-  <%= subnav_link_to "Upload", new_upload_path %>
+  <%= subnav_link_to t("uploads.secondary_links.upload"), new_upload_path, id: "upload" %>
   <%= subnav_divider %>
-  <%= subnav_link_to "My Uploads", user_uploads_path(CurrentUser.user.id.to_i) %>
-  <%= subnav_link_to "All Uploads", media_assets_path %>
-  <%= subnav_link_to "Reverse Image Search", iqdb_queries_path %>
-  <%= subnav_link_to "Source Info", source_path %>
+  <%= subnav_link_to t("uploads.secondary_links.my_uploads"), user_uploads_path(CurrentUser.user.id.to_i), id: "my-uploads" %>
+  <%= subnav_link_to t("uploads.secondary_links.all_uploads"), media_assets_path, id: "all-uploads" %>
+  <%= subnav_link_to t("uploads.secondary_links.reverse_image_search"), iqdb_queries_path, id: "reverse-image-search" %>
+  <%= subnav_link_to t("uploads.secondary_links.source_info"), source_path, id: "source-info" %>
   <%= subnav_divider %>
-  <%= subnav_link_to "Help", wiki_page_path("help:upload") %>
-  <%= subnav_link_to "Bookmarklet", bookmarklet_path %>
+  <%= subnav_link_to t("uploads.secondary_links.help"), wiki_page_path("help:upload"), id: "help" %>
+  <%= subnav_link_to t("uploads.secondary_links.bookmarklet"), bookmarklet_path, id: "bookmarklet" %>
 <% end %>

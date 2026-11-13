@@ -19,7 +19,7 @@ class BackupCodesController < ApplicationController
     @user = authorize User.find(params[:user_id]), policy_class: BackupCodePolicy
     @user.generate_backup_codes!(request)
 
-    respond_with(@user, notice: "Backup codes regenerated", location: user_backup_codes_path(@user))
+    respond_with(@user, notice: I18n.t("backup_codes.flash.regenerated"), location: user_backup_codes_path(@user))
   end
 
   def confirm_recover
@@ -32,6 +32,6 @@ class BackupCodesController < ApplicationController
     @user = authorize User.find(params[:user_id]), policy_class: BackupCodePolicy
     @user.send_backup_code!(CurrentUser.user)
 
-    respond_with(@user, notice: "Backup code sent", location: edit_admin_user_path(@user))
+    respond_with(@user, notice: I18n.t("backup_codes.flash.sent"), location: edit_admin_user_path(@user))
   end
 end

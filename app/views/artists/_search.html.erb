@@ -1,8 +1,8 @@
 <%= search_form_for(artists_path) do |f| %>
-  <%= f.input :any_name_matches, label: "Name", input_html: { value: params[:search][:any_name_matches], data: { autocomplete: "artist" }} %>
-  <%= f.input :url_matches, label: "URL", as: "string", input_html: { value: params[:search][:url_matches] } %>
-  <%= f.input :is_deleted, label: "Deleted?", collection: [["Yes", true], ["No", false]], include_blank: true, selected: params[:search][:is_deleted] %>
-  <%= f.input :has_tag, label: "Has tag?", collection: [["Yes", true], ["No", false]], include_blank: true, selected: params[:search][:has_tag] %>
-  <%= f.input :order, collection: [["Recently created", "created_at"], ["Last updated", "updated_at"], ["Name", "name"], ["Post count", "post_count"]], selected: params[:search][:order] %>
-  <%= f.submit "Search" %>
+  <%= f.input :any_name_matches, label: t("artists.search.name"), input_html: { value: params[:search][:any_name_matches], data: { autocomplete: "artist" }} %>
+  <%= f.input :url_matches, label: t("artists.search.url"), as: "string", input_html: { value: params[:search][:url_matches] } %>
+  <%= f.input :is_deleted, label: t("artists.search.deleted"), collection: [[t("artists.search.yes"), true], [t("artists.search.no"), false]], include_blank: true, selected: params[:search][:is_deleted] %>
+  <%= f.input :has_tag, label: t("artists.search.has_tag"), collection: [[t("artists.search.yes"), true], [t("artists.search.no"), false]], include_blank: true, selected: params[:search][:has_tag] %>
+  <%= f.input :order, collection: [[t("artists.search.order_recently_created"), "created_at"], [t("artists.search.order_last_updated"), "updated_at"], [t("artists.search.order_name"), "name"], [t("artists.search.order_post_count"), "post_count"]], selected: params[:search][:order] %>
+  <%= f.submit t("artists.search.submit") %>
 <% end %>

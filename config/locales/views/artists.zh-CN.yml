@@ -1,0 +1,76 @@
+"zh-CN":
+  artists:
+    edit:
+      title: "编辑画师"
+    new:
+      title: "新建画师"
+    show:
+      page_title: "%{name} | 画师资料"
+      posts_heading: "作品"
+    form:
+      other_names: "其他名称"
+      other_names_hint: "名称之间用空格分隔，不要用逗号。名称内部的空格请用下划线表示。"
+      urls: "链接"
+      urls_hint: "在链接前加 - 可标记为已失效。"
+      wiki_label_html: "维基（%{link}）"
+      edit: "编辑"
+    search:
+      name: "名称"
+      url: "链接"
+      deleted: "已删除？"
+      has_tag: "有标签？"
+      'yes': "是"
+      'no': "否"
+      order_recently_created: "最近创建"
+      order_last_updated: "最近更新"
+      order_name: "名称"
+      order_post_count: "作品数"
+      submit: "搜索"
+    secondary_links:
+      artists: "画师"
+      new: "新建"
+      changes: "变更"
+      urls: "链接"
+      posts_count: "作品（%{count}）"
+      edit: "编辑"
+      history: "历史版本"
+      undelete: "恢复"
+      delete: "删除"
+      unban: "解除封禁"
+      ban: "封禁"
+      confirm_undelete: "确定要恢复这位画师吗？"
+      confirm_delete: "确定要删除这位画师吗？"
+      confirm_unban: "确定要解除这位画师的封禁吗？"
+      confirm_ban: "确定要封禁这位画师吗？"
+    summary:
+      banned: "已封禁"
+      deleted: "已删除"
+      takedown_notice: "本页已因版权方要求下架。"
+      not_exist_html: "这位画师还没有条目。%{link}。"
+      create_new: "新建画师条目"
+      group: "所属社团"
+      members: "成员"
+      urls: "链接"
+      edit_wiki: "编辑维基"
+      edit_artist: "编辑画师"
+    index:
+      column_name: "名称"
+      group: "社团：%{name}"
+      column_other_names: "其他名称"
+      column_status: "状态"
+      column_updated: "更新时间"
+      deleted: "已删除"
+      banned: "已封禁"
+      edit: "编辑"
+    flash:
+      banned: "画师已封禁"
+      unbanned: "画师已解封"
+      deleted: "画师已删除"
+
+  activerecord:
+    attributes:
+      artist:
+        name: "名称"
+        group_name: "所属社团"
+        other_names_string: "其他名称"
+        url_string: "链接"

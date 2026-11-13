@@ -1,15 +1,15 @@
-<% page_title "Popular Searches" %>
+<% page_title t("explore.posts.searches.page_title") %>
 <%= render "posts/partials/common/secondary_links" %>
 
 <div id="c-explore-posts">
   <div id="a-searches">
-    <h1>Popular Searches - <%= @date %></h1>
+    <h1><%= t("explore.posts.searches.heading", date: @date) %></h1>
 
     <table class="striped" width="100%">
       <thead>
         <tr>
-          <th>Tags</th>
-          <th style="text-align: right;">Count</th>
+          <th><%= t("explore.posts.searches.column_tags") %></th>
+          <th style="text-align: right;"><%= t("explore.posts.searches.column_count") %></th>
         </tr>
       </thead>
       <tbody>
@@ -23,8 +23,8 @@
     </table>
 
     <div class="paginator flex gap-2 items-center justify-center mt-4">
-      <%= link_to "< Previous", searches_explore_posts_path(date: 1.day.ago(@date).to_date) %>
-      <%= link_to "Next >", searches_explore_posts_path(date: 1.day.since(@date).to_date) %>
+      <%= link_to t("explore.posts.previous"), searches_explore_posts_path(date: 1.day.ago(@date).to_date) %>
+      <%= link_to t("explore.posts.next_day"), searches_explore_posts_path(date: 1.day.since(@date).to_date) %>
     </div>
   </div>
 </div>

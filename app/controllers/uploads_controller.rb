@@ -20,7 +20,7 @@ class UploadsController < ApplicationController
     @upload = authorize Upload.find(params[:id])
 
     if request.format.html? && @upload.media_asset_count == 1 && @upload.media_assets.first&.post.present?
-      flash[:notice] = "Duplicate of post ##{@upload.media_assets.first.post.id}"
+      flash[:notice] = I18n.t("uploads.flash.duplicate", id: @upload.media_assets.first.post.id)
       redirect_to @upload.media_assets.first.post
     elsif request.format.html? && @upload.media_asset_count > 1
       redirect_to [@upload, UploadMediaAsset]

@@ -1,0 +1,54 @@
+"zh-CN":
+  media_assets:
+    index:
+      title: "全部上传"
+      search_tags: "标签"
+      submit: "搜索"
+      order_newest: "最新"
+      order_oldest: "最早"
+      order_random: "随机"
+      tab_all: "全部"
+      tab_posted: "已投稿"
+      tab_unposted: "未投稿"
+    preview:
+      post_link: "作品 #%{id}"
+    table:
+      column_file: "文件"
+      column_metadata: "元数据"
+      column_created: "上传时间"
+      tag_count: "%{count} 个标签"
+    show:
+      download: "下载"
+      copy_id: "复制 ID"
+      delete_file: "删除文件"
+      confirm_delete: "此操作会永久删除这个文件。确定继续吗？"
+      tags_heading: "标签"
+      uploads: "上传记录"
+      upload: "上传"
+      uploader: "上传者"
+      raw_source: "原始来源"
+      metadata: "元数据"
+      post: "作品"
+      md5: "MD5"
+      pixel_hash: "像素哈希"
+      file_type: "文件类型"
+      file_size: "文件大小"
+      resolution: "分辨率"
+      duration: "时长"
+      source: "来源"
+    status:
+      processing: "处理中"
+      active: "可用"
+      deleted: "已删除"
+      expunged: "已彻底删除"
+      failed: "失败"
+    flash:
+      deleted: "文件已删除"
+
+  activerecord:
+    attributes:
+      media_asset:
+        image_width: "宽度"
+        image_height: "高度"
+        file_size: "文件大小"
+        file_ext: "文件类型"

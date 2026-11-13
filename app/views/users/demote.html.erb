@@ -1,19 +1,18 @@
-<% page_title "Demote User" %>
+<% page_title t("users.demote_title") %>
 <%= render "secondary_links" %>
 
 <div id="c-users">
   <div id="a-promote">
     <div class="card mt-4 p-4 max-w-540px mx-auto flex flex-col gap-2">
-      <h1 class="text-center">Demote User: <%= link_to_user @user %></h1>
+      <h1 class="text-center"><%= t("users.demote_heading_html", user: link_to_user(@user)) %></h1>
 
       <p class="prose">
-        You are demoting <%= link_to_user @user %> to a lower level. See <%= link_to_wiki "help:users" %> for a
-        description of what each level can do.
+        <%= t("users.demote_notice_html", user: link_to_user(@user), link: link_to_wiki("help:users")) %>
       </p>
 
       <%= edit_form_for(@user, url: admin_user_path(@user)) do |f| %>
         <%= f.input :level, collection: User.level_hash.select { |name, level| level < @user.level }.to_a, include_blank: false %>
-        <%= f.submit_button "Demote", "data-confirm": "Are you sure you want to demote #{@user.name}?" %>
+        <%= f.submit_button t("users.demote"), "data-confirm": t("users.demote_confirm", name: @user.name) %>
       <% end %>
     </div>
   </div>

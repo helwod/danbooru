@@ -2,13 +2,13 @@
   <%= embed_wiki("help:replacement_notice") %>
 
   <%= edit_form_for(post_replacement, url: post_replacements_path(post_id: post_replacement.post_id), method: :post) do |f| %>
-    <%= f.input :replacement_file, label: "File", as: :file %>
-    <%= f.input :replacement_url, label: "Replacement URL", hint: "The source URL to download the replacement from.", as: :string, input_html: { value: post_replacement.post.normalized_source } %>
-    <%= f.input :final_source, label: "Final Source", hint: "If present, the source field will be changed to this after replacement.", as: :string %>
-    <%= f.input :tags, label: "Tags", as: :string, input_html: { value: post_replacement.suggested_tags_for_removal, data: { autocomplete: "tag-edit" } } %>
+    <%= f.input :replacement_file, label: t("post_replacements.new.file"), as: :file %>
+    <%= f.input :replacement_url, label: t("post_replacements.new.replacement_url"), hint: t("post_replacements.new.replacement_url_hint"), as: :string, input_html: { value: post_replacement.post.normalized_source } %>
+    <%= f.input :final_source, label: t("post_replacements.new.final_source"), hint: t("post_replacements.new.final_source_hint"), as: :string %>
+    <%= f.input :tags, label: t("post_replacements.new.tags"), as: :string, input_html: { value: post_replacement.suggested_tags_for_removal, data: { autocomplete: "tag-edit" } } %>
     <div class="dialog-buttons">
-      <%= f.submit_button "Replace" %>
-      <%= f.cancel_button if local_assigns[:inline] %>
+      <%= f.submit_button t("post_replacements.new.submit") %>
+      <%= f.cancel_button t("post_replacements.new.cancel") if local_assigns[:inline] %>
     </div>
   <% end %>
 </div>

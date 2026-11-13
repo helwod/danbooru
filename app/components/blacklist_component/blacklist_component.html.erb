@@ -8,41 +8,41 @@
   <%= tag.div class: "flex items-center gap-1 p-2", "x-bind:class": (inline ? "{ 'sm:border-b': !blacklist.collapsed }" : "{ 'border-b': !blacklist.collapsed }") do %>
     <label class="flex items-center gap-1 font-header font-bold cursor-pointer select-none">
       <input type="checkbox" class="toggle-switch" x-model="blacklist.enabled" x-effect="$el.indeterminate = blacklist.partiallyEnabled" data-shortcut="b">
-      Blacklisted
+      <%= I18n.t("components.blacklist.blacklisted") %>
     </label>
 
     <span class="whitespace-nowrap post-count" x-text="blacklist.blacklistedPostCount"></span>
     <span class="flex items-center flex-grow-1 justify-end gap-1">
       <%= render PopupMenuComponent.new do |menu| %>
         <% menu.with_item do %>
-          <label class="flex items-center link-color cursor-pointer select-none" x-bind:class="blacklist.autocollapse && 'font-bold'" x-on:click.stop title="Whether enabling blacklists automatically closes the blacklist box">
-            <input type="checkbox" x-model="blacklist.autocollapse" class="w-4 h-full mr-1"><span>Autoclose</span>
+          <label class="flex items-center link-color cursor-pointer select-none" x-bind:class="blacklist.autocollapse && 'font-bold'" x-on:click.stop title="<%= I18n.t("components.blacklist.autoclose_title") %>">
+            <input type="checkbox" x-model="blacklist.autocollapse" class="w-4 h-full mr-1"><span><%= I18n.t("components.blacklist.autoclose") %></span>
           </label>
         <% end %>
 
         <% menu.with_item do %>
-          <label class="flex items-center link-color cursor-pointer select-none" x-bind:class="blacklist.showAll && 'font-bold'" x-on:click.stop title="Show all rules, even those that don't match any posts">
-            <input type="checkbox" x-model="blacklist.showAll" class="w-4 h-full mr-1"><span>Show all</span>
+          <label class="flex items-center link-color cursor-pointer select-none" x-bind:class="blacklist.showAll && 'font-bold'" x-on:click.stop title="<%= I18n.t("components.blacklist.show_all_title") %>">
+            <input type="checkbox" x-model="blacklist.showAll" class="w-4 h-full mr-1"><span><%= I18n.t("components.blacklist.show_all") %></span>
           </label>
         <% end %>
 
         <% menu.with_item do %>
-          <label class="flex items-center link-color cursor-pointer select-none" x-bind:class="blacklist.blurImages && 'font-bold'" x-on:click.stop title="Blur images instead of hiding them">
-            <input type="checkbox" x-model="blacklist.blurImages" class="w-4 h-full mr-1"><span>Blur images</span>
+          <label class="flex items-center link-color cursor-pointer select-none" x-bind:class="blacklist.blurImages && 'font-bold'" x-on:click.stop title="<%= I18n.t("components.blacklist.blur_images_title") %>">
+            <input type="checkbox" x-model="blacklist.blurImages" class="w-4 h-full mr-1"><span><%= I18n.t("components.blacklist.blur_images") %></span>
           </label>
         <% end %>
 
         <% unless user.is_anonymous? %>
           <% menu.with_item do %>
             <%= link_to settings_path(anchor: "user_blacklisted_tags"), class: "flex items-center", target: "_blank" do %>
-              <%= edit_icon %><span>Edit</span>
+              <%= edit_icon %><span><%= I18n.t("components.common.edit") %></span>
             <% end %>
           <% end %>
         <% end %>
 
         <% menu.with_item do %>
           <%= link_to wiki_page_path("help:blacklists"), class: "wiki-link flex items-center", target: "_blank" do %>
-            <%= help_icon %><span>Help</span>
+            <%= help_icon %><span><%= I18n.t("components.common.help") %></span>
           <% end %>
         <% end %>
       <% end %>

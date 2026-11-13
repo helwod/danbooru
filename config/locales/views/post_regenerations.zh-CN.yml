@@ -1,0 +1,4 @@
+"zh-CN":
+  post_regenerations:
+    flash:
+      scheduled: "作品重新生成已排队，请稍等几秒后按 Ctrl+F5 刷新图片"

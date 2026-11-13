@@ -1,29 +1,29 @@
 <%= table_for uploads, class: "striped", width: "100%" do |t| %>
-  <% t.column "Upload", td: { class: "text-center" } do |upload| %>
+  <% t.column t("uploads.table.column_upload"), td: { class: "text-center" }, column: "upload" do |upload| %>
     <%= render "uploads/preview", upload: upload, size: "180" %>
   <% end %>
 
-  <% t.column "Info", td: { class: "col-expand" } do |upload| %>
+  <% t.column t("uploads.table.column_info"), td: { class: "col-expand" }, column: "info" do |upload| %>
     <div>
-      <strong>Upload</strong>
+      <strong><%= t("uploads.table.upload") %></strong>
       <span><%= link_to "##{upload.id}", upload %></span>
     </div>
 
     <div>
-      <strong>Source</strong>
+      <strong><%= t("uploads.table.source") %></strong>
       <span>
         <% if upload.source.present? %>
           <%= external_link_to upload.source %>
           <%= link_to "»", uploads_path(mode: "table", search: params[:search].merge(source_like: upload.source)) %>
         <% else %>
-          <em>none</em>
+          <em><%= t("uploads.table.none") %></em>
         <% end %>
       </span>
     </div>
 
     <% if upload.referer_url.present? %>
       <div>
-        <strong>Referrer</strong>
+        <strong><%= t("uploads.table.referrer") %></strong>
         <span>
           <%= external_link_to upload.referer_url %>
           <%= link_to "»", uploads_path(mode: "table", search: params[:search].merge(referer_url: upload.referer_url)) %>
@@ -33,7 +33,7 @@
 
     <% if upload.is_errored? %>
       <div>
-        <strong>Error</strong>
+        <strong><%= t("uploads.table.error") %></strong>
         <span>
           <%= upload.error %>
         </span>
@@ -41,7 +41,7 @@
     <% end %>
   <% end %>
 
-  <% t.column "Uploader" do |upload| %>
+  <% t.column t("uploads.table.column_uploader"), column: "uploader" do |upload| %>
     <%= link_to_user upload.uploader %>
     <%= link_to "»", uploads_path(mode: "table", search: params[:search].merge(uploader_name: upload.uploader.name)) %>
     <div><%= time_ago_in_words_tagged upload.created_at %></div>

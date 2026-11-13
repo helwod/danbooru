@@ -1,6 +1,6 @@
 <% unless CurrentUser.user.is_builder? %>
   <div style="margin-bottom: 1em;">
-    <p>Before editing, read the <%= link_to "how to tag guide", wiki_page_path(:id => "howto:tag") %>.</p>
+    <p><%= t("posts.edit_form.before_editing_html", link: link_to(t("posts.edit_form.how_to_tag_guide"), wiki_page_path(:id => "howto:tag"))).html_safe %></p>
   </div>
 <% end %>
 
@@ -13,15 +13,15 @@
   <%= f.input :old_source, as: :hidden, input_html: { value: post.source } %>
   <%= f.input :old_rating, as: :hidden, input_html: { value: post.rating } %>
 
-  <%= f.input :rating, label: "Rating #{link_to_wiki help_icon, "howto:rate", classes: "inactive-link", target: "_blank"}".html_safe, wrapper_html: { class: "radio-button-group thin-x-scrollbar text-xs" }, collection: Post::RATINGS.invert.reverse_each.to_h, as: :radio_buttons, boolean_style: :inline %>
-  <%= f.input :has_embedded_notes, label: "Embed notes", as: :boolean, wrapper: "inline-toggle-switch" %>
-  <%= f.input :parent_id, label: "Parent", as: :string %>
+  <%= f.input :rating, label: t("posts.edit_form.rating_label_html", link: link_to_wiki(help_icon, "howto:rate", classes: "inactive-link", target: "_blank")).html_safe, wrapper_html: { class: "radio-button-group thin-x-scrollbar text-xs" }, collection: Post::RATINGS.invert.reverse_each.to_h, as: :radio_buttons, boolean_style: :inline %>
+  <%= f.input :has_embedded_notes, label: t("posts.edit_form.embed_notes"), as: :boolean, wrapper: "inline-toggle-switch" %>
+  <%= f.input :parent_id, label: t("posts.edit_form.parent"), as: :string %>
   <%= f.input :source %>
 
   <div class="input fixed-width-container">
     <div class="flex justify-between">
       <span class="inline-flex gap-1 items-center">
-        <%= f.label :tag_string, "Tags" %>
+        <%= f.label :tag_string, t("posts.tags") %>
         <%= link_to external_link_icon(class: "text-xxs"), "#", id: "open-edit-dialog", "data-shortcut": "shift+e" %>
       </span>
 
@@ -30,7 +30,7 @@
       </span>
     </div>
 
-    <%= f.input :tag_string, label: false, hint: tag.span("Ctrl+Enter to submit", class: "desktop-only"), input_html: { class: "text-sm", "data-autocomplete": "tag-edit", "data-shortcut": "e", value: post.presenter.split_tag_list_text + " " } %>
+    <%= f.input :tag_string, label: false, hint: tag.span(t("posts.edit_form.ctrl_enter"), class: "desktop-only"), input_html: { class: "text-sm", "data-autocomplete": "tag-edit", "data-shortcut": "e", value: post.presenter.split_tag_list_text + " " } %>
   </div>
 
   <div class="input">

@@ -1,8 +1,7 @@
 <% cache("tag-change-notice:#{tag.name}", expires_in: 4.hours) do %>
   <% if pending_burs.present? %>
     <p class="fineprint tag-change-notice mt-3">
-      This tag is being discussed in
-      <%= to_sentence(pending_burs.group_by(&:forum_topic).map { |forum_topic, burs| bur_links_for_topic(forum_topic: forum_topic, burs: burs) }) %>.
+      <%= I18n.t("components.tag_change_notice.discussed_html", links: to_sentence(pending_burs.group_by(&:forum_topic).map { |forum_topic, burs| bur_links_for_topic(forum_topic: forum_topic, burs: burs) })).html_safe %>
     </p>
   <% end %>
 <% end %>

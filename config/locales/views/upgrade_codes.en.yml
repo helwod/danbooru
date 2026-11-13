@@ -1,0 +1,17 @@
+en:
+  upgrade_codes:
+    title: "Redeem upgrade code"
+    redeemer: "Redeemer"
+    status: "Status"
+    code: "Code"
+    updated: "Updated"
+    search: "Search"
+    intro: "Enter your upgrade code below to upgrade your account to Gold. Look for the code on the order confirmation page or in your email."
+    where_to_buy_html: "If you don't have a code, go to the %{upgrade_page} to buy one, then come back here to redeem it. If you have any questions, %{contact}."
+    upgrade_page: "upgrade page"
+    contact_us: "contact us"
+    login_required_html: "You must %{login} or %{create_account} first before you can redeem your upgrade code."
+    login: "login"
+    create_account: "create a new account"
+    upgrade_account: "Upgrade account"
+    already_upgraded: "Your account has already been upgraded."

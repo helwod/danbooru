@@ -1,10 +1,10 @@
 <div id="c-saved-searches">
   <div id="a-edit">
-    <h1>Edit Saved Search</h1>
+    <h1><%= t("saved_searches.edit.title") %></h1>
 
     <%= edit_form_for(@saved_search) do |f| %>
       <%= f.input :query, :as => :string %>
-      <%= f.input :label_string, label: "Labels", hint: "A list of tags to help categorize this search. Space delimited.", input_html: { "data-autocomplete": "saved-search-label" } %>
+      <%= f.input :label_string, label: t("saved_searches.interface.labels"), hint: t("saved_searches.interface.labels_hint"), input_html: { "data-autocomplete": "saved-search-label" } %>
       <%= f.submit_button %>
     <% end %>
   </div>

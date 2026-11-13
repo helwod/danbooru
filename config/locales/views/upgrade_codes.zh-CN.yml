@@ -1,0 +1,17 @@
+"zh-CN":
+  upgrade_codes:
+    title: "兑换升级码"
+    redeemer: "兑换人"
+    status: "状态"
+    code: "兑换码"
+    updated: "更新时间"
+    search: "搜索"
+    intro: "在下方输入升级码，即可把账户升级为黄金账户。升级码可在订单确认页或邮件中找到。"
+    where_to_buy_html: "如果你还没有升级码，可以前往%{upgrade_page}购买，然后回到这里兑换。如有疑问，请%{contact}。"
+    upgrade_page: "升级页面"
+    contact_us: "联系我们"
+    login_required_html: "兑换升级码之前，你必须先%{login}或%{create_account}。"
+    login: "登录"
+    create_account: "创建新账户"
+    upgrade_account: "升级账户"
+    already_upgraded: "你的账户已经完成升级。"

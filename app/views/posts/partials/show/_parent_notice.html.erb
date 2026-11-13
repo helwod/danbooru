@@ -1,13 +1,13 @@
-This post belongs to a <%= link_to "parent", posts_path(tags: "parent:#{parent.id}"), rel: "nofollow" %> <% "(deleted)" if parent.is_deleted? %>
+<%= t("posts.relationships.parent_notice_html", link: link_to(t("posts.relationships.parent"), posts_path(tags: "parent:#{parent.id}"), rel: "nofollow"), deleted: (parent.is_deleted? ? t("posts.deleted_label") : "")).html_safe %>
 
 <% children.length.tap do |children_count| %>
   <% if children_count > 1 %>
-    and has <%= link_to pluralize(children_count - 1, "sibling"), posts_path(tags: "parent:#{parent.id}"), rel: "nofollow" %>
+    <%= t("posts.relationships.sibling_notice_html", link: link_to(t("posts.relationships.siblings", count: children_count - 1), posts_path(tags: "parent:#{parent.id}"), rel: "nofollow")).html_safe %>
   <% end %>
 <% end %>
 
-(<%= link_to_wiki "learn more", "help:post_relationships" %>)
-<%= link_to "« hide", "#", id: "has-parent-relationship-preview-link" %>
+(<%= link_to_wiki t("posts.learn_more"), "help:post_relationships" %>)
+<%= link_to t("posts.relationships.hide"), "#", id: "has-parent-relationship-preview-link" %>
 
 <div id="has-parent-relationship-preview">
   <%= render_post_gallery([parent, *children], classes: "inline-block align-top p-2", tags: "parent:#{parent.id}", show_deleted: true, inline: true, size: "150") %>

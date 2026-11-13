@@ -10,27 +10,27 @@
         <% end %>
       <% end %>
       <% if listing_type(:post_id) == :standard %>
-        <% t.column "Post", width: "1%" do |post_version| %>
+        <% t.column t("post_versions.listing.column_post"), width: "1%", column: "post" do |post_version| %>
           <%= post_preview(post_version.post, show_deleted: true) %>
         <% end %>
       <% end %>
-      <% t.column "Version", width: "1%" do |post_version| %>
+      <% t.column t("post_versions.listing.column_version"), width: "1%", column: "version" do |post_version| %>
         <%= link_to "#{post_version.post_id}.#{post_version.version}", post_versions_path(search: { post_id: post_version.post_id }, type: params[:type], anchor: "post-version-#{post_version.id}") %>
       <% end %>
-      <% t.column "Tags", td: {class: "col-expand"}, width: "40%" do |post_version| %>
+      <% t.column t("post_versions.listing.column_tags"), td: {class: "col-expand"}, width: "40%", column: "tags" do |post_version| %>
         <div>
           <%= post_version_field(post_version, :rating) %>
           <%= post_version_field(post_version, :parent_id) %>
         </div>
         <div>
-          <b>Tags:</b>
+          <b><%= t("post_versions.listing.tags_label") %></b>
 
           <% if post_version.tag_array.size <= PostVersion::MAX_DISPLAY_TAGS %>
             <%= render_inline_tag_list_from_names(post_version.tag_array) %>
           <% else %>
             <div class="prose">
               <details>
-                <summary><%= post_version.tag_array.size %> tags</summary>
+                <summary><%= t("post_versions.listing.tag_count", count: post_version.tag_array.size) %></summary>
 
                 <div class="thin-scrollbar overflow-auto max-h-180px">
                   <%= post_version.tags %>
@@ -43,14 +43,14 @@
           <%= post_source_tag(post_version.source) %>
         </div>
       <% end %>
-      <% t.column "Edits", td: {class: "col-expand"}, width: "40%" do |post_version| %>
+      <% t.column t("post_versions.listing.column_edits"), td: {class: "col-expand"}, width: "40%", column: "edits" do |post_version| %>
         <% if (post_version.added_tags.size + post_version.removed_tags.size) <= PostVersion::MAX_DISPLAY_TAGS %>
           <%= post_version_diff(post_version, params[:type]) %>
         <% else %>
           <div class="prose">
             <% if post_version.added_tags.present? %>
               <details>
-                <summary><%= pluralize(post_version.added_tags.size, "tag") %> added</summary>
+                <summary><%= t("post_versions.listing.tags_added", count: post_version.added_tags.size) %></summary>
 
                 <div class="thin-scrollbar overflow-auto max-h-180px">
                   <%= post_version.added_tags.join(" ") %>
@@ -60,7 +60,7 @@
 
             <% if post_version.removed_tags.present? %>
               <details>
-                <summary><%= pluralize(post_version.removed_tags.size, "tag") %> removed</summary>
+                <summary><%= t("post_versions.listing.tags_removed", count: post_version.removed_tags.size) %></summary>
 
                 <div class="thin-scrollbar overflow-auto max-h-180px">
                   <%= post_version.removed_tags.join(" ") %>
@@ -70,20 +70,20 @@
           </div>
         <% end %>
       <% end %>
-      <% t.column "Changes", width: "5%" do |post_version| %>
+      <% t.column t("post_versions.listing.column_changes"), width: "5%", column: "changes" do |post_version| %>
         <%= status_diff_html(post_version, params[:type]) %>
       <% end %>
-      <% t.column "Updated", width: "5%" do |post_version| %>
+      <% t.column t("post_versions.listing.column_updated"), width: "5%", column: "updated" do |post_version| %>
         <%= link_to_user post_version.updater %>
         <%= link_to "»", post_versions_path(search: params[:search].merge({ updater_name: post_version.updater&.name })) %>
         <div><%= compact_time(post_version.updated_at) %></div>
       <% end %>
       <% t.column column: "action", width: "5%" do |post_version| %>
         <% if policy(post_version).undo? %>
-          <%= link_to "Undo", undo_post_version_path(post_version), method: :put, remote: true, class: "post-version-undo-link" %>
+          <%= link_to t("post_versions.listing.undo"), undo_post_version_path(post_version), method: :put, remote: true, class: "post-version-undo-link" %>
         <% end %>
         <% if listing_type(:post_id) == :revert && policy(post_version.post).revert? %>
-          | <%= link_to "Revert to", revert_post_path(post_version.post_id, version_id: post_version.id), method: :put, remote: true %>
+          | <%= link_to t("post_versions.listing.revert_to"), revert_post_path(post_version.post_id, version_id: post_version.id), method: :put, remote: true %>
         <% end %>
       <% end %>
     <% end %>

@@ -1,65 +1,61 @@
-<% page_title "Deactivate Account" %>
+<% page_title t("users.deactivate_title") %>
 <%= render "secondary_links" %>
 
 <div id="c-users">
   <div id="a-deactivate">
     <div class="card mt-4 p-4 max-w-540px mx-auto flex flex-col gap-2">
       <% if @user == CurrentUser.user %>
-        <h1 class="text-center">Deactivate Account</h1>
+        <h1 class="text-center"><%= t("users.deactivate_title") %></h1>
 
         <div class="prose">
           <p>
-            Deactivating your account will delete your private account information, but it will not delete your
-            contributions to the site.
+            <%= t("users.deactivate_intro") %>
 
-          </p>Deactivating your account will do the following things: </p>
+          </p><%= t("users.deactivate_effects_intro") %></p>
 
           <ul>
-            <li>Change your username to a generic username (<i>user_<%= @user.id %></i>).</li>
-            <li>Delete your password, email address, <%= link_to_wiki "API keys", "help:api" %>, and account settings.</li>
-            <li>Delete your <%= link_to_wiki "saved searches", "help:saved_searches" %>.</li>
-            <li>Delete your <%= link_to_wiki "private favorite groups", "help:favorite_groups" %>.</li>
+            <li><%= t("users.deactivate_effect_name_html", id: @user.id) %></li>
+            <li><%= t("users.deactivate_effect_credentials_html", link: link_to_wiki(t("users.api_keys"), "help:api")) %></li>
+            <li><%= t("users.deactivate_effect_saved_searches_html", link: link_to_wiki(t("users.saved_searches"), "help:saved_searches")) %></li>
+            <li><%= t("users.deactivate_effect_favgroups_html", link: link_to_wiki(t("users.private_favorite_groups"), "help:favorite_groups")) %></li>
             <% if @user.enable_private_favorites %>
-              <li>Delete your private favorites and upvotes.</li>
+              <li><%= t("users.deactivate_effect_favorites") %></li>
             <% end %>
           </ul>
 
           <p>
-            The following things will <strong>not</strong> be deleted:
+            <%= t("users.deactivate_kept_intro_html") %>
           </p>
 
           <ul>
-            <li>Posts you've uploaded.</li>
-            <li>Your comments, forum posts, and private messages.</li>
-            <li>Your tag edits, wiki edits, translation notes, and any other contributions you've made to the site.</li>
-            <li>Your login history, including your IP address and geographic location. This is kept for moderation purposes.</li>
+            <li><%= t("users.deactivate_kept_posts") %></li>
+            <li><%= t("users.deactivate_kept_discussion") %></li>
+            <li><%= t("users.deactivate_kept_contributions") %></li>
+            <li><%= t("users.deactivate_kept_login_history") %></li>
           </ul>
 
-          <p>If you just want to change your username, you can <%= link_to "change your name here", change_name_user_path(@user) %>.</p>
+          <p><%= t("users.deactivate_change_name_html", link: link_to(t("users.change_name_here"), change_name_user_path(@user))) %></p>
 
           <p>
-            Enter your password below to deactivate your account. This cannot be
-            undone. Your account cannot be recovered after it is deactivated.
+            <%= t("users.deactivate_warning") %>
           </p>
         </div>
 
         <%= edit_form_for(:user, url: user_path(@user), method: :delete) do |f| %>
-          <%= f.input :password, as: :password, input_html: { autofocus: true, autocomplete: "current-password" }, hint: link_to("Forgot password?", password_reset_path).html_safe %>
-          <%= f.submit "Deactivate account", class: "button-danger", "data-confirm": "Are you sure you want to deactivate your account? This cannot be undone" %>
+          <%= f.input :password, as: :password, input_html: { autofocus: true, autocomplete: "current-password" }, hint: link_to(t("users.forgot_password"), password_reset_path).html_safe %>
+          <%= f.submit t("users.deactivate_submit"), class: "button-danger", "data-confirm": t("users.deactivate_confirm_self") %>
         <% end %>
       <% else %>
-        <h1 class="text-center">Deactivate Account: <%= link_to_user @user %></h1>
+        <h1 class="text-center"><%= t("users.deactivate_heading_html", user: link_to_user(@user)) %></h1>
 
         <div class="prose">
-          <p>You are deactivating <%= link_to_user @user %>'s account.</p>
+          <p><%= t("users.deactivate_other_notice_html", user: link_to_user(@user)) %></p>
 
-          <p>This will change their name to user_<%= @user.id %> and permanently delete their private account
-          information, including their password, email, account settings, favorites, etc, but it will not delete their
-          contributions to the site, such as their posts, comments, forum posts, etc.</p>
+          <p><%= t("users.deactivate_other_effects_html", id: @user.id) %></p>
         </div>
 
         <%= edit_form_for(:user, url: user_path(@user), method: :delete) do |f| %>
-          <%= f.submit "Deactivate account", class: "button-danger", "data-confirm": "Are you sure you want to deactivate #{@user.name}'s account?" %>
+          <%= f.submit t("users.deactivate_submit"), class: "button-danger", "data-confirm": t("users.deactivate_confirm_other", name: @user.name) %>
         <% end %>
       <% end %>
     </div>

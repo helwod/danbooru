@@ -28,7 +28,7 @@ class PostReplacementsController < ApplicationController
     @post_replacement = authorize PostReplacement.new(creator: CurrentUser.user, post_id: params[:post_id], **permitted_attributes(PostReplacement))
     @post_replacement.save
 
-    respond_with(@post_replacement, notice: "Post replaced") do |format|
+    respond_with(@post_replacement, notice: I18n.t("post_replacements.flash.replaced")) do |format|
       format.html { redirect_to @post_replacement.post }
     end
   end

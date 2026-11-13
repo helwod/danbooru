@@ -1,24 +1,24 @@
 <div id="c-tag-implications">
   <div id="a-show">
-    <h1>Tag Implication: <%= @tag_implication.antecedent_name %> -&gt; <%= @tag_implication.consequent_name %></h1>
+    <h1><%= t("tag_implications.show.title", from: @tag_implication.antecedent_name, to: @tag_implication.consequent_name) %></h1>
 
     <ul>
-      <li><strong>From</strong> <%= link_to @tag_implication.antecedent_name, posts_path(:tags => @tag_implication.antecedent_name) %></li>
-      <li><strong>To</strong> <%= link_to @tag_implication.consequent_name, posts_path(:tags => @tag_implication.consequent_name) %></li>
+      <li><strong><%= t("tag_implications.show.from") %></strong> <%= link_to @tag_implication.antecedent_name, posts_path(:tags => @tag_implication.antecedent_name) %></li>
+      <li><strong><%= t("tag_implications.show.to") %></strong> <%= link_to @tag_implication.consequent_name, posts_path(:tags => @tag_implication.consequent_name) %></li>
       <% if @tag_implication.forum_topic_id %>
-        <li><strong>Reference</strong> <%= link_to "topic ##{@tag_implication.forum_topic_id}", forum_topic_path(@tag_implication.forum_topic_id) %></li>
+        <li><strong><%= t("tag_implications.show.reference") %></strong> <%= link_to t("tag_implications.show.topic_link", id: @tag_implication.forum_topic_id), forum_topic_path(@tag_implication.forum_topic_id) %></li>
       <% end %>
-      <li><strong>Creator</strong> <%= link_to_user @tag_implication.creator %></li>
-      <li><strong>Date</strong> <%= @tag_implication.created_at %></li>
+      <li><strong><%= t("tag_implications.show.creator") %></strong> <%= link_to_user @tag_implication.creator %></li>
+      <li><strong><%= t("tag_implications.show.date") %></strong> <%= @tag_implication.created_at %></li>
       <% if @tag_implication.reason.present? %>
         <li>
-          <strong>Reason</strong>
+          <strong><%= t("tag_implications.show.reason") %></strong>
           <div class="prose">
             <%= @tag_implication.dtext_reason.format_text %>
           </div>
         </li>
       <% end %>
-      <li><strong>Status</strong>: <%= @tag_implication.status %></li>
+      <li><strong><%= t("tag_implications.show.status") %></strong>: <%= @tag_implication.status %></li>
     </ul>
   </div>
 </div>

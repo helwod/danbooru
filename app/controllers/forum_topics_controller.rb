@@ -76,21 +76,21 @@ class ForumTopicsController < ApplicationController
     @forum_topic = authorize ForumTopic.find(params[:id])
     @forum_topic.soft_delete!(updater: CurrentUser.user)
 
-    respond_with(@forum_topic, notice: "Topic deleted")
+    respond_with(@forum_topic, notice: I18n.t("forum_topics.flash.deleted"))
   end
 
   def undelete
     @forum_topic = authorize ForumTopic.find(params[:id])
     @forum_topic.undelete!(updater: CurrentUser.user)
 
-    respond_with(@forum_topic, notice: "Topic undeleted")
+    respond_with(@forum_topic, notice: I18n.t("forum_topics.flash.undeleted"))
   end
 
   def mark_all_as_read
     authorize ForumTopic
     CurrentUser.user.update(last_forum_read_at: Time.zone.now)
     ForumTopicVisit.prune!(CurrentUser.user)
-    redirect_to forum_topics_path, notice: "All topics marked as read"
+    redirect_to forum_topics_path, notice: I18n.t("forum_topics.flash.all_read")
   end
 
   private

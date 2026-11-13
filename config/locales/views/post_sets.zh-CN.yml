@@ -1,0 +1,5 @@
+"zh-CN":
+  post_sets:
+    blank:
+      message: "这里什么都没有。"
+      go_back: "返回"

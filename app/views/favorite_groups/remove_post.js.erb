@@ -1,7 +1,7 @@
 <% if @favorite_group.errors.any? %>
   Danbooru.Notice.error("<%= j @favorite_group.errors.full_messages.join("; ") %>");
 <% else %>
-  Danbooru.Notice.info("Removed post from favorite group <%= j @favorite_group.pretty_name %>");
+  Danbooru.Notice.info("<%= j t("favorite_groups.remove_post.removed", name: @favorite_group.pretty_name) %>");
 <% end %>
 
 $("#add-to-favgroup-dialog").dialog("close");

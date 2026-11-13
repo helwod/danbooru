@@ -1,0 +1,23 @@
+en:
+  forum_post_votes:
+    destroy:
+      unvoted: "Unvoted"
+    create:
+      voted: "Voted"
+    index:
+      search_voter: "Voter"
+      search_forum_poster: "Forum Poster"
+      search_forum_post: "Forum Post"
+      search_score: "Score"
+      submit: "Search"
+      column_forum_post: "Forum Post"
+      column_forum_topic: "Forum Topic"
+      column_score: "Score"
+      column_forum_poster: "Forum Poster"
+      column_voter: "Voter"
+      forum_post_link: "Forum #%{id}"
+      unvote: "unvote"
+    list:
+      vote_up: "Vote up"
+      vote_meh: "Vote meh"
+      vote_down: "Vote down"

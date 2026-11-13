@@ -1,25 +1,25 @@
 <div id="c-users">
   <div id="a-index">
-    <h1>Users</h1>
+    <h1><%= t("users.title") %></h1>
 
     <%= search_form_for(users_path) do |f| %>
-      <%= f.input :name_matches, label: "Name", input_html: { value: params[:search][:name_matches], data: { autocomplete: "user" } } %>
+      <%= f.input :name_matches, label: t("users.name"), input_html: { value: params[:search][:name_matches], data: { autocomplete: "user" } } %>
       <%= f.input :level, collection: User.level_hash.to_a, include_blank: true, selected: params[:search][:level] %>
-      <%= f.input :order, collection: [["Joined", "date"], ["Name", "name"], ["Posts", "post_upload_count"], ["Edits", "post_update_count"], ["Notes", "note_count"]], include_blank: true, selected: params[:search][:order] %>
-      <%= f.submit "Search" %>
+      <%= f.input :order, label: t("users.order"), collection: [[t("users.order_by.joined"), "date"], [t("users.order_by.name"), "name"], [t("users.order_by.posts"), "post_upload_count"], [t("users.order_by.edits"), "post_update_count"], [t("users.order_by.notes"), "note_count"]], include_blank: true, selected: params[:search][:order] %>
+      <%= f.submit t("users.search") %>
     <% end %>
 
     <%= table_for @users, width: "100%", class: "striped autofit" do |t| %>
-      <% t.column "Name", td: { class: "col-expand" } do |user| %>
+      <% t.column t("users.name"), td: { class: "col-expand" }, column: "name" do |user| %>
         <% if user.is_banned? %>
-          <%= link_to "Banned", users_path(search: { is_banned: true }), class: "chip-red text-error text-xxs" %>
+          <%= link_to t("users.banned"), users_path(search: { is_banned: true }), class: "chip-red text-error text-xxs" %>
         <% end %>
 
         <%= link_to_user user %>
       <% end %>
 
       <% if policy(:ip_address).show? %>
-        <% t.column "IP" do |user| %>
+        <% t.column t("users.ip"), column: "ip" do |user| %>
           <% if user.last_ip_addr.present? && policy(user).can_see_last_ip_addr? %>
             <% if user.last_ip_addr.ipv6? %>
               <%= link_to user.last_ip_addr.subnet, user_events_path(search: { ip_addr: user.last_ip_addr.subnet }), title: user.last_ip_addr %>
@@ -32,24 +32,24 @@
         <% end %>
       <% end %>
 
-      <% t.column "Posts" do |user| %>
+      <% t.column t("users.posts"), column: "posts" do |user| %>
         <%= link_to user.post_upload_count, posts_path(:tags => "user:#{user.name}") %>
       <% end %>
-      <% t.column "Edits" do |user| %>
+      <% t.column t("users.edits"), column: "edits" do |user| %>
         <%= link_to user.post_update_count, post_versions_path(:search => {:updater_id => user.id}) %>
       <% end %>
-      <% t.column "Notes" do |user| %>
+      <% t.column t("users.notes"), column: "notes" do |user| %>
         <%= link_to user.note_update_count, note_versions_path(:search => {:updater_id => user.id}) %>
       <% end %>
-      <% t.column "Level" do |user| %>
+      <% t.column t("users.level"), column: "level" do |user| %>
         <%= user.level_string %>
       <% end %>
       <% if policy(User).can_see_last_logged_in_at? %>
-        <% t.column "Last Seen" do |user| %>
+        <% t.column t("users.last_seen"), column: "last-seen" do |user| %>
           <%= time_ago_in_words_tagged(user.last_logged_in_at) %>
         <% end %>
       <% end %>
-      <% t.column "Joined" do |user| %>
+      <% t.column t("users.joined"), column: "joined" do |user| %>
         <%= compact_time user.created_at %>
       <% end %>
 
@@ -57,14 +57,14 @@
         <%= render PopupMenuComponent.new do |menu| %>
           <% menu.with_item do %>
             <%= link_to new_dmail_path(dmail: { to_id: user.id }) do %>
-              <%= message_icon %> Send Message
+              <%= message_icon %> <%= t("users.send_message") %>
             <% end %>
           <% end %>
 
           <% if policy(UserFeedback.new(user: user)).create? %>
             <% menu.with_item do %>
               <%= link_to new_user_feedback_path(user_feedback: { user_id: user.id }) do %>
-                <%= feedback_icon %> Give Feedback
+                <%= feedback_icon %> <%= t("users.give_feedback") %>
               <% end %>
             <% end %>
           <% end %>
@@ -72,7 +72,7 @@
           <% if policy(user).promote? %>
             <% menu.with_item do %>
               <%= link_to edit_admin_user_path(user.id) do %>
-                <%= edit_icon %> Edit User
+                <%= edit_icon %> <%= t("users.edit_user") %>
               <% end %>
             <% end %>
           <% end %>
@@ -80,7 +80,7 @@
           <% if policy(Ban.new(user: user)).create? %>
             <% menu.with_item do %>
               <%= link_to new_ban_path(ban: { user_id: user.id }) do %>
-                <%= ban_icon %> Ban User
+                <%= ban_icon %> <%= t("users.ban_user") %>
               <% end %>
             <% end %>
           <% end %>

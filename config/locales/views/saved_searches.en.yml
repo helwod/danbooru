@@ -1,0 +1,42 @@
+en:
+  saved_searches:
+    destroy:
+      deleted: "Search '%{query}' was deleted"
+    create:
+      saved: "Search '%{query}' was saved"
+    interface:
+      dialog_title: "Save Search"
+      labels: "Labels"
+      labels_hint: "A list of tags to help categorize this search. Space delimited."
+      dont_show_again: "Don't show this dialog again"
+      cancel: "Cancel"
+    edit:
+      title: "Edit Saved Search"
+    index:
+      title: "Saved Searches"
+      search_query: "Query"
+      search_label: "Label"
+      order_newest: "Newest"
+      order_query: "Query"
+      order_label: "Label"
+      submit: "Search"
+      column_query: "Query"
+      column_labels: "Labels"
+      column_posts: "Posts"
+      column_refreshed: "Refreshed"
+      column_created: "Created"
+      older_than: "&gt;%{duration} ago"
+      edit: "edit"
+      delete: "delete"
+    secondary_links:
+      view_posts: "View posts"
+      manage: "Manage saved searches"
+
+  activerecord:
+    attributes:
+      saved_search:
+        query: "Query"
+        query_ilike: "Query"
+        label_string: "Labels"
+        label: "Label"
+        disable_labels: "Don't show this dialog again"

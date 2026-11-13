@@ -1,0 +1,12 @@
+en:
+  upload_media_assets:
+    index:
+      title: "Upload"
+      tab_all: "All"
+      tab_posted: "Posted"
+      tab_unposted: "Unposted"
+    preview:
+      failed: "Failed"
+      post_link: "post #%{id}"
+    flash:
+      duplicate: "Duplicate of post #%{id}"

@@ -2,34 +2,34 @@
 
 <div id="c-site-credentials">
   <div id="a-index">
-    <h1>Credentials</h1>
+    <h1><%= t("site_credentials.title") %></h1>
 
     <%= table_for @site_credentials, class: "striped autofit" do |t| %>
-      <% t.column :site do |site_credential| %>
+      <% t.column :site, column: "site", name: t("site_credentials.site") do |site_credential| %>
         <%= link_to site_credential.site, site_credentials_path(search: { site: site_credential.site }) %>
 
         <span class="inline-flex flex-row gap-1">
           <% if site_credential.is_enabled? %>
-            <span class="chip-green text-success text-xs px-2 rounded">Enabled</span>
+            <span class="chip-green text-success text-xs px-2 rounded"><%= t("site_credentials.enabled") %></span>
           <% else %>
-            <span class="chip-red text-error text-xs px-2 rounded">Disabled</span>
+            <span class="chip-red text-error text-xs px-2 rounded"><%= t("site_credentials.disabled") %></span>
           <% end %>
 
           <% if site_credential.is_valid? %>
-            <span class="chip-green text-success text-xs px-2 rounded"><%= site_credential.status.humanize %></span>
+            <span class="chip-green text-success text-xs px-2 rounded"><%= t("site_credentials.statuses.#{site_credential.status}", default: site_credential.status.humanize) %></span>
           <% elsif site_credential.is_unknown? %>
-            <span class="chip-yellow text-warning text-xs px-2 rounded"><%= site_credential.status.humanize %></span>
+            <span class="chip-yellow text-warning text-xs px-2 rounded"><%= t("site_credentials.statuses.#{site_credential.status}", default: site_credential.status.humanize) %></span>
           <% else %>
-            <span class="chip-red text-error text-xs px-2 rounded"><%= site_credential.status.humanize %></span>
+            <span class="chip-red text-error text-xs px-2 rounded"><%= t("site_credentials.statuses.#{site_credential.status}", default: site_credential.status.humanize) %></span>
           <% end %>
 
           <% if !site_credential.is_public? %>
-            <span class="chip-blue link-color text-xs px-2 rounded">Personal</span>
+            <span class="chip-blue link-color text-xs px-2 rounded"><%= t("site_credentials.personal") %></span>
           <% end %>
         </span>
       <% end %>
 
-      <% t.column :credential, td: { class: "col-expand" } do |site_credential| %>
+      <% t.column :credential, column: "credential", name: t("site_credentials.credential"), td: { class: "col-expand" } do |site_credential| %>
         <% site_credential.credential.each do |name, value| %>
           <div>
             <strong><%= name.humanize.titleize %></strong>
@@ -38,7 +38,7 @@
         <% end %>
       <% end %>
 
-      <% t.column :metadata do |site_credential| %>
+      <% t.column :metadata, column: "metadata", name: t("site_credentials.metadata") do |site_credential| %>
         <% DanbooruLogger.flatten_hash(site_credential.metadata).each do |name, value| %>
           <div class="break-words">
             <h6><%= name.humanize.titleize %></h6>
@@ -47,25 +47,25 @@
         <% end %>
       <% end %>
 
-      <% t.column :status do |site_credential| %>
+      <% t.column :status, column: "status", name: t("site_credentials.status") do |site_credential| %>
         <% if site_credential.last_used_at.present? %>
-          <h6>Last Used</h6>
+          <h6><%= t("site_credentials.last_used") %></h6>
           <div><%= time_ago_in_words_tagged(site_credential.last_used_at) %>
         <% end %>
 
         <% if site_credential.last_error_at.present? %>
-          <h6>Last Error</h6>
+          <h6><%= t("site_credentials.last_error") %></h6>
           <div><%= time_ago_in_words_tagged(site_credential.last_error_at) %>
         <% end %>
 
-        <h6>Uses</h6>
+        <h6><%= t("site_credentials.uses") %></h6>
         <div><%= site_credential.usage_count %></div>
 
-        <h6>Errors</h6>
+        <h6><%= t("site_credentials.errors") %></h6>
         <div><%= site_credential.error_count %></div>
       <% end %>
 
-      <% t.column "Created" do |site_credential| %>
+      <% t.column t("site_credentials.created"), column: "created" do |site_credential| %>
         <div><%= link_to_user site_credential.creator %></div>
         <div><%= time_ago_in_words_tagged(site_credential.created_at) %></div>
       <% end %>
@@ -73,13 +73,13 @@
       <% t.column column: "control" do |site_credential| %>
         <div class="flex flex-col gap-2">
           <% if site_credential.is_enabled? %>
-            <%= link_to "Disable", site_credential_path(site_credential), class: "button-outline-danger button-sm", method: :put, remote: true, "data-params": "site_credential[is_enabled]=false", "data-confirm": "Are you sure you want to disable this credential?" %>
+            <%= link_to t("site_credentials.disable"), site_credential_path(site_credential), class: "button-outline-danger button-sm", method: :put, remote: true, "data-params": "site_credential[is_enabled]=false", "data-confirm": t("site_credentials.disable_confirm") %>
           <% else %>
-            <%= link_to "Enable", site_credential_path(site_credential), class: "button-primary button-sm", method: :put, remote: true, "data-params": "site_credential[is_enabled]=true" %>
+            <%= link_to t("site_credentials.enable"), site_credential_path(site_credential), class: "button-primary button-sm", method: :put, remote: true, "data-params": "site_credential[is_enabled]=true" %>
           <% end %>
 
           <% if policy(site_credential).destroy? %>
-            <%= link_to "Delete", site_credential_path(site_credential), class: "button-danger button-sm", method: :delete, remote: true, "data-confirm": "Are you sure you want to permanently delete this credential?" %>
+            <%= link_to t("site_credentials.delete"), site_credential_path(site_credential), class: "button-danger button-sm", method: :delete, remote: true, "data-confirm": t("site_credentials.delete_confirm") %>
           <% end %>
         </div>
       <% end %>

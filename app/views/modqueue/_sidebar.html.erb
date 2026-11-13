@@ -1,9 +1,9 @@
 <% content_for(:sidebar) do %>
-  <h2>Search</h2>
+  <h2><%= t("modqueue.search") %></h2>
 
   <%= search_form_for(modqueue_index_path, classes: "one-line-form") do |f| %>
-    <%= f.input :tags, label: false, input_html: { placeholder: "Tags", value: params.dig(:search, :tags), "data-autocomplete": "tag-query" } %>
-    <%= f.input :order, label: false, collection: [["Newest", "modqueue"], ["Oldest", "modqueue_asc"], ["Score (Highest)", "score"], ["Score (Lowest)", "score_asc"], ["Disapprovals (Most)", "disapprovals"], ["Disapprovals (Fewest)", "disapprovals_asc"]], selected: params[:search][:order] %>
+    <%= f.input :tags, label: false, input_html: { placeholder: t("modqueue.tags_placeholder"), value: params.dig(:search, :tags), "data-autocomplete": "tag-query" } %>
+    <%= f.input :order, label: false, collection: [[t("modqueue.order_by.newest"), "modqueue"], [t("modqueue.order_by.oldest"), "modqueue_asc"], [t("modqueue.order_by.score_desc"), "score"], [t("modqueue.order_by.score_asc"), "score_asc"], [t("modqueue.order_by.disapprovals_desc"), "disapprovals"], [t("modqueue.order_by.disapprovals_asc"), "disapprovals_asc"]], selected: params[:search][:order] %>
     <%= f.button :button, name: nil, id: "search-box-submit" do %>
       <%= search_icon %>
     <% end %>
@@ -12,7 +12,7 @@
   <%= render BlacklistComponent.new(user: CurrentUser.user) %>
 
   <p id="modqueue-sidebar-status" class="sidebar-section">
-    <h2>Status</h2>
+    <h2><%= t("modqueue.status") %></h2>
     <ul>
       <li>
         <%= link_to "status:pending", current_page_path(search: search_params.merge(tags: "status:pending"), page: nil) %>
@@ -37,7 +37,7 @@
   </p>
 
   <p id="modqueue-sidebar-ratings" class="sidebar-section">
-    <h2>Ratings</h2>
+    <h2><%= t("modqueue.ratings") %></h2>
     <ul>
       <% Post::RATINGS.each do |rating, name| %>
         <li>
@@ -49,7 +49,7 @@
   </p>
 
   <p id="modqueue-sidebar-uploaders" class="sidebar-section">
-    <h2>Uploaders</h2>
+    <h2><%= t("modqueue.uploaders") %></h2>
     <ul>
       <% @uploaders.each do |uploader, count| %>
         <li>
@@ -61,7 +61,7 @@
   </p>
 
   <p id="modqueue-sidebar-tags" class="sidebar-section">
-    <h2>Tags</h2>
+    <h2><%= t("modqueue.tags") %></h2>
 
     <%= render "tag_list", tags: @artist_tags %>
     <%= render "tag_list", tags: @copyright_tags %>

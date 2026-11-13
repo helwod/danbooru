@@ -1,31 +1,30 @@
 <div id="c-post-versions">
   <div id="a-index">
     <% if listing_type(:post_id) == :revert && @post_versions.present? %>
-      <h1>Post History: <%= link_to "Post ##{params.dig(:search, :post_id)}", @post_versions[0].post %></h1>
+      <h1><%= t("post_versions.index.title_with_post_html", link: link_to(t("post_versions.index.post_link", id: params.dig(:search, :post_id)), @post_versions[0].post)).html_safe %></h1>
     <% else %>
-      <h1>Post History</h1>
+      <h1><%= t("post_versions.index.title") %></h1>
     <% end %>
 
     <%= render "versions/types" %>
 
     <%= search_form_for(post_versions_path, classes: "inline-form") do |f| %>
-      <%= f.input :post_id, label: "Post", input_html: { value: params.dig(:search, :post_id) } %>
-      <%= f.input :updater_name, label: "Updater", input_html: { "data-autocomplete": "user", value: params.dig(:search, :updater_name) } %>
-      <%= f.input :added_tags_include_all, label: "Added Tags", input_html: { "data-autocomplete": "tag-query", value: params.dig(:search, :added_tags_include_all) } %>
-      <%= f.input :removed_tags_include_all, label: "Removed Tags", input_html: { "data-autocomplete": "tag-query", value: params.dig(:search, :removed_tags_include_all) } %>
-      <%= f.input :changed_tags, label: "Changed Tags", input_html: { "data-autocomplete": "tag-query", value: params.dig(:search, :changed_tags) }, hint: "Added or removed tags" %>
+      <%= f.input :post_id, label: t("post_versions.index.search_post"), input_html: { value: params.dig(:search, :post_id) } %>
+      <%= f.input :updater_name, label: t("post_versions.index.search_updater"), input_html: { "data-autocomplete": "user", value: params.dig(:search, :updater_name) } %>
+      <%= f.input :added_tags_include_all, label: t("post_versions.index.search_added_tags"), input_html: { "data-autocomplete": "tag-query", value: params.dig(:search, :added_tags_include_all) } %>
+      <%= f.input :removed_tags_include_all, label: t("post_versions.index.search_removed_tags"), input_html: { "data-autocomplete": "tag-query", value: params.dig(:search, :removed_tags_include_all) } %>
+      <%= f.input :changed_tags, label: t("post_versions.index.search_changed_tags"), input_html: { "data-autocomplete": "tag-query", value: params.dig(:search, :changed_tags) }, hint: t("post_versions.index.changed_tags_hint") %>
 
       <div class="flex items-center space-x-4">
-        <%= f.submit "Search" %>
-        <%= link_to "Advanced", search_post_versions_path(params.except(:controller, :action, :index, :commit, :type).permit!) %>
+        <%= f.submit t("post_versions.index.submit") %>
+        <%= link_to t("post_versions.index.advanced"), search_post_versions_path(params.except(:controller, :action, :index, :commit, :type).permit!) %>
       </div>
     <% end %>
 
     <%= render BlacklistComponent.new(user: CurrentUser.user, inline: true) %>
 
     <p class="fineprint">
-      Recent updates may not have been processed yet. The
-      most recently processed version was <%= time_ago_in_words_tagged(PostVersion.maximum(:updated_at) || Time.zone.now) %>.
+      <%= t("post_versions.index.processing_notice", time: time_ago_in_words_tagged(PostVersion.maximum(:updated_at) || Time.zone.now)) %>
     </p>
 
     <% if @post_versions.length == 0 %>

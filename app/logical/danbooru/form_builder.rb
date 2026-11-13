@@ -9,7 +9,7 @@ module Danbooru
     # @param create [String] the label for new records
     # @param update [String] the label for existing records
     # @param options [Hash] options passed to `submit`
-    def submit_button(label = nil, create: "Create", update: "Update", **options)
+    def submit_button(label = nil, create: I18n.t("form_builder.create"), update: I18n.t("form_builder.update"), **options)
       label ||= object.try(:persisted?) ? update : create
       submit(label, class: "button-primary", **options)
     end
@@ -18,7 +18,7 @@ module Danbooru
     #
     # @param label [String] the button label
     # @param options [Hash] options passed to `button`
-    def cancel_button(label = "Cancel", **options)
+    def cancel_button(label = I18n.t("form_builder.cancel"), **options)
       button(:button, label, type: :button, name: :cancel, class: "button-outline-primary", **options)
     end
   end

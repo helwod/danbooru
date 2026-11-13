@@ -1,10 +1,10 @@
-<h2>Mod Actions</h2>
+<h2><%= t("moderator_dashboard.mod_actions") %></h2>
 
 <table class="striped w-full">
   <thead>
     <tr>
-      <th>Moderator</th>
-      <th>Description</th>
+      <th><%= t("moderator_dashboard.moderator") %></th>
+      <th><%= t("moderator_dashboard.description") %></th>
     </tr>
   </thead>
   <tbody>
@@ -21,4 +21,4 @@
   </tbody>
 </table>
 
-<p><%= link_to "View all actions", mod_actions_path %></p>
+<p><%= link_to t("moderator_dashboard.view_all_actions"), mod_actions_path %></p>

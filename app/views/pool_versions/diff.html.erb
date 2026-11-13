@@ -1,28 +1,28 @@
-<% page_title "Pool Comparison: #{@pool_version.pretty_name}" %>
+<% page_title t("pool_versions.diff.page_title", name: @pool_version.pretty_name) %>
 <%= render "secondary_links" %>
 
 <div id="c-pool-versions">
   <div id="a-diff">
-    <h1>Pool Version Comparison: <%= link_to @pool_version.pretty_name, pool_versions_path(search: { pool_id: @pool_version.pool_id }, type: params[:type], anchor: "pool-version-#{@pool_version.id}"), class: "pool-category-#{@pool_version.pool.category}" %></h1>
+    <h1><%= t("pool_versions.diff.heading_html", link: link_to(@pool_version.pretty_name, pool_versions_path(search: { pool_id: @pool_version.pool_id }, type: params[:type], anchor: "pool-version-#{@pool_version.id}"), class: "pool-category-#{@pool_version.pool.category}")).html_safe %></h1>
 
     <%= render "versions/types" %>
 
     <% if @other_version.present? %>
       <% if @pool_version.id != @other_version.id %>
-        <p>Showing differences between <%= compact_time @pool_version.updated_at %> (<%= link_to_user @pool_version.updater %>) and <%= compact_time @other_version.updated_at %> (<%= link_to_user @other_version.updater %>)</p>
+        <p><%= t("pool_versions.diff.between_html", this_time: compact_time(@pool_version.updated_at), this_user: link_to_user(@pool_version.updater), other_time: compact_time(@other_version.updated_at), other_user: link_to_user(@other_version.updater)).html_safe %></p>
 
         <% if @pool_version.description != @other_version.description %>
           <div class="diff-body">
               <%= diff_body_html(@pool_version, @other_version, :description) %>
           </div>
         <% else %>
-          <p><em>No changes to description.</em></p>
+          <p><em><%= t("pool_versions.diff.no_description_changes") %></em></p>
         <% end %>
       <% else %>
-        <p><em>Version is latest!</em></p>
+        <p><em><%= t("pool_versions.diff.latest_version") %></em></p>
       <% end %>
     <% else %>
-      <p><em>No versions to compare!</em></p>
+      <p><em><%= t("pool_versions.diff.no_versions") %></em></p>
     <% end %>
   </div>
 </div>

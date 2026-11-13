@@ -1,20 +1,17 @@
-<% page_title "Verify account" %>
+<% page_title t("emails.verify_title") %>
 
 <div id="c-emails">
   <div id="a-verify" class="fixed-width-container">
-    <h1>Verify account</h1>
+    <h1><%= t("emails.verify_title") %></h1>
 
     <% if @user.is_restricted? %>
-      <p>Your account is restricted because you signed up from a VPN or proxy.
-      You can still use the site, but you must verify your email address to be
-      able to leave comments, edit tags, or upload posts.</p>
+      <p><%= t("emails.verify_restricted") %></p>
     <% end %>
 
-    <p>Your email address is unverified. Click below to send an email to
-    <strong><%= @email_address.address %></strong> to verify your email address.</p>
+    <p><%= t("emails.verify_unverified_html", address: tag.strong(@email_address.address)) %></p>
 
     <%= edit_form_for(@user, method: :post, url: send_confirmation_user_email_path(@user)) do |f| %>
-      <%= f.submit_button "Send confirmation email" %>
+      <%= f.submit_button t("emails.send_confirmation") %>
     <% end %>
   </div>
 </div>

@@ -27,6 +27,6 @@ class UserNameChangeRequestsController < ApplicationController
     @change_request = authorize UserNameChangeRequest.new(updater: CurrentUser.user, original_name: user.name, **permitted_attributes(UserNameChangeRequest))
     @change_request.save
 
-    respond_with(@change_request, notice: "Name changed", location: @change_request.user)
+    respond_with(@change_request, notice: I18n.t("user_name_change_requests.flash.name_changed"), location: @change_request.user)
   end
 end

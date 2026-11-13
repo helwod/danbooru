@@ -1,29 +1,29 @@
 <% content_for(:secondary_links) do %>
-  <%= subnav_link_to "Listing", posts_path %>
+  <%= subnav_link_to t("posts.secondary_links.listing"), posts_path, id: "listing" %>
   <% if CurrentUser.user.is_anonymous? %>
-    <%= subnav_link_to "Upload", login_path(url: new_upload_path) %>
+    <%= subnav_link_to t("posts.secondary_links.upload"), login_path(url: new_upload_path), id: "upload" %>
   <% else %>
-    <%= subnav_link_to "Upload", new_upload_path %>
+    <%= subnav_link_to t("posts.secondary_links.upload"), new_upload_path, id: "upload" %>
   <% end %>
-  <%= subnav_link_to "Hot", posts_path(:tags => "order:rank", :d => "1") %>
+  <%= subnav_link_to t("posts.hot"), posts_path(:tags => "order:rank", :d => "1"), id: "hot" %>
   <% if policy(Favorite).create? %>
-    <%= subnav_link_to "Favorites", posts_path(tags: "ordfav:#{CurrentUser.user.name}") %>
+    <%= subnav_link_to t("posts.secondary_links.favorites"), posts_path(tags: "ordfav:#{CurrentUser.user.name}"), id: "favorites" %>
   <% end %>
   <% if policy(FavoriteGroup).create? %>
-    <%= subnav_link_to "Fav groups", favorite_groups_path(search: { creator_name: CurrentUser.user.name }) %>
+    <%= subnav_link_to t("posts.secondary_links.fav_groups"), favorite_groups_path(search: { creator_name: CurrentUser.user.name }), id: "fav-groups" %>
   <% end %>
   <% if policy(SavedSearch).create? %>
-    <%= subnav_link_to "Saved searches", posts_path(tags: "search:all") %>
+    <%= subnav_link_to t("posts.secondary_links.saved_searches"), posts_path(tags: "search:all"), id: "saved-searches" %>
   <% end %>
-  <%= subnav_link_to "Changes", post_versions_path %>
+  <%= subnav_link_to t("posts.secondary_links.changes"), post_versions_path, id: "changes" %>
   <% if policy(PostApproval).create? %>
     <%= subnav_link_to modqueue_index_path, id: "modqueue" do %>
-      Modqueue
+      <%= t("posts.secondary_links.modqueue") %>
 
       <% if Post.available_for_moderation(CurrentUser.user, "unseen").count > 0 %>
         <span class="badge-blue"><%= Post.available_for_moderation(CurrentUser.user, "unseen").count %></span>
       <% end %>
     <% end %>
   <% end %>
-  <%= subnav_link_to "Help", wiki_page_path("help:posts") %>
+  <%= subnav_link_to t("posts.secondary_links.help"), wiki_page_path("help:posts"), id: "help" %>
 <% end %>

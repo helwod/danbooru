@@ -3,7 +3,7 @@
     <div class="author-name">
       <%= link_to_user forum_post.creator %>
       <% if forum_post.is_deleted? %>
-        (deleted)
+        <%= I18n.t("components.forum_post.deleted") %>
       <% end %>
     </div>
     <%= link_to time_ago_in_words_tagged(forum_post.created_at), forum_post, class: "message-timestamp" %>
@@ -18,15 +18,15 @@
     <div class="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1">
       <% if policy(forum_post).reply? %>
         <% if current_user.is_anonymous? %>
-          <%= link_to "Reply", login_path(url: request.fullpath) %>
+          <%= link_to I18n.t("components.common.reply"), login_path(url: request.fullpath) %>
         <% else %>
-          <%= link_to "Reply", new_forum_post_path(post_id: forum_post.id), method: :get, remote: true %>
+          <%= link_to I18n.t("components.common.reply"), new_forum_post_path(post_id: forum_post.id), method: :get, remote: true %>
         <% end %>
       <% end %>
 
       <% if reported? %>
         <span class="moderation-report-notice">
-          Reported (<%= link_to pluralize(forum_post.pending_moderation_reports.length, "report"), moderation_reports_path(search: { model_type: "ForumPost", model_id: forum_post.id, status: "pending" }) %>)
+          <%= I18n.t("components.forum_post.reported_html", link: link_to(I18n.t("components.forum_post.reports", count: forum_post.pending_moderation_reports.length), moderation_reports_path(search: { model_type: "ForumPost", model_id: forum_post.id, status: "pending" }))).html_safe %>
         </span>
       <% end %>
 
@@ -35,11 +35,11 @@
           <% menu.with_item do %>
             <% if forum_post.is_original_post?(original_forum_post_id) %>
               <%= link_to edit_forum_topic_path(forum_post.topic), id: "edit_forum_topic_link_#{forum_post.topic_id}", class: "edit_forum_topic_link" do %>
-                <%= edit_icon %> Edit
+                <%= edit_icon %> <%= I18n.t("components.common.edit") %>
               <% end %>
             <% else %>
               <%= link_to edit_forum_post_path(forum_post.id), id: "edit_forum_post_link_#{forum_post.id}", class: "edit_forum_post_link" do %>
-                <%= edit_icon %> Edit
+                <%= edit_icon %> <%= I18n.t("components.common.edit") %>
               <% end %>
             <% end %>
           <% end %>
@@ -48,15 +48,15 @@
         <% if forum_post.is_deleted? && policy(forum_post).undelete? && !forum_post.is_original_post?(original_forum_post_id) %>
           <% menu.with_item do %>
             <%= link_to undelete_forum_post_path(forum_post.id), method: :post, remote: true do %>
-              <%= undelete_icon %> Undelete
+              <%= undelete_icon %> <%= I18n.t("components.common.undelete") %>
             <% end %>
           <% end %>
         <% end %>
 
         <% if !forum_post.is_deleted? && policy(forum_post).destroy? && !forum_post.is_original_post?(original_forum_post_id) %>
           <% menu.with_item do %>
-            <%= link_to forum_post_path(forum_post.id), "data-confirm": "Are you sure you want to delete this forum post?", method: :delete, remote: true do %>
-              <%= delete_icon %> Delete
+            <%= link_to forum_post_path(forum_post.id), "data-confirm": I18n.t("components.forum_post.confirm_delete"), method: :delete, remote: true do %>
+              <%= delete_icon %> <%= I18n.t("components.common.delete") %>
             <% end %>
           <% end %>
         <% end %>
@@ -64,7 +64,7 @@
         <% if policy(forum_post).reportable? %>
           <% menu.with_item do %>
             <%= link_to new_moderation_report_path(moderation_report: { model_type: "ForumPost", model_id: forum_post.id }), remote: true do %>
-              <%= flag_icon %> Report
+              <%= flag_icon %> <%= I18n.t("components.common.report") %>
             <% end %>
           <% end %>
         <% end %>
@@ -72,20 +72,20 @@
         <% if !forum_post.creator.is_banned? && policy(Ban.new(user: forum_post.creator)).create? %>
           <% menu.with_item do %>
             <%= link_to new_ban_path(ban: { user_id: forum_post.creator.id }) do %>
-              <%= ban_icon %> Ban User
+              <%= ban_icon %> <%= I18n.t("components.common.ban_user") %>
             <% end %>
           <% end %>
         <% end %>
 
         <% menu.with_item do %>
           <%= link_to "#", class: "forum-post-copy-id", "x-on:click.prevent": "$copyToClipboard('forum ##{j forum_post.id}')" do %>
-            <%= hashtag_icon %> Copy ID
+            <%= hashtag_icon %> <%= I18n.t("components.common.copy_id") %>
           <% end %>
         <% end %>
 
         <% menu.with_item do %>
           <%= link_to "#", class: "forum-post-copy-link", "x-on:click.prevent": "$copyToClipboard('#{j forum_post_url(forum_post)}')" do %>
-            <%= link_icon %> Copy Link
+            <%= link_icon %> <%= I18n.t("components.common.copy_link") %>
           <% end %>
         <% end %>
 
@@ -98,8 +98,8 @@
 
           <% if policy(bur).approve? %>
             <% menu.with_item do %>
-              <%= link_to approve_bulk_update_request_path(bur.id), id: "approve_bulk_update_request_link_#{bur.id}", class: "approve_bulk_update_request_link", "data-confirm": "Are you sure you want to approve this bulk update request?", method: :post, remote: true do %>
-                <%= check_square_icon %> Approve BUR
+              <%= link_to approve_bulk_update_request_path(bur.id), id: "approve_bulk_update_request_link_#{bur.id}", class: "approve_bulk_update_request_link", "data-confirm": I18n.t("components.forum_post.confirm_approve_bur"), method: :post, remote: true do %>
+                <%= check_square_icon %> <%= I18n.t("components.forum_post.approve_bur") %>
               <% end %>
             <% end %>
           <% end %>
@@ -107,15 +107,15 @@
           <% if policy(bur).update? %>
             <% menu.with_item do %>
               <%= link_to edit_bulk_update_request_path(bur.id), id: "edit_bulk_update_request_link_#{bur.id}", class: "edit_bulk_update_request_link" do %>
-                <%= edit_icon %> Edit BUR
+                <%= edit_icon %> <%= I18n.t("components.forum_post.edit_bur") %>
               <% end %>
             <% end %>
           <% end %>
 
           <% if policy(bur).destroy? %>
             <% menu.with_item do %>
-              <%= link_to bur, "data-confirm": "Are you sure you want to reject this bulk update request?", method: :delete, remote: true do %>
-                <%= delete_icon %> Reject BUR
+              <%= link_to bur, "data-confirm": I18n.t("components.forum_post.confirm_reject_bur"), method: :delete, remote: true do %>
+                <%= delete_icon %> <%= I18n.t("components.forum_post.reject_bur") %>
               <% end %>
             <% end %>
           <% end %>

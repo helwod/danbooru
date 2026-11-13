@@ -1,0 +1,20 @@
+en:
+  post_votes:
+    index:
+      title: "Post Votes"
+      column_post: "Post"
+      column_tags: "Tags"
+      column_score: "Score"
+      column_uploader: "Uploader"
+      column_voter: "Voter"
+      column_created: "Created"
+      deleted: "(deleted)"
+      hidden: "hidden"
+      remove: "Remove"
+    search:
+      voter: "Voter"
+      post: "Post"
+      tags: "Tags"
+      submit: "Search"
+    notice:
+      removed: "Vote removed"

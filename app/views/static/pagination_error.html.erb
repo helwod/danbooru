@@ -1,15 +1,15 @@
-<% page_title "Page Limit Exceeded" %>
+<% page_title t("static.page_limit_exceeded_title") %>
 
-<h1>Search Error</h1>
+<h1><%= t("static.search_error") %></h1>
 
 <p>
   <%= @message %>
 
   <% if CurrentUser.is_gold? %>
-    Try narrowing your search terms.
+    <%= t("static.narrow_search_terms") %>
   <% else %>
-    Try narrowing your search terms, or <%= link_to "upgrade your account", new_user_upgrade_path  %> to go beyond page <%= CurrentUser.user.page_limit %>.
+    <%= t("static.narrow_search_or_upgrade_html", upgrade: link_to(t("static.upgrade_your_account"), new_user_upgrade_path), limit: CurrentUser.user.page_limit).html_safe %>
   <% end %>
 </p>
 
-<%= link_to "Go back", :back, rel: "prev" %>
+<%= link_to t("static.go_back"), :back, rel: "prev" %>

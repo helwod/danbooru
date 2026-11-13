@@ -1,0 +1,9 @@
+en:
+  layouts:
+    privacy: "Privacy"
+    contact: "Contact"
+    promotion:
+      winter_sale: "Danbooru Winter Sale"
+      ends_prefix: "ends"
+      ends_suffix: "!"
+      get_gold_discount: "Get 25% off Gold"

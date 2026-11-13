@@ -1,7 +1,7 @@
 <div id="c-bans">
   <div id="a-edit">
     <div class="card mt-4 p-4 max-w-540px mx-auto flex flex-col gap-2">
-      <h1 class="text-center">Edit Ban: <%= link_to_user @ban.user %></h1>
+      <h1 class="text-center"><%= t("bans.edit_heading_html", user: link_to_user(@ban.user)) %></h1>
 
       <%= render "form", ban: @ban %>
     </div>

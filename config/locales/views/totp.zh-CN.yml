@@ -1,0 +1,17 @@
+"zh-CN":
+  totp:
+    setup_title: "设置两步验证"
+    heading: "两步验证"
+    enabled_html: "你的账户已<b>启用</b>两步验证（2FA）。如需添加新设备，请扫描下方二维码。"
+    disable_hint_html: "如需停用两步验证，请点击下方的<b>停用</b>按钮。"
+    enable_intro: "启用两步验证（2FA）后，登录账户时需要同时提供密码和安全验证码。这样即使密码被盗，账户也不会被他人登录。"
+    get_started_html: "开始之前，请先安装验证器应用，例如 %{google} 或 %{microsoft}，然后用它扫描下方二维码。"
+    cannot_scan: "无法扫描二维码？"
+    manual_entry: "如果无法扫描二维码，可以手动把下面的密钥输入到验证器应用中："
+    code_hint: "输入应用中显示的 6 位验证码"
+    enable_notice: "启用两步验证后，你在其他设备上的登录状态都会失效。"
+    disable: "停用"
+    enable: "启用"
+    back_to_settings: "返回设置"
+    flash:
+      two_factor_disabled: "两步验证已停用"

@@ -1,16 +1,16 @@
 <div id="p-list-listing" class="max-w-720px mx-auto">
   <% if @user.present? %>
-    <h1 class="mb-4 text-center">Account History</h1>
+    <h1 class="mb-4 text-center"><%= t("user_events.account_history") %></h1>
   <% else %>
-    <h1 class="mb-4 text-center">User Events</h1>
+    <h1 class="mb-4 text-center"><%= t("user_events.title") %></h1>
   <% end %>
 
   <% if @user_events.empty? %>
-    <p class="text-center">No events found.</p>
+    <p class="text-center"><%= t("user_events.no_events") %></p>
   <% else %>
     <div class="flex flex-col items-end mb-2">
       <%= link_to current_page_path(mode: "table"), class: "flex items-center gap-1 text-xs" do %>
-        <%= table_icon %> Table
+        <%= table_icon %> <%= t("user_events.table_link") %>
       <% end %>
     </div>
 
@@ -35,7 +35,7 @@
               <span>|</span>
 
               <span>
-                <%= link_to user_event.category.titleize, current_page_path(search: { category: user_event.category }, page: nil), class: "inactive-link" %>
+                <%= link_to t("user_events.categories.#{user_event.category}", default: user_event.category.titleize), current_page_path(search: { category: user_event.category }, page: nil), class: "inactive-link" %>
               </span>
             </div>
           </div>
@@ -43,7 +43,7 @@
           <div class="flex flex-col text-right text-xs max-w-1/2">
             <div class="flex items-center justify-end gap-1">
               <% if IpAddressPolicy.new(CurrentUser.user, ip_addr).show? && (geolocation&.is_proxy? || ip_addr.is_tor?) %>
-                <%= link_to "Proxy", current_page_path(search: { ip_geolocation: { is_proxy: true } }, page: nil), class: "chip-red text-error text-xxs" %>
+                <%= link_to t("user_events.proxy"), current_page_path(search: { ip_geolocation: { is_proxy: true } }, page: nil), class: "chip-red text-error text-xxs" %>
               <% end %>
 
               <% if ip_addr.is_tor? %>
@@ -61,7 +61,7 @@
 
             <% if ip_addr&.is_tor? %>
               <div>
-                <%= link_to "Tor", current_page_path(search: { ip_addr: ip_addr.supernet(64) }, page: nil) %>
+                <%= link_to t("user_events.tor"), current_page_path(search: { ip_addr: ip_addr.supernet(64) }, page: nil) %>
               </div>
             <% elsif geolocation&.city.present? && geolocation&.country.present? %>
               <div>

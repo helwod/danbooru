@@ -6,7 +6,7 @@
       <span class="user-tooltip-name"><%= link_to_user @user %></span>
 
       <% if @user.is_banned? %>
-        <%= link_to "Banned", users_path(search: { is_banned: true }), class: "user-tooltip-badge user-tooltip-badge-banned" %>
+        <%= link_to t("users.banned"), users_path(search: { is_banned: true }), class: "user-tooltip-badge user-tooltip-badge-banned" %>
       <% else %>
         <%= link_to @user.level_string, users_path(search: { level: @user.level }), class: "user-tooltip-badge user-tooltip-badge-#{@user.level_string.downcase}" %>
       <% end %>
@@ -29,7 +29,7 @@
 
       <% @user.user_name_change_requests.visible(CurrentUser.user).count.tap do |name_change_count| %>
         <% if name_change_count > 0 %>
-          · <%= link_to pluralize(name_change_count, "other name"), user_name_change_requests_path(search: { user_id: @user.id }), class: "link-plain" %>
+          · <%= link_to t("users.other_names", count: name_change_count), user_name_change_requests_path(search: { user_id: @user.id }), class: "link-plain" %>
         <% end %>
       <% end %>
     </div>
@@ -37,14 +37,14 @@
     <%= render PopupMenuComponent.new do |menu| %>
       <% menu.with_item do %>
         <%= link_to new_dmail_path(dmail: { to_id: @user.id }) do %>
-          <%= message_icon %> Send Message
+          <%= message_icon %> <%= t("users.send_message") %>
         <% end %>
       <% end %>
 
       <% if policy(UserFeedback.new(user: @user)).create? %>
         <% menu.with_item do %>
           <%= link_to new_user_feedback_path(user_feedback: { user_id: @user.id }) do %>
-            <%= feedback_icon %> Give Feedback
+            <%= feedback_icon %> <%= t("users.give_feedback") %>
           <% end %>
         <% end %>
       <% end %>
@@ -52,7 +52,7 @@
       <% if policy(@user).promote? %>
         <% menu.with_item do %>
           <%= link_to edit_admin_user_path(@user.id) do %>
-            <%= edit_icon %> Edit User
+            <%= edit_icon %> <%= t("users.edit_user") %>
           <% end %>
         <% end %>
       <% end %>
@@ -60,7 +60,7 @@
       <% if policy(Ban.new(user: @user)).create? %>
         <% menu.with_item do %>
           <%= link_to new_ban_path(ban: { user_id: @user.id }) do %>
-            <%= ban_icon %> Ban User
+            <%= ban_icon %> <%= t("users.ban_user") %>
           <% end %>
         <% end %>
       <% end %>
@@ -71,32 +71,32 @@
     <li class="user-tooltip-stat-item">
       <%= link_to posts_path(tags: "user:#{@user.name}"), class: "link-plain" do %>
         <div class="user-tooltip-stat-value"><%= humanized_number(@user.post_upload_count) %></div>
-        <div class="user-tooltip-stat-name">Uploads</div>
+        <div class="user-tooltip-stat-name"><%= t("users.stats.uploads") %></div>
       <% end %>
     </li>
     <li class="user-tooltip-stat-item">
       <%= link_to post_versions_path(search: { updater_id: @user.id }), class: "link-plain" do %>
         <div class="user-tooltip-stat-value"><%= humanized_number(@user.post_update_count) %></div>
-        <div class="user-tooltip-stat-name">Tag Edits</div>
+        <div class="user-tooltip-stat-name"><%= t("users.stats.tag_edits") %></div>
       <% end %>
     </li>
     <li class="user-tooltip-stat-item">
       <%= link_to note_versions_path(search: { updater_id: @user.id }), class: "link-plain" do %>
         <div class="user-tooltip-stat-value"><%= humanized_number(@user.note_update_count) %></div>
-        <div class="user-tooltip-stat-name">Note Edits</div>
+        <div class="user-tooltip-stat-name"><%= t("users.stats.note_edits") %></div>
       <% end %>
     </li>
     <li class="user-tooltip-stat-item">
       <%= link_to posts_path(tags: "ordfav:#{@user.name}"), class: "link-plain" do %>
         <div class="user-tooltip-stat-value"><%= humanized_number(@user.favorite_count) %></div>
-        <div class="user-tooltip-stat-name">Favorites</div>
+        <div class="user-tooltip-stat-name"><%= t("users.stats.favorites") %></div>
       <% end %>
     </li>
     <% if Danbooru.config.comments_enabled?.to_s.truthy? %>
       <li class="user-tooltip-stat-item">
         <%= link_to comments_path(search: { creator_id: @user.id }), class: "link-plain" do %>
           <div class="user-tooltip-stat-value"><%= humanized_number(@user.comment_count) %></div>
-          <div class="user-tooltip-stat-name">Comments</div>
+          <div class="user-tooltip-stat-name"><%= t("users.stats.comments") %></div>
         <% end %>
       </li>
     <% end %>
@@ -104,7 +104,7 @@
       <li class="user-tooltip-stat-item">
         <%= link_to forum_posts_path(search: { creator_id: @user.id }), class: "link-plain" do %>
           <div class="user-tooltip-stat-value"><%= humanized_number(@user.forum_post_count) %></div>
-          <div class="user-tooltip-stat-name">Forum Posts</div>
+          <div class="user-tooltip-stat-name"><%= t("users.stats.forum_posts") %></div>
         <% end %>
       </li>
     <% end %>

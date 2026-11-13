@@ -1,0 +1,5 @@
+en:
+  post_approval:
+    already_active: "is already active and cannot be approved"
+    cannot_approve_own_upload: "You cannot approve a post you uploaded"
+    already_approved: "You have previously approved this post and cannot approve it again"

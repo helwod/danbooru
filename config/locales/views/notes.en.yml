@@ -1,0 +1,23 @@
+en:
+  notes:
+    index:
+      title: "Notes"
+      search_note: "Note"
+      search_tags: "Tags"
+      submit: "Search"
+      column_post: "Post"
+      column_note: "Note"
+      column_text: "Text"
+      column_created: "Created"
+      deleted: "(deleted)"
+    secondary_links:
+      notes: "Notes"
+      posts: "Posts"
+      changes: "Changes"
+      requests: "Requests"
+      help: "Help"
+
+  activerecord:
+    attributes:
+      note:
+        body: "Text"

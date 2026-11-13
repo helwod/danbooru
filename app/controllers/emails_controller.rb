@@ -34,9 +34,9 @@ class EmailsController < ApplicationController
     @user = @email_address.user
 
     if @email_address.user == CurrentUser.user
-      respond_with(@email_address, notice: "Check your email to confirm your new address", location: settings_path)
+      respond_with(@email_address, notice: I18n.t("emails.flash.check_new_address"), location: settings_path)
     else
-      respond_with(@email_address, notice: "Updated email address", location: edit_admin_user_path(@email_address.user))
+      respond_with(@email_address, notice: I18n.t("emails.flash.updated"), location: edit_admin_user_path(@email_address.user))
     end
   end
 
@@ -45,7 +45,7 @@ class EmailsController < ApplicationController
     @email_address.attributes = { request: request, updater: CurrentUser.user }
     @email_address.destroy
 
-    respond_with(@email_address, notice: "Email address removed") do |format|
+    respond_with(@email_address, notice: I18n.t("emails.flash.removed")) do |format|
       format.html { redirect_to settings_path, status: 303 }
     end
   end
@@ -61,7 +61,7 @@ class EmailsController < ApplicationController
       skip_authorization
       @email_address.request = request
       @email_address.verify!
-      flash[:notice] = "Email address verified"
+      flash[:notice] = I18n.t("emails.flash.verified")
       redirect_to @email_address.user
     else
       authorize @email_address
@@ -73,7 +73,7 @@ class EmailsController < ApplicationController
     @user = authorize User.find(params[:user_id]), policy_class: EmailAddressPolicy
     UserMailer.with_request(request).welcome_user(@user).deliver_later
 
-    flash[:notice] = "Confirmation email sent to #{@user.email_address.address}. Check your email to confirm your address"
+    flash[:notice] = I18n.t("emails.flash.confirmation_sent", address: @user.email_address.address)
     redirect_to @user
   end
 

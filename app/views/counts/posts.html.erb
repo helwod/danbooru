@@ -1,18 +1,18 @@
-<% page_title "Post Counts" %>
+<% page_title t("counts.posts.page_title") %>
 <%= render "posts/partials/common/secondary_links" %>
 
 <div id="c-counts">
   <div id="a-posts">
-    <h1>Post Counts</h1>
+    <h1><%= t("counts.posts.page_title") %></h1>
 
     <%= search_form_for(posts_counts_path) do |f| %>
-      <%= f.input :tags, label: "Tags", input_html: { value: params[:tags], data: { autocomplete: "tag-query", shortcut: "q" }, name: "tags" } %>
-      <%= f.submit "Search" %>
+      <%= f.input :tags, label: t("counts.posts.search_tags"), input_html: { value: params[:tags], data: { autocomplete: "tag-query", shortcut: "q" }, name: "tags" } %>
+      <%= f.submit t("counts.posts.submit") %>
     <% end %>
 
-    Post count for <%= link_to params[:tags].present? ? params[:tags] : "/posts", posts_path(:tags => params[:tags]) %>:
+    <%= t("counts.posts.count_for_html", link: link_to(params[:tags].present? ? params[:tags] : "/posts", posts_path(:tags => params[:tags]))).html_safe %>
     <% if @count.nil? %>
-      timed out
+      <%= t("counts.posts.timed_out") %>
     <% else %>
       <%= @count %>
     <% end %>

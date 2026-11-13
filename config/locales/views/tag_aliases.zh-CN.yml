@@ -1,0 +1,25 @@
+"zh-CN":
+  tag_aliases:
+    show:
+      title: "标签别名：%{from} -> %{to}"
+      from: "原标签"
+      to: "目标标签"
+      reference: "相关主题"
+      topic_link: "主题 #%{id}"
+      creator: "创建者"
+      date: "创建时间"
+      reason: "理由"
+      status: "状态"
+    listing:
+      column_from: "原标签"
+      column_to: "目标标签"
+      column_reason: "理由"
+      column_topic: "相关主题"
+      topic_link: "主题 #%{id}"
+      column_approver: "审批员"
+      column_status: "状态"
+      show: "查看"
+      delete: "删除"
+      confirm_delete: "确定要删除这个别名吗？"
+    flash:
+      deleted: "标签别名已删除"

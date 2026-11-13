@@ -36,7 +36,7 @@ class PostFlagsController < ApplicationController
     @post_flag = authorize PostFlag.new(creator: CurrentUser.user, **permitted_attributes(PostFlag))
     @post_flag.save
 
-    respond_with(@post_flag, notice: "Post flagged")
+    respond_with(@post_flag, notice: I18n.t("post_flags.flash.flagged"))
   end
 
   def update

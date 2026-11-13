@@ -1,9 +1,9 @@
 <div id="c-uploads" class="h-full">
   <div id="a-show" class="h-full">
     <% if @upload.is_errored? %>
-      <p>Error: <%= @upload.error %>.</p>
+      <p><%= t("uploads.show.error", message: @upload.error) %></p>
     <% elsif @upload.media_asset_count == 0 %>
-      <p>Processing upload...</p>
+      <p><%= t("uploads.show.processing") %></p>
 
       <% content_for(:html_header) do %>
         <meta http-equiv="refresh" content="1">

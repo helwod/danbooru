@@ -1,16 +1,16 @@
-<% page_title "Error: #{@exception.class}" %>
+<% page_title "#{t("static.error")}: #{@exception.class}" %>
 
-<h1>Error</h1>
+<h1><%= t("static.error") %></h1>
 
 <% if @message.present? %>
-  <p>Error: <%= @message %></p>
+  <p><%= t("static.error") %>: <%= @message %></p>
 <% else %>
-  <p>Unexpected error: <%= @exception.class %>.</p>
+  <p><%= t("static.unexpected_error", class: @exception.class) %></p>
 
-  <h3>Details</h3>
+  <h3><%= t("static.details") %></h3>
 
   <ul class="backtrace font-monospace p-4 mb-4">
-    <li><%= @exception.class.to_s %> exception raised</li>
+    <li><%= t("static.exception_raised", class: @exception.class.to_s) %></li>
 
     <% Rails.backtrace_cleaner.clean(@backtrace).each do |b| %>
       <li class="backtrace-line"><%= b %></li>

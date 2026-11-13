@@ -1,0 +1,26 @@
+en:
+  forum_posts:
+    edit:
+      title: "Edit Forum Post"
+    new:
+      title: "New Forum Post"
+      reply_to: "Reply to %{title}"
+    index:
+      column_topic: "Topic"
+      column_excerpt: "Excerpt"
+      column_creator: "Creator"
+      column_date: "Date"
+    form:
+      topic_id: "Topic ID"
+      submit: "Post"
+    search:
+      title: "Search Forum"
+      topic_title: "Title"
+      body: "Body"
+      creator: "Creator"
+      tag: "Tag"
+      tag_hint: "Find posts mentioning a tag"
+      submit: "Search"
+    flash:
+      deleted: "Post deleted"
+      undeleted: "Post undeleted"

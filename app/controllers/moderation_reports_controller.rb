@@ -24,13 +24,13 @@ class ModerationReportsController < ApplicationController
     @moderation_report = authorize ModerationReport.new(creator: CurrentUser.user, **permitted_attributes(ModerationReport))
     @moderation_report.save
 
-    respond_with(@moderation_report, notice: "Report submitted")
+    respond_with(@moderation_report, notice: I18n.t("moderation_reports.flash.submitted"))
   end
 
   def update
     @moderation_report = authorize ModerationReport.find(params[:id])
     @moderation_report.update(updater: CurrentUser.user, **permitted_attributes(@moderation_report))
 
-    respond_with(@moderation_report, notice: "Report updated")
+    respond_with(@moderation_report, notice: I18n.t("moderation_reports.flash.updated"))
   end
 end

@@ -1,0 +1,3 @@
+"zh-CN":
+  artist_url:
+    invalid_url: "「%{url}」不是有效的 URL。"

@@ -1,0 +1,3 @@
+en:
+  post_disapproval:
+    already_active: "is already active and cannot be disapproved"

@@ -1,9 +1,9 @@
 <% content_for(:secondary_links) do %>
   <%= quick_search_form_for(:changed_tags, post_versions_path, "by tags", autocomplete: "tag-query") %>
-  <%= subnav_link_to "Listing", post_versions_path %>
-  <%= subnav_link_to "Search", search_post_versions_path %>
+  <%= subnav_link_to t("post_versions.secondary_links.listing"), post_versions_path, id: "listing" %>
+  <%= subnav_link_to t("post_versions.secondary_links.search"), search_post_versions_path, id: "search" %>
   <% if params[:action] == "index" %>
     <%= subnav_divider %>
-    <%= subnav_link_to "Undo selected", "" %>
+    <%= subnav_link_to t("post_versions.secondary_links.undo_selected"), "", id: "undo-selected" %>
   <% end %>
 <% end %>

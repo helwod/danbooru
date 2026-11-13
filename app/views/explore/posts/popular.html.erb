@@ -1,11 +1,11 @@
-<% page_title "Popular Posts" %>
-<% meta_description "The most popular posts of #{date_range_description(@date, @scale, @min_date, @max_date)}" %>
+<% page_title t("explore.posts.popular.page_title") %>
+<% meta_description t("explore.posts.popular.meta_description", range: date_range_description(@date, @scale, @min_date, @max_date)) %>
 
 <%= render "posts/partials/common/secondary_links" %>
 
 <div id="c-explore-posts">
   <div id="a-popular">
-    <h1>Popular: <%= date_range_description(@date, @scale, @min_date, @max_date) %></h1>
+    <h1><%= t("explore.posts.popular.heading", range: date_range_description(@date, @scale, @min_date, @max_date)) %></h1>
 
     <%= render "explore/posts/nav_links", path: :popular_explore_posts_path, date: @date, scale: @scale %>
     <%= render BlacklistComponent.new(user: CurrentUser.user, inline: true) %>

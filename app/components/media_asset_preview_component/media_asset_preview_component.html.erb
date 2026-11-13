@@ -5,7 +5,7 @@
 
       <% if media_asset.nil? %>
         <div class="media-asset-placeholder rounded border border-solid flex items-center justify-center w-<%= size %>px h-<%= size %>px">
-          <%= missing_image || "No image" %>
+          <%= missing_image || I18n.t("components.media_asset_preview.no_image") %>
         </div>
       <% elsif media_asset.active? %>
         <% if media_asset.is_animated? %>
@@ -37,9 +37,9 @@
           <% if media_asset.processing? %>
             <%= spinner_icon(class: "h-8") %>
           <% elsif media_asset.failed? %>
-            Failed
+            <%= I18n.t("components.media_asset_preview.failed") %>
           <% else %>
-            Deleted
+            <%= I18n.t("components.media_asset_preview.deleted") %>
           <% end %>
         </div>
       <% end %>

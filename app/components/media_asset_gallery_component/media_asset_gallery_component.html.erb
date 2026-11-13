@@ -1,6 +1,6 @@
 <%= tag.div class: ["media-asset-gallery", "media-asset-gallery-#{size}", *classes], "data-size": size do %>
   <% if media_assets.empty? %>
-    <p>No results found.</p>
+    <p><%= I18n.t("components.media_asset_gallery.empty") %></p>
   <% else %>
     <div class="media-assets-container grid justify-items-center items-end">
       <% media_assets.each do |media_asset| -%>

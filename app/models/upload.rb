@@ -76,17 +76,17 @@ class Upload < ApplicationRecord
   concerning :ValidationMethods do
     def validate_source
       if source.length > 2000
-        errors.add(:source, "is too long (maximum is 2000 characters)")
+        errors.add(:source, I18n.t("upload.source_too_long"))
       elsif !source.match?(%r{\Ahttps?://}i) || Danbooru::URL.parse(source).nil?
-        errors.add(:source, "is not a valid URL")
+        errors.add(:source, I18n.t("upload.source_invalid_url"))
       end
     end
 
     def validate_file_and_source
       if files.present? && source.present?
-        errors.add(:base, "Can't give both a file and a source")
+        errors.add(:base, I18n.t("upload.file_and_source"))
       elsif files.blank? && source.blank?
-        errors.add(:base, "No file or source given")
+        errors.add(:base, I18n.t("upload.no_file_or_source"))
       end
     end
 
@@ -94,7 +94,7 @@ class Upload < ApplicationRecord
       queued_asset_count = uploader.upload_media_assets.unfinished.count
 
       if queued_asset_count > MAX_QUEUED_ASSETS
-        errors.add(:base, "You have too many images queued for upload (queued: #{queued_asset_count}; limit: #{MAX_QUEUED_ASSETS}). Try again later.")
+        errors.add(:base, I18n.t("upload.too_many_queued", queued_asset_count: queued_asset_count, max_queued_assets: MAX_QUEUED_ASSETS))
       end
     end
 
@@ -103,25 +103,25 @@ class Upload < ApplicationRecord
 
       archive_files.each do |archive, filename|
         if !archive.file_ext.in?(ARCHIVE_FILE_TYPES)
-          errors.add(:base, "'#{filename}' is not a supported file type")
+          errors.add(:base, I18n.t("upload.unsupported_file_type", filename: filename))
         elsif archive.exists? { |_, count| count > MAX_FILES_PER_UPLOAD }
           # XXX Potential zip bomb containing thousands of files; don't process it any further.
-          errors.add(:base, "'#{filename}' contains too many files (max #{MAX_FILES_PER_UPLOAD} files per upload)")
+          errors.add(:base, I18n.t("upload.too_many_files_in_archive", filename: filename, max_files_per_upload: MAX_FILES_PER_UPLOAD))
           next
         elsif archive.uncompressed_size > MediaAsset::MAX_FILE_SIZE
-          errors.add(:base, "'#{filename}' is too large (uncompressed size: #{archive.uncompressed_size.to_fs(:human_size)}; max size: #{MediaAsset::MAX_FILE_SIZE.to_fs(:human_size)})")
+          errors.add(:base, I18n.t("upload.archive_too_large", filename: filename, archive_uncompressed_size: archive.uncompressed_size.to_fs(:human_size), MediaAsset: MediaAsset::MAX_FILE_SIZE.to_fs(:human_size)))
         elsif (entry = archive.entries.find { |entry| entry.pathname.starts_with?("/") })
-          errors.add(:base, "'#{entry.pathname_utf8}' in '#{filename}' can't start with '/'")
+          errors.add(:base, I18n.t("upload.invalid_archive_path", entry_pathname_utf8: entry.pathname_utf8, filename: filename))
         elsif (entry = archive.entries.find { |entry| entry.directory_traversal? })
           errors.add(:base, "'#{entry.pathname_utf8}' in '#{filename}' can't contain '..' components")
         elsif (entry = archive.entries.find { |entry| !entry.file? && !entry.directory? })
-          errors.add(:base, "'#{entry.pathname_utf8}' in '#{filename}' isn't a regular file")
+          errors.add(:base, I18n.t("upload.non_regular_file", entry_pathname_utf8: entry.pathname_utf8, filename: filename))
         end
       end
 
       total_files = archive_files.map(&:first).sum(&:file_count) + (files.size - archive_files.size)
       if total_files > MAX_FILES_PER_UPLOAD
-        errors.add(:base, "Can't upload more than #{MAX_FILES_PER_UPLOAD} files at a time (total: #{total_files})")
+        errors.add(:base, I18n.t("upload.too_many_files", max_files_per_upload: MAX_FILES_PER_UPLOAD, total_files: total_files))
       end
     end
   end

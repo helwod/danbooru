@@ -38,7 +38,7 @@ class BulkUpdateRequestsController < ApplicationController
       @bulk_update_request.update(permitted_attributes(@bulk_update_request))
     end
 
-    respond_with(@bulk_update_request, notice: "BUR ##{@bulk_update_request.id} updated")
+    respond_with(@bulk_update_request, notice: I18n.t("bulk_update_requests.flash.updated", id: @bulk_update_request.id))
   end
 
   def approve
@@ -48,7 +48,7 @@ class BulkUpdateRequestsController < ApplicationController
       @bulk_update_request.approve!(CurrentUser.user)
     end
 
-    respond_with(@bulk_update_request, notice: "BUR ##{@bulk_update_request.id} approved")
+    respond_with(@bulk_update_request, notice: I18n.t("bulk_update_requests.flash.approved", id: @bulk_update_request.id))
   end
 
   def destroy
@@ -58,6 +58,6 @@ class BulkUpdateRequestsController < ApplicationController
       @bulk_update_request.reject!(CurrentUser.user)
     end
 
-    respond_with(@bulk_update_request, notice: "BUR ##{@bulk_update_request.id} rejected")
+    respond_with(@bulk_update_request, notice: I18n.t("bulk_update_requests.flash.rejected", id: @bulk_update_request.id))
   end
 end

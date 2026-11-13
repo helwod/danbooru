@@ -1,0 +1,27 @@
+en:
+  related_tags:
+    related: "Related:"
+    all: "All"
+    wiki: "Wiki"
+    columns:
+      suggested: "Suggested"
+      frequent: "Frequent"
+      recent: "Recent"
+      translated: "Translated"
+    show:
+      page_title: "Related tags"
+      search_tag: "Tag"
+      search_sample_size: "Search Sample Size"
+      tag_sample_size: "Tag Sample Size"
+      submit: "Search"
+      column_name: "Name"
+      order_cosine: "Cosine"
+      order_jaccard: "Jaccard"
+      order_overlap: "Overlap"
+      order_frequency: "Frequency"
+      categories:
+        general: "General"
+        artist: "Artist"
+        copyright: "Copyright"
+        character: "Character"
+        meta: "Meta"

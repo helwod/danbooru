@@ -1,0 +1,20 @@
+"zh-CN":
+  post_votes:
+    index:
+      title: "作品投票"
+      column_post: "作品"
+      column_tags: "标签"
+      column_score: "评分"
+      column_uploader: "上传者"
+      column_voter: "投票者"
+      column_created: "时间"
+      deleted: "（已删除）"
+      hidden: "已隐藏"
+      remove: "移除"
+    search:
+      voter: "投票者"
+      post: "作品"
+      tags: "标签"
+      submit: "搜索"
+    notice:
+      removed: "已移除投票"

@@ -17,12 +17,14 @@ class TagChangeNoticeComponent < ApplicationComponent
   end
 
   def bur_links_for_topic(forum_topic:, burs:)
+    topic_label = I18n.t("components.tag_change_notice.topic_link", id: forum_topic.id, title: forum_topic.title)
+
     if burs.length > 1
       forum_links = safe_join(burs.map.with_index { |bur, i| link_to "[#{i + 1}]", bur.forum_post }, ", ")
-      topic_link = link_to(%{topic ##{forum_topic.id}: "#{forum_topic.title}"}, forum_topic)
+      topic_link = link_to(topic_label, forum_topic)
       safe_join([topic_link, " (", forum_links, ")"])
     else
-      link_to "topic ##{forum_topic.id}: \"#{forum_topic.title}\"", burs.first.forum_post
+      link_to topic_label, burs.first.forum_post
     end
   end
 

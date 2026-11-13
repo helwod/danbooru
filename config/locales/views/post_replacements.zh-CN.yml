@@ -1,0 +1,39 @@
+"zh-CN":
+  post_replacements:
+    index:
+      title: "作品图片替换"
+      search_replacer: "替换人"
+      search_tags: "标签"
+      submit: "搜索"
+      column_post: "作品"
+      column_source: "来源"
+      original_source: "原来源"
+      replacement_source: "替换来源"
+      file: "文件"
+      column_md5: "MD5"
+      original_md5: "原 MD5"
+      replacement_md5: "替换后 MD5"
+      column_size: "大小"
+      original_size: "原大小"
+      replacement_size: "替换后大小"
+      column_replacer: "替换人"
+    new:
+      dialog_title: "替换图片"
+      file: "文件"
+      replacement_url: "替换图片链接"
+      replacement_url_hint: "用于下载替换图片的来源链接。"
+      final_source: "最终来源"
+      final_source_hint: "填写后，替换完成会把来源字段改为该值。"
+      tags: "标签"
+      submit: "替换"
+      cancel: "取消"
+    flash:
+      replaced: "作品已替换"
+
+  activerecord:
+    attributes:
+      post_replacement:
+        replacement_file: "文件"
+        replacement_url: "替换图片链接"
+        final_source: "最终来源"
+        tags: "标签"

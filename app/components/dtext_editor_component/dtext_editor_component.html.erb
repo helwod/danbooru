@@ -20,8 +20,8 @@
        spellcheck="true">
     <div class="dtext-editor-menu flex justify-between border-t border-x rounded-t w-full">
       <div class="flex items-center">
-        <a class="p-2 inactive-link cursor-pointer select-none flex items-center gap-1" x-show="editor.editMode" x-on:click="editor.toggleMode()" title="Preview (Ctrl+P)"><%= eye_icon(class: "text-sm") %> Preview</a>
-        <a class="p-2 inactive-link cursor-pointer select-none flex items-center gap-1" x-show="editor.previewMode" x-on:click="editor.toggleMode()" data-shortcut="ctrl+p" title="Edit (Ctrl+P)" x-cloak><%= edit_icon(class: "text-sm") %> Edit</a>
+        <a class="p-2 inactive-link cursor-pointer select-none flex items-center gap-1" x-show="editor.editMode" x-on:click="editor.toggleMode()" title="<%= I18n.t("components.dtext_editor.preview_title") %>"><%= eye_icon(class: "text-sm") %> <%= I18n.t("components.dtext_editor.preview") %></a>
+        <a class="p-2 inactive-link cursor-pointer select-none flex items-center gap-1" x-show="editor.previewMode" x-on:click="editor.toggleMode()" data-shortcut="ctrl+p" title="<%= I18n.t("components.dtext_editor.edit_title") %>" x-cloak><%= edit_icon(class: "text-sm") %> <%= I18n.t("components.dtext_editor.edit") %></a>
 
         <% if input_html[:maxlength].present? %>
           <span class="dtext-input-counter-text ml-4 text-xs pointer-events-none select-none"
@@ -34,48 +34,48 @@
         <% if max_embeds.present? %>
           <span class="dtext-embed-counter-text ml-4 text-xs pointer-events-none select-none"
                 x-show="editor.embedCount > 0"
-                x-text="editor.embedCount + '/<%= max_embeds %> embeds'"
+                x-text="editor.embedCount + '/<%= max_embeds %>' + '<%= j I18n.t("components.dtext_editor.embeds_suffix") %>'"
                 x-bind:class="{ 'text-error': editor.embedCount > <%= max_embeds %> }"
-                x-cloak><%= dtext.embedded_media.count %>/<%= max_embeds %> embeds</span>
+                x-cloak><%= I18n.t("components.dtext_editor.embeds", count: dtext.embedded_media.count, max: max_embeds) %></span>
         <% end %>
       </div>
 
       <div class="flex items-center" x-show="editor.editMode">
-        <a class="p-2 inactive-link cursor-pointer" x-on:click.prevent="editor.toggleBold()" title="Bold (Ctrl+B)"><%= bold_icon %></a>
-        <a class="p-2 inactive-link cursor-pointer" x-on:click.prevent="editor.toggleItalic()" title="Italics (Ctrl+I)"><%= italic_icon %></a>
-        <a class="p-2 inactive-link cursor-pointer" x-on:click.prevent="editor.toggleWikiLink()" title="Wiki link (Ctrl+K)"><%= double_brackets_icon %></a>
+        <a class="p-2 inactive-link cursor-pointer" x-on:click.prevent="editor.toggleBold()" title="<%= I18n.t("components.dtext_editor.bold_title") %>"><%= bold_icon %></a>
+        <a class="p-2 inactive-link cursor-pointer" x-on:click.prevent="editor.toggleItalic()" title="<%= I18n.t("components.dtext_editor.italics_title") %>"><%= italic_icon %></a>
+        <a class="p-2 inactive-link cursor-pointer" x-on:click.prevent="editor.toggleWikiLink()" title="<%= I18n.t("components.dtext_editor.wiki_link_title") %>"><%= double_brackets_icon %></a>
 
         <span class="mx-2 py-2 border-l"></span>
 
         <% if media_embeds? %>
           <span x-data="{ imageCaption: '', imageSize: 'small' }">
-            <%= render PopupMenuComponent.new(hide_on_click: false, button_html: { title: "Insert image", tabindex: -1 }) do |menu| %>
+            <%= render PopupMenuComponent.new(hide_on_click: false, button_html: { title: I18n.t("components.dtext_editor.insert_image_title"), tabindex: -1 }) do |menu| %>
               <% menu.with_button do %>
                 <%= image_icon("x-on:click": "$nextTick(() => $refs?.imageUrl?.focus())") %>
               <% end %>
 
               <% menu.with_item do %>
                 <div class="flex flex-col w-320px gap-2">
-                  <input type="text" placeholder="Paste image URL" class="w-full" x-ref="imageUrl" x-on:paste.prevent="editor.insertImages($event.clipboardData.getData('text'), imageSize, imageCaption)">
+                  <input type="text" placeholder="<%= I18n.t("components.dtext_editor.image_url_placeholder") %>" class="w-full" x-ref="imageUrl" x-on:paste.prevent="editor.insertImages($event.clipboardData.getData('text'), imageSize, imageCaption)">
                   <input type="file" id="file-picker-<%= object_id %>" class="hidden" x-on:change="editor.insertImages($event.target.files, imageSize, imageCaption)" accept="image/*,video/*" multiple>
-                  <input type="text" placeholder="Enter image caption (optional)" class="w-full" x-model="imageCaption">
+                  <input type="text" placeholder="<%= I18n.t("components.dtext_editor.image_caption_placeholder") %>" class="w-full" x-model="imageCaption">
 
                   <div class="input radio_buttons radio-button-group thin-x-scrollbar flex items-center !m-0 hidden">
-                    <label class="text-sm mr-2">Size</label>
+                    <label class="text-sm mr-2"><%= I18n.t("components.dtext_editor.size_label") %></label>
 
                     <span class="radio text-xxs">
                       <input type="radio" id="image-size-<%= object_id %>-small" name="image-size-<%= object_id %>" class="radio_buttons" value="small" x-model="imageSize" checked>
-                      <label for="image-size-<%= object_id %>-small">Small</label>
+                      <label for="image-size-<%= object_id %>-small"><%= I18n.t("components.common.small") %></label>
                     </span>
 
                     <span class="radio text-xxs">
                       <input type="radio" id="image-size-<%= object_id %>-large" name="image-size-<%= object_id %>" class="radio_buttons" value="large" x-model="imageSize">
-                      <label for="image-size-<%= object_id %>-large">Large</label>
+                      <label for="image-size-<%= object_id %>-large"><%= I18n.t("components.common.large") %></label>
                     </span>
                   </div>
 
                   <label class="fineprint" for="file-picker-<%= object_id %>">
-                    <a class="font-normal inactive-link cursor-pointer"><%= folder_open_icon(class: "align-baseline") %>Click, paste, or drop to add images.</a>
+                    <a class="font-normal inactive-link cursor-pointer"><%= folder_open_icon(class: "align-baseline") %><%= I18n.t("components.dtext_editor.add_images") %></a>
                   </label>
                 </div>
               <% end %>
@@ -83,14 +83,14 @@
           </span>
         <% end %>
 
-        <%= render PopupMenuComponent.new(hide_on_click: false, button_html: { title: "Insert emoji", tabindex: -1 }) do |menu| %>
+        <%= render PopupMenuComponent.new(hide_on_click: false, button_html: { title: I18n.t("components.dtext_editor.insert_emoji_title"), tabindex: -1 }) do |menu| %>
           <% menu.with_button do %>
             <%= add_reaction_icon("x-on:click": "$nextTick(() => $refs?.emojiPicker?.focus())") %>
           <% end %>
 
           <% menu.with_item do %>
             <div>
-              <input type="text" placeholder="Search emoji..." class="emoji-search w-full mb-2" x-ref="emojiPicker" x-model="editor.emojiSearch" x-on:keyup.escape="Danbooru.Shortcuts.hide_tooltips()">
+              <input type="text" placeholder="<%= I18n.t("components.dtext_editor.search_emoji") %>" class="emoji-search w-full mb-2" x-ref="emojiPicker" x-model="editor.emojiSearch" x-on:keyup.escape="Danbooru.Shortcuts.hide_tooltips()">
 
               <div class="h-225px w-320px thin-scrollbar prose">
                 <% DText::DEFAULT_EMOJI_MAP.each do |name, value| %>
@@ -107,16 +107,16 @@
 
         <%= render PopupMenuComponent.new(button_html: { tabindex: -1 }) do |menu| %>
           <% menu.with_item do %>
-            <a class="p-2 inactive-link cursor-pointer" x-on:click.prevent="editor.toggleStrikethrough()" title="Strikethrough (Ctrl+S)"><%= strikethrough_icon %>Strikethrough</a>
-            <a class="p-2 inactive-link cursor-pointer" x-on:click.prevent="editor.toggleUnderline()" title="Underline (Ctrl+U)"><%= underline_icon %>Underline</a>
-            <a class="p-2 inactive-link cursor-pointer" x-on:click.prevent="editor.toggleNamedLink()" title="External link (Ctrl+L)"><%= link_icon %>External link</a>
-            <a class="p-2 inactive-link cursor-pointer" x-on:click.prevent="editor.toggleSearchLink()" title="Search link (Ctrl+{)"><%= search_icon %>Search link</a>
-            <a class="p-2 inactive-link cursor-pointer" x-on:click.prevent="editor.toggleSpoiler()" title="Spoiler (Ctrl+/)"><%= exclamation_icon %>Spoiler</a>
-            <a class="p-2 inactive-link cursor-pointer" x-on:click.prevent="editor.toggleExpand()" title="Expand (Ctrl+E)"><%= folder_open_icon %>Expand</a>
-            <a class="p-2 inactive-link cursor-pointer" x-on:click.prevent="editor.toggleQuote()" title="Quote (Ctrl+Q)"><%= quote_icon %>Quote</a>
-            <a class="p-2 inactive-link cursor-pointer" x-on:click.prevent="editor.toggleCode()" title="Code (Ctrl+M)"><%= code_icon %>Code</a>
-            <a class="p-2 inactive-link cursor-pointer" x-on:click.prevent="editor.insertRule()" title="Horizontal rule"><%= horizontal_line_icon %>Horizontal rule</a>
-            <a class="p-2 inactive-link cursor-pointer" x-on:click.prevent="editor.toggleNoDText()" title="No formatting"><%= no_double_brackets_icon %>No formatting</a>
+            <a class="p-2 inactive-link cursor-pointer" x-on:click.prevent="editor.toggleStrikethrough()" title="<%= I18n.t("components.dtext_editor.strikethrough_title") %>"><%= strikethrough_icon %><%= I18n.t("components.dtext_editor.strikethrough") %></a>
+            <a class="p-2 inactive-link cursor-pointer" x-on:click.prevent="editor.toggleUnderline()" title="<%= I18n.t("components.dtext_editor.underline_title") %>"><%= underline_icon %><%= I18n.t("components.dtext_editor.underline") %></a>
+            <a class="p-2 inactive-link cursor-pointer" x-on:click.prevent="editor.toggleNamedLink()" title="<%= I18n.t("components.dtext_editor.external_link_title") %>"><%= link_icon %><%= I18n.t("components.dtext_editor.external_link") %></a>
+            <a class="p-2 inactive-link cursor-pointer" x-on:click.prevent="editor.toggleSearchLink()" title="<%= I18n.t("components.dtext_editor.search_link_title") %>"><%= search_icon %><%= I18n.t("components.dtext_editor.search_link") %></a>
+            <a class="p-2 inactive-link cursor-pointer" x-on:click.prevent="editor.toggleSpoiler()" title="<%= I18n.t("components.dtext_editor.spoiler_title") %>"><%= exclamation_icon %><%= I18n.t("components.dtext_editor.spoiler") %></a>
+            <a class="p-2 inactive-link cursor-pointer" x-on:click.prevent="editor.toggleExpand()" title="<%= I18n.t("components.dtext_editor.expand_title") %>"><%= folder_open_icon %><%= I18n.t("components.dtext_editor.expand") %></a>
+            <a class="p-2 inactive-link cursor-pointer" x-on:click.prevent="editor.toggleQuote()" title="<%= I18n.t("components.dtext_editor.quote_title") %>"><%= quote_icon %><%= I18n.t("components.dtext_editor.quote") %></a>
+            <a class="p-2 inactive-link cursor-pointer" x-on:click.prevent="editor.toggleCode()" title="<%= I18n.t("components.dtext_editor.code_title") %>"><%= code_icon %><%= I18n.t("components.dtext_editor.code") %></a>
+            <a class="p-2 inactive-link cursor-pointer" x-on:click.prevent="editor.insertRule()" title="<%= I18n.t("components.dtext_editor.horizontal_rule_title") %>"><%= horizontal_line_icon %><%= I18n.t("components.dtext_editor.horizontal_rule") %></a>
+            <a class="p-2 inactive-link cursor-pointer" x-on:click.prevent="editor.toggleNoDText()" title="<%= I18n.t("components.dtext_editor.no_formatting_title") %>"><%= no_double_brackets_icon %><%= I18n.t("components.dtext_editor.no_formatting") %></a>
           <% end %>
         <% end %>
 

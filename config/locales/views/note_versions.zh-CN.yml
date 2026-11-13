@@ -1,0 +1,14 @@
+"zh-CN":
+  note_versions:
+    index:
+      title: "批注历史"
+    listing:
+      column_post: "作品"
+      column_note: "批注"
+      column_body: "内容"
+      column_position: "位置（X,Y）"
+      column_size: "尺寸（宽x高）"
+      column_changes: "状态变更"
+      column_updated: "修改者"
+      revert_to: "回退到"
+      confirm_revert: "确定要回退到这个版本吗？"

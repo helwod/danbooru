@@ -1,13 +1,13 @@
-<h2>Comment Activity</h2>
+<h2><%= t("moderator_dashboard.comment_activity") %></h2>
 
 <table class="striped w-full">
   <thead>
     <tr>
-      <th>ID</th>
-      <th>Body</th>
-      <th>User</th>
-      <th>Votes</th>
-      <th>Score</th>
+      <th><%= t("moderator_dashboard.id") %></th>
+      <th><%= t("moderator_dashboard.body") %></th>
+      <th><%= t("moderator_dashboard.user") %></th>
+      <th><%= t("moderator_dashboard.votes") %></th>
+      <th><%= t("moderator_dashboard.score") %></th>
     </tr>
   </thead>
   <tbody>
@@ -19,7 +19,7 @@
             <%= comment.dtext_body.format_text %>
 
             <% if comment.is_deleted? %>
-              <span class="inactive">(deleted)</span>
+              <span class="inactive"><%= t("moderator_dashboard.deleted") %></span>
             <% end %>
           </div>
         </td>

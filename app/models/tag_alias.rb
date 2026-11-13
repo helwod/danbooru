@@ -44,7 +44,7 @@ class TagAlias < TagRelationship
 
     tag_alias = TagAlias.active.find_by(antecedent_name: consequent_name)
     if tag_alias.present? && tag_alias.consequent_name != antecedent_name
-      errors.add(:base, "#{tag_alias.antecedent_name} is already aliased to #{tag_alias.consequent_name}")
+      errors.add(:base, I18n.t("tag_alias.already_aliased", tag_alias_antecedent_name: tag_alias.antecedent_name, tag_alias_consequent_name: tag_alias.consequent_name))
     end
   end
 

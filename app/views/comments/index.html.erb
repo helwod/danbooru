@@ -1,11 +1,11 @@
-<% meta_description "See comments on #{Danbooru.config.app_name}." %>
+<% meta_description t("comments.index.meta_description", app_name: Danbooru.config.app_name) %>
 
-<% atom_feed_tag "Comments", comments_url(:atom, search: params.fetch(:search, {}).permit!) %>
+<% atom_feed_tag t("comments.index.title"), comments_url(:atom, search: params.fetch(:search, {}).permit!) %>
 <%= render "secondary_links" %>
 
 <div id="c-comments">
   <div id="a-index">
-    <h1>Comments</h1>
+    <h1><%= t("comments.index.title") %></h1>
 
     <% if params[:group_by] == "comment" %>
       <%= render "index_by_comment" %>

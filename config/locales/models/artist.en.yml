@@ -1,0 +1,7 @@
+en:
+  artist:
+    too_many_urls: "can't have more than 150 URLs"
+    not_artist_category: "'%{name}' is a %{tag_category_name} tag; artist entries can only be created for artist tags"
+    ambiguous_tag: "'%{name}' is an ambiguous tag; try another name"
+    aliased_tag: "'%{name}' is aliased to '%{tag_alias_consequent_name}'"
+    other_names_too_long: "can't have names more than 80 characters long"

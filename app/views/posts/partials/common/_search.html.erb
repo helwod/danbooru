@@ -1,7 +1,7 @@
 <%# path, tags %>
 
 <section id="search-box">
-  <h2>Search</h2>
+  <h2><%= t("posts.search") %></h2>
 
   <%= form_tag(path, method: "get", id: "search-box-form", class: "flex") do %>
     <% if current_page?(action: "index") %>
@@ -18,7 +18,7 @@
       <% end %>
     <% end %>
 
-    <%= text_field_tag("tags", tags, id: tags_dom_id, class: "flex-auto", "data-shortcut": "q", "data-autocomplete": "tag-query", "autocapitalize": "none") %>
+    <%= text_field_tag("tags", tags, id: tags_dom_id, class: "flex-auto", placeholder: t("posts.search"), "data-shortcut": "q", "data-autocomplete": "tag-query", "autocapitalize": "none") %>
     <%= hidden_field_tag :z, 5 %>
 
     <button id="search-box-submit" type="submit"><%= search_icon %></button>

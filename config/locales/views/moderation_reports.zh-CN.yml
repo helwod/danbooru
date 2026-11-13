@@ -1,0 +1,23 @@
+"zh-CN":
+  moderation_reports:
+    title: "举报处理"
+    reported: "举报对象"
+    reported_user: "被举报用户"
+    reporter: "举报人"
+    reason: "原因"
+    id: "ID"
+    type: "类型"
+    status: "状态"
+    search: "搜索"
+    report: "举报"
+    send_report: "发送举报"
+    mark_as_handled: "标记为已处理"
+    reject: "驳回"
+    ctrl_enter_hint: "Ctrl+Enter 提交"
+    statuses:
+      pending: "待处理"
+      handled: "已处理"
+      rejected: "已驳回"
+    flash:
+      submitted: "举报已提交"
+      updated: "举报已更新"

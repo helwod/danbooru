@@ -1,23 +1,23 @@
 <div id="c-status">
   <div id="a-show" class="fixed-width-container flex flex-col gap-2">
-    <h1>Status</h1>
+    <h1><%= t("status.title") %></h1>
 
     <h2 class="flex gap-2 items-center">
-      Version <span><span class="chip-green text-success text-sm">Ok</span></span>
+      <%= t("status.version") %> <span><span class="chip-green text-success text-sm"><%= t("status.ok") %></span></span>
     </h2>
 
     <details>
       <summary>
-        Version:
+        <%= t("status.version_label") %>
 
         <% if @status.danbooru_version.present? && Danbooru.config.source_code_url.present? %>
           <%= external_link_to "#{Danbooru.config.source_code_url}/commits/#{@status.danbooru_version}", @status.danbooru_version.first(7) %>
 
           <% if @status.docker_image_build_date.present? %>
-            (updated <%= time_ago_in_words_tagged(@status.docker_image_build_date) %>)
+            <%= t("status.updated_suffix", time: time_ago_in_words_tagged(@status.docker_image_build_date)) %>
           <% end %>
         <% else %>
-          <i>Unknown</i>
+          <i><%= t("status.unknown") %></i>
         <% end %>
       </summary>
 
@@ -25,13 +25,13 @@
     </details>
 
     <h2 class="flex gap-2 items-center">
-      Instance
+      <%= t("status.instance") %>
 
       <span>
         <% if @status.instance_error.present? %>
           <span class="chip-red text-error text-sm"><%= @status.instance_error %></span>
         <% else %>
-          <span class="chip-green text-success text-sm">Ok</span>
+          <span class="chip-green text-success text-sm"><%= t("status.ok") %></span>
         <% end %>
       </span>
     </h2>
@@ -45,24 +45,24 @@
     </details>
 
     <h2 class="flex gap-2 items-center">
-      Server <span><span class="chip-green text-success text-sm">Ok</span></span>
+      <%= t("status.server") %> <span><span class="chip-green text-success text-sm"><%= t("status.ok") %></span></span>
     </h2>
 
     <details>
       <summary>
-        Server: <%= @status.node_name.presence || "up #{@status.node_uptime}" %>
+        <%= t("status.server_uptime", uptime: @status.node_name.presence || t("status.up_for", uptime: @status.node_uptime)) %>
       </summary>
 
       <%= render "list", hash: @status.serializable_hash[:server] %>
     </details>
 
     <h2 class="flex gap-2 items-center">
-      Postgres
+      <%= t("status.postgres") %>
       <span>
         <% if @status.postgres_up? %>
-          <span class="chip-green text-success text-sm">Ok</span>
+          <span class="chip-green text-success text-sm"><%= t("status.ok") %></span>
         <% else %>
-          <span class="chip-red text-error text-sm">Down</span>
+          <span class="chip-red text-error text-sm"><%= t("status.down") %></span>
         <% end %>
       </span>
     </h2>
@@ -70,24 +70,24 @@
     <% if @status.postgres_up? && @status.include_sensitive_info %>
       <details>
         <summary>
-          <%= pluralize @status.postgres_active_connections, "active connection" %>.
+          <%= t("status.active_connections", count: @status.postgres_active_connections) %>
         </summary>
 
         <%= render "table", rows: @status.serializable_hash[:postgres][:connection_stats] || [] %>
       </details>
     <% elsif @status.postgres_up? %>
-      <p><%= pluralize @status.postgres_active_connections, "active connection" %>.</p>
+      <p><%= t("status.active_connections", count: @status.postgres_active_connections) %></p>
     <% elsif @status.include_sensitive_info %>
-      Error: <%= @status.postgres_error %>
+      <%= t("status.error_label", error: @status.postgres_error) %>
     <% end %>
 
     <h2 class="flex gap-2 items-center">
-      Redis
+      <%= t("status.redis") %>
       <span>
         <% if @status.redis_up? %>
-          <span class="chip-green text-success text-sm">Ok</span>
+          <span class="chip-green text-success text-sm"><%= t("status.ok") %></span>
         <% else %>
-          <span class="chip-red text-error text-sm">Down</span>
+          <span class="chip-red text-error text-sm"><%= t("status.down") %></span>
         <% end %>
       </span>
     </h2>
@@ -95,28 +95,28 @@
     <% if @status.redis_up? && @status.include_sensitive_info %>
       <details>
         <summary>
-          <%= @status.redis_used_memory %> memory used.
+          <%= t("status.memory_used", memory: @status.redis_used_memory) %>
         </summary>
 
         <%= render "list", hash: @status.serializable_hash[:redis][:info] %>
       </details>
     <% elsif @status.redis_up? %>
-      <p><%= @status.redis_used_memory %> memory used.</p>
+      <p><%= t("status.memory_used", memory: @status.redis_used_memory) %></p>
     <% end %>
 
     <h2 class="flex gap-2 items-center">
-      Request <span><span class="chip-green text-success text-sm">Ok</span></span>
+      <%= t("status.request") %> <span><span class="chip-green text-success text-sm"><%= t("status.ok") %></span></span>
     </h2>
 
     <details>
       <summary>
-        IP: <%= @status.request.remote_ip %>
+        <%= t("status.ip_label", ip: @status.request.remote_ip) %>
       </summary>
       <%= render "list", hash: @status.serializable_hash[:headers] %>
     </details>
 
     <h2 class="flex gap-2 items-center">
-      Browser <span><span class="chip-green text-success text-sm">Ok</span></span>
+      <%= t("status.browser") %> <span><span class="chip-green text-success text-sm"><%= t("status.ok") %></span></span>
     </h2>
 
     <details x-data="{ metadata: {} }" x-init="metadata = await Danbooru.Device.flatMetadata()">

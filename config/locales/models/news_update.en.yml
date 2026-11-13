@@ -1,0 +1,4 @@
+en:
+  news_update:
+    only_one_active: "Can't have more than one active news update at a time"
+    duration_range: "must be between 1 and 30 days"

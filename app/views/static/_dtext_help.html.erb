@@ -2,34 +2,34 @@
   <table class="striped" width="100%">
     <thead>
       <tr>
-        <th width="50%">What you type</th>
-        <th width="50%">What you get</th>
+        <th width="50%"><%= t("static.dtext_help_type") %></th>
+        <th width="50%"><%= t("static.dtext_help_result") %></th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>[b]bold[/b]</td>
-        <td><b>bold</b></td>
+        <td>[b]<%= t("static.dtext_help_bold") %>[/b]</td>
+        <td><b><%= t("static.dtext_help_bold") %></b></td>
       </tr>
       <tr>
-        <td>[i]italics[/i]</td>
-        <td><i>italics</i></td>
+        <td>[i]<%= t("static.dtext_help_italics") %>[/i]</td>
+        <td><i><%= t("static.dtext_help_italics") %></i></td>
       </tr>
       <tr>
-        <td>[u]underline[/u]</td>
-        <td><u>underline</u></td>
+        <td>[u]<%= t("static.dtext_help_underline") %>[/u]</td>
+        <td><u><%= t("static.dtext_help_underline") %></u></td>
       </tr>
       <tr>
-        <td>[s]strikethrough[/s]</td>
-        <td><s>strikethrough</s></td>
+        <td>[s]<%= t("static.dtext_help_strikethrough") %>[/s]</td>
+        <td><s><%= t("static.dtext_help_strikethrough") %></s></td>
       </tr>
       <tr>
-        <td>[tn]note[/tn]</td>
-        <td><%= format_text "[tn]note[/tn]" %></td>
+        <td>[tn]<%= t("static.dtext_help_note") %>[/tn]</td>
+        <td><%= format_text "[tn]#{t("static.dtext_help_note")}[/tn]" %></td>
       </tr>
       <tr>
-        <td>[spoilers]ssh![/spoilers]</td>
-        <td><%= format_text " [spoilers]ssh![/spoilers]" %></td>
+        <td>[spoilers]<%= t("static.dtext_help_spoiler") %>[/spoilers]</td>
+        <td><%= format_text " [spoilers]#{t("static.dtext_help_spoiler")}[/spoilers]" %></td>
       </tr>
       <tr>
         <td>&lt;<%= root_url.chomp("/") %>&gt;</td>
@@ -69,28 +69,28 @@
       </tr>
       <tr>
         <td>
-          * one<br>
-          * two<br>
-          * three<br>
+          * <%= t("static.dtext_help_item_one") %><br>
+          * <%= t("static.dtext_help_item_two") %><br>
+          * <%= t("static.dtext_help_item_three") %><br>
         </td>
-        <td><%= format_text "* one\n* two\n* three" %></td>
+        <td><%= format_text "* #{t("static.dtext_help_item_one")}\n* #{t("static.dtext_help_item_two")}\n* #{t("static.dtext_help_item_three")}" %></td>
       </tr>
       <tr>
-        <td>h1. Big header</td>
-        <td><%= format_text "h1. Big header" %></td>
+        <td>h1. <%= t("static.dtext_help_big_header") %></td>
+        <td><%= format_text "h1. #{t("static.dtext_help_big_header")}" %></td>
       </tr>
       <tr>
-        <td>h6. Small header</td>
-        <td><%= format_text "h6. Small header" %></td>
+        <td>h6. <%= t("static.dtext_help_small_header") %></td>
+        <td><%= format_text "h6. #{t("static.dtext_help_small_header")}" %></td>
       </tr>
       <tr>
-        <td>[quote]Somebody said: hi![/quote]</td>
-        <td><%= format_text "[quote]Somebody said: hi![/quote]" %></td>
+        <td>[quote]<%= t("static.dtext_help_quote") %>[/quote]</td>
+        <td><%= format_text "[quote]#{t("static.dtext_help_quote")}[/quote]" %></td>
       </tr>
     </tbody>
   </table>
 
   <p class="fineprint">
-    See <%= link_to_wiki "help:dtext" %> for more formatting help.
+    <%= t("static.dtext_help_footer_html", link: link_to_wiki(t("static.dtext_help_wiki_link"), "help:dtext")).html_safe %>
   </p>
 </div>

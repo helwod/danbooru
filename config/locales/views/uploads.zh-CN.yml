@@ -1,0 +1,53 @@
+"zh-CN":
+  uploads:
+    index:
+      title: "我的上传"
+      search_tags: "标签"
+      search_source: "来源"
+      submit: "搜索"
+      order_newest: "最新"
+      order_oldest: "最早"
+      order_random: "随机"
+      tab_all: "全部"
+      tab_posted: "已投稿"
+      tab_unposted: "未投稿"
+      view_gallery: "网格"
+      view_table: "表格"
+    new:
+      title: "上传"
+    show:
+      error: "出错了：%{message}。"
+      processing: "正在处理上传…"
+    preview:
+      upload_failed: "上传失败"
+      loading: "加载中"
+      post_link: "作品 #%{id}"
+      posted_count: "已投稿 %{posted}/%{total}"
+    table:
+      column_upload: "上传"
+      column_info: "信息"
+      column_uploader: "上传者"
+      upload: "上传"
+      source: "来源"
+      referrer: "来源页"
+      error: "错误"
+      none: "无"
+    status:
+      pending: "处理中"
+      completed: "已完成"
+      error: "出错"
+    secondary_links:
+      upload: "上传"
+      my_uploads: "我的上传"
+      all_uploads: "全部上传"
+      reverse_image_search: "以图搜图"
+      source_info: "来源信息"
+      help: "帮助"
+      bookmarklet: "书签脚本"
+    flash:
+      duplicate: "与作品 #%{id} 重复"
+
+  activerecord:
+    attributes:
+      upload:
+        status: "状态"

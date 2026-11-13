@@ -1,0 +1,24 @@
+en:
+  artist_versions:
+    index:
+      title: "Artist History"
+    search:
+      title: "Search Changes"
+      updater: "Updater"
+      artist: "Artist"
+      submit: "Search"
+    listing:
+      updater: "Updater"
+      artist: "Artist"
+      order_id: "ID"
+      order_created: "Created"
+      order_updated: "Updated"
+      order_name: "Name"
+      submit: "Search"
+      column_name: "Name"
+      column_other_names: "Other Names"
+      column_urls: "URLs"
+      column_changes: "Changes"
+      column_updated: "Updated"
+      revert_to: "Revert to"
+      confirm_revert: "Are you sure you want to revert to this version?"

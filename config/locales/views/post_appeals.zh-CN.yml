@@ -1,0 +1,46 @@
+"zh-CN":
+  post_appeals:
+    new:
+      dialog_title: "申诉作品"
+    index:
+      title: "申诉"
+      column_post: "作品"
+      column_reason: "理由"
+      column_appeals: "申诉数"
+      column_status: "状态"
+      column_uploaded: "上传者"
+      column_appealed: "申诉人"
+      column_approver: "审批员"
+      none: "无"
+    edit:
+      dialog_title: "编辑申诉"
+      title: "编辑申诉"
+      description_html: "正在编辑 %{link} 的申诉。"
+      post_link: "作品 #%{id}"
+    form:
+      remaining: "剩余申诉次数"
+      reason_placeholder: "简要说明这个作品为什么应该被恢复（可选）"
+      ctrl_enter: "Ctrl+Enter 提交"
+      submit: "申诉"
+      cancel: "取消"
+    reasons:
+      edit: "编辑"
+      no_reason: "未填写理由"
+    search:
+      reason: "理由"
+      tags: "标签"
+      post_id: "作品 ID"
+      creator: "申诉人"
+      submit: "搜索"
+    status:
+      pending: "待处理"
+      succeeded: "已通过"
+      rejected: "已驳回"
+    flash:
+      appealed: "作品已申诉"
+
+  activerecord:
+    attributes:
+      post_appeal:
+        reason: "理由"
+        status: "状态"

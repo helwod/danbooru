@@ -1,0 +1,58 @@
+en:
+  pools:
+    category_series: "Series"
+    category_collection: "Collection"
+    meta_description: "See thousands of translated anime & hentai comics, galleries, doujins, and more on %{app_name}."
+    edit:
+      title: "Edit Pool: %{name}"
+    new:
+      title: "New Pool"
+    form:
+      posts: "Posts"
+    gallery:
+      page_title: "Pool Gallery"
+    index:
+      page_title: "Pools"
+      column_name: "Name"
+      column_count: "Count"
+      deleted: "(deleted)"
+      page: "page %{page}"
+    show:
+      meta_description: "%{count} posts. %{excerpt}"
+    search:
+      name: "Name"
+      description: "Description"
+      post_tags: "Post tags"
+      deleted: "Deleted?"
+      order_last_updated: "Last updated"
+      order_name: "Name"
+      order_recently_created: "Recently created"
+      order_post_count: "Post count"
+      submit: "Search"
+    secondary_links:
+      gallery: "Gallery"
+      listing: "Listing"
+      new: "New"
+      changes: "Changes"
+      help: "Help"
+      posts: "Posts"
+      edit: "Edit"
+      undelete: "Undelete"
+      delete: "Delete"
+      history: "History"
+      order: "Order"
+      confirm_delete: "Are you sure you want to delete this pool?"
+    flash:
+      created: "Pool created"
+      updated: "Pool updated"
+      deleted: "Pool deleted"
+      undeleted: "Pool undeleted"
+      reverted: "Pool reverted"
+
+  activerecord:
+    attributes:
+      pool:
+        name: "Name"
+        description: "Description"
+        category: "Category"
+        post_ids_string: "Posts"

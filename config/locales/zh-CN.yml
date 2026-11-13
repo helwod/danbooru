@@ -1,0 +1,225 @@
+# Danbooru 简体中文语言包
+#
+# 与 config/locales/en.yml 使用相同的键结构。未翻译的键会自动回退到英文，
+# 因此本文件可以逐步补全，而不会出现 "translation missing" 报错。
+#
+# 使用方式：<%= t("navbar.posts") %>，或在 Ruby 代码里 I18n.t("navbar.posts")。
+#
+# 切换语言：在任意 URL 后附加 ?locale=zh-CN 或 ?locale=en，选择会写入 Cookie
+# 并在此后的请求中保持；也可由 Accept-Language 请求头自动判定。
+
+zh-CN:
+  language_name: "简体中文"
+
+  locale_switcher:
+    label: "语言"
+    title: "切换显示语言"
+    en: "English"
+    zh: "简体中文"
+
+  navbar:
+    login: "登录"
+    my_account: "我的账户"
+    posts: "作品"
+    comments: "评论"
+    notes: "批注"
+    artists: "画师"
+    tags: "标签"
+    pools: "合集"
+    wiki: "维基"
+    forum: "论坛"
+    reports: "举报"
+    dashboard: "管理面板"
+    more: "更多 »"
+
+  layout:
+    search_posts: "搜索作品"
+    restricted_title: "你的账户受到限制"
+    restricted_body: "由于你通过代理或 VPN 注册，必须先验证账户。"
+    verify_account: "立即验证账户"
+    close_this: "关闭提示"
+    two_factor_required: "需要两步验证"
+    two_factor_body: "你的账户拥有较高权限，必须启用两步验证以确保账户安全。"
+    enable_two_factor: "启用两步验证"
+    hide: "隐藏"
+    banned_title: "你已被封禁 %{duration}"
+    banned_reason: "原因："
+    action_required: "需要操作"
+    change_username: "修改用户名"
+    invalid_name_body_html: "你必须%{link}才能继续使用 %{app_name}。"
+    terms: "服务条款"
+    privacy: "隐私政策"
+    upgrade: "升级账户"
+    contact: "联系我们"
+    running_commit: "运行版本：%{commit}"
+
+  posts:
+    search: "搜索"
+    search_link: "搜索 »"
+    mode: "模式"
+    mode_view: "浏览"
+    mode_edit: "编辑"
+    mode_tag_script: "标签脚本"
+    mode_add_fav: "收藏"
+    mode_remove_fav: "取消收藏"
+    tag_script_placeholder: "输入标签脚本"
+    tags: "标签"
+    options: "选项"
+    save_search: "保存搜索"
+    related: "相关"
+    hot: "热门"
+    popular: "流行"
+    searches: "搜索记录"
+    viewed: "浏览记录"
+    deleted: "已删除"
+    random: "随机"
+    history: "历史"
+    discussions: "讨论"
+    count: "统计"
+    artist: "画师"
+    wiki: "维基"
+    pool: "合集"
+    favorite_group: "收藏夹"
+    creator: "创建者："
+    hide_scores: "隐藏评分"
+    show_scores: "显示评分"
+    edit: "编辑"
+    update: "更新"
+    removed_takedown: "本页已因版权方要求下架。"
+    gold_account: "黄金账户"
+    learn_more: "了解更多"
+    view_wiki: "查看维基"
+    view_pool: "查看合集"
+    no_artist_entry_html: "画师 %{artist} 还没有对应的条目。%{link}。"
+    create_new_artist_entry: "新建画师条目"
+    no_wiki_page_html: "标签 %{tag} 还没有维基页面。%{link}。"
+    create_new_wiki_page: "新建维基页面"
+    deprecated: "已弃用"
+    deprecated_notice_html: "此标签%{link}，不能再添加到新作品中。"
+    censored_posts_notice_html: "本页有 %{count} 个作品需要%{link}才能查看（%{learn_more}）。"
+    safe_posts_notice_html: "本页有 %{count} 个作品被安全模式隐藏，关闭安全模式即可查看（%{learn_more}）。"
+    creator_label: "创建者"
+    deleted_label: "（已删除）"
+
+  sessions:
+    login: "登录"
+    login_description: "登录到 %{app_name}"
+    name_or_email: "用户名或邮箱"
+    forgot_password: "忘记密码？"
+    no_account: "还没有账户？"
+    create_account: "创建新账户"
+    forgot_password_link: "忘记密码"
+
+  users:
+    sign_up: "注册"
+    sign_up_description: "在 %{app_name} 免费创建新账户。"
+    username: "用户名"
+    email: "邮箱"
+    optional: "选填"
+    confirm_password: "确认密码"
+    already_have_account: "已经有账户了？"
+    login_here: "直接登录"
+
+  static:
+    not_found_title: "页面未找到"
+    not_found_body: "你访问的页面不存在。"
+    error_title: "出错了"
+    error_body: "处理请求时发生错误，请稍后再试。"
+    back_to_home: "返回首页"
+    nobody_here: "这里空空如也"
+    return_to_previous_page: "返回上一页"
+    post_label: "作品 #%{id}"
+    by: "作者"
+    error: "错误"
+    details: "详细信息"
+    unexpected_error: "发生未知错误：%{class}。"
+    exception_raised: "抛出异常 %{class}"
+
+  # 表单标签与校验信息（ActiveRecord 属性名）
+  activerecord:
+    attributes:
+      api_key:
+        permitted_ip_addresses: "IP 地址"
+      artist/urls:
+        url: "链接"
+      artist_url:
+        url: ""
+      comment:
+        body: "评论内容"
+      dmail:
+        body: "私信内容"
+      email_address:
+        normalized_address: "邮箱地址"
+      favorite:
+        user: "你"
+        user_id: "你"
+      forum_post:
+        body: "帖子内容"
+      forum_post_vote:
+        creator_id: "你的投票"
+      media_asset:
+        file_ext: ""
+      moderation_report:
+        creator: "你"
+      post:
+        approver: "你"
+        approver_id: "你"
+        updater_id: "你"
+        uploader: "你"
+        uploader_id: "你"
+        md5: ""
+      post_flag:
+        creator: "你"
+        creator_id: "你"
+      post_vote:
+        user: "你"
+        user_id: "你"
+      post_appeal:
+        creator: "你"
+        creator_id: "你"
+      post_disapproval:
+        user: "你"
+        user_id: "你"
+      comment_vote:
+        user_id: "你"
+      reaction:
+        creator: "你"
+      upload:
+        uploader: "你"
+        uploader_id: "你"
+      user:
+        password_confirmation: ""
+        per_page: "每页作品数"
+        enable_private_favorites: "私密收藏与投票"
+        name: "用户名"
+        password: "密码"
+      user/email_address:
+        address: "邮箱地址"
+        normalized_address: "邮箱地址"
+      user_feedback:
+        creator: "你"
+        creator_id: "你"
+      saved_search:
+        user: "你"
+        user_id: "你"
+    errors:
+      messages:
+        record_invalid: "%{errors}"
+      models:
+        tag:
+          attributes:
+            name:
+              format: "%{message}"
+        tag_alias:
+          attributes:
+            antecedent_name:
+              format: "%{message}"
+            consequent_name:
+              format: "%{message}"
+        tag_implication:
+          attributes:
+            antecedent_name:
+              taken: "该关联已存在"
+              format: "%{message}"
+            consequent_name:
+              format: "%{message}"

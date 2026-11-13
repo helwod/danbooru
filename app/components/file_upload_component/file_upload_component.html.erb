@@ -3,22 +3,22 @@
     <%= f.input :files, as: :file, wrapper_html: { class: "hidden" }, input_html: { "multiple": max_files_per_upload > 1 }  %>
 
     <div class="rounded-t-lg p-4 pb-8 max-h-360px thin-scrollbar bg-dropzone">
-      <label id="source-label" class="w-full text-center mb-1 block !font-normal">Paste URL here</label>
-      <%= f.input :source, label: false, as: :string, placeholder: "Paste a pixiv link, tweet, etc", input_html: { value: url, class: "text-center bg:card" }, wrapper_html: { class: "px-4 text-center !m-0" } %>
+      <label id="source-label" class="w-full text-center mb-1 block !font-normal"><%= I18n.t("components.file_upload.paste_url") %></label>
+      <%= f.input :source, label: false, as: :string, placeholder: I18n.t("components.file_upload.source_placeholder"), input_html: { value: url, class: "text-center bg:card" }, wrapper_html: { class: "px-4 text-center !m-0" } %>
       <span class="hint text-muted text-xs text-center w-full block mt-1">
-        <%= link_to "See here", bookmarklet_path %> for a list of supported sites.
+        <%= I18n.t("components.file_upload.see_here_html", link: link_to(I18n.t("components.file_upload.see_here_link"), bookmarklet_path)).html_safe %>
       </span>
       <%= f.input :referer_url, as: :hidden, input_html: { value: referer_url } %>
-      <%= f.submit "Upload", class: "button-primary text-center mx-auto hidden", "data-disable-with": false %>
+      <%= f.submit I18n.t("components.file_upload.upload"), class: "button-primary text-center mx-auto hidden", "data-disable-with": false %>
     </div>
 
 
     <div class="dropzone-container relative input text-center rounded-b-lg cursor-pointer p-4 pt-2 max-h-360px thin-scrollbar !m-0">
-      <p class="text-center mb-2">&mdash; or &mdash;</p>
+      <p class="text-center mb-2"><%= I18n.t("components.file_upload.or") %></p>
 
       <div class="dropzone-hint">
-        <div>Choose file or drag image here</div>
-        <div class="hint fineprint !p-0">Max size: <%= number_to_human_size(MediaAsset::MAX_FILE_SIZE) %>.</div>
+        <div><%= I18n.t("components.file_upload.choose_file") %></div>
+        <div class="hint fineprint !p-0"><%= I18n.t("components.file_upload.max_size", size: number_to_human_size(MediaAsset::MAX_FILE_SIZE)) %></div>
       </div>
     </div>
   <% end %>

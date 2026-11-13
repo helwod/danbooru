@@ -1,0 +1,4 @@
+en:
+  tag:
+    artist_tag_wrong_category: "Artist tags must be in the Artist category"
+    cannot_change_aliased_category: "Can't change the category of an aliased tag"

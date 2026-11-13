@@ -1,0 +1,7 @@
+"zh-CN":
+  rate_limits:
+    action: "操作"
+    key: "键"
+    points: "计点"
+    limited: "是否超限"
+    updated_at: "更新时间"

@@ -70,7 +70,7 @@ class TagImplication < TagRelationship
       # We don't want a -> b -> a chains
       implied_tags = TagImplication.tags_implied_by(consequent_name).map(&:name)
       if implied_tags.include?(antecedent_name)
-        errors.add(:base, "Tag implication can not create a circular relation with another tag implication")
+        errors.add(:base, I18n.t("tag_implication.circular_relation"))
       end
     end
 
@@ -83,7 +83,7 @@ class TagImplication < TagRelationship
       implied_tags = implications.tags_implied_by(antecedent_name).map(&:name)
 
       if implied_tags.include?(consequent_name)
-        errors.add(:base, "#{antecedent_name} already implies #{consequent_name} through another implication")
+        errors.add(:base, I18n.t("tag_implication.already_implied", antecedent_name: antecedent_name, consequent_name: consequent_name))
       end
     end
 
@@ -92,7 +92,7 @@ class TagImplication < TagRelationship
 
       # We don't want to implicate a -> b if a is already aliased to c
       if TagAlias.active.exists?(["antecedent_name = ?", antecedent_name])
-        errors.add(:base, "Antecedent tag must not be aliased to another tag")
+        errors.add(:base, I18n.t("tag_implication.antecedent_aliased"))
       end
     end
 
@@ -101,7 +101,7 @@ class TagImplication < TagRelationship
 
       # We don't want to implicate a -> b if b is already aliased to c
       if TagAlias.active.exists?(["antecedent_name = ?", consequent_name])
-        errors.add(:base, "Consequent tag must not be aliased to another tag")
+        errors.add(:base, I18n.t("tag_implication.consequent_aliased"))
       end
     end
 
@@ -110,7 +110,7 @@ class TagImplication < TagRelationship
     def tag_categories_are_compatible
       return if antecedent_tag.empty? || consequent_tag.empty?
       if antecedent_tag.category != consequent_tag.category
-        errors.add(:base, "Can't imply a #{antecedent_tag.category_name.downcase} tag to a #{consequent_tag.category_name.downcase} tag")
+        errors.add(:base, I18n.t("tag_implication.category_mismatch", antecedent_tag_category_name: antecedent_tag.category_name.downcase, consequent_tag_category_name: consequent_tag.category_name.downcase))
       end
     end
 
@@ -123,24 +123,24 @@ class TagImplication < TagRelationship
       return if antecedent_tag.empty? || consequent_tag.empty?
 
       if antecedent_tag.post_count < MINIMUM_TAG_COUNT
-        errors.add(:base, "[[#{antecedent_name}]] must have at least #{MINIMUM_TAG_COUNT} posts")
+        errors.add(:base, I18n.t("tag_implication.antecedent_too_few_posts", antecedent_name: antecedent_name, minimum_tag_count: MINIMUM_TAG_COUNT))
       elsif antecedent_tag.post_count < (MINIMUM_TAG_PERCENTAGE * consequent_tag.post_count)
-        errors.add(:base, "[[#{antecedent_name}]] must have at least #{(MINIMUM_TAG_PERCENTAGE * consequent_tag.post_count).ceil.to_i} posts")
+        errors.add(:base, I18n.t("tag_implication.antecedent_below_percentage", antecedent_name: antecedent_name, consequent_tag_post_count: (MINIMUM_TAG_PERCENTAGE * consequent_tag.post_count).ceil.to_i))
       end
 
       max_count = MAXIMUM_TAG_PERCENTAGE * PostQuery.new("~#{antecedent_name} ~#{consequent_name}").fast_count(timeout: 0).to_i
       if antecedent_tag.post_count > max_count && max_count > 0
-        errors.add(:base, "[[#{antecedent_name}]] can't make up more than #{(MAXIMUM_TAG_PERCENTAGE * 100).to_i}% of [[#{consequent_name}]]")
+        errors.add(:base, I18n.t("tag_implication.antecedent_above_percentage", antecedent_name: antecedent_name, maximum_tag_percentage: (MAXIMUM_TAG_PERCENTAGE * 100).to_i, consequent_name: consequent_name))
       end
     end
 
     def has_wiki_page
       if !antecedent_tag.empty? && antecedent_wiki.blank?
-        errors.add(:base, "[[#{antecedent_name}]] must have a wiki page")
+        errors.add(:base, I18n.t("tag_implication.antecedent_needs_wiki", antecedent_name: antecedent_name))
       end
 
       if !consequent_tag.empty? && consequent_wiki.blank?
-        errors.add(:base, "[[#{consequent_name}]] must have a wiki page")
+        errors.add(:base, I18n.t("tag_implication.consequent_needs_wiki", consequent_name: consequent_name))
       end
     end
   end

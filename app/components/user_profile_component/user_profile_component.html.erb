@@ -2,33 +2,33 @@
   <h1><%= link_to_user user %></h1>
 
   <div>
-    <h2>Statistics</h2>
+    <h2><%= I18n.t("components.user_profile.statistics") %></h2>
     <table width="100%" class="user-statistics table-sm">
       <tbody>
         <tr>
-          <th>User ID</th>
+          <th><%= I18n.t("components.user_profile.user_id") %></th>
           <td><%= user.id %></td>
         </tr>
         <tr>
-          <th>Join Date</th>
+          <th><%= I18n.t("components.user_profile.join_date") %></th>
           <td><%= user.created_at.strftime("%Y-%m-%d") %></td>
         </tr>
 
         <% if policy(User).can_see_last_logged_in_at? %>
           <tr>
-            <th>Last Seen</th>
+            <th><%= I18n.t("components.user_profile.last_seen") %></th>
             <td><%= time_ago_in_words_tagged(user.last_logged_in_at) %></td>
           </tr>
         <% end %>
 
         <% if policy(user).can_see_last_ip_addr? %>
           <tr>
-            <th>Last IP</th>
+            <th><%= I18n.t("components.user_profile.last_ip") %></th>
             <td>
               <% if user.last_ip_addr.present? %>
                 <%= link_to user.last_ip_addr, ip_address_path(user.last_ip_addr) %>
               <% else %>
-                <em>unknown</em>
+                <em><%= I18n.t("components.user_profile.unknown") %></em>
               <% end %>
             </td>
           </tr>
@@ -36,41 +36,41 @@
 
         <% if policy(UserEvent).can_see_events_by_others? %>
           <tr>
-            <th>User Activity</th>
+            <th><%= I18n.t("components.user_profile.user_activity") %></th>
             <td>
-              <%= link_to "Account", user_user_events_path(user.id, mode: "table") %>,
+              <%= link_to I18n.t("components.user_profile.account"), user_user_events_path(user.id, mode: "table") %>,
 
               <% if user.last_ip_addr.present? && policy(user).can_see_last_ip_addr? %>
-                <%= link_to "IP", user_events_path(search: { ip_addr: user.last_ip_addr.subnet }) %>,
+                <%= link_to I18n.t("components.user_profile.ip"), user_events_path(search: { ip_addr: user.last_ip_addr.subnet }) %>,
               <% end %>
 
-              <%= link_to "All", user_user_actions_path(user) %>
+              <%= link_to I18n.t("components.user_profile.all"), user_user_actions_path(user) %>
             <td>
           </tr>
         <% end %>
 
         <% if policy(user.email_address).show? %>
           <tr class="user-email-address">
-            <th>Email Address</th>
+            <th><%= I18n.t("components.user_profile.email_address") %></th>
             <td>
               <% if user.email_address.present? %>
                 <%= user.email_address.address %>
 
                 <% if user == current_user %>
-                  (<%= link_to "edit", edit_user_email_path(user) %>)
+                  (<%= link_to I18n.t("components.user_profile.edit"), edit_user_email_path(user) %>)
                 <% end %>
 
                 <% if user.email_address.is_verified? %>
-                  <%= checkmark_icon(class: "user-verified-email-icon", title: "Verified email") %>
+                  <%= checkmark_icon(class: "user-verified-email-icon", title: I18n.t("components.user_profile.verified_email")) %>
                 <% elsif user == current_user %>
                   <%= link_to verify_user_email_path(user) do %>
-                    <%= exclamation_icon(class: "user-unverified-email-icon", title: "Unverified email. Click here to verify your email.") %>
+                    <%= exclamation_icon(class: "user-unverified-email-icon", title: I18n.t("components.user_profile.unverified_email_link")) %>
                   <% end %>
                 <% else %>
-                  <%= exclamation_icon(class: "user-unverified-email-icon", title: "Unverified email") %>
+                  <%= exclamation_icon(class: "user-unverified-email-icon", title: I18n.t("components.user_profile.unverified_email")) %>
                 <% end %>
               <% else %>
-                <em>none</em>
+                <em><%= I18n.t("components.user_profile.none") %></em>
               <% end %>
             </td>
           </tr>
@@ -78,21 +78,21 @@
 
         <% if user.inviter %>
           <tr>
-            <th>Promoter</th>
+            <th><%= I18n.t("components.user_profile.promoter") %></th>
             <td><%= link_to_user user.inviter %> <%= link_to "»", users_path(search: { inviter: { name: user.inviter.name }}) %></td>
           </tr>
         <% end %>
 
         <tr>
-          <th>Level</th>
+          <th><%= I18n.t("components.user_profile.level") %></th>
           <td>
             <%= user.level_string %>
 
             <% if !user.is_gold? %>
               <% if user == current_user %>
-                (<%= link_to "Upgrade account", new_user_upgrade_path %>)
+                (<%= link_to I18n.t("components.user_profile.upgrade_account"), new_user_upgrade_path %>)
               <% else %>
-                (<%= link_to "Gift upgrade", new_user_upgrade_path(user_id: user.id) %>)
+                (<%= link_to I18n.t("components.user_profile.gift_upgrade"), new_user_upgrade_path(user_id: user.id) %>)
               <% end %>
             <% end %>
           </td>
@@ -100,43 +100,43 @@
 
         <% if user.is_banned? && user.active_ban.present? %>
           <tr>
-            <th>Ban reason</th>
+            <th><%= I18n.t("components.user_profile.ban_reason") %></th>
             <td>
               <span class="prose">
                 <%= user.active_ban.dtext_reason.format_text %>
-                (banned <%= user.active_ban.humanized_duration %>)
+                <%= I18n.t("components.user_profile.banned_for_html", duration: user.active_ban.humanized_duration).html_safe %>
               </span>
             </td>
           </tr>
         <% end %>
 
         <tr>
-          <th>Post Limit</th>
+          <th><%= I18n.t("components.user_profile.post_limit") %></th>
           <td>
             <%= render "users/upload_limit", user: user %>
           </td>
         </tr>
 
         <tr>
-          <th>Posts</th>
+          <th><%= I18n.t("components.user_profile.posts") %></th>
           <td>
             <%= link_to user.post_upload_count, posts_path(tags: "user:#{user.name}"), rel: "nofollow" %>
 
             <% if has_uploads? %>
-              (<%= link_to "tag changes report", post_versions_path(search: { updater_name: user.name, version: 1 }, type: "current") %>)
+              (<%= link_to I18n.t("components.user_profile.tag_changes_report"), post_versions_path(search: { updater_name: user.name, version: 1 }, type: "current") %>)
             <% end %>
           </td>
         </tr>
 
         <tr>
-          <th>Deleted Posts</th>
+          <th><%= I18n.t("components.user_profile.deleted_posts") %></th>
           <td>
             <%= link_to user.posts.deleted.count, posts_path(tags: "status:deleted user:#{user.name}"), rel: "nofollow" %>
           </td>
         </tr>
 
         <tr>
-          <th>Favorites</th>
+          <th><%= I18n.t("components.user_profile.favorites") %></th>
           <td>
             <%= link_to user.favorite_count, posts_path(tags: "ordfav:#{user.name}"), rel: "nofollow" %>
           </td>
@@ -144,66 +144,63 @@
 
         <% if user == current_user || current_user.is_admin? %>
           <tr>
-            <th>Votes</th>
+            <th><%= I18n.t("components.user_profile.votes") %></th>
             <td>
-              <%= link_to user.post_votes.active.count, post_votes_path(search: { user_name: user.name }) %> posts,
-              <%= link_to user.comment_votes.active.count, comment_votes_path(search: { user_name: user.name }) %> comments,
-              <%= link_to user.forum_post_votes.count, forum_post_votes_path(search: { creator_name: user.name }) %> forum posts
+              <%= I18n.t("components.user_profile.votes_html", posts: link_to(user.post_votes.active.count, post_votes_path(search: { user_name: user.name })), comments: link_to(user.comment_votes.active.count, comment_votes_path(search: { user_name: user.name })), forum_posts: link_to(user.forum_post_votes.count, forum_post_votes_path(search: { creator_name: user.name }))).html_safe %>
             </td>
           </tr>
         <% end %>
 
         <tr>
-          <th>Favorite Groups</th>
+          <th><%= I18n.t("components.user_profile.favorite_groups") %></th>
           <td><%= link_to user.favorite_group_count, favorite_groups_path(search: { creator_name: user.name }) %></td>
         </tr>
 
         <tr>
-          <th>Post Changes</th>
+          <th><%= I18n.t("components.user_profile.post_changes") %></th>
           <td>
             <%= link_to user.post_update_count, post_versions_path(search: { updater_name: user.name }) %>
 
             <% if user == current_user %>
-              (<%= link_to "refresh", new_maintenance_user_count_fixes_path %>)
+              (<%= link_to I18n.t("components.user_profile.refresh"), new_maintenance_user_count_fixes_path %>)
             <% end %>
           </td>
         </tr>
 
         <tr>
-          <th>Note Changes</th>
+          <th><%= I18n.t("components.user_profile.note_changes") %></th>
           <td>
-            <%= link_to user.note_update_count, note_versions_path(search: { updater_id: user.id }) %>
-            in <%= link_to noted_posts_count, posts_path(tags: "noteupdater:#{user.name} order:note"), rel: "nofollow" %> posts
+            <%= I18n.t("components.user_profile.note_changes_in_html", changes: link_to(user.note_update_count, note_versions_path(search: { updater_id: user.id })), posts: link_to(noted_posts_count, posts_path(tags: "noteupdater:#{user.name} order:note"), rel: "nofollow")).html_safe %>
 
-            (<%= link_to "note changes report", note_versions_path(search: { updater_id: user.id, version: 1 }, type: "current") %>)
+            (<%= link_to I18n.t("components.user_profile.note_changes_report"), note_versions_path(search: { updater_id: user.id, version: 1 }, type: "current") %>)
           </td>
         </tr>
 
         <tr>
-          <th>Wiki Page Changes</th>
+          <th><%= I18n.t("components.user_profile.wiki_page_changes") %></th>
           <td><%= link_to user.wiki_page_version_count, wiki_page_versions_path(search: { updater_id: user.id }) %></td>
         </tr>
 
         <tr>
-          <th>Artist Changes</th>
+          <th><%= I18n.t("components.user_profile.artist_changes") %></th>
           <td><%= link_to user.artist_version_count, artist_versions_path(search: { updater_id: user.id }) %></td>
         </tr>
 
         <tr>
-          <th>Commentary Changes</th>
+          <th><%= I18n.t("components.user_profile.commentary_changes") %></th>
           <td><%= link_to user.artist_commentary_version_count, artist_commentary_versions_path(search: { updater_id: user.id }) %></td>
         </tr>
 
         <% if PoolVersion.enabled? %>
           <tr>
-            <th>Pool Changes</th>
+            <th><%= I18n.t("components.user_profile.pool_changes") %></th>
             <td><%= link_to user.pool_version_count, pool_versions_path(search: { updater_id: user.id }) %></td>
           </tr>
         <% end %>
 
         <% if Danbooru.config.forum_enabled?.to_s.truthy? %>
           <tr>
-            <th>Forum Posts</th>
+            <th><%= I18n.t("components.user_profile.forum_posts") %></th>
             <td><%= link_to user.forum_post_count, forum_posts_path(search: { creator_id: user.id }), rel: "nofollow" %></td>
           </tr>
         <% end %>
@@ -211,44 +208,43 @@
         <% approval_count = Post.where(approver: user).count %>
         <% if user.is_approver? || approval_count > 0 %>
           <tr>
-            <th>Approvals</th>
+            <th><%= I18n.t("components.user_profile.approvals") %></th>
             <td><%= link_to approval_count, posts_path(tags: "approver:#{user.name}"), rel: "nofollow" %></td>
           </tr>
         <% end %>
 
         <% if Danbooru.config.comments_enabled?.to_s.truthy? %>
           <tr>
-            <th>Comments</th>
+            <th><%= I18n.t("components.user_profile.comments") %></th>
             <td>
-              <%= link_to user.comment_count, comments_path(search: { creator_id: user.id }, group_by: "comment"), id: "comment-count" %>
-              in <%= link_to user.commented_posts_count, posts_path(tags: "commenter:#{user.name} order:comment_bumped"), id: "commented-posts-count", rel: "nofollow" %> posts
+              <%= I18n.t("components.user_profile.comments_in_html", comments: link_to(user.comment_count, comments_path(search: { creator_id: user.id }, group_by: "comment"), id: "comment-count"), posts: link_to(user.commented_posts_count, posts_path(tags: "commenter:#{user.name} order:comment_bumped"), id: "commented-posts-count", rel: "nofollow")).html_safe %>
             </td>
           </tr>
         <% end %>
 
         <tr>
-          <th>Appeals</th>
+          <th><%= I18n.t("components.user_profile.appeals") %></th>
           <td><%= link_to user.appeal_count, post_appeals_path(search: { creator_name: user.name }) %></td>
         </tr>
 
         <% if policy(user).can_see_flag_count? %>
           <tr>
-            <th>Flags</th>
+            <th><%= I18n.t("components.user_profile.flags") %></th>
             <td><%= link_to user.flag_count, post_flags_path(search: { creator_name: user.name }) %></td>
           </tr>
         <% end %>
 
         <tr>
-          <th>Feedback</th>
-          <td><%= link_to "positive:#{positive_feedback_count} neutral:#{neutral_feedback_count} negative:#{negative_feedback_count}", user_feedbacks_path(search: { user_id: user.id }) %></td>
+          <th><%= I18n.t("components.user_profile.feedback") %></th>
+          <td><%= link_to I18n.t("components.user_profile.feedback_counts", positive: positive_feedback_count, neutral: neutral_feedback_count, negative: negative_feedback_count), user_feedbacks_path(search: { user_id: user.id }) %></td>
         </tr>
 
         <% if policy(ModerationReport).can_see_moderation_reports? %>
           <tr>
-            <th>Mod Reports</th>
+            <th><%= I18n.t("components.user_profile.mod_reports") %></th>
             <td>
-              <%= link_to "received:#{ModerationReport.received_by(user).count}", moderation_reports_path(search: { recipient_name: user.name }) %>
-              <%= link_to "submitted:#{ModerationReport.where(creator: user).count}", moderation_reports_path(search: { creator_name: user.name }) %>
+              <%= link_to I18n.t("components.user_profile.mod_reports_received", count: ModerationReport.received_by(user).count), moderation_reports_path(search: { recipient_name: user.name }) %>
+              <%= link_to I18n.t("components.user_profile.mod_reports_submitted", count: ModerationReport.where(creator: user).count), moderation_reports_path(search: { creator_name: user.name }) %>
             </td>
           </tr>
         <% end %>
@@ -257,7 +253,7 @@
           <% user.user_name_change_requests.visible(current_user).tap do |changes| %>
             <% if changes.present? %>
               <tr>
-                <th>Previous Names</th>
+                <th><%= I18n.t("components.user_profile.previous_names") %></th>
                 <td>
                   <%= changes.map do |change| %>
                     <% link_to change.original_name, change %>
@@ -271,7 +267,7 @@
         <% if user == current_user %>
           <% if saved_search_labels.present? %>
             <tr>
-              <th>Saved Searches</th>
+              <th><%= I18n.t("components.user_profile.saved_searches") %></th>
               <td>
                 <% saved_search_labels.each do |label| %>
                   <%= link_to label, posts_path(tags: "search:#{label}") %>
@@ -281,10 +277,10 @@
           <% end %>
 
           <tr>
-            <th>API Key</th>
+            <th><%= I18n.t("components.user_profile.api_key") %></th>
             <td>
-              <%= link_to "View", user_api_keys_path(current_user) %>
-              (<%= link_to_wiki "help", "help:api" %>)
+              <%= link_to I18n.t("components.user_profile.view"), user_api_keys_path(current_user) %>
+              (<%= link_to_wiki I18n.t("components.common.help"), "help:api" %>)
             </td>
           </tr>
         <% end %>
@@ -297,7 +293,7 @@
   <% if has_uploads? %>
     <div class="user-uploads recent-posts">
       <h2 class="recent-posts-header">
-        <%= link_to "Posts", posts_path(tags: "user:#{user.name}") %>
+        <%= link_to I18n.t("components.user_profile.posts"), posts_path(tags: "user:#{user.name}") %>
       </h2>
       <%= render_post_gallery(uploads, tags: "user:#{user.name}", show_deleted: true, show_votes: show_votes) %>
     </div>
@@ -306,7 +302,7 @@
   <% if has_favorites? && policy(user).can_see_favorites? %>
     <div class="user-favorites recent-posts">
       <h2 class="recent-posts-header">
-        <%= link_to "Favorites", posts_path(tags: "ordfav:#{user.name}") %>
+        <%= link_to I18n.t("components.user_profile.favorites"), posts_path(tags: "ordfav:#{user.name}") %>
       </h2>
 
       <%= render_post_gallery(favorites, tags: "ordfav:#{user.name}", show_deleted: true, show_votes: show_votes) %>

@@ -50,7 +50,7 @@ class CommentsController < ApplicationController
     @comment = authorize Comment.new(creator: CurrentUser.user, creator_ip_addr: request.remote_ip, **permitted_attributes(Comment))
     @comment.save
 
-    respond_with(@comment, notice: "Comment posted") do |format|
+    respond_with(@comment, notice: I18n.t("comments.flash.posted")) do |format|
       format.html { redirect_back_or_to @comment.post } if @comment.persisted?
     end
   end

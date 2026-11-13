@@ -1,0 +1,14 @@
+en:
+  note_versions:
+    index:
+      title: "Note History"
+    listing:
+      column_post: "Post"
+      column_note: "Note"
+      column_body: "Body"
+      column_position: "Position (X,Y)"
+      column_size: "Size (WxH)"
+      column_changes: "Changes"
+      column_updated: "Updated"
+      revert_to: "Revert to"
+      confirm_revert: "Are you sure you want to revert to this version?"

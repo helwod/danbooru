@@ -10,37 +10,37 @@
   <div>
     <div class="space-x-4">
       <span>
-        <strong>Date</strong>
+        <strong><%= t("modqueue.date") %></strong>
         <%= time_ago_in_words_tagged(post.created_at) %>
       </span>
 
       <span>
-        <strong>Uploader</strong>
+        <strong><%= t("modqueue.uploader") %></strong>
         <%= link_to_user(post.uploader) %>&nbsp;<%= link_to "»", modqueue_index_path(search: { tags: "user:#{post.uploader.name}" }) %>
       </span>
 
       <span>
-        <strong>Rating</strong>
+        <strong><%= t("modqueue.rating") %></strong>
         <%= post.pretty_rating %>
       </span>
     </div>
 
     <% if post.has_active_pools? %>
       <div>
-        <strong>Pools</strong>
+        <strong><%= t("modqueue.pools") %></strong>
         <%= render "pools/inline_list", pools: post.pools.undeleted %>
       </div>
     <% end %>
 
     <div>
-      <strong>Tags</strong>
+      <strong><%= t("modqueue.tags") %></strong>
       <%= render_inline_tag_list(post) %>
     </div>
 
     <div class="mt-4">
       <% if post.disapprovals.map(&:message).any?(&:present?) %>
         <div>
-          <strong>Disapprovals</strong>
+          <strong><%= t("modqueue.disapprovals") %></strong>
 
           <% post.disapprovals.sort_by(&:id).select { |disapproval| disapproval.message.present? }.each do |disapproval| %>
             <ul class="post-disapproval-reason list-bulleted">
@@ -60,14 +60,14 @@
 
       <% if post.is_flagged? %>
         <div>
-          <strong>Flag</strong>
+          <strong><%= t("modqueue.flag") %></strong>
           <%= render "post_flags/reasons", flag: post.flags.select(&:pending?).last %>
         </div>
       <% end %>
 
       <% if post.is_appealed? %>
         <div>
-          <strong>Appeal</strong>
+          <strong><%= t("modqueue.appeal") %></strong>
           <%= render "post_appeals/reasons", appeal: post.appeals.select(&:pending?).last %>
         </div>
       <% end %>

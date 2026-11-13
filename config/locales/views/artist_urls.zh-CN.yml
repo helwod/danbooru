@@ -1,0 +1,23 @@
+"zh-CN":
+  artist_urls:
+    index:
+      search_artist_name: "画师名称"
+      search_url: "链接"
+      search_active: "有效？"
+      order_id: "ID"
+      order_created: "创建时间"
+      order_updated: "更新时间"
+      'yes': "是"
+      'no': "否"
+      submit: "搜索"
+      column_artist_name: "画师名称"
+      column_url: "链接"
+      column_active: "有效？"
+      column_created: "创建时间"
+      column_updated: "更新时间"
+
+  activerecord:
+    attributes:
+      artist_url:
+        is_active: "有效？"
+        url_matches: "链接"

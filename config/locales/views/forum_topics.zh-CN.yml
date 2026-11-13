@@ -1,0 +1,72 @@
+"zh-CN":
+  forum_topics:
+    edit:
+      title: "编辑论坛主题"
+    new:
+      title: "新建论坛主题"
+    index:
+      page_title: "论坛"
+      atom_feed: "论坛主题"
+      categories: "分类："
+      all: "全部"
+      new: "新主题"
+      private: "私密"
+    show:
+      min_level_only: "（仅 %{level} 及以上可见）"
+      deleted: "（已删除）"
+      posted_under_html: "发表于 %{link}"
+      locked_notice: "该主题已被锁定。"
+      post_reply: "回复"
+    form:
+      title: "标题"
+      category: "分类"
+      sticky: "置顶"
+      locked: "锁定"
+      min_level: "最低等级"
+    listing:
+      column_title: "标题"
+      new: "新"
+      stickied: "已置顶"
+      locked: "已锁定"
+      deleted: "已删除"
+      min_level_only: "仅 %{level} 及以上可见"
+      page: "第 %{page} 页"
+      column_status: "状态"
+      column_creator: "创建者"
+      column_updated_by: "最后回复"
+      column_updated_at: "更新时间"
+    secondary_links:
+      listing: "全部主题"
+      new: "新建"
+      mark_all_as_read: "全部标为已读"
+      request_alias_implication: "申请别名/关联"
+      burs: "BUR"
+      search: "搜索"
+      help: "帮助"
+      reply: "回复"
+      edit: "编辑"
+      undelete: "恢复"
+      delete: "删除"
+      unlock: "取消锁定"
+      lock: "锁定"
+      unsticky: "取消置顶"
+      sticky: "置顶"
+      confirm_delete: "确定要删除这个论坛主题吗？"
+      confirm_lock: "确定要锁定这个论坛主题吗？"
+      confirm_sticky: "确定要置顶这个论坛主题吗？"
+    flash:
+      deleted: "主题已删除"
+      undeleted: "主题已恢复"
+      all_read: "所有主题已标记为已读"
+
+  activerecord:
+    attributes:
+      forum_topic:
+        title: "标题"
+        category: "分类"
+        min_level: "最低等级"
+        is_sticky: "置顶"
+        is_locked: "锁定"
+      forum_post:
+        body: "内容"
+        topic_id: "主题 ID"

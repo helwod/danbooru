@@ -1,0 +1,9 @@
+"zh-CN":
+  layouts:
+    privacy: "隐私政策"
+    contact: "联系我们"
+    promotion:
+      winter_sale: "Danbooru 冬季特卖"
+      ends_prefix: "结束于"
+      ends_suffix: "！"
+      get_gold_discount: "黄金账户立减 25%"

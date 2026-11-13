@@ -1,58 +1,58 @@
 <div id="c-jobs">
   <div id="a-index">
-    <h1>Jobs</h1>
+    <h1><%= t("jobs.title") %></h1>
 
     <%= search_form_for(jobs_path) do |f| %>
-      <%= f.input :name, collection: ApplicationJob.job_classes.map { |klass| klass.name.titleize.delete_suffix(" Job") }, include_blank: true, selected: params[:search][:name] %>
-      <%= f.input :status, collection: %w[Running Queued Finished Discarded], include_blank: true, selected: params[:search][:status] %>
-      <%= f.input :order, collection: [%w[Created created_at], %w[Updated updated_at], %w[Scheduled scheduled_at], %w[Performed performed_at], %w[Finished finished_at]], include_blank: true, selected: params[:search][:order] %>
-      <%= f.submit "Search" %>
+      <%= f.input :name, label: t("jobs.name"), collection: ApplicationJob.job_classes.map { |klass| [t("jobs.job_class.#{klass.name.underscore}", default: klass.name.titleize.delete_suffix(" Job")), klass.name.titleize.delete_suffix(" Job")] }, include_blank: true, selected: params[:search][:name] %>
+      <%= f.input :status, label: t("jobs.status"), collection: [[t("jobs.status_options.running"), "Running"], [t("jobs.status_options.queued"), "Queued"], [t("jobs.status_options.finished"), "Finished"], [t("jobs.status_options.discarded"), "Discarded"]], include_blank: true, selected: params[:search][:status] %>
+      <%= f.input :order, label: t("jobs.order"), collection: [[t("jobs.order_by.created"), "created_at"], [t("jobs.order_by.updated"), "updated_at"], [t("jobs.order_by.scheduled"), "scheduled_at"], [t("jobs.order_by.performed"), "performed_at"], [t("jobs.order_by.finished"), "finished_at"]], include_blank: true, selected: params[:search][:order] %>
+      <%= f.submit t("jobs.search") %>
     <% end %>
 
     <%= table_for @jobs, class: "striped autofit" do |t| %>
-      <% t.column "Name" do |job| %>
+      <% t.column t("jobs.name"), column: "name" do |job| %>
         <%= job.pretty_name %>
       <% end %>
 
-      <% t.column "Details", td: { class: "col-expand" } do |job| %>
+      <% t.column t("jobs.details"), column: "details", td: { class: "col-expand" } do |job| %>
         <% if policy(job).can_see_params? %>
           <%= job.serialized_params["arguments"] %>
         <% end %>
       <% end %>
 
-      <% t.column "Error", td: { class: "col-expand" } do |job| %>
+      <% t.column t("jobs.error"), column: "error", td: { class: "col-expand" } do |job| %>
         <% if policy(job).can_see_params? && job.error.present? %>
           <%= job.error %>
         <% end %>
       <% end %>
 
-      <% t.column "Attempts" do |job| %>
+      <% t.column t("jobs.attempts"), column: "attempts" do |job| %>
         <%= job.executions_count %>
       <% end %>
 
-      <% t.column :status %>
+      <% t.column :status, column: "status", name: t("jobs.status") %>
 
-      <% t.column "Duration" do |job| %>
+      <% t.column t("jobs.duration"), column: "duration" do |job| %>
         <%= duration_to_hhmmssms(job.runtime_latency) if job.runtime_latency %>
       <% end %>
 
-      <% t.column "Queue Delay" do |job| %>
+      <% t.column t("jobs.queue_delay"), column: "queue-delay" do |job| %>
         <%= duration_to_hhmmssms(job.queue_latency) if job.queue_latency %>
       <% end %>
 
-      <% t.column "Created" do |job| %>
+      <% t.column t("jobs.created"), column: "created" do |job| %>
         <%= time_ago_in_words_tagged(job.created_at) %>
       <% end %>
 
       <% t.column column: "control" do |job| %>
         <% if policy(job).update? %>
-          <%= link_to "Run", run_job_path(job), method: :put, remote: true %>
+          <%= link_to t("jobs.run"), run_job_path(job), method: :put, remote: true %>
           <%= subnav_divider %>
-          <%= link_to "Retry", retry_job_path(job), method: :put, remote: true %>
+          <%= link_to t("jobs.retry"), retry_job_path(job), method: :put, remote: true %>
           <%= subnav_divider %>
-          <%= link_to "Cancel", cancel_job_path(job), method: :put, remote: true %>
+          <%= link_to t("jobs.cancel"), cancel_job_path(job), method: :put, remote: true %>
           <%= subnav_divider %>
-          <%= link_to "Delete", job_path(job), method: :delete, remote: true %>
+          <%= link_to t("jobs.delete"), job_path(job), method: :delete, remote: true %>
         <% end %>
       <% end %>
     <% end %>
@@ -62,9 +62,9 @@
 </div>
 
 <% content_for(:secondary_links) do %>
-  <%= subnav_link_to "Listing", jobs_path %>
+  <%= subnav_link_to t("jobs.listing"), jobs_path, id: "listing" %>
 
   <% if policy(BackgroundJob).can_view_good_job_dashboard? %>
-    <%= subnav_link_to "Good Jobs", good_job_path %>
+    <%= subnav_link_to t("jobs.good_jobs"), good_job_path, id: "good-jobs" %>
   <% end %>
 <% end %>

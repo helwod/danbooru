@@ -1,5 +1,5 @@
 <% if @favorite.errors.any? %>
-  Danbooru.Notice.error("You have already favorited this post");
+  Danbooru.Notice.error("<%= j t("favorites.update.already_favorited") %>");
 <% else %>
   $("#add-to-favorites, #add-fav-button, #remove-from-favorites, #remove-fav-button").toggle();
   $("#remove-fav-button").addClass("animate");

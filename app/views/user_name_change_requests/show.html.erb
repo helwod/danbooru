@@ -1,21 +1,21 @@
 <div id="c-user-name-change-requests">
   <div id="a-show">
-    <h1>Name Change Request</h1>
+    <h1><%= t("user_name_change_requests.show_title") %></h1>
 
     <table class="aligned-vertical">
       <tbody>
         <tr>
-          <th>Date</th>
+          <th><%= t("user_name_change_requests.date") %></th>
           <td>
             <%= compact_time @change_request.created_at %>
           </td>
         </tr>
         <tr>
-          <th>User</th>
+          <th><%= t("user_name_change_requests.user") %></th>
           <td><%= link_to_user @change_request.user %></td>
         </tr>
         <tr>
-          <th>Request</th>
+          <th><%= t("user_name_change_requests.request") %></th>
           <td>
             <strong><%= @change_request.original_name %></strong> ->
             <strong><%= @change_request.desired_name %></strong>

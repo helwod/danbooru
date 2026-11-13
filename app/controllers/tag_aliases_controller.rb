@@ -19,6 +19,6 @@ class TagAliasesController < ApplicationController
     @tag_alias = authorize TagAlias.find(params[:id])
     @tag_alias.reject!(CurrentUser.user)
 
-    respond_with(@tag_alias, location: tag_aliases_path, notice: "Tag alias was deleted")
+    respond_with(@tag_alias, location: tag_aliases_path, notice: I18n.t("tag_aliases.flash.deleted"))
   end
 end

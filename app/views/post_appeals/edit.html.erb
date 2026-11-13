@@ -1,9 +1,9 @@
 <div id="c-post-appeals">
   <div id="a-edit">
-    <h1>Edit Appeal</h1>
+    <h1><%= t("post_appeals.edit.title") %></h1>
 
     <p>
-      Editing appeal for <%= link_to "post ##{@post_appeal.post_id}", @post_appeal.post %>.
+      <%= t("post_appeals.edit.description_html", link: link_to(t("post_appeals.edit.post_link", id: @post_appeal.post_id), @post_appeal.post)).html_safe %>
     </p>
 
     <%= render "post_appeals/form", post_appeal: @post_appeal %>

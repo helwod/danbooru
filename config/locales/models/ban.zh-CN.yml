@@ -1,0 +1,6 @@
+"zh-CN":
+  ban:
+    cannot_update_expired: "不能修改已过期的封禁。"
+    already_banned: "已被封禁。"
+    delete_post_votes_not_allowed: "%{banner_level_string} 无权删除作品投票。"
+    delete_comment_votes_not_allowed: "%{banner_level_string} 无权删除评论投票。"

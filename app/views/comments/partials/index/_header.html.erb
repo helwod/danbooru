@@ -1,20 +1,20 @@
 <div class="mb-4">
   <div class="space-x-4">
     <span class="info space-x-1">
-      <strong>Date</strong>
+      <strong><%= t("comments.header.date") %></strong>
       <%= compact_time(post.created_at) %>
     </span>
     <span class="info space-x-1">
-      <strong>Uploader</strong>
+      <strong><%= t("comments.header.uploader") %></strong>
       <%= link_to_user(post.uploader) %>
     </span>
     <span class="info space-x-1">
-      <strong>Rating</strong>
+      <strong><%= t("comments.header.rating") %></strong>
       <span><%= post.pretty_rating %></span>
     </span>
   </div>
   <div class="space-x-1">
-    <strong>Tags</strong>
+    <strong><%= t("comments.header.tags") %></strong>
     <%= render_inline_tag_list(post) %>
   </div>
 </div>

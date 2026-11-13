@@ -1,0 +1,4 @@
+en:
+  post_regenerations:
+    flash:
+      scheduled: "Post regeneration scheduled, press Ctrl+F5 in a few seconds to refresh the image"

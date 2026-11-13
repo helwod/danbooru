@@ -1,0 +1,6 @@
+en:
+  ban:
+    cannot_update_expired: "You can't update an expired ban"
+    already_banned: "is already banned"
+    delete_post_votes_not_allowed: "is not allowed by %{banner_level_string}"
+    delete_comment_votes_not_allowed: "is not allowed by %{banner_level_string}"

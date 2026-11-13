@@ -1,6 +1,6 @@
-<p>Hi <%= link_to_user @user %>,</p>
+<p><%= t("user_mailer.greeting_html", user: link_to_user(@user)) %></p>
 
-<p><%= link_to_user @dmail.from %> sent you a message on <%= link_to Danbooru.config.canonical_app_name, root_url %>:</p>
+<p><%= t("user_mailer.dmail_notice.sent_message_html", from: link_to_user(@dmail.from), app_name: link_to(Danbooru.config.canonical_app_name, root_url)) %></p>
 
 <div class="prose" style="margin: 0 2em">
   <b><%= @dmail.title %></b>
@@ -8,14 +8,13 @@
   <%= format_text(@dmail.body, base_url: root_url) %>
 </div>
 
-<%= link_to "Reply", new_dmail_url(respond_to_id: @dmail) %> |
-<%= link_to "View message", dmail_url(@dmail) %>
+<%= link_to t("user_mailer.dmail_notice.reply"), new_dmail_url(respond_to_id: @dmail) %> |
+<%= link_to t("user_mailer.dmail_notice.view_message"), dmail_url(@dmail) %>
 
 <p class="fineprint">
-  You received this email because you chose to receive notifications whenever someone sends you a message on <%= Danbooru.config.canonical_app_name %>.
-  <%= link_to "Click here", disable_email_notifications_url(@user) %> to unsubscribe from these emails.
+  <%= t("user_mailer.dmail_notice.notice_html", app_name: Danbooru.config.canonical_app_name, link: link_to(t("user_mailer.click_here"), disable_email_notifications_url(@user))) %>
 </p>
 
 <% content_for(:footer_links) do %>
-  / <%= link_to "Unsubscribe", disable_email_notifications_url(@user) %>
+  / <%= link_to t("user_mailer.unsubscribe"), disable_email_notifications_url(@user) %>
 <% end %>

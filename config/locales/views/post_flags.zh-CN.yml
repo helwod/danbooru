@@ -1,0 +1,53 @@
+"zh-CN":
+  post_flags:
+    new:
+      dialog_title: "举报作品"
+    index:
+      title: "举报"
+      column_post: "作品"
+      column_reason: "理由"
+      column_flags: "举报数"
+      column_category: "类别"
+      column_status: "状态"
+      column_uploaded: "上传者"
+      column_flagged: "举报人"
+      column_approver: "审批员"
+      none: "无"
+    edit:
+      dialog_title: "编辑举报"
+      title: "编辑举报"
+      description_html: "正在编辑 %{link} 的举报。"
+      post_link: "作品 #%{id}"
+    form:
+      remaining: "剩余举报次数"
+      reason_placeholder: "简要说明这个作品为什么应该被删除"
+      ctrl_enter: "Ctrl+Enter 提交"
+      submit: "举报"
+      cancel: "取消"
+    reasons:
+      edit: "编辑"
+    search:
+      reason: "理由"
+      tags: "标签"
+      post_id: "作品 ID"
+      creator: "举报人"
+      category: "类别"
+      submit: "搜索"
+    categories:
+      normal: "普通"
+      unapproved: "未审批"
+      rejected: "已驳回"
+      deleted: "已删除"
+    status:
+      pending: "待处理"
+      succeeded: "已通过"
+      rejected: "已驳回"
+    flash:
+      flagged: "作品已举报"
+
+  activerecord:
+    attributes:
+      post_flag:
+        reason: "理由"
+        category: "类别"
+        status: "状态"

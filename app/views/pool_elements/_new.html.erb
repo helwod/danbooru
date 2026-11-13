@@ -1,8 +1,8 @@
 <%= edit_form_for(:pool_element, url: pool_element_path(format: :js), remote: true) do |f| %>
   <%= hidden_field_tag "post_id", @post.id %>
-  <%= f.input :pool_name, hint: tag.span("Ctrl+Enter to submit", class: "desktop-only"), label: "Pool Name", input_html: { name: "pool_name", value: "", "data-autocomplete": "pool", class: "w-full max-w-360px" } %>
+  <%= f.input :pool_name, hint: tag.span(t("pool_elements.new.ctrl_enter"), class: "desktop-only"), label: t("pool_elements.new.pool_name"), input_html: { name: "pool_name", value: "", "data-autocomplete": "pool", class: "w-full max-w-360px" } %>
   <div class="dialog-buttons">
-    <%= f.submit_button "Add" %>
-    <%= f.cancel_button %>
+    <%= f.submit_button t("pool_elements.new.add") %>
+    <%= f.cancel_button t("pool_elements.new.cancel") %>
   </div>
 <% end %>

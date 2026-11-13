@@ -1,53 +1,53 @@
 <% content_for(:secondary_links) do %>
   <%= quick_search_form_for(:body_matches, forum_posts_path, "forum posts") %>
-  <%= subnav_link_to "Listing", forum_topics_path %>
+  <%= subnav_link_to t("forum_topics.secondary_links.listing"), forum_topics_path, id: "listing" %>
 
   <% if policy(ForumTopic).create? %>
-    <%= subnav_link_to "New", new_forum_topic_path %>
+    <%= subnav_link_to t("forum_topics.secondary_links.new"), new_forum_topic_path, id: "new" %>
   <% end %>
   <% if policy(ForumTopic).mark_all_as_read? %>
-    <%= subnav_link_to "Mark all as read", mark_all_as_read_forum_topics_path, :method => :post, :"data-shortcut" => "shift+r" %>
+    <%= subnav_link_to t("forum_topics.secondary_links.mark_all_as_read"), mark_all_as_read_forum_topics_path, id: "mark-all-as-read", :method => :post, :"data-shortcut" => "shift+r" %>
   <% end %>
   <% if @forum_topic && policy(BulkUpdateRequest.new(forum_topic: @forum_topic)).create? %>
-    <%= subnav_link_to "Request alias/implication", new_bulk_update_request_path(bulk_update_request: { forum_topic_id: @forum_topic.id }) %>
+    <%= subnav_link_to t("forum_topics.secondary_links.request_alias_implication"), new_bulk_update_request_path(bulk_update_request: { forum_topic_id: @forum_topic.id }), id: "request-aliasimplication" %>
   <% else %>
-    <%= subnav_link_to "Request alias/implication", new_bulk_update_request_path %>
+    <%= subnav_link_to t("forum_topics.secondary_links.request_alias_implication"), new_bulk_update_request_path, id: "request-aliasimplication" %>
   <% end %>
 
   <% if @forum_topic && @forum_topic.bulk_update_requests.pending.count > 0 %>
     <%= subnav_link_to bulk_update_requests_path(search: { forum_topic_id: @forum_topic.id, status: "pending" }), id: "burs" do %>
-      BURs <span class="badge-blue"><%= @forum_topic.bulk_update_requests.pending.count %></span>
+      <%= t("forum_topics.secondary_links.burs") %> <span class="badge-blue"><%= @forum_topic.bulk_update_requests.pending.count %></span>
     <% end %>
   <% elsif @forum_topic.nil? && BulkUpdateRequest.pending.count > 0 %>
     <%= subnav_link_to bulk_update_requests_path(search: { status: "pending" }), id: "burs" do %>
-      BURs <span class="badge-blue"><%= BulkUpdateRequest.pending.count %></span>
+      <%= t("forum_topics.secondary_links.burs") %> <span class="badge-blue"><%= BulkUpdateRequest.pending.count %></span>
     <% end %>
   <% else %>
-    <%= subnav_link_to "BURs", bulk_update_requests_path %>
+    <%= subnav_link_to t("forum_topics.secondary_links.burs"), bulk_update_requests_path, id: "burs" %>
   <% end %>
 
-  <%= subnav_link_to "Search", search_forum_posts_path %>
-  <%= subnav_link_to "Help", wiki_page_path("help:forum") %>
+  <%= subnav_link_to t("forum_topics.secondary_links.search"), search_forum_posts_path, id: "search" %>
+  <%= subnav_link_to t("forum_topics.secondary_links.help"), wiki_page_path("help:forum"), id: "help" %>
   <% if !CurrentUser.user.is_anonymous? && @forum_topic && !@forum_topic.new_record? %>
     <%= subnav_divider %>
-    <%= subnav_link_to "Reply", new_forum_post_path(:topic_id => @forum_topic.id) %>
+    <%= subnav_link_to t("forum_topics.secondary_links.reply"), new_forum_post_path(:topic_id => @forum_topic.id), id: "reply" %>
     <% if !@forum_topic.new_record? && policy(@forum_topic).update? %>
-      <%= subnav_link_to "Edit", edit_forum_topic_path(@forum_topic) %>
+      <%= subnav_link_to t("forum_topics.secondary_links.edit"), edit_forum_topic_path(@forum_topic), id: "edit" %>
       <% if policy(@forum_topic).destroy? # XXX %>
         <% if @forum_topic.is_deleted? %>
-          <%= subnav_link_to "Undelete", undelete_forum_topic_path(@forum_topic), :method => :post %>
+          <%= subnav_link_to t("forum_topics.secondary_links.undelete"), undelete_forum_topic_path(@forum_topic), :method => :post, id: "undelete" %>
         <% else %>
-          <%= subnav_link_to "Delete", forum_topic_path(@forum_topic), :method => :delete, :"data-shortcut" => "shift+d", :"data-confirm" => "Are you sure you want to delete this forum topic?" %>
+          <%= subnav_link_to t("forum_topics.secondary_links.delete"), forum_topic_path(@forum_topic), :method => :delete, :"data-shortcut" => "shift+d", :"data-confirm" => t("forum_topics.secondary_links.confirm_delete"), id: "delete" %>
         <% end %>
         <% if @forum_topic.is_locked? %>
-          <%= subnav_link_to "Unlock", forum_topic_path(@forum_topic, :forum_topic => {:is_locked => false}), :method => :put %>
+          <%= subnav_link_to t("forum_topics.secondary_links.unlock"), forum_topic_path(@forum_topic, :forum_topic => {:is_locked => false}), :method => :put, id: "unlock" %>
         <% else %>
-          <%= subnav_link_to "Lock", forum_topic_path(@forum_topic, :forum_topic => {:is_locked => true}), :method => :put, :data => {:confirm => "Are you sure you want to lock this forum topic?"} %>
+          <%= subnav_link_to t("forum_topics.secondary_links.lock"), forum_topic_path(@forum_topic, :forum_topic => {:is_locked => true}), :method => :put, :data => {:confirm => t("forum_topics.secondary_links.confirm_lock")}, id: "lock" %>
         <% end %>
         <% if @forum_topic.is_sticky? %>
-          <%= subnav_link_to "Unsticky", forum_topic_path(@forum_topic, :forum_topic => {:is_sticky => false}), :method => :put %>
+          <%= subnav_link_to t("forum_topics.secondary_links.unsticky"), forum_topic_path(@forum_topic, :forum_topic => {:is_sticky => false}), :method => :put, id: "unsticky" %>
         <% else %>
-          <%= subnav_link_to "Sticky", forum_topic_path(@forum_topic, :forum_topic => {:is_sticky => true}), :method => :put, :data => {:confirm => "Are you sure you want to sticky this forum topic?"} %>
+          <%= subnav_link_to t("forum_topics.secondary_links.sticky"), forum_topic_path(@forum_topic, :forum_topic => {:is_sticky => true}), :method => :put, :data => {:confirm => t("forum_topics.secondary_links.confirm_sticky")}, id: "sticky" %>
         <% end %>
       <% end %>
     <% end %>

@@ -1,0 +1,13 @@
+"zh-CN":
+  upload:
+    source_too_long: "过长（最多 2000 个字符）。"
+    source_invalid_url: "不是有效的 URL。"
+    file_and_source: "不能同时提供文件和来源地址。"
+    no_file_or_source: "未提供文件或来源地址。"
+    too_many_queued: "排队中的上传图片过多（已排队：%{queued_asset_count}；上限：%{max_queued_assets}）。请稍后再试。"
+    unsupported_file_type: "「%{filename}」不是支持的文件类型。"
+    too_many_files_in_archive: "「%{filename}」包含文件过多（单次上传上限 %{max_files_per_upload} 个文件）。"
+    archive_too_large: "「%{filename}」体积过大（解压后 %{archive_uncompressed_size}；上限 %{MediaAsset}）。"
+    invalid_archive_path: "「%{filename}」中的「%{entry_pathname_utf8}」不能以 / 开头。"
+    non_regular_file: "「%{filename}」中的「%{entry_pathname_utf8}」不是普通文件。"
+    too_many_files: "单次最多上传 %{max_files_per_upload} 个文件（本次 %{total_files} 个）。"

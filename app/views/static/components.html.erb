@@ -1,10 +1,10 @@
 <div id="c-static">
   <div id="a-components">
-    <h1 class="text-center">Components</h1>
+    <h1 class="text-center"><%= t("static.components_title") %></h1>
 
     <div class="m-auto max-w-1080px space-y-8">
       <div class="space-y-4">
-        <h2>Flex</h2>
+        <h2><%= t("static.components_flex") %></h2>
 
         <div class="space-y-2">
           <% %w[flex-0 flex-initial flex-none flex-1 flex-auto flex-grow-1].each do |cls| %>
@@ -42,7 +42,7 @@
       </div>
 
       <div class="space-y-4">
-        <h2>Flex Alignment</h2>
+        <h2><%= t("static.components_flex_alignment") %></h2>
 
         <div class="space-y-2">
           <% %w[items-start items-center items-end items-stretch justify-center justify-between justify-end].each do |cls| %>
@@ -60,7 +60,7 @@
       </div>
 
       <div class="space-y-4">
-        <h2>Grid Columns</h2>
+        <h2><%= t("static.components_grid_columns") %></h2>
 
         <div class="space-y-2">
           <% [1, 2, 3, 4, 5, 6, 8, 10, 12].each do |cols| %>
@@ -77,7 +77,7 @@
       </div>
 
       <div class="space-y-4">
-        <h2>Typography</h2>
+        <h2><%= t("static.components_typography") %></h2>
 
         <div class="flex flex-wrap items-baseline gap-4">
           <span class="text-xxs">.text-xxs</span>
@@ -115,7 +115,7 @@
       </div>
 
       <div class="space-y-4">
-        <h2>Chips</h2>
+        <h2><%= t("static.components_chips") %></h2>
 
         <div class="flex flex-wrap items-center gap-2">
           <span class="chip-primary">.chip-primary</span>
@@ -127,7 +127,7 @@
       </div>
 
       <div class="space-y-4">
-        <h2>Badges</h2>
+        <h2><%= t("static.components_badges") %></h2>
 
         <div class="flex flex-wrap items-center gap-2">
           <div class="flex flex-col justify-center items-center gap-2 text-center p-2 w-150px h-16 card-outlined">
@@ -137,7 +137,7 @@
       </div>
 
       <div class="space-y-4">
-        <h2>Cards</h2>
+        <h2><%= t("static.components_cards") %></h2>
 
         <div class="flex flex-wrap gap-4">
           <div class="flex flex-col justify-center items-center gap-2 text-center p-2 w-150px h-16 card-outlined">
@@ -151,7 +151,7 @@
       </div>
 
       <div class="space-y-4">
-        <h2>Scrollbars</h2>
+        <h2><%= t("static.components_scrollbars") %></h2>
 
         <div class="flex flex-wrap gap-4">
           <div class="flex flex-col justify-center items-center gap-2 text-center p-2 w-150px h-150px card-outlined">
@@ -159,7 +159,7 @@
 
             <div class="thin-scrollbar w-full h-full p-2">
               <% 20.times do |i| %>
-                <div>Line <%= i + 1 %> of scrollable content</div>
+                <div><%= t("static.components_scroll_line", line: i + 1) %></div>
               <% end %>
             </div>
           </div>
@@ -169,7 +169,7 @@
 
             <div class="thin-x-scrollbar w-full h-full p-2">
               <% 4.times do |i| %>
-                <div class="whitespace-nowrap">Line <%= i + 1 %> of scrollable content that is very long</div>
+                <div class="whitespace-nowrap"><%= t("static.components_scroll_line_long", line: i + 1) %></div>
               <% end %>
             </div>
           </div>
@@ -177,7 +177,7 @@
       </div>
 
       <div class="space-y-4">
-        <h2>Buttons</h2>
+        <h2><%= t("static.components_buttons") %></h2>
 
         <div class="grid grid-cols-5 place-items-center gap-2">
           <span></span>
@@ -188,10 +188,10 @@
 
           <% %w[button-lg button-md button-sm button-xs button-xxs].each do |size| %>
             <span>.<%= size %></span>
-            <%= link_to "Save", "#", class: "w-min button-primary #{size}" %>
-            <%= link_to "Save", "#", class: "w-min button-outline-primary #{size}" %>
-            <%= link_to "Save", "#", class: "w-min button-primary #{size}", disabled: true %>
-            <%= link_to "Save", "#", class: "w-min button-outline-primary #{size}", disabled: true %>
+            <%= link_to t("static.components_save"), "#", class: "w-min button-primary #{size}" %>
+            <%= link_to t("static.components_save"), "#", class: "w-min button-outline-primary #{size}" %>
+            <%= link_to t("static.components_save"), "#", class: "w-min button-primary #{size}", disabled: true %>
+            <%= link_to t("static.components_save"), "#", class: "w-min button-outline-primary #{size}", disabled: true %>
           <% end %>
         </div>
 
@@ -204,16 +204,16 @@
 
           <% %w[button-lg button-md button-sm button-xs button-xxs].each do |size| %>
             <span>.<%= size %></span>
-            <%= link_to "Delete", "#", class: "w-min button-danger #{size}" %>
-            <%= link_to "Delete", "#", class: "w-min button-outline-danger #{size}" %>
-            <%= link_to "Delete", "#", class: "w-min button-danger #{size}", disabled: true %>
-            <%= link_to "Delete", "#", class: "w-min button-outline-danger #{size}", disabled: true %>
+            <%= link_to t("static.components_delete"), "#", class: "w-min button-danger #{size}" %>
+            <%= link_to t("static.components_delete"), "#", class: "w-min button-outline-danger #{size}" %>
+            <%= link_to t("static.components_delete"), "#", class: "w-min button-danger #{size}", disabled: true %>
+            <%= link_to t("static.components_delete"), "#", class: "w-min button-outline-danger #{size}", disabled: true %>
           <% end %>
         </div>
       </div>
 
       <div class="space-y-4">
-        <h2>Icons</h2>
+        <h2><%= t("static.components_icons") %></h2>
 
         <div class="flex flex-wrap gap-2">
             <% IconHelper.svg_icon_methods.each do |method_name| %>
@@ -226,7 +226,7 @@
       </div>
 
       <div class="space-y-4">
-        <h2>External Site Icons</h2>
+        <h2><%= t("static.components_external_site_icons") %></h2>
 
         <div class="flex flex-wrap gap-2">
           <% IconHelper::SITE_ICONS.keys.each do |site| %>

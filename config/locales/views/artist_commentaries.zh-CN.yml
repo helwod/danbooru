@@ -1,0 +1,54 @@
+"zh-CN":
+  artist_commentaries:
+    index:
+      title: "画师说明"
+      search_text: "内容"
+      search_tags: "标签"
+      original: "有原文？"
+      translated: "有译文？"
+      deleted: "已删除？"
+      'yes': "是"
+      'no': "否"
+      order_newest: "最新"
+      order_oldest: "最早"
+      order_updated: "最近更新"
+      order_uploaded: "上传时间"
+      submit: "搜索"
+      column_post: "作品"
+      column_original: "原文"
+      column_translated: "译文"
+    show:
+      heading: "画师说明"
+      original: "原文"
+      translated: "译文"
+    commentary_tags:
+      commentary: "画师说明"
+      check_commentary: "待核对"
+      partial_commentary: "部分说明"
+      commentary_request: "请求补充"
+      untranslatable_commentary: "无法翻译"
+    form:
+      intro_html: "如果画师为这张图补充了相关信息，你可以把它复制到这里（%{link}）。"
+      learn_more: "了解更多"
+      copy_from: "复制来源"
+      source: "来源页"
+      post: "作品"
+      source_placeholder: "输入来源链接"
+      post_placeholder: "输入作品 ID"
+      fetch: "获取"
+      none: "无"
+      cancel: "取消"
+    secondary_links:
+      commentaries: "画师说明"
+      changes: "变更"
+      translation_requests: "翻译请求"
+      help: "帮助"
+
+  activerecord:
+    attributes:
+      artist_commentary:
+        original_title: "原文标题"
+        original_description: "原文内容"
+        translated_title: "译文标题"
+        translated_description: "译文内容"
+        commentary_tags: "说明类型"

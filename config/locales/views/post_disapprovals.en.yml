@@ -1,0 +1,46 @@
+en:
+  post_disapprovals:
+    create:
+      error_on_post: "Error on post #%{id}: %{message}"
+      error: "Error: %{message}"
+      skipped: "Post #%{id} was skipped."
+      rejected: "Post #%{id} was rejected."
+    index:
+      title: "Disapprovals"
+      search_creator: "Creator"
+      search_post_id: "Post ID"
+      search_tags: "Tags"
+      search_message: "Message"
+      search_reason: "Reason"
+      has_message: "Has message?"
+      'yes': "Yes"
+      'no': "No"
+      order_id: "ID"
+      order_post_id: "Post ID"
+      submit: "Search"
+      column_post: "Post"
+      column_message: "Message"
+      column_reason: "Reason"
+      column_created: "Created"
+      post_link: "post #%{id}"
+    counts:
+      reviewed: "It has been reviewed by %{count} approver(s)."
+      breaks_rules: "%{count} believe it breaks the rules."
+      poor_quality: "%{count} believe it has poor quality."
+      messages: "Messages:"
+    dialog:
+      title: "Detailed Rejection"
+      intro: "You can supply a short message to the uploader explaining why you rejected this upload."
+      ctrl_enter: "Ctrl+Enter to submit"
+      reject: "Reject"
+      cancel: "Cancel"
+    reasons:
+      disinterest: "Disinterest"
+      poor_quality: "Poor quality"
+      breaks_rules: "Breaks rules"
+
+  activerecord:
+    attributes:
+      post_disapproval:
+        reason: "Reason"
+        message: "Message"

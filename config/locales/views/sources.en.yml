@@ -1,0 +1,14 @@
+en:
+  sources:
+    show:
+      title: "Source Info"
+      placeholder: "Paste link here"
+      submit: "View"
+      published: "Published: %{time}"
+      updated: "Updated: %{time}"
+      source_html: "Source: %{link}"
+
+  activerecord:
+    attributes:
+      source:
+        url: "URL"

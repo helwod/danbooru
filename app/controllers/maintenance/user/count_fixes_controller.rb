@@ -10,7 +10,7 @@ module Maintenance
       def create
         @user = authorize CurrentUser.user, :fix_counts?
         CurrentUser.user.refresh_counts!
-        flash[:notice] = "Counts have been refreshed"
+        flash[:notice] = I18n.t("maintenance.flash.counts_refreshed")
         redirect_to profile_path
       end
     end

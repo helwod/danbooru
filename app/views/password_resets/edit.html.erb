@@ -1,25 +1,25 @@
-<% page_title "Reset Password" %>
+<% page_title t("password_resets.title") %>
 
 <div id="c-password-resets">
   <div id="a-edit">
     <div class="card mt-8 p-4 max-w-480px mx-auto flex flex-col items-center">
-      <h1 class="pb-4">Reset Password</h1>
+      <h1 class="pb-4"><%= t("password_resets.title") %></h1>
 
       <% if @user.totp.present? %>
-        <p class="w-full">Enter the 6-digit code from your authenticator app to change your password.</p>
+        <p class="w-full"><%= t("password_resets.totp_hint") %></p>
       <% end %>
 
       <%= edit_form_for(@user, url: password_reset_path, method: "put", html: { class: "w-full stacked-form stacked-hints", "data-validate-form": "true" }) do |f| %>
         <%= f.input :signed_id, as: :hidden, input_html: { value: params.dig(:user, :signed_id) }  %>
 
         <% if @user.totp.present? %>
-          <%= f.input :verification_code, placeholder: "123456", required: true, minlength: 6, maxlength: User::BACKUP_CODE_LENGTH, pattern: '\d+', input_html: { value: nil }, hint: "Lost your phone? You can enter a backup code instead." %>
+          <%= f.input :verification_code, placeholder: "123456", required: true, minlength: 6, maxlength: User::BACKUP_CODE_LENGTH, pattern: '\d+', input_html: { value: nil }, hint: t("password_resets.backup_code_hint") %>
         <% end %>
 
-        <%= f.input :password, required: true, label: "New password", input_html: { autocomplete: "new-password", minlength: User::MIN_PASSWORD_LENGTH } %>
-        <%= f.input :password_confirmation, required: true, label: "Confirm password", input_html: { autocomplete: "new-password" } %>
-        <p class="text-sm text-muted">Resetting your password will log you out on all other devices.</p>
-        <%= f.submit_button "Save" %>
+        <%= f.input :password, required: true, label: t("password_resets.new_password"), input_html: { autocomplete: "new-password", minlength: User::MIN_PASSWORD_LENGTH } %>
+        <%= f.input :password_confirmation, required: true, label: t("password_resets.confirm_password"), input_html: { autocomplete: "new-password" } %>
+        <p class="text-sm text-muted"><%= t("password_resets.logout_notice") %></p>
+        <%= f.submit_button t("password_resets.save") %>
       <% end %>
     </div>
   </div>

@@ -1,14 +1,14 @@
 <div class="similar-images-component" x-data="{ showLowSimilarity: false }">
-  <h2>Similar Posts</h2>
+  <h2><%= I18n.t("components.similar_images.heading") %></h2>
 
   <p class="fineprint">
     <% if high_similarity_matches.blank? %>
-      No similar posts found.
+      <%= I18n.t("components.similar_images.empty") %>
     <% end %>
 
     <% if low_similarity_matches.present? %>
-      <%= link_to "Show #{pluralize(low_similarity_matches.length, "low similarity match")}", "#", "x-on:click.prevent": "showLowSimilarity = true", "x-show": "!showLowSimilarity" %>
-      <%= link_to "Hide #{pluralize(low_similarity_matches.length, "low similarity match")}", "#", "x-on:click.prevent": "showLowSimilarity = false", "x-show": "showLowSimilarity", "x-cloak": true %>
+      <%= link_to I18n.t("components.similar_images.show_low", count: low_similarity_matches.length), "#", "x-on:click.prevent": "showLowSimilarity = true", "x-show": "!showLowSimilarity" %>
+      <%= link_to I18n.t("components.similar_images.hide_low", count: low_similarity_matches.length), "#", "x-on:click.prevent": "showLowSimilarity = false", "x-show": "showLowSimilarity", "x-cloak": true %>
     <% end %>
 
     <% if any_similarity_matches.any? %>
@@ -37,7 +37,7 @@
             </div>
 
             <div>
-              <%= link_to "#{match[:score].round}% similar", iqdb_queries_path(post_id: post.id), class: "inactive-link iqdb-similarity-score" %>
+              <%= link_to I18n.t("components.similar_images.score", score: match[:score].round), iqdb_queries_path(post_id: post.id), class: "inactive-link iqdb-similarity-score" %>
             </div>
           </div>
         <% end %>

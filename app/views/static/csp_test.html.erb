@@ -1,6 +1,6 @@
 <%# A page for testing the Content-Security-Policy. Used by test/system/content_security_policy_test.rb. %>
 <%# Everything from blocked.example.com should be blocked, and everything else should be allowed. %>
-<% page_title "Content-Security-Policy Test" %>
+<% page_title t("static.csp_test_title") %>
 <% storage_url = Danbooru.config.storage_manager.file_url("csp-test") %>
 
 <% content_for(:html_header) do %>
@@ -19,9 +19,9 @@
 
 <div id="c-static">
   <div id="a-csp-test" class="prose">
-    <h1>Content-Security-Policy Test</h1>
+    <h1><%= t("static.csp_test_title") %></h1>
 
-    <h2>Allowed</h2>
+    <h2><%= t("static.csp_allowed") %></h2>
     <img src="/favicon.svg" width="16" height="16">
     <img src="<%= storage_url %>.png">
     <video src="<%= storage_url %>.mp4"></video>
@@ -29,20 +29,20 @@
     <iframe src="https://challenges.cloudflare.com/csp-test"></iframe>
     <script src="https://challenges.cloudflare.com/csp-test.js"></script>
     <script src="https://static.cloudflareinsights.com/csp-test.js"></script>
-    <p style="font-style: italic">An inline style attribute.</p>
+    <p style="font-style: italic"><%= t("static.csp_inline_style") %></p>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=CSP+Test">
-    <p style="font-family: csp-test-data-font">A data: font.</p>
-    <p style="font-family: csp-test-google-font">A Google font.</p>
+    <p style="font-family: csp-test-data-font"><%= t("static.csp_data_font") %></p>
+    <p style="font-family: csp-test-google-font"><%= t("static.csp_google_font") %></p>
 
-    <h2>Blocked</h2>
+    <h2><%= t("static.csp_blocked") %></h2>
     <script>cspTest.allowed.inlineScriptWithoutNonce = true;</script>
     <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onload="cspTest.allowed.inlineEventHandler = true">
-    <p><a href="javascript:void(cspTest.allowed.javascriptURL = true)">javascript: link</a></p>
+    <p><a href="javascript:void(cspTest.allowed.javascriptURL = true)"><%= t("static.csp_javascript_link") %></a></p>
     <img src="https://blocked.example.com/image.png">
     <video src="https://blocked.example.com/video.mp4"></video>
     <script src="https://blocked.example.com/script.js"></script>
     <link rel="stylesheet" href="https://blocked.example.com/style.css">
-    <p style="font-family: csp-test-blocked-font">An external font.</p>
+    <p style="font-family: csp-test-blocked-font"><%= t("static.csp_external_font") %></p>
     <iframe src="https://blocked.example.com/frame"></iframe>
     <object data="https://blocked.example.com/object.swf" type="application/x-shockwave-flash"></object>
   </div>

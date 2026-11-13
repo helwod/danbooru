@@ -1,0 +1,27 @@
+"zh-CN":
+  tag_relationships:
+    alias_and_implication:
+      learn_more: "了解更多"
+      aliased_to_html: "此标签已作为别名指向 %{tag}（%{learn_more}）。"
+      tags_aliased_to_this_html: "以下标签作为别名指向此标签：%{tags}（%{learn_more}）。"
+      automatic_adds_html: "此标签会自动添加 %{tags}（%{learn_more}）。"
+      implicates_html: "此标签会关联 %{tags}（%{learn_more}）。"
+      tags_implicating_this_html: "以下标签会关联此标签：%{tags}（%{learn_more}）。"
+    search:
+      from: "原标签"
+      to: "目标标签"
+      reason: "理由"
+      from_category: "原标签分类"
+      to_category: "目标标签分类"
+      status: "状态"
+      order: "排序"
+      order_created: "创建时间"
+      order_updated: "更新时间"
+      order_name: "名称"
+      order_from_tag_count: "原标签作品数"
+      order_to_tag_count: "目标标签作品数"
+      submit: "搜索"
+    status:
+      active: "生效中"
+      deleted: "已删除"
+      retired: "已停用"

@@ -1,0 +1,12 @@
+en:
+  moderator:
+    post_banned: "Post was banned"
+    post_unbanned: "Post was unbanned"
+    post_permanently_deleted: "Post was permanently deleted"
+    move_favorites_title: "Move Favorites to Parent"
+    move_favorites_confirm: "This will move all the post's favorites to its parent post. Are you sure?"
+    submit: "Submit"
+    cancel: "Cancel"
+    flash:
+      post_banned: "Post was banned"
+      post_unbanned: "Post was unbanned"

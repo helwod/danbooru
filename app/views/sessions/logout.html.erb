@@ -1,5 +1,5 @@
-<% page_title "Logout" %>
+<% page_title t("sessions.logout") %>
 
 <%= simple_form_for(:session, url: session_path, method: "delete", html: { id: "logout", class: "hidden", "data-autosubmit": true }) do |f| %>
-  <%= f.submit "Logout" %>
+  <%= f.submit t("sessions.logout") %>
 <% end %>

@@ -1,0 +1,4 @@
+en:
+  forum_post:
+    cannot_delete_original: "Can't delete original post without deleting the topic first"
+    cannot_undelete_original: "Can't undelete post without undeleting the topic first"

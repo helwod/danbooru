@@ -1,0 +1,64 @@
+"zh-CN":
+  favorite_groups:
+    destroy:
+      deleted: "收藏夹已删除。"
+    remove_post:
+      removed: "已从收藏夹 %{name} 移除该作品"
+    add_post:
+      added: "已把该作品加入收藏夹 %{name}"
+    edit:
+      title: "编辑收藏夹：%{name}"
+    new:
+      title: "新建收藏夹"
+    show:
+      page_title: "收藏夹：%{name}"
+      heading: "收藏夹："
+      creator: "创建者：%{name}"
+    form:
+      posts: "作品"
+      private: "私密"
+      private_hint: "不允许其他人查看这个收藏夹。"
+      private_locked_hint_html: "不允许其他人查看这个收藏夹。注意：关闭后必须%{upgrade_link}才能重新开启。（%{learn_more}）"
+      upgrading_to_gold: "升级到黄金账户"
+      learn_more: "了解更多"
+      upgrade_to_enable: "升级到黄金账户以启用私密收藏夹"
+    add_to_dialog:
+      new_group_html: "把这个作品加入新的收藏夹（%{link}）："
+      existing_group: "或加入已有的收藏夹："
+    index:
+      search_name: "名称"
+      search_creator: "创建者"
+      order_created: "创建时间"
+      order_updated: "更新时间"
+      order_name: "名称"
+      order_post_count: "作品数"
+      submit: "搜索"
+      column_name: "名称"
+      column_creator: "创建者"
+      column_created: "创建时间"
+      column_updated: "更新时间"
+      page: "第 %{page} 页"
+      edit: "编辑"
+      delete: "删除"
+      confirm_delete: "确定要删除这个收藏夹吗？此操作无法撤销。"
+    secondary_links:
+      listing: "全部收藏夹"
+      new: "新建"
+      help: "帮助"
+      show: "查看"
+      posts: "作品"
+      edit: "编辑"
+      delete: "删除"
+      order: "排序"
+      confirm_delete: "确定要删除这个收藏夹吗？"
+    flash:
+      updated: "收藏夹已更新"
+      deleted: "收藏夹已删除"
+
+  activerecord:
+    attributes:
+      favorite_group:
+        name: "名称"
+        post_count: "作品数"
+        post_ids_string: "作品"
+        is_private: "私密"

@@ -199,11 +199,11 @@ class Tag < ApplicationRecord
 
     def validate_category
       if category != Tag.categories.artist && artist.present?
-        errors.add(:base, "Artist tags must be in the Artist category")
+        errors.add(:base, I18n.t("tag.artist_tag_wrong_category"))
       end
 
       if is_aliased? && category != aliased_tag.category
-        errors.add(:base, "Can't change the category of an aliased tag")
+        errors.add(:base, I18n.t("tag.cannot_change_aliased_category"))
       end
     end
   end

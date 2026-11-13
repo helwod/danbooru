@@ -1,4 +1,4 @@
-<p>Add this post to a new favorite group (<%= link_to_wiki "help:favorite_groups" %>):</p>
+<p><%= t("favorite_groups.add_to_dialog.new_group_html", link: link_to_wiki("help:favorite_groups")).html_safe %></p>
 
 <% new_favorite_group = FavoriteGroup.new(creator: CurrentUser.user) %>
 <%= edit_form_for(new_favorite_group, html: { class: "one-line-form" }) do |f| %>
@@ -8,7 +8,7 @@
 
   <% if policy(new_favorite_group).can_enable_privacy? %>
     <div>
-      <%= f.input :is_private, label: "Private", as: :boolean, hint: "Don't allow others to view this favgroup." %>
+      <%= f.input :is_private, label: t("favorite_groups.form.private"), as: :boolean, hint: t("favorite_groups.form.private_hint") %>
     </div>
   <% end %>
 <% end %>
@@ -16,7 +16,7 @@
 <% if CurrentUser.favorite_groups.present? %>
   <hr class="border">
 
-  <p class="mt-2">Or add it to an existing favorite group:</p>
+  <p class="mt-2"><%= t("favorite_groups.add_to_dialog.existing_group") %></p>
 
   <% CurrentUser.favorite_groups.each_with_index do |favgroup, i| %>
     <div>

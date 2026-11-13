@@ -1,0 +1,3 @@
+en:
+  tag_relationship:
+    cannot_relate_to_self: "Cannot alias or implicate a tag to itself"

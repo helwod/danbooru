@@ -40,6 +40,6 @@ class SiteCredentialsController < ApplicationController
     @site_credential.updater = CurrentUser.user
     @site_credential.destroy
 
-    respond_with(@site_credential, notice: "Credential deleted")
+    respond_with(@site_credential, notice: I18n.t("site_credentials.flash.deleted"))
   end
 end

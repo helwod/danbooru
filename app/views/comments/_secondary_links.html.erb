@@ -1,12 +1,12 @@
 <% content_for(:secondary_links) do %>
   <%= quick_search_form_for(:body_matches, comments_path, "comments") %>
-  <%= subnav_link_to "Comments", comments_path %>
+  <%= subnav_link_to t("comments.index.all"), comments_path, id: "comments" %>
   <% if !CurrentUser.user.is_anonymous? %>
-    <%= subnav_link_to "On My Uploads", comments_path(search: { post_tags_match: "user:#{CurrentUser.user.name}" }) %>
+    <%= subnav_link_to t("comments.index.on_my_uploads"), comments_path(search: { post_tags_match: "user:#{CurrentUser.user.name}" }), id: "on-my-uploads" %>
   <% end %>
-  <%= subnav_link_to "Search", comments_path(group_by: "comment") %>
+  <%= subnav_link_to t("comments.index.search"), comments_path(group_by: "comment"), id: "search" %>
   <% if policy(CommentVote).can_see_votes? %>
-    <%= subnav_link_to "Votes", comment_votes_path %>
+    <%= subnav_link_to t("comments.index.votes"), comment_votes_path, id: "votes" %>
   <% end %>
-  <%= subnav_link_to "Help", wiki_page_path("help:comments") %>
+  <%= subnav_link_to t("comments.index.help"), wiki_page_path("help:comments"), id: "help" %>
 <% end %>

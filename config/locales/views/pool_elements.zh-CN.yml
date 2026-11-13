@@ -1,0 +1,7 @@
+"zh-CN":
+  pool_elements:
+    new:
+      pool_name: "合集名称"
+      ctrl_enter: "Ctrl+Enter 提交"
+      add: "添加"
+      cancel: "取消"

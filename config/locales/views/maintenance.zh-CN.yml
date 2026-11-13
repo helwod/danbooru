@@ -1,0 +1,11 @@
+"zh-CN":
+  maintenance:
+    refresh_counts: "刷新统计"
+    refresh_counts_body: "如果你认为个人资料页上的上传数或作品变更数不正确，可以申请重新统计刷新。"
+    continue: "继续"
+    unsubscribe: "退订邮件"
+    unsubscribe_confirm: "确定要停止接收所有邮件通知吗？"
+    unsubscribed: "你已退订所有邮件通知。"
+    confirm_yes: "确定"
+    flash:
+      counts_refreshed: "计数已刷新"

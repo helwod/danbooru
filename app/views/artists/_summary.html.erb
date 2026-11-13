@@ -2,11 +2,11 @@
 
 <div class="flex items-center gap-2">
   <% if artist.is_banned? %>
-    <span class="banned-artist-label text-xxs px-2 rounded">BANNED</span>
+    <span class="banned-artist-label text-xxs px-2 rounded"><%= t("artists.summary.banned") %></span>
   <% end %>
 
   <% if artist.is_deleted? %>
-    <span class="deleted-artist-label text-xxs px-2 rounded">DELETED</span>
+    <span class="deleted-artist-label text-xxs px-2 rounded"><%= t("artists.summary.deleted") %></span>
   <% end %>
 
   <%= link_to artist.pretty_name, posts_path(tags: artist.name), class: [tag_class(artist.tag), "heading text-xl"] %>
@@ -15,10 +15,10 @@
 </div>
 
 <% if artist.is_banned? && !policy(artist).can_view_banned? %>
-  <p>This page has been removed because of a takedown request.</p>
+  <p><%= t("artists.summary.takedown_notice") %></p>
 <% else %>
   <% if artist.new_record? %>
-    <p>This artist entry does not exist. <%= link_to "Create new artist entry", new_artist_path(artist: { name: artist.name }), rel: "nofollow" %>.</p>
+    <p><%= t("artists.summary.not_exist_html", link: link_to(t("artists.summary.create_new"), new_artist_path(artist: { name: artist.name }), rel: "nofollow")).html_safe %></p>
   <% else %>
     <div class="flex flex-col gap-2">
       <% if artist.other_names.present? %>
@@ -31,14 +31,14 @@
 
       <% if artist.group_name.present? %>
         <div>
-          <strong>Group</strong>
+          <strong><%= t("artists.summary.group") %></strong>
           <%= link_to artist.group_name, artists_path(search: { group_name: artist.group_name }), class: "artist-other-name chip-primary text-sm truncate" %>
         </div>
       <% end %>
 
       <% if artist.members.present? %>
         <div>
-          <strong>Members</strong>
+          <strong><%= t("artists.summary.members") %></strong>
           <% artist.members.each do |member| %>
             <%= link_to member.name, artists_path(search: { name: member.name }), class: "artist-other-name chip-primary text-sm truncate" %>
           <% end %>
@@ -54,7 +54,7 @@
 
     <% if artist.urls.present? %>
       <div class="my-4">
-        <h6>URLs</h6>
+        <h6><%= t("artists.summary.urls") %></h6>
 
         <ul>
           <% artist.sorted_urls.each do |url| %>
@@ -73,10 +73,10 @@
 
     <p>
       <% if artist.wiki_page.present? %>
-        <%= link_to "Edit wiki", edit_wiki_page_path(artist.wiki_page), id: "view-wiki-link" %> |
+        <%= link_to t("artists.summary.edit_wiki"), edit_wiki_page_path(artist.wiki_page), id: "view-wiki-link" %> |
       <% end %>
 
-      <%= link_to "Edit artist", edit_artist_path(artist), id: "view-artist-link" %>
+      <%= link_to t("artists.summary.edit_artist"), edit_artist_path(artist), id: "view-artist-link" %>
     </p>
   <% end %>
 

@@ -9,9 +9,9 @@
 
     <% if policy(forum_post).votable? && !vote_by_current_user.present? %>
       <span class="vote-buttons chip-primary flex items-center gap-1">
-        <%= link_to upvote_icon, forum_post_votes_path(forum_post_id: forum_post.id, format: "js"), remote: true, method: :post, data: { params: "forum_post_vote[score]=1" }, title: "Vote up" %>
-        <%= link_to meh_icon, forum_post_votes_path(forum_post_id: forum_post.id, format: "js"), remote: true, method: :post, data: { params: "forum_post_vote[score]=0" }, title: "Vote meh" %>
-        <%= link_to downvote_icon, forum_post_votes_path(forum_post_id: forum_post.id, format: "js"), remote: true, method: :post, data: { params: "forum_post_vote[score]=-1" }, title: "Vote down" %>
+        <%= link_to upvote_icon, forum_post_votes_path(forum_post_id: forum_post.id, format: "js"), remote: true, method: :post, data: { params: "forum_post_vote[score]=1" }, title: t("forum_post_votes.list.vote_up") %>
+        <%= link_to meh_icon, forum_post_votes_path(forum_post_id: forum_post.id, format: "js"), remote: true, method: :post, data: { params: "forum_post_vote[score]=0" }, title: t("forum_post_votes.list.vote_meh") %>
+        <%= link_to downvote_icon, forum_post_votes_path(forum_post_id: forum_post.id, format: "js"), remote: true, method: :post, data: { params: "forum_post_vote[score]=-1" }, title: t("forum_post_votes.list.vote_down") %>
       </span>
     <% end %>
 

@@ -1,0 +1,13 @@
+en:
+  post_approvals:
+    create:
+      error_on_post: "Error on post #%{id}: %{message}"
+      error: "Error: %{message}"
+      approved: "Post #%{id} was approved."
+    index:
+      title: "Approvals"
+      search_approver: "Approver"
+      search_tags: "Tags"
+      submit: "Search"
+      column_post: "Post"
+      column_approver: "Approver"

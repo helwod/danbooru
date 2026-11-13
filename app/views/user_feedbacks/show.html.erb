@@ -1,16 +1,16 @@
-<% page_title "Feedback: @#{@user_feedback.user.name}" %>
+<% page_title t("user_feedbacks.show_title", name: @user_feedback.user.name) %>
 <%= render "secondary_links" %>
 
 <div id="c-user-feedbacks">
   <div id="a-show">
-    <h1>User Feedback For <%= link_to_user @user_feedback.user %></h1>
+    <h1><%= t("user_feedbacks.show_heading_html", user: link_to_user(@user_feedback.user)) %></h1>
 
     <ul>
-      <li><strong>Creator</strong> <%= link_to_user @user_feedback.creator %></li>
-      <li><strong>Date</strong> <%= @user_feedback.created_at %></li>
-      <li><strong>Category</strong> <%= @user_feedback.category %></li>
+      <li><strong><%= t("user_feedbacks.creator") %></strong> <%= link_to_user @user_feedback.creator %></li>
+      <li><strong><%= t("user_feedbacks.date") %></strong> <%= @user_feedback.created_at %></li>
+      <li><strong><%= t("user_feedbacks.category") %></strong> <%= @user_feedback.category %></li>
       <li>
-        <strong>Message</strong>
+        <strong><%= t("user_feedbacks.message") %></strong>
         <div class="prose">
           <%= @user_feedback.dtext_body.format_text %>
         </div>

@@ -1,0 +1,18 @@
+en:
+  ip_addresses:
+    title: "IP Address: %{ip}"
+    location: "Location"
+    network: "Network"
+    info: "info"
+    proxy: "Proxy?"
+    tor: "Tor?"
+    ip_banned: "IP Banned?"
+    asn: "ASN"
+    organization: "Organization"
+    mobile_carrier: "Mobile Carrier"
+    details: "Details"
+    yes_label: "Yes"
+    no_label: "No"
+    ip_bans: "IP Bans"
+    bans: "Bans"
+    feedbacks: "Feedbacks"

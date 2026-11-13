@@ -7,13 +7,13 @@
     </div>
 
     <% if media_asset.removed? %>
-      <p>Image deleted.</p>
+      <p><%= I18n.t("components.media_asset.removed") %></p>
     <% elsif media_asset.processing? %>
       <p><%= spinner_icon(class: "h-8") %></p>
     <% elsif media_asset.failed? %>
-      <p>Upload failed.</p>
+      <p><%= I18n.t("components.media_asset.failed") %></p>
     <% elsif !media_asset.active? || !policy(media_asset).can_see_image? %>
-      <p>Image unavailable.</p>
+      <p><%= I18n.t("components.media_asset.unavailable") %></p>
     <% elsif is_image? %>
       <%= tag.img src: variant(:original).file_url, width: image_width, height: image_height, draggable: "false", class: "media-asset-image" -%>
     <% elsif is_video? || is_ugoira? %>

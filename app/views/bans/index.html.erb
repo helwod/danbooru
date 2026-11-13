@@ -1,30 +1,30 @@
 <div id="c-bans">
   <div id="a-index">
-    <h1>Bans</h1>
+    <h1><%= t("bans.title") %></h1>
 
     <%= render "search" %>
 
     <%= table_for @bans, class: "striped autofit" do |t| %>
-      <% t.column "Banned User" do |ban| %>
+      <% t.column t("bans.banned_user"), column: "banned-user" do |ban| %>
         <%= link_to_user(ban.user) %>
         <%= link_to "»", bans_path(search: search_params.merge(user_name: ban.user.name)) %>
       <% end %>
-      <% t.column "Reason", td: {class: "col-expand"} do |ban| %>
+      <% t.column t("bans.reason"), td: {class: "col-expand"}, column: "reason" do |ban| %>
         <div class="prose">
           <%= ban.dtext_reason.format_text %>
         </div>
       <% end %>
-      <% t.column "Duration" do |ban| %>
+      <% t.column t("bans.duration"), column: "duration" do |ban| %>
         <%= ban.humanized_duration %>
       <% end %>
-      <% t.column "Banner" do |ban| %>
+      <% t.column t("bans.banner"), column: "banner" do |ban| %>
         <%= link_to_user ban.banner %>
         <%= link_to "»", bans_path(search: { banner_name: ban.banner.name }) %>
         <div><%= time_ago_in_words_tagged(ban.created_at) %></div>
       <% end %>
       <% t.column column: "control" do |ban| %>
         <% if policy(ban).update? %>
-          <%= link_to "Edit", edit_ban_path(ban), class: "button-primary button-sm", disabled: ban.expired? %>
+          <%= link_to t("bans.edit_link"), edit_ban_path(ban), class: "button-primary button-sm", disabled: ban.expired? %>
         <% end %>
       <% end %>
     <% end %>

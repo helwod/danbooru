@@ -1,15 +1,15 @@
-<% page_title "Tag: #{@tag.pretty_name.startcase}" %>
+<% page_title t("tags.show.page_title", name: @tag.pretty_name.startcase) %>
 <%= render "secondary_links" %>
 
 <div id="c-tags">
   <div id="a-show">
-    <h1>Tag: <%= @tag.name %></h1>
+    <h1><%= t("tags.edit.title", name: @tag.name) %></h1>
 
     <ul>
-      <li>Count: <%= @tag.post_count %></li>
-      <li>Category: <%= @tag.category_name %></li>
+      <li><%= t("tags.show.count", count: @tag.post_count) %></li>
+      <li><%= t("tags.show.category", name: @tag.category_name) %></li>
       <% if @tag.is_deprecated? %>
-        <li> This tag is <%= link_to "deprecated", wiki_page_path("help:deprecation_notice") %> and can't be added to new posts.</li>
+        <li> <%= t("tags.show.deprecated_html", link: link_to(t("tags.show.deprecated"), wiki_page_path("help:deprecation_notice"))).html_safe %></li>
       <% end %>
     </ul>
   </div>

@@ -1,109 +1,109 @@
-<% page_title "Keyboard Shortcuts" %>
+<% page_title t("static.keyboard_shortcuts_title") %>
 
 <div id="c-static">
   <div id="a-keyboard-shortcuts">
-    <h1>Keyboard Shortcuts</h1>
+    <h1><%= t("static.keyboard_shortcuts_title") %></h1>
 
     <div class="md:flex gap-4 space-y-4 md:space-y-0 fixed-width-container">
       <section class="flex-auto">
         <div>
-          <h2>Global</h2>
+          <h2><%= t("static.keyboard_global") %></h2>
           <ul class="space-y-2">
-            <li><kbd class="key">q</kbd> Focus search box</li>
-            <li><kbd class="key">w</kbd> Scroll up</li>
-            <li><kbd class="key">s</kbd> Scroll down</li>
-            <li><kbd class="key">b</kbd> Toggle blacklist</li>
-            <li><kbd class="key">a</kbd>, <kbd class="key">⇦</kbd> Previous page</li>
-            <li><kbd class="key">d</kbd>, <kbd class="key">⇨</kbd> Next page</li>
-            <li><kbd class="key">ctrl</kbd> / <kbd class="key">⌘</kbd> + <kbd class="key">enter</kbd> Submit form</li>
-            <li><kbd class="key">?</kbd> Keyboard shortcuts</li>
+            <li><kbd class="key">q</kbd> <%= t("static.kbd_focus_search") %></li>
+            <li><kbd class="key">w</kbd> <%= t("static.kbd_scroll_up") %></li>
+            <li><kbd class="key">s</kbd> <%= t("static.kbd_scroll_down") %></li>
+            <li><kbd class="key">b</kbd> <%= t("static.kbd_toggle_blacklist") %></li>
+            <li><kbd class="key">a</kbd>, <kbd class="key">⇦</kbd> <%= t("static.kbd_previous_page") %></li>
+            <li><kbd class="key">d</kbd>, <kbd class="key">⇨</kbd> <%= t("static.kbd_next_page") %></li>
+            <li><kbd class="key">ctrl</kbd> / <kbd class="key">⌘</kbd> + <kbd class="key">enter</kbd> <%= t("static.kbd_submit_form") %></li>
+            <li><kbd class="key">?</kbd> <%= t("static.keyboard_shortcuts_title") %></li>
           </ul>
         </div>
 
         <div>
-          <h2>Navigation (<kbd class="key">g</kbd> then ...)</h2>
+          <h2><%= t("static.keyboard_navigation_html", key: tag.kbd("g", class: "key")).html_safe %></h2>
           <ul class="space-y-2">
-            <li><kbd class="key">p</kbd> Posts</li>
-            <li><kbd class="key">c</kbd> Comments</li>
-            <li><kbd class="key">n</kbd> Notes</li>
-            <li><kbd class="key">a</kbd> Artists</li>
-            <li><kbd class="key">t</kbd> Tags</li>
-            <li><kbd class="key">l</kbd> Pools</li>
-            <li><kbd class="key">w</kbd> Wiki</li>
-            <li><kbd class="key">f</kbd> Forum</li>
-            <li><kbd class="key">m</kbd> My Account</li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="flex-auto space-y-8">
-        <div>
-          <h2>Posts</h2>
-          <ul class="space-y-2">
-            <li><kbd class="key">r</kbd> Go to random post</li>
-            <li><kbd class="key">e</kbd> Edit artist / wiki / pool / favorite group</li>
-            <li><kbd class="key">1</kbd>, <kbd class="key">2</kbd>, <kbd class="key">3</kbd>... Switch tag script</li>
-          </ul>
-        </div>
-
-        <div>
-          <h2>Post</h2>
-          <ul class="space-y-2">
-            <li><kbd class="key">n</kbd> New note</li>
-            <li><kbd class="key">e</kbd> Edit tags</li>
-            <li><kbd class="key">shift</kbd>+<kbd class="key">e</kbd> Edit tags in dialog window</li>
-            <li><kbd class="key">shift</kbd>+<kbd class="key">o</kbd> Approve post</li>
-            <li><kbd class="key">f</kbd> Favorite post</li>
-            <li><kbd class="key">shift</kbd>+<kbd class="key">f</kbd> Unfavorite post</li>
-            <li><kbd class="key">g</kbd> Add post to favorite group</li>
-            <li><kbd class="key">1</kbd>, <kbd class="key">2</kbd>, <kbd class="key">3</kbd>... Add post to favorite group #N</li>
-            <li><kbd class="key">p</kbd> Add to pool</li>
-            <li><kbd class="key">c</kbd> Add commentary</li>
-            <li><kbd class="key">v</kbd> Toggle between sample and original image</li>
-            <li><kbd class="key">z</kbd> Toggle between fit-to-window and full size</li>
+            <li><kbd class="key">p</kbd> <%= t("static.kbd_nav_posts") %></li>
+            <li><kbd class="key">c</kbd> <%= t("static.kbd_nav_comments") %></li>
+            <li><kbd class="key">n</kbd> <%= t("static.kbd_nav_notes") %></li>
+            <li><kbd class="key">a</kbd> <%= t("static.kbd_nav_artists") %></li>
+            <li><kbd class="key">t</kbd> <%= t("static.kbd_nav_tags") %></li>
+            <li><kbd class="key">l</kbd> <%= t("static.kbd_nav_pools") %></li>
+            <li><kbd class="key">w</kbd> <%= t("static.kbd_nav_wiki") %></li>
+            <li><kbd class="key">f</kbd> <%= t("static.kbd_nav_forum") %></li>
+            <li><kbd class="key">m</kbd> <%= t("static.kbd_nav_account") %></li>
           </ul>
         </div>
       </section>
 
       <section class="flex-auto space-y-8">
         <div>
-          <h2>Artists</h2>
+          <h2><%= t("static.section_posts") %></h2>
           <ul class="space-y-2">
-            <li><kbd class="key">e</kbd> Edit artist</li>
-            <li><kbd class="key">shift</kbd>+<kbd class="key">d</kbd> Delete artist</li>
+            <li><kbd class="key">r</kbd> <%= t("static.kbd_random_post") %></li>
+            <li><kbd class="key">e</kbd> <%= t("static.kbd_edit_artist_wiki_pool") %></li>
+            <li><kbd class="key">1</kbd>, <kbd class="key">2</kbd>, <kbd class="key">3</kbd>... <%= t("static.kbd_switch_tag_script") %></li>
           </ul>
         </div>
 
         <div>
-          <h2>Forum</h2>
+          <h2><%= t("static.section_post") %></h2>
           <ul class="space-y-2">
-            <li><kbd class="key">e</kbd> Edit topic</li>
-            <li><kbd class="key">shift</kbd>+<kbd class="key">d</kbd> Delete topic</li>
-            <li><kbd class="key">shift</kbd>+<kbd class="key">r</kbd> Mark all as read</li>
+            <li><kbd class="key">n</kbd> <%= t("static.kbd_new_note") %></li>
+            <li><kbd class="key">e</kbd> <%= t("static.kbd_edit_tags") %></li>
+            <li><kbd class="key">shift</kbd>+<kbd class="key">e</kbd> <%= t("static.kbd_edit_tags_dialog") %></li>
+            <li><kbd class="key">shift</kbd>+<kbd class="key">o</kbd> <%= t("static.kbd_approve_post") %></li>
+            <li><kbd class="key">f</kbd> <%= t("static.kbd_favorite_post") %></li>
+            <li><kbd class="key">shift</kbd>+<kbd class="key">f</kbd> <%= t("static.kbd_unfavorite_post") %></li>
+            <li><kbd class="key">g</kbd> <%= t("static.kbd_add_to_favorite_group") %></li>
+            <li><kbd class="key">1</kbd>, <kbd class="key">2</kbd>, <kbd class="key">3</kbd>... <%= t("static.kbd_add_to_favorite_group_n") %></li>
+            <li><kbd class="key">p</kbd> <%= t("static.kbd_add_to_pool") %></li>
+            <li><kbd class="key">c</kbd> <%= t("static.kbd_add_commentary") %></li>
+            <li><kbd class="key">v</kbd> <%= t("static.kbd_toggle_sample") %></li>
+            <li><kbd class="key">z</kbd> <%= t("static.kbd_toggle_fit") %></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="flex-auto space-y-8">
+        <div>
+          <h2><%= t("static.section_artists") %></h2>
+          <ul class="space-y-2">
+            <li><kbd class="key">e</kbd> <%= t("static.kbd_edit_artist") %></li>
+            <li><kbd class="key">shift</kbd>+<kbd class="key">d</kbd> <%= t("static.kbd_delete_artist") %></li>
           </ul>
         </div>
 
         <div>
-          <h2>Pools</h2>
+          <h2><%= t("static.section_forum") %></h2>
           <ul class="space-y-2">
-            <li><kbd class="key">e</kbd> Edit pool</li>
-            <li><kbd class="key">shift</kbd>+<kbd class="key">d</kbd> Delete pool</li>
+            <li><kbd class="key">e</kbd> <%= t("static.kbd_edit_topic") %></li>
+            <li><kbd class="key">shift</kbd>+<kbd class="key">d</kbd> <%= t("static.kbd_delete_topic") %></li>
+            <li><kbd class="key">shift</kbd>+<kbd class="key">r</kbd> <%= t("static.kbd_mark_all_read") %></li>
           </ul>
         </div>
 
         <div>
-          <h2>Wiki</h2>
+          <h2><%= t("static.section_pools") %></h2>
           <ul class="space-y-2">
-            <li><kbd class="key">e</kbd> Edit wiki page</li>
-            <li><kbd class="key">shift</kbd>+<kbd class="key">d</kbd> Delete wiki page</li>
+            <li><kbd class="key">e</kbd> <%= t("static.kbd_edit_pool") %></li>
+            <li><kbd class="key">shift</kbd>+<kbd class="key">d</kbd> <%= t("static.kbd_delete_pool") %></li>
           </ul>
         </div>
 
         <div>
-          <h2>Favorite Groups</h2>
+          <h2><%= t("static.section_wiki") %></h2>
           <ul class="space-y-2">
-            <li><kbd class="key">e</kbd> Edit favorite group</li>
-            <li><kbd class="key">shift</kbd>+<kbd class="key">d</kbd> Delete favorite group</li>
+            <li><kbd class="key">e</kbd> <%= t("static.kbd_edit_wiki") %></li>
+            <li><kbd class="key">shift</kbd>+<kbd class="key">d</kbd> <%= t("static.kbd_delete_wiki") %></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2><%= t("static.section_favorite_groups") %></h2>
+          <ul class="space-y-2">
+            <li><kbd class="key">e</kbd> <%= t("static.kbd_edit_fav_group") %></li>
+            <li><kbd class="key">shift</kbd>+<kbd class="key">d</kbd> <%= t("static.kbd_delete_fav_group") %></li>
           </ul>
         </div>
       </section>

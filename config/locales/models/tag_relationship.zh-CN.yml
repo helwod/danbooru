@@ -1,0 +1,3 @@
+"zh-CN":
+  tag_relationship:
+    cannot_relate_to_self: "不能将标签别名或蕴含到自身。"

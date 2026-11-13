@@ -1,0 +1,30 @@
+"zh-CN":
+  comment_votes:
+    index:
+      title: "评论投票"
+    labels:
+      voter: "投票者"
+      commenter: "评论者"
+      text: "内容"
+      tags: "标签"
+      post_id: "作品 ID"
+      deleted: "已删除？"
+      search: "搜索"
+    columns:
+      post: "作品"
+      comment: "评论"
+      status: "状态"
+      score: "分数"
+      commenter: "评论者"
+      voter: "投票者"
+      created: "创建时间"
+    deleted: "已删除"
+    deleted_placeholder: "[已删除]"
+    remove: "移除"
+    notice:
+      vote_removed: "已移除投票"
+
+  activerecord:
+    attributes:
+      comment_vote:
+        score: "分数"

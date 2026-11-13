@@ -91,13 +91,13 @@ class ForumPost < ApplicationRecord
 
   def validate_deletion_of_original_post
     if is_original_post? && is_deleted? && !topic.is_deleted?
-      errors.add(:base, "Can't delete original post without deleting the topic first")
+      errors.add(:base, I18n.t("forum_post.cannot_delete_original"))
     end
   end
 
   def validate_undeletion_of_post
     if topic.is_deleted? && !is_deleted?
-      errors.add(:base, "Can't undelete post without undeleting the topic first")
+      errors.add(:base, I18n.t("forum_post.cannot_undelete_original"))
     end
   end
 

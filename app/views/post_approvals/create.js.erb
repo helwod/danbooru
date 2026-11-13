@@ -1,15 +1,15 @@
 <% if @approval.errors.any? %>
   if ($("#c-modqueue").length) {
     $("#post_<%= @approval.post.id %>").hide();
-    Danbooru.Notice.error("<%= j format_text("Error on post ##{@approval.post.id}: #{@approval.errors.full_messages.join("; ")}", inline: true) %>");
+    Danbooru.Notice.error("<%= j format_text(t("post_approvals.create.error_on_post", id: @approval.post.id, message: @approval.errors.full_messages.join("; ")), inline: true) %>");
   } else {
-    Danbooru.Notice.error("Error: <%= j @approval.errors.full_messages.join("; ") %>");
+    Danbooru.Notice.error("<%= j t("post_approvals.create.error", message: @approval.errors.full_messages.join("; ")) %>");
   }
 <% else %>
   if ($("#c-posts #a-show").length) {
     location.reload();
   } else if ($("#c-modqueue").length) {
     $("#post_<%= @approval.post.id %>").hide();
-    Danbooru.Notice.info("<%= j format_text("Post ##{@approval.post.id} was approved.", inline: true) %>");
+    Danbooru.Notice.info("<%= j format_text(t("post_approvals.create.approved", id: @approval.post.id), inline: true) %>");
   }
 <% end %>

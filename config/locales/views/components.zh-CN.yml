@@ -1,0 +1,305 @@
+"zh-CN":
+  components:
+    common:
+      edit: "编辑"
+      delete: "删除"
+      undelete: "恢复"
+      reply: "回复"
+      report: "举报"
+      ban_user: "封禁用户"
+      copy_id: "复制 ID"
+      copy_link: "复制链接"
+      help: "帮助"
+      search: "搜索"
+      none: "无"
+      deleted: "[已删除]"
+      download: "下载"
+      chart: "图表"
+      table: "表格"
+      size: "尺寸"
+      small: "小"
+      medium: "中"
+      large: "大"
+      huge: "特大"
+      gigantic: "超大"
+      absurd: "巨大"
+
+    blacklist:
+      blacklisted: "已屏蔽"
+      autoclose: "自动收起"
+      autoclose_title: "启用屏蔽时是否自动收起黑名单框"
+      show_all: "显示全部"
+      show_all_title: "显示所有规则，包括没有匹配任何作品的规则"
+      blur_images: "模糊图片"
+      blur_images_title: "用模糊代替隐藏图片"
+
+    categorized_tag_list:
+      categories:
+        artist:
+          one: "画师"
+          other: "画师"
+        copyright:
+          one: "版权"
+          other: "版权"
+        character:
+          one: "角色"
+          other: "角色"
+        general:
+          one: "普通标签"
+          other: "普通标签"
+        meta:
+          one: "元标签"
+          other: "元标签"
+
+    tag_change_notice:
+      discussed_html: "这个标签正在%{links}中讨论。"
+      topic_link: '主题 #%{id}：「%{title}」'
+
+    post_gallery:
+      empty: "没有找到作品。"
+
+    media_asset_gallery:
+      empty: "没有找到结果。"
+
+    favorites_tooltip:
+      empty: "还没有人收藏"
+
+    time_series:
+      empty: "没有找到结果。试着调整搜索条件或扩大时间范围。"
+      date: "日期"
+
+    media_asset:
+      removed: "图片已删除。"
+      failed: "上传失败。"
+      unavailable: "图片不可用。"
+
+    media_asset_preview:
+      no_image: "没有图片"
+      failed: "失败"
+      deleted: "已删除"
+
+    file_upload:
+      paste_url: "在这里粘贴 URL"
+      source_placeholder: "粘贴 pixiv 链接、推文链接等"
+      see_here_html: "%{link}，查看支持的网站列表。"
+      see_here_link: "点这里"
+      upload: "上传"
+      or: "—— 或 ——"
+      choose_file: "选择文件，或把图片拖到这里"
+      max_size: "最大 %{size}。"
+
+    comment_section:
+      show_more:
+        one: "再显示 %{count} 条评论"
+        other: "再显示 %{count} 条评论"
+      empty: "还没有评论。"
+      leave_comment: "发表评论"
+
+    post_preview:
+      alt: "作品 #%{id}"
+
+    post_navbar:
+      prev: "‹ 上一个"
+      next: "下一个 ›"
+      search_html: "搜索：%{link}"
+      to_page_1: "跳到第 1 页"
+      to_page: "跳到第 %{page} 页"
+      pool: "合集：%{name}"
+      page_of: "第 %{page}/%{count} 页"
+      favgroup: "收藏分组：%{name}"
+
+    preview_size_menu:
+      size: "尺寸"
+
+    reaction:
+      search_emoji: "搜索表情……"
+
+    similar_images:
+      heading: "相似作品"
+      empty: "没有找到相似作品。"
+      show_low:
+        one: "显示 %{count} 个低相似度结果"
+        other: "显示 %{count} 个低相似度结果"
+      hide_low:
+        one: "隐藏 %{count} 个低相似度结果"
+        other: "隐藏 %{count} 个低相似度结果"
+      score: "相似度 %{score}%"
+
+    source_data:
+      fetch: "获取来源数据"
+      artist: "画师"
+      none: "无"
+      create_artist: "创建新画师"
+      tags: "标签"
+      published: "发布时间"
+      updated: "更新时间"
+
+    video:
+      error: "加载视频时发生错误。"
+      play_pause: "播放/暂停"
+      mute: "静音"
+      volume: "音量"
+      seek: "快进快退"
+      seek_to_percent: "跳到 0-90%"
+      change_speed: "调整速度"
+      quality: "清晰度"
+
+    comment:
+      hidden: "[已隐藏]"
+      reported_html: "已被举报（%{link}）"
+      reports:
+        one: "%{count} 次举报"
+        other: "%{count} 次举报"
+      confirm_delete: "确定要删除这条评论吗？"
+      confirm_sticky: "确定要置顶这条评论吗？"
+      sticky: "置顶"
+      unsticky: "取消置顶"
+
+    forum_post:
+      deleted: "（已删除）"
+      reported_html: "已被举报（%{link}）"
+      reports:
+        one: "%{count} 次举报"
+        other: "%{count} 次举报"
+      confirm_delete: "确定要删除这条论坛帖子吗？"
+      approve_bur: "批准批量更新请求"
+      edit_bur: "编辑批量更新请求"
+      reject_bur: "拒绝批量更新请求"
+      confirm_approve_bur: "确定要批准这个批量更新请求吗？"
+      confirm_reject_bur: "确定要拒绝这个批量更新请求吗？"
+
+    dtext_editor:
+      preview: "预览"
+      preview_title: "预览（Ctrl+P）"
+      edit: "编辑"
+      edit_title: "编辑（Ctrl+P）"
+      embeds: "%{count}/%{max} 个嵌入"
+      embeds_suffix: " 个嵌入"
+      bold_title: "加粗（Ctrl+B）"
+      italics_title: "斜体（Ctrl+I）"
+      wiki_link_title: "维基链接（Ctrl+K）"
+      insert_image_title: "插入图片"
+      image_url_placeholder: "粘贴图片 URL"
+      image_caption_placeholder: "输入图片说明（可留空）"
+      size_label: "尺寸"
+      add_images: "点击、粘贴或拖放来添加图片。"
+      insert_emoji_title: "插入表情"
+      search_emoji: "搜索表情……"
+      strikethrough: "删除线"
+      strikethrough_title: "删除线（Ctrl+S）"
+      underline: "下划线"
+      underline_title: "下划线（Ctrl+U）"
+      external_link: "外部链接"
+      external_link_title: "外部链接（Ctrl+L）"
+      search_link: "搜索链接"
+      search_link_title: "搜索链接（Ctrl+{）"
+      spoiler: "剧透"
+      spoiler_title: "剧透（Ctrl+/）"
+      expand: "折叠块"
+      expand_title: "折叠块（Ctrl+E）"
+      quote: "引用"
+      quote_title: "引用（Ctrl+Q）"
+      code: "代码"
+      code_title: "代码（Ctrl+M）"
+      horizontal_rule: "分隔线"
+      horizontal_rule_title: "分隔线"
+      no_formatting: "不使用格式"
+      no_formatting_title: "不使用格式"
+
+    upload_post:
+      processing_html: "正在处理 %{link}……"
+      error: "错误：%{error}。"
+      no_source: "无来源"
+      bad_source: "来源不合规"
+      image_sample: "图片样例"
+      ai_generated: "AI 生成"
+      pixel_duplicate: "完全重复"
+      duplicate: "重复"
+      tab_tags: "标签"
+      tab_source: "来源"
+      tab_similar: "相似"
+      tab_help: "帮助"
+      rating_html: "分级 %{help}"
+      tags_label: "标签"
+      ctrl_enter: "Ctrl+Enter 提交"
+      submit: "发布"
+      upload_for_approval: "上传并等待审核"
+      upload_limit_html: "上传限额：%{limit}"
+      read_rules_html: "上传前请先阅读%{rules}。"
+      upload_rules_link: "上传规则"
+      no_source_hint_html: "如果可以，请改为上传你找到该文件时所在的链接（%{help}）。"
+      sample_hint_html: "请改为上传完整图片（%{help}）。"
+      bad_source_hint_html: "请上传包含该图片的页面，而不是图片本身（%{help}）。"
+      ai_hint_html: "AI 生成的图片违反规则（%{help}）。"
+      duplicate_of_html: "与 %{post} 完全重复"
+      duplicate_of_many_html: "与 %{posts} 完全重复"
+      original_description: "原始说明"
+      translated_description: "翻译说明"
+      parent_id: "父作品 ID"
+      related_posts: "相关作品"
+      found_posts_html: "从同一来源找到 %{posts}。"
+      other_post:
+        one: "另外 %{count} 个作品"
+        other: "另外 %{count} 个作品"
+      auto: "自动"
+      auto_title: "旋转屏幕可改变布局"
+      dock_right: "靠右停靠"
+      dock_bottom: "靠下停靠"
+      dock_left: "靠左停靠"
+      open_window: "在窗口中打开"
+
+    user_profile:
+      statistics: "统计"
+      user_id: "用户 ID"
+      join_date: "注册日期"
+      last_seen: "最近活跃"
+      last_ip: "最近 IP"
+      unknown: "未知"
+      user_activity: "用户动态"
+      account: "账户"
+      ip: "IP"
+      all: "全部"
+      email_address: "邮箱地址"
+      edit: "编辑"
+      verified_email: "邮箱已验证"
+      unverified_email_link: "邮箱未验证。点击此处验证你的邮箱。"
+      unverified_email: "邮箱未验证"
+      none: "无"
+      promoter: "推荐人"
+      level: "等级"
+      upgrade_account: "升级账户"
+      gift_upgrade: "赠送升级"
+      ban_reason: "封禁原因"
+      banned_for_html: "（封禁时长 %{duration}）"
+      post_limit: "上传限额"
+      posts: "作品"
+      tag_changes_report: "标签修改报告"
+      deleted_posts: "已删除作品"
+      favorites: "收藏"
+      votes: "投票"
+      votes_html: "%{posts} 个作品、%{comments} 条评论、%{forum_posts} 个论坛帖子"
+      favorite_groups: "收藏分组"
+      post_changes: "作品修改"
+      refresh: "刷新"
+      note_changes: "批注修改"
+      note_changes_in_html: "%{posts} 个作品中共有 %{changes} 次修改"
+      note_changes_report: "批注修改报告"
+      wiki_page_changes: "维基页面修改"
+      artist_changes: "画师修改"
+      commentary_changes: "说明修改"
+      pool_changes: "合集修改"
+      forum_posts: "论坛帖子"
+      approvals: "审核通过"
+      comments: "评论"
+      comments_in_html: "%{posts} 个作品中共有 %{comments} 条评论"
+      appeals: "申诉"
+      flags: "举报标记"
+      feedback: "反馈记录"
+      feedback_counts: "好评 %{positive} 中评 %{neutral} 差评 %{negative}"
+      mod_reports: "管理举报"
+      mod_reports_received: "收到 %{count}"
+      mod_reports_submitted: "提交 %{count}"
+      previous_names: "曾用名"
+      saved_searches: "已保存的搜索"
+      api_key: "API 密钥"
+      view: "查看"

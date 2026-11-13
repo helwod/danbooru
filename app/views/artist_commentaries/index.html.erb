@@ -1,28 +1,28 @@
 <div id="c-artist-commentaries">
   <div id="a-index">
-    <h1>Artist Commentary</h1>
+    <h1><%= t("artist_commentaries.index.title") %></h1>
 
     <%= search_form_for(artist_commentaries_path) do |f| %>
-      <%= f.input :text_matches, label: "Text", input_html: { value: params[:search][:text_matches] } %>
-      <%= f.input :post_tags_match, label: "Tags", input_html: { data: { autocomplete: "tag-query" }, value: params[:search][:post_tags_match] } %>
-      <%= f.input :original_present, label: "Original?", collection: ["Yes", "No"], include_blank: true, selected: params[:search][:original_present] %>
-      <%= f.input :translated_present, label: "Translated?", collection: ["Yes", "No"], include_blank: true, selected: params[:search][:translated_present] %>
-      <%= f.input :is_deleted, label: "Deleted?", collection: ["Yes", "No"], include_blank: true, selected: params[:search][:is_deleted] %>
-      <%= f.input :order, collection: [%w[Newest id], %w[Oldest id_asc], %w[Updated updated_at_desc], %w[Uploaded post_id_desc]], include_blank: true, selected: params[:search][:order] %>
-      <%= f.submit "Search" %>
+      <%= f.input :text_matches, label: t("artist_commentaries.index.search_text"), input_html: { value: params[:search][:text_matches] } %>
+      <%= f.input :post_tags_match, label: t("artist_commentaries.index.search_tags"), input_html: { data: { autocomplete: "tag-query" }, value: params[:search][:post_tags_match] } %>
+      <%= f.input :original_present, label: t("artist_commentaries.index.original"), collection: [[t("artist_commentaries.index.yes"), "Yes"], [t("artist_commentaries.index.no"), "No"]], include_blank: true, selected: params[:search][:original_present] %>
+      <%= f.input :translated_present, label: t("artist_commentaries.index.translated"), collection: [[t("artist_commentaries.index.yes"), "Yes"], [t("artist_commentaries.index.no"), "No"]], include_blank: true, selected: params[:search][:translated_present] %>
+      <%= f.input :is_deleted, label: t("artist_commentaries.index.deleted"), collection: [[t("artist_commentaries.index.yes"), "Yes"], [t("artist_commentaries.index.no"), "No"]], include_blank: true, selected: params[:search][:is_deleted] %>
+      <%= f.input :order, collection: [[t("artist_commentaries.index.order_newest"), "id"], [t("artist_commentaries.index.order_oldest"), "id_asc"], [t("artist_commentaries.index.order_updated"), "updated_at_desc"], [t("artist_commentaries.index.order_uploaded"), "post_id_desc"]], include_blank: true, selected: params[:search][:order] %>
+      <%= f.submit t("artist_commentaries.index.submit") %>
     <% end %>
 
     <%= render BlacklistComponent.new(user: CurrentUser.user, inline: true) %>
 
     <%= table_for @commentaries, width: "100%" do |t| %>
-      <% t.column "Post", width: "1%" do |commentary| %>
+      <% t.column t("artist_commentaries.index.column_post"), column: "post", width: "1%" do |commentary| %>
         <%= post_preview(commentary.post, show_deleted: true) %>
       <% end %>
-      <% t.column "Original", td: { class: "break-words" }, width: "50%" do |commentary| %>
+      <% t.column t("artist_commentaries.index.column_original"), column: "original", td: { class: "break-words" }, width: "50%" do |commentary| %>
         <h3><span class="prose"><%= commentary.dtext_original_title.format_text %></span></h3>
         <div class="prose"><%= commentary.dtext_original_description.format_text %></div>
       <% end %>
-      <% t.column "Translated", td: { class: "break-words" }, width: "50%" do |commentary| %>
+      <% t.column t("artist_commentaries.index.column_translated"), column: "translated", td: { class: "break-words" }, width: "50%" do |commentary| %>
         <h3><span class="prose"><%= commentary.dtext_translated_title.format_text %></span></h3>
         <div class="prose"><%= commentary.dtext_translated_description.format_text %></div>
       <% end %>

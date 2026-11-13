@@ -1,0 +1,25 @@
+en:
+  tag_aliases:
+    show:
+      title: "Tag Alias: %{from} -> %{to}"
+      from: "From"
+      to: "To"
+      reference: "Reference"
+      topic_link: "topic #%{id}"
+      creator: "Creator"
+      date: "Date"
+      reason: "Reason"
+      status: "Status"
+    listing:
+      column_from: "From"
+      column_to: "To"
+      column_reason: "Reason"
+      column_topic: "Topic"
+      topic_link: "topic #%{id}"
+      column_approver: "Approver"
+      column_status: "Status"
+      show: "Show"
+      delete: "Delete"
+      confirm_delete: "Are you sure you want to delete this alias?"
+    flash:
+      deleted: "Tag alias was deleted"

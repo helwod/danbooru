@@ -151,7 +151,7 @@ class Pool < ApplicationRecord
 
   def updater_can_edit_deleted
     if is_deleted? && !Pundit.policy!(CurrentUser.user, self).update?
-      errors.add(:base, "You cannot update pools that are deleted")
+      errors.add(:base, I18n.t("pool.cannot_update_deleted"))
     end
   end
 
@@ -248,23 +248,23 @@ class Pool < ApplicationRecord
   def validate_name
     case name.downcase
     when *RESERVED_NAMES
-      errors.add(:name, "cannot be any of the following names: #{RESERVED_NAMES.to_sentence(last_word_connector: ", or ")}")
+      errors.add(:name, I18n.t("pool.reserved_name", names: RESERVED_NAMES.to_sentence(last_word_connector: ", or ")))
     when /,/
-      errors.add(:name, "cannot contain commas")
+      errors.add(:name, I18n.t("pool.name_commas"))
     when /\*/
-      errors.add(:name, "cannot contain asterisks")
+      errors.add(:name, I18n.t("pool.name_asterisks"))
     when /\A_/
-      errors.add(:name, "cannot begin with an underscore")
+      errors.add(:name, I18n.t("pool.name_leading_underscore"))
     when /_\z/
-      errors.add(:name, "cannot end with an underscore")
+      errors.add(:name, I18n.t("pool.name_trailing_underscore"))
     when /__/
-      errors.add(:name, "cannot contain consecutive underscores")
+      errors.add(:name, I18n.t("pool.name_consecutive_underscores"))
     when /[^[:graph:]]/
-      errors.add(:name, "cannot contain non-printable characters")
+      errors.add(:name, I18n.t("pool.name_non_printable"))
     when ""
-      errors.add(:name, "cannot be blank")
+      errors.add(:name, I18n.t("pool.name_blank"))
     when /\A[0-9]+\z/
-      errors.add(:name, "cannot contain only digits")
+      errors.add(:name, I18n.t("pool.name_only_digits"))
     end
   end
 

@@ -1,55 +1,55 @@
 <div id="c-post-events">
   <div id="a-index">
     <% if @post %>
-      <h1>Events: <%= link_to @post.dtext_shortlink, @post %></h1>
-      <%= link_to "« Back", post_events_path, class: "text-xs" %>
+      <h1><%= t("post_events.index.title_with_post_html", link: link_to(@post.dtext_shortlink, @post)).html_safe %></h1>
+      <%= link_to t("post_events.index.back"), post_events_path, class: "text-xs" %>
     <% else %>
-      <h1>Events</h1>
+      <h1><%= t("post_events.index.title") %></h1>
     <% end %>
 
     <% unless @post %>
       <%= search_form_for(post_events_path) do |f| %>
-        <%= f.input :creator_name, label: "User", input_html: { value: params[:search][:creator_name], "data-autocomplete": "user" } %>
-        <%= f.input :post_tags_match, label: "Tags", input_html: { value: params[:search][:post_tags_match], "data-autocomplete": "tag-query" } %>
-        <%= f.input :category, label: "Category", collection: PostEvent.categories.map { |category| [category.titleize, category] }, include_blank: true, selected: params[:search][:category] %>
-        <%= f.input :order, collection: [%w[Newest event_at], %w[Oldest event_at_asc]], include_blank: true, selected: params[:search][:order] %>
-        <%= f.submit "Search" %>
+        <%= f.input :creator_name, label: t("post_events.index.search_user"), input_html: { value: params[:search][:creator_name], "data-autocomplete": "user" } %>
+        <%= f.input :post_tags_match, label: t("post_events.index.search_tags"), input_html: { value: params[:search][:post_tags_match], "data-autocomplete": "tag-query" } %>
+        <%= f.input :category, label: t("post_events.index.search_category"), collection: PostEvent.categories.map { |category| [t("post_events.categories.#{category}", default: category.titleize), category] }, include_blank: true, selected: params[:search][:category] %>
+        <%= f.input :order, collection: [[t("post_events.index.order_newest"), "event_at"], [t("post_events.index.order_oldest"), "event_at_asc"]], include_blank: true, selected: params[:search][:order] %>
+        <%= f.submit t("post_events.index.submit") %>
       <% end %>
     <% end %>
 
     <%= table_for @post_events, class: "striped autofit mt-4", width: "100%" do |t| %>
-      <% t.column "Event", td: { class: "col-expand" } do |event| %>
+      <% t.column t("post_events.index.column_event"), td: { class: "col-expand" }, column: "event" do |event| %>
         <% post = event.post %>
         <% model = event.model %>
         <% creator = event.creator %>
 
         <% case event.model_type %>
         <% when "Post" %>
-          <%= link_to post.dtext_shortlink, post %> was uploaded by <%= link_to_user creator %>.
+          <%= t("post_events.index.was_uploaded_by_html", post: link_to(post.dtext_shortlink, post), user: link_to_user(creator)).html_safe %>
         <% when "PostAppeal" %>
           <div class="prose">
-            <%= link_to post.dtext_shortlink, post %> was appealed by <%= link_to_user creator %><%= " (#{format_text(model.reason.strip.chomp("."), inline: true)})".html_safe if model.reason.present? %>.
+            <%= t("post_events.index.was_appealed_by_html", post: link_to(post.dtext_shortlink, post), user: link_to_user(creator), reason: (model.reason.present? ? " (#{format_text(model.reason.strip.chomp("."), inline: true)})".html_safe : "")).html_safe %>.
           </div>
         <% when "PostApproval" %>
-          <%= link_to post.dtext_shortlink, post %> was approved by <%= link_to_user creator %>.
+          <%= t("post_events.index.was_approved_by_html", post: link_to(post.dtext_shortlink, post), user: link_to_user(creator)).html_safe %>
         <% when "PostDisapproval" %>
           <div class="prose">
             <% if policy(model).can_view_creator? %>
-              <%= link_to post.dtext_shortlink, post %> was disapproved by <%= link_to_user creator %> (<%= model.reason.titleize.downcase %><%= ": ".html_safe + format_text(model.message.strip.chomp("."), inline: true) if model.message.present? %>).
+              <%= t("post_events.index.was_disapproved_by_html", post: link_to(post.dtext_shortlink, post), user: link_to_user(creator), reason: model.reason.titleize.downcase, message: (model.message.present? ? ": ".html_safe + format_text(model.message.strip.chomp("."), inline: true) : "")).html_safe %>.
             <% else %>
-              <%= link_to post.dtext_shortlink, post %> was disapproved (<%= model.reason.titleize.downcase %><%= ": ".html_safe + format_text(model.message.strip.chomp("."), inline: true) if model.message.present? %>).
+              <%= t("post_events.index.was_disapproved_html", post: link_to(post.dtext_shortlink, post), reason: model.reason.titleize.downcase, message: (model.message.present? ? ": ".html_safe + format_text(model.message.strip.chomp("."), inline: true) : "")).html_safe %>.
             <% end %>
           </div>
         <% when "PostFlag" %>
           <div class="prose">
             <% if policy(model).can_view_flagger? %>
-              <%= link_to post.dtext_shortlink, post %> was flagged by <%= link_to_user creator %> (<%= format_text(model.reason.strip.chomp("."), inline: true) %>).
+              <%= t("post_events.index.was_flagged_by_html", post: link_to(post.dtext_shortlink, post), user: link_to_user(creator), reason: format_text(model.reason.strip.chomp("."), inline: true)).html_safe %>.
             <% else %>
-              <%= link_to post.dtext_shortlink, post %> was flagged (<%= format_text(model.reason.strip.chomp("."), inline: true) %>).
+              <%= t("post_events.index.was_flagged_html", post: link_to(post.dtext_shortlink, post), reason: format_text(model.reason.strip.chomp("."), inline: true)).html_safe %>.
             <% end %>
           </div>
         <% when "PostReplacement" %>
-          <%= link_to post.dtext_shortlink, post %> was replaced by <%= link_to_user creator %>:
+          <%= t("post_events.index.was_replaced_by_html", post: link_to(post.dtext_shortlink, post), user: link_to_user(creator)).html_safe %>
 
           <% if model.original_url.match?(%r{\Ahttps?://}) %>
             <%= external_link_to(model.original_url, external_site_icon(Source::URL.site_name(model.original_url), title: model.original_url, class: "h-4")) %>
@@ -66,7 +66,7 @@
           <% elsif model.old_md5.present? && policy(model).can_see_md5? %>
             <%= model.old_md5 %>
           <% else %>
-            <i>unknown file</i>
+            <i><%= t("post_events.index.unknown_file") %></i>
           <% end %>
           →
           <% if model.replacement_url.match?(%r{\Ahttps?://}) %>
@@ -84,47 +84,47 @@
           <% elsif model.md5.present? %>
             <%= model.md5 %>
           <% else %>
-            <i>unknown file</i>
+            <i><%= t("post_events.index.unknown_file") %></i>
           <% end %>
         <% when "ModAction" %>
           <% case model.category %>
           <% when "post_ban" %>
-            <%= link_to post.dtext_shortlink, post %> was banned by <%= link_to_user creator %>.
+            <%= t("post_events.index.was_banned_by_html", post: link_to(post.dtext_shortlink, post), user: link_to_user(creator)).html_safe %>
           <% when "post_unban" %>
-            <%= link_to post.dtext_shortlink, post %> was unbanned by <%= link_to_user creator %>.
+            <%= t("post_events.index.was_unbanned_by_html", post: link_to(post.dtext_shortlink, post), user: link_to_user(creator)).html_safe %>
           <% when "post_delete" %>
-            <%= link_to post.dtext_shortlink, post %> was deleted by <%= link_to_user creator %>.
+            <%= t("post_events.index.was_deleted_by_html", post: link_to(post.dtext_shortlink, post), user: link_to_user(creator)).html_safe %>
           <% when "post_undelete" %>
-            <%= link_to post.dtext_shortlink, post %> was undeleted by <%= link_to_user creator %>.
+            <%= t("post_events.index.was_undeleted_by_html", post: link_to(post.dtext_shortlink, post), user: link_to_user(creator)).html_safe %>
           <% when "post_regenerate" %>
-            <%= link_to post.dtext_shortlink, post %> had its thumbnails regenerated by <%= link_to_user creator %>.
+            <%= t("post_events.index.thumbnails_regenerated_by_html", post: link_to(post.dtext_shortlink, post), user: link_to_user(creator)).html_safe %>
           <% when "post_regenerate_iqdb" %>
-            <%= link_to post.dtext_shortlink, post %> was reindexed in IQDB by <%= link_to_user creator %>.
+            <%= t("post_events.index.reindexed_by_html", post: link_to(post.dtext_shortlink, post), user: link_to_user(creator)).html_safe %>
           <% when "post_rating_lock_create" %>
-            <%= link_to post.dtext_shortlink, post %> was rating locked by <%= link_to_user creator %>.
+            <%= t("post_events.index.rating_locked_by_html", post: link_to(post.dtext_shortlink, post), user: link_to_user(creator)).html_safe %>
           <% when "post_rating_lock_delete" %>
-            <%= link_to post.dtext_shortlink, post %> was rating unlocked by <%= link_to_user creator %>.
+            <%= t("post_events.index.rating_unlocked_by_html", post: link_to(post.dtext_shortlink, post), user: link_to_user(creator)).html_safe %>
           <% when "post_note_lock_create" %>
-            <%= link_to post.dtext_shortlink, post %> was note locked by <%= link_to_user creator %>.
+            <%= t("post_events.index.note_locked_by_html", post: link_to(post.dtext_shortlink, post), user: link_to_user(creator)).html_safe %>
           <% when "post_note_lock_delete" %>
-            <%= link_to post.dtext_shortlink, post %> was note unlocked by <%= link_to_user creator %>.
+            <%= t("post_events.index.note_unlocked_by_html", post: link_to(post.dtext_shortlink, post), user: link_to_user(creator)).html_safe %>
           <% else %>
             <div class="prose">
-              <%= link_to_user creator %> <%= format_text(model.description.chomp(".").strip, inline: true) %>.
+              <%= t("post_events.index.generic_html", user: link_to_user(creator), description: format_text(model.description.chomp(".").strip, inline: true)).html_safe %>.
             </div>
           <% end %>
         <% end %>
       <% end %>
 
-      <% t.column "Category" do |event| %>
+      <% t.column t("post_events.index.column_category"), column: "category" do |event| %>
         <%= link_to event.pretty_category, post_events_path(search: { category: event.category, **search_params }) %>
       <% end %>
 
-      <% t.column "User" do |event| %>
+      <% t.column t("post_events.index.column_user"), column: "user" do |event| %>
         <% if policy(event).can_see_creator? %>
           <%= link_to_user event.creator %> <%= link_to "»", post_events_path(search: { **search_params, creator_name: event.creator.name }) %>
         <% else %>
-          <i>hidden</i>
+          <i><%= t("post_events.index.hidden") %></i>
         <% end %>
         <div><%= time_ago_in_words_tagged(event.event_at) %></div>
       <% end %>
@@ -133,18 +133,18 @@
         <%= render PopupMenuComponent.new do |menu| %>
           <% unless @post %>
             <% menu.with_item do %>
-              <%= link_to "Post history", post_post_events_path(event.post) %>
+              <%= link_to t("post_events.index.post_history"), post_post_events_path(event.post) %>
             <% end %>
           <% end %>
 
           <% if policy(event).can_see_creator? %>
             <% menu.with_item do %>
-              <%= link_to "User history", post_events_path(search: { creator_name: event.creator.name }) %>
+              <%= link_to t("post_events.index.user_history"), post_events_path(search: { creator_name: event.creator.name }) %>
             <% end %>
           <% end %>
 
           <% menu.with_item do %>
-            <%= link_to "Details", event.model %>
+            <%= link_to t("post_events.index.details"), event.model %>
           <% end %>
         <% end %>
       <% end %>

@@ -1,11 +1,11 @@
-<% meta_description "Search thousands of tags on #{Danbooru.config.app_name}." %>
+<% meta_description t("tags.index.meta_description", app_name: Danbooru.config.app_name) %>
 
 <div id="c-tags">
   <div id="a-index" class="fixed-width-container">
     <%= render "search" %>
 
     <%= table_for @tags, class: "striped autofit" do |t| %>
-      <% t.column "Name", td: {class: "col-expand"} do |t| %>
+      <% t.column t("tags.index.column_name"), td: {class: "col-expand"}, column: "name" do |t| %>
         <%= link_to_wiki "?", t.name, class: tag_class(t) %>
         <%= link_to t.name, posts_path(tags: t.name), class: tag_class(t) %>
 
@@ -21,28 +21,16 @@
         <%= render PopupMenuComponent.new do |menu| %>
           <% if policy(tag).update? %>
             <% menu.with_item do %>
-              <%= link_to "Edit", edit_tag_path(tag) %>
+              <%= link_to t("tags.index.edit"), edit_tag_path(tag) %>
             <% end %>
           <% end %>
 
           <% menu.with_item do %>
-            <%= link_to "Tag history", tag_versions_path(search: { tag_id: tag.id }) %>
+            <%= link_to t("tags.index.tag_history"), tag_versions_path(search: { tag_id: tag.id }) %>
           <% end %>
 
           <% menu.with_item do %>
-            <%= link_to "Post history", post_versions_path(search: { changed_tags: tag.name }) %>
-          <% end %>
-
-          <% menu.with_item do %>
-            <hr class="border">
-          <% end %>
-
-          <% menu.with_item do %>
-            <%= link_to "Related tags", related_tag_path(search: { query: tag.name }) %>
-          <% end %>
-
-          <% menu.with_item do %>
-            <%= link_to "Similar tags", tags_path(search: { fuzzy_name_matches: tag.name, order: :similarity }) %>
+            <%= link_to t("tags.index.post_history"), post_versions_path(search: { changed_tags: tag.name }) %>
           <% end %>
 
           <% menu.with_item do %>
@@ -50,19 +38,31 @@
           <% end %>
 
           <% menu.with_item do %>
-            <%= link_to "Aliases", tag_aliases_path(search: { name_matches: tag.name }) %>
+            <%= link_to t("tags.index.related_tags"), related_tag_path(search: { query: tag.name }) %>
           <% end %>
 
           <% menu.with_item do %>
-            <%= link_to "Implications", tag_implications_path(search: { name_matches: tag.name }) %>
+            <%= link_to t("tags.index.similar_tags"), tags_path(search: { fuzzy_name_matches: tag.name, order: :similarity }) %>
           <% end %>
 
           <% menu.with_item do %>
-            <%= link_to "Comments", comments_path(search: { post_tags_match: tag.name }) %>
+            <hr class="border">
           <% end %>
 
           <% menu.with_item do %>
-            <%= link_to "Discussions", forum_posts_path(search: { linked_to: tag.name }) %>
+            <%= link_to t("tags.index.aliases"), tag_aliases_path(search: { name_matches: tag.name }) %>
+          <% end %>
+
+          <% menu.with_item do %>
+            <%= link_to t("tags.index.implications"), tag_implications_path(search: { name_matches: tag.name }) %>
+          <% end %>
+
+          <% menu.with_item do %>
+            <%= link_to t("tags.index.comments"), comments_path(search: { post_tags_match: tag.name }) %>
+          <% end %>
+
+          <% menu.with_item do %>
+            <%= link_to t("tags.index.discussions"), forum_posts_path(search: { linked_to: tag.name }) %>
           <% end %>
 
           <% if !tag.meta? %>
@@ -71,11 +71,11 @@
             <% end %>
 
             <% menu.with_item do %>
-              <%= link_to "Untagged posts", ai_tags_path(search: { tag_name: tag.name, post_tags_match: "-#{tag.name}", is_posted: true, order: "score_desc" }) %>
+              <%= link_to t("tags.index.untagged_posts"), ai_tags_path(search: { tag_name: tag.name, post_tags_match: "-#{tag.name}", is_posted: true, order: "score_desc" }) %>
             <% end %>
 
             <% menu.with_item do %>
-              <%= link_to "Mistagged posts", posts_path(tags: "#{tag.name} ai:#{tag.name},0%") %>
+              <%= link_to t("tags.index.mistagged_posts"), posts_path(tags: "#{tag.name} ai:#{tag.name},0%") %>
             <% end %>
           <% end %>
         <% end %>

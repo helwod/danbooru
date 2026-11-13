@@ -1,32 +1,32 @@
-<% page_title "Settings" %>
+<% page_title t("users.settings") %>
 <%= render "secondary_links" %>
 
 <div id="c-users">
   <div id="a-edit">
-    <h1 class="mb-4">Settings</h1>
+    <h1 class="mb-4"><%= t("users.settings") %></h1>
 
     <%= render(TabPanelComponent.new(classes: "horizontal-tab-panel fixed-width-container") do |t| %>
-      <% t.panel("Basic", active: true) do %>
+      <% t.panel(t("users.tabs.basic"), id: "basic-tab", active: true) do %>
         <%= edit_form_for @user, formatted_errors: true do |f| %>
           <div id="basic-settings-section">
             <div class="input">
-              <label>Name</label>
-              <p><%= link_to "Change your name", change_name_user_path(@user) %></p>
+              <label><%= t("users.username") %></label>
+              <p><%= link_to t("users.change_name"), change_name_user_path(@user) %></p>
             </div>
 
             <div class="input">
-              <label>Email</label>
+              <label><%= t("users.email") %></label>
               <p>
                 <% if @user.email_address.present? %>
                   <%= @user.email_address.address %>
 
                   <% if @user.email_address.is_verified %>
-                    (<%= link_to "Change email", edit_user_email_path(@user) %>)
+                    (<%= link_to t("users.change_email"), edit_user_email_path(@user) %>)
                   <% else %>
-                    (<%= link_to "Change email", edit_user_email_path(@user) %> | <%= link_to "Verify email", verify_user_email_path(@user) %>)
+                    (<%= link_to t("users.change_email"), edit_user_email_path(@user) %> | <%= link_to t("users.verify_email"), verify_user_email_path(@user) %>)
                   <% end %>
                 <% else %>
-                  <%= link_to "Add email", edit_user_email_path(@user) %>
+                  <%= link_to t("users.add_email"), edit_user_email_path(@user) %>
                 <% end %>
               </p>
             </div>
@@ -46,86 +46,86 @@
               }
             %>
 
-            <%= f.input :enable_safe_mode, as: :boolean, wrapper: "stacked-toggle-switch", label: "Safe mode", hint: "Show only safe images. Hide sensitive, questionable and explicit images." %>
-            <%= f.input :per_page, label: "Posts per page", hint: "Number of thumbnails per page (max: #{PostSets::Post::MAX_PER_PAGE})", input_html: { min: 1, max: PostSets::Post::MAX_PER_PAGE } %>
-            <%= f.input :default_image_size, hint: "Show full original images or resized #{Danbooru.config.large_image_width}px width samples.", label: "Default image width", collection: [["850px", "large"], ["original", "original"]], include_blank: false %>
-            <%= f.input :receive_email_notifications, as: :boolean, wrapper: "stacked-toggle-switch", hint: "Receive an email when you receive a new dmail." %>
-            <%= f.input :time_zone, include_blank: false, hint: "The timezone to use for timestamps." %>
-            <%= f.input :comment_threshold, hint: "Comments at or below this score will be hidden by default.", input_html: { min: -100, max: 5 } %>
-            <%= f.input :blacklisted_tags, hint: "Posts with these tags will be hidden. Put each tag on a separate line. <a href='/wiki_pages/help:blacklists'>View help.</a>".html_safe, :input_html => { :data => {:autocomplete => "tag-query"}} %>
+            <%= f.input :enable_safe_mode, as: :boolean, wrapper: "stacked-toggle-switch", label: t("users.safe_mode"), hint: t("users.safe_mode_hint") %>
+            <%= f.input :per_page, label: t("users.posts_per_page"), hint: t("users.posts_per_page_hint", max: PostSets::Post::MAX_PER_PAGE), input_html: { min: 1, max: PostSets::Post::MAX_PER_PAGE } %>
+            <%= f.input :default_image_size, hint: t("users.default_image_width_hint", width: Danbooru.config.large_image_width), label: t("users.default_image_width"), collection: [["850px", "large"], [t("users.original_size"), "original"]], include_blank: false %>
+            <%= f.input :receive_email_notifications, as: :boolean, wrapper: "stacked-toggle-switch", hint: t("users.receive_email_notifications_hint") %>
+            <%= f.input :time_zone, include_blank: false, hint: t("users.time_zone_hint") %>
+            <%= f.input :comment_threshold, hint: t("users.comment_threshold_hint"), input_html: { min: -100, max: 5 } %>
+            <%= f.input :blacklisted_tags, hint: t("users.blacklisted_tags_hint_html"), :input_html => { :data => {:autocomplete => "tag-query"}} %>
           </div>
 
           <%= f.submit_button %>
         <% end %>
       <% end %>
 
-      <% t.panel("Advanced") do %>
+      <% t.panel(t("users.tabs.advanced"), id: "advanced-tab") do %>
         <%= edit_form_for @user, formatted_errors: true do |f| %>
           <div id="advanced-settings-section">
             <div class="input">
-              <label>Account</label>
+              <label><%= t("users.account") %></label>
               <p>
-                <%= link_to "Deactivate account", deactivate_user_path(@user), id: "delete-account" %>
-                (<em>requires confirmation</em>)
+                <%= link_to t("users.deactivate_submit"), deactivate_user_path(@user), id: "delete-account" %>
+                (<em><%= t("users.requires_confirmation") %></em>)
               </p>
             </div>
 
-            <%= f.input :new_post_navigation_layout, :as => :select, :label => "Navigation bar position", :include_blank => false, :collection => [["Below", "true"], ["Above", "false"]], :hint => "When browsing pools or posts, place navigation links above or below the image" %>
-            <%= f.input :show_deleted_posts, as: :boolean, wrapper: "stacked-toggle-switch", hint: "Show deleted posts in searches" %>
-            <%= f.input :show_deleted_children, as: :boolean, wrapper: "stacked-toggle-switch", hint: "Show thumbnail borders on parent posts even if the children are deleted" %>
-            <%= f.input :disable_categorized_saved_searches, as: :boolean, wrapper: "stacked-toggle-switch", hint: "Don't show dialog box when creating a new saved search" %>
+            <%= f.input :new_post_navigation_layout, :as => :select, :label => t("users.nav_bar_position"), :include_blank => false, :collection => [[t("users.position.below"), "true"], [t("users.position.above"), "false"]], :hint => t("users.nav_bar_position_hint") %>
+            <%= f.input :show_deleted_posts, as: :boolean, wrapper: "stacked-toggle-switch", hint: t("users.show_deleted_posts_hint") %>
+            <%= f.input :show_deleted_children, as: :boolean, wrapper: "stacked-toggle-switch", hint: t("users.show_deleted_children_hint") %>
+            <%= f.input :disable_categorized_saved_searches, as: :boolean, wrapper: "stacked-toggle-switch", hint: t("users.disable_categorized_saved_searches_hint") %>
             <% if policy(@user).can_enable_private_favorites? %>
-              <%= f.input :enable_private_favorites, label: "Private favorites and votes", as: :boolean, wrapper: "stacked-toggle-switch", hint: "Make your favorites and upvotes private" %>
+              <%= f.input :enable_private_favorites, label: t("users.private_favorites"), as: :boolean, wrapper: "stacked-toggle-switch", hint: t("users.private_favorites_hint") %>
             <% elsif @user.enable_private_favorites? %>
-              <%= f.input :enable_private_favorites, label: "Private favorites and votes", as: :boolean, wrapper: "stacked-toggle-switch", hint: "Make your favorites and upvotes private. (Warning: if you disable this, you can't re-enable it without ".html_safe + link_to("upgrading to a Gold account", new_user_upgrade_path) + " first. (".html_safe + link_to_wiki("learn more", "help:privacy_mode") + ")".html_safe %>
+              <%= f.input :enable_private_favorites, label: t("users.private_favorites"), as: :boolean, wrapper: "stacked-toggle-switch", hint: t("users.private_favorites_gold_hint_html", upgrade: link_to(t("users.upgrading_to_gold"), new_user_upgrade_path), learn_more: link_to_wiki(t("users.learn_more"), "help:privacy_mode")) %>
             <% else %>
-              <%= f.input :enable_private_favorites, label: "Private favorites and votes", as: :boolean, wrapper: "stacked-toggle-switch", hint: link_to("Upgrade to Gold to enable private favorites and upvotes", new_user_upgrade_path) %>
+              <%= f.input :enable_private_favorites, label: t("users.private_favorites"), as: :boolean, wrapper: "stacked-toggle-switch", hint: link_to(t("users.upgrade_to_enable_private_favorites"), new_user_upgrade_path) %>
             <% end %>
-            <%= f.input :disable_tagged_filenames, as: :boolean, wrapper: "stacked-toggle-switch", hint: "Don't include tags in image filenames" %>
-            <%= f.input :disable_mobile_gestures, as: :boolean, wrapper: "stacked-toggle-switch", hint: "Disable swipe left / swipe right gestures on mobile" %>
-            <%= f.input :disable_post_tooltips, as: :boolean, wrapper: "stacked-toggle-switch", hint: "Disable advanced tooltips when hovering over thumbnails" %>
-            <%= f.input :enable_desktop_mode, as: :boolean, wrapper: "stacked-toggle-switch", hint: "Use the desktop layout on mobile" %>
+            <%= f.input :disable_tagged_filenames, as: :boolean, wrapper: "stacked-toggle-switch", hint: t("users.disable_tagged_filenames_hint") %>
+            <%= f.input :disable_mobile_gestures, as: :boolean, wrapper: "stacked-toggle-switch", hint: t("users.disable_mobile_gestures_hint") %>
+            <%= f.input :disable_post_tooltips, as: :boolean, wrapper: "stacked-toggle-switch", hint: t("users.disable_post_tooltips_hint") %>
+            <%= f.input :enable_desktop_mode, as: :boolean, wrapper: "stacked-toggle-switch", hint: t("users.enable_desktop_mode_hint") %>
 
-            <%= f.input :favorite_tags, :label => "Frequent tags", :hint => "A list of tags that you use often. They will appear when using the list of Related Tags.", :input_html => { :data => { :autocomplete => "tag-query" } } %>
-            <%= f.input :custom_style, :label => "Custom <a href='https://en.wikipedia.org/wiki/Cascading_Style_Sheets'>CSS</a> style".html_safe, :hint => "CSS rules to apply to the whole site." %>
+            <%= f.input :favorite_tags, :label => t("users.frequent_tags"), :hint => t("users.frequent_tags_hint"), :input_html => { :data => { :autocomplete => "tag-query" } } %>
+            <%= f.input :custom_style, :label => t("users.custom_style"), :hint => t("users.custom_style_hint") %>
           </div>
           <%= f.submit_button %>
         <% end %>
       <% end %>
 
-      <% t.panel("Security") do %>
+      <% t.panel(t("users.tabs.security"), id: "security-tab") do %>
         <div class="space-y-4">
           <div class="flex justify-between gap-4">
             <div>
-              <span class="font-bold leading-normal">Password</span>
-              <p class="fineprint max-w-360px">Update your password.</p>
+              <span class="font-bold leading-normal"><%= t("users.password") %></span>
+              <p class="fineprint max-w-360px"><%= t("users.update_password") %></p>
             </div>
 
             <div>
-              <%= link_to "Change password", edit_user_password_path(user_id: @user.id), class: "button-primary" %>
+              <%= link_to t("users.change_password"), edit_user_password_path(user_id: @user.id), class: "button-primary" %>
             </div>
           </div>
 
           <div class="flex justify-between gap-4">
             <div>
               <div class="mb-1">
-                <span class="font-bold leading-normal">Two-factor authentication</span>
+                <span class="font-bold leading-normal"><%= t("users.two_factor_authentication") %></span>
 
                 <% if @user.totp.present? %>
-                  <span class="chip-green text-success text-xs">Enabled</span>
+                  <span class="chip-green text-success text-xs"><%= t("users.enabled") %></span>
                 <% else %>
-                  <span class="chip-red text-error text-xs">Disabled</span>
+                  <span class="chip-red text-error text-xs"><%= t("users.disabled") %></span>
                 <% end %>
               </div>
 
-              <p class="fineprint max-w-360px">Protect your account by requiring both your password and a security code to login.</p>
+              <p class="fineprint max-w-360px"><%= t("users.two_factor_description") %></p>
             </div>
 
             <div>
               <% if @user.totp.present? %>
-                <%= link_to "Disable", edit_user_totp_path(user_id: @user.id), class: "button-outline-danger" %>
+                <%= link_to t("users.disable"), edit_user_totp_path(user_id: @user.id), class: "button-outline-danger" %>
               <% else %>
-                <%= link_to "Enable", edit_user_totp_path(user_id: @user.id), class: "button-primary" %>
+                <%= link_to t("users.enable"), edit_user_totp_path(user_id: @user.id), class: "button-primary" %>
               <% end %>
             </div>
           </div>
@@ -133,33 +133,33 @@
           <% if @user.totp.present? %>
             <div class="flex justify-between gap-4">
               <div>
-                <span class="font-bold leading-normal">Backup codes</span>
-                <p class="fineprint max-w-360px">Backup codes let you login in case you lose your two-factor authentication device.</p>
+                <span class="font-bold leading-normal"><%= t("users.backup_codes") %></span>
+                <p class="fineprint max-w-360px"><%= t("users.backup_codes_description") %></p>
               </div>
 
               <div>
-                <%= link_to "View", user_backup_codes_path(@user), class: "button-primary" %>
+                <%= link_to t("users.view"), user_backup_codes_path(@user), class: "button-primary" %>
               </div>
             </div>
           <% end %>
 
           <div class="flex justify-between gap-4">
             <div>
-              <span class="font-bold leading-normal">Account history</span>
+              <span class="font-bold leading-normal"><%= t("users.account_history") %></span>
 
               <div class="fineprint max-w-360px">
-                View your logins and other account activity.<br>
+                <%= t("users.account_history_description") %><br>
               </div>
 
               <% if @user.user_events.last.present? %>
                 <div class="fineprint max-w-360px">
-                  Last activity: <%= time_ago_in_words_tagged(@user.user_events.last.created_at) %>.
+                  <%= t("users.last_activity", time: time_ago_in_words_tagged(@user.user_events.last.created_at)) %>
                 </div>
               <% end %>
             </div>
 
             <div>
-              <%= link_to "View", user_user_events_path(@user), class: "button-primary" %>
+              <%= link_to t("users.view"), user_user_events_path(@user), class: "button-primary" %>
             </div>
           </div>
         </div>

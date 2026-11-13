@@ -1,12 +1,12 @@
 <div id="c-sources">
   <div id="a-show">
     <div class="card mt-8 p-4 max-w-1080px mx-auto flex flex-col items-center">
-      <h1 class="pb-4">Source Info</h1>
+      <h1 class="pb-4"><%= t("sources.show.title") %></h1>
 
       <%= search_form_for(source_path, attribute: "", classes: "flex w-full gap-4") do |f| %>
-        <%= f.input :url, label: false, wrapper_html: { class: "w-full !m-0" }, input_html: { value: params[:url], class: "h-full !max-w-full", placeholder: "Paste link here" } %>
+        <%= f.input :url, label: false, wrapper_html: { class: "w-full !m-0" }, input_html: { value: params[:url], class: "h-full !max-w-full", placeholder: t("sources.show.placeholder") } %>
         <%= f.input :mode, as: :hidden, input_html: { value: params[:mode] } %>
-        <%= f.submit "View", class: "button-primary" %>
+        <%= f.submit t("sources.show.submit"), class: "button-primary" %>
       <% end %>
     </div>
 
@@ -87,12 +87,12 @@
 
                     <% if image_source.published_at.present? %>
                       <p class="prose text-xs text-muted" style="text-align: center;">
-                        Published: <%= compact_time(image_source.published_at) %>
+                        <%= t("sources.show.published", time: compact_time(image_source.published_at)) %>
                       </p>
                     <% end %>
                     <% if image_source.updated_at.present? %>
                       <p class="prose text-xs text-muted" style="text-align: center;">
-                        Updated: <%= compact_time(image_source.updated_at) %>
+                        <%= t("sources.show.updated", time: compact_time(image_source.updated_at)) %>
                       </p>
                     <% end %>
                   </div>
@@ -104,19 +104,19 @@
               <div class="prose text-xs text-muted">
                 <hr>
 
-                Source: <%= external_link_to @source.page_url, class: "inactive-link" %>
+                <%= t("sources.show.source_html", link: external_link_to(@source.page_url, class: "inactive-link")).html_safe %>
               </div>
             <% end %>
 
             <% if @source.published_at.present? %>
               <div class="prose text-xs text-muted">
-                Published: <%= compact_time(@source.published_at) %>
+                <%= t("sources.show.published", time: compact_time(@source.published_at)) %>
               </div>
             <% end %>
 
             <% if @source.updated_at.present? %>
               <div class="prose text-xs text-muted">
-                Updated: <%= compact_time(@source.updated_at) %>
+                <%= t("sources.show.updated", time: compact_time(@source.updated_at)) %>
               </div>
             <% end %>
           </div>

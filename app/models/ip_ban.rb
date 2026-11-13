@@ -68,17 +68,17 @@ class IpBan < ApplicationRecord
     if ip_addr.blank?
       errors.add(:ip_addr, "is invalid")
     elsif ip_addr.is_local?
-      errors.add(:ip_addr, "must be a public address")
+      errors.add(:ip_addr, I18n.t("ip_ban.must_be_public"))
     elsif full_ban? && ip_addr.ipv4? && ip_addr.prefix < 24
-      errors.add(:ip_addr, "may not have a subnet bigger than /24")
+      errors.add(:ip_addr, I18n.t("ip_ban.subnet_too_big_moderator_v4"))
     elsif partial_ban? && ip_addr.ipv4? && ip_addr.prefix < 8
-      errors.add(:ip_addr, "may not have a subnet bigger than /8")
+      errors.add(:ip_addr, I18n.t("ip_ban.subnet_too_big_admin_v4"))
     elsif full_ban? && ip_addr.ipv6? && ip_addr.prefix < 48
-      errors.add(:ip_addr, "may not have a subnet bigger than /48")
+      errors.add(:ip_addr, I18n.t("ip_ban.subnet_too_big_moderator_v6"))
     elsif partial_ban? && ip_addr.ipv6? && ip_addr.prefix < 20
-      errors.add(:ip_addr, "may not have a subnet bigger than /20")
+      errors.add(:ip_addr, I18n.t("ip_ban.subnet_too_big_admin_v6"))
     elsif new_record? && IpBan.active.where(category: category).ip_matches(ip_addr).exists?
-      errors.add(:ip_addr, "is already banned")
+      errors.add(:ip_addr, I18n.t("ip_ban.already_banned"))
     end
   end
 

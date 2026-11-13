@@ -1,18 +1,17 @@
-<h2>Hi <%= link_to_user @user %>,</h2>
+<h2><%= t("user_mailer.greeting_html", user: link_to_user(@user)) %></h2>
 
 <p>
-  Welcome to <%= link_to Danbooru.config.canonical_app_name, root_url %>! Click the link below to verify your email address:
+  <%= t("user_mailer.welcome_user.welcome_html", app_name: link_to(Danbooru.config.canonical_app_name, root_url)) %>
 </p>
 
 <p style="margin-left: 2em">
-  <%= link_to "Verify email address", email_verification_url(@user) %>
+  <%= link_to t("user_mailer.verify_email_address"), email_verification_url(@user) %>
 </p>
 
 <p class="fineprint">
-  You received this email because someone signed up for <%= link_to Danbooru.config.canonical_app_name, root_url %> with your address.
-  <%= link_to "Click here", disable_email_notifications_url(@user) %> to disable email notifications.
+  <%= t("user_mailer.welcome_user.notice_html", app_name: link_to(Danbooru.config.canonical_app_name, root_url), link: link_to(t("user_mailer.click_here"), disable_email_notifications_url(@user))) %>
 </p>
 
 <% content_for(:footer_links) do %>
-  / <%= link_to "Unsubscribe", disable_email_notifications_url(@user) %>
+  / <%= link_to t("user_mailer.unsubscribe"), disable_email_notifications_url(@user) %>
 <% end %>

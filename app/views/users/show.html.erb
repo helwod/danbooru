@@ -8,6 +8,6 @@
 </div>
 
 <% if Danbooru.config.comments_enabled?.to_s.truthy? %>
-  <% atom_feed_tag "Comments on #{@user.pretty_name}'s uploads", comments_url(:atom, search: { post_tags_match: "user:#{@user.name}" }) %>
-  <% atom_feed_tag "Comments on posts commented on by #{@user.pretty_name}", comments_url(:atom, search: { post_tags_match: "commenter:#{@user.name}" }) %>
+  <% atom_feed_tag t("users.atom.comments_on_uploads", name: @user.pretty_name), comments_url(:atom, search: { post_tags_match: "user:#{@user.name}" }) %>
+  <% atom_feed_tag t("users.atom.comments_by_user", name: @user.pretty_name), comments_url(:atom, search: { post_tags_match: "commenter:#{@user.name}" }) %>
 <% end %>

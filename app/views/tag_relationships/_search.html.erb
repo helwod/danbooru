@@ -1,16 +1,16 @@
 <%# url %>
 
 <%= search_form_for(url) do |f| %>
-  <%= f.input :antecedent_name_matches, label: "From", input_html: { value: params[:search][:antecedent_name_matches], data: { autocomplete: "tag" } } %>
-  <%= f.input :consequent_name_matches, label: "To", input_html: { value: params[:search][:consequent_name_matches], data: { autocomplete: "tag" } } %>
-  <%= f.input :reason_ilike, label: "Reason", input_html: { value: params[:search][:reason_ilike] } %>
+  <%= f.input :antecedent_name_matches, label: t("tag_relationships.search.from"), input_html: { value: params[:search][:antecedent_name_matches], data: { autocomplete: "tag" } } %>
+  <%= f.input :consequent_name_matches, label: t("tag_relationships.search.to"), input_html: { value: params[:search][:consequent_name_matches], data: { autocomplete: "tag" } } %>
+  <%= f.input :reason_ilike, label: t("tag_relationships.search.reason"), input_html: { value: params[:search][:reason_ilike] } %>
   <%= f.simple_fields_for :antecedent_tag do |fa| %>
-    <%= fa.input :category, label: "From Category", collection: TagCategory.canonical_mapping.to_a, include_blank: true, selected: params.dig(:search, :antecedent_tag, :category) %>
+    <%= fa.input :category, label: t("tag_relationships.search.from_category"), collection: TagCategory.canonical_mapping.to_a, include_blank: true, selected: params.dig(:search, :antecedent_tag, :category) %>
   <% end %>
   <%= f.simple_fields_for :consequent_tag do |fa| %>
-    <%= fa.input :category, label: "To Category", collection: TagCategory.canonical_mapping.to_a, include_blank: true, selected: params.dig(:search, :consequent_tag, :category) %>
+    <%= fa.input :category, label: t("tag_relationships.search.to_category"), collection: TagCategory.canonical_mapping.to_a, include_blank: true, selected: params.dig(:search, :consequent_tag, :category) %>
   <% end %>
-  <%= f.input :status, label: "Status", collection: %w[Active Deleted Retired], include_blank: true, selected: params[:search][:status] %>
-  <%= f.input :order, label: "Order", collection: [%w[Created created_at], %w[Updated updated_at], %w[Name name], %w[From\ tag\ count antecedent_tag_count], %w[To\ tag\ count consequent_tag_count]], include_blank: true, selected: params[:search][:order] %>
-  <%= f.submit "Search" %>
+  <%= f.input :status, label: t("tag_relationships.search.status"), collection: %w[Active Deleted Retired].map { |s| [t("tag_relationships.status.#{s.downcase}", default: s), s] }, include_blank: true, selected: params[:search][:status] %>
+  <%= f.input :order, label: t("tag_relationships.search.order"), collection: [[t("tag_relationships.search.order_created"), "created_at"], [t("tag_relationships.search.order_updated"), "updated_at"], [t("tag_relationships.search.order_name"), "name"], [t("tag_relationships.search.order_from_tag_count"), "antecedent_tag_count"], [t("tag_relationships.search.order_to_tag_count"), "consequent_tag_count"]], include_blank: true, selected: params[:search][:order] %>
+  <%= f.submit t("tag_relationships.search.submit") %>
 <% end %>

@@ -1,19 +1,19 @@
 <div id="c-post-approvals">
   <div id="a-index">
-    <h1>Approvals</h1>
+    <h1><%= t("post_approvals.index.title") %></h1>
     <%= render BlacklistComponent.new(user: CurrentUser.user, inline: true) %>
 
     <%= search_form_for(post_approvals_path) do |f| %>
-      <%= f.input :user_name, label: "Approver", input_html: { value: params[:search][:user_name], data: { autocomplete: "user" } } %>
-      <%= f.input :post_tags_match, label: "Tags", input_html: { value: params[:search][:post_tags_match], data: { autocomplete: "tag-query" } } %>
-      <%= f.submit "Search" %>
+      <%= f.input :user_name, label: t("post_approvals.index.search_approver"), input_html: { value: params[:search][:user_name], data: { autocomplete: "user" } } %>
+      <%= f.input :post_tags_match, label: t("post_approvals.index.search_tags"), input_html: { value: params[:search][:post_tags_match], data: { autocomplete: "tag-query" } } %>
+      <%= f.submit t("post_approvals.index.submit") %>
     <% end %>
 
     <%= table_for @post_approvals, width: "100%" do |t| %>
-      <% t.column "Post", width: "1%" do |post_approval| %>
+      <% t.column t("post_approvals.index.column_post"), width: "1%", column: "post" do |post_approval| %>
         <%= post_preview(post_approval.post, show_deleted: true) %>
       <% end %>
-      <% t.column "Approver", width: "15%" do |post_approval| %>
+      <% t.column t("post_approvals.index.column_approver"), width: "15%", column: "approver" do |post_approval| %>
         <%= link_to_user post_approval.user %>
         <%= link_to "»", post_approvals_path(search: params[:search].merge(user_name: post_approval.user.name)) %>
         <br><%= time_ago_in_words_tagged  post_approval.created_at %>

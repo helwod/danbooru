@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
   skip_before_action :redirect_if_name_invalid?, only: [:confirm_password, :reauthenticate]
 
   rescue_from ActiveSupport::MessageVerifier::InvalidSignature do
-    redirect_to login_path, notice: "Login expired. Login again to continue", status: 303
+    redirect_to login_path, notice: I18n.t("sessions.flash.login_expired"), status: 303
   end
 
   def new
@@ -73,7 +73,7 @@ class SessionsController < ApplicationController
   def destroy
     @session = authorize SessionLoader.new(request)
     @session.logout(CurrentUser.user)
-    redirect_to root_path, notice: "You are now logged out", status: 303
+    redirect_to root_path, notice: I18n.t("sessions.flash.logged_out"), status: 303
   end
 
   def logout

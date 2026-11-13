@@ -1,0 +1,54 @@
+en:
+  media_assets:
+    index:
+      title: "All Uploads"
+      search_tags: "Tags"
+      submit: "Search"
+      order_newest: "Newest"
+      order_oldest: "Oldest"
+      order_random: "Random"
+      tab_all: "All"
+      tab_posted: "Posted"
+      tab_unposted: "Unposted"
+    preview:
+      post_link: "post #%{id}"
+    table:
+      column_file: "File"
+      column_metadata: "Metadata"
+      column_created: "Created"
+      tag_count: "%{count} tags"
+    show:
+      download: "Download"
+      copy_id: "Copy ID"
+      delete_file: "Delete file"
+      confirm_delete: "This will permanently delete this file. Are you sure?"
+      tags_heading: "Tags"
+      uploads: "Uploads"
+      upload: "Upload"
+      uploader: "Uploader"
+      raw_source: "Raw Source"
+      metadata: "Metadata"
+      post: "Post"
+      md5: "MD5"
+      pixel_hash: "Pixel Hash"
+      file_type: "File Type"
+      file_size: "File Size"
+      resolution: "Resolution"
+      duration: "Duration"
+      source: "Source"
+    status:
+      processing: "Processing"
+      active: "Active"
+      deleted: "Deleted"
+      expunged: "Expunged"
+      failed: "Failed"
+    flash:
+      deleted: "File deleted"
+
+  activerecord:
+    attributes:
+      media_asset:
+        image_width: "Width"
+        image_height: "Height"
+        file_size: "File size"
+        file_ext: "File type"

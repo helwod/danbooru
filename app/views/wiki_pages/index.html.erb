@@ -1,15 +1,15 @@
 <%= render "sidebar" %>
 
 <% content_for(:content) do %>
-  <h1>Wiki</h1>
+  <h1><%= t("wiki_pages.index.title") %></h1>
 
   <%= render "search" %>
 
   <%= table_for @wiki_pages, width: "100%" do |t| %>
-    <% t.column "Title" do |wiki_page| %>
+    <% t.column t("wiki_pages.index.column_title"), column: "title" do |wiki_page| %>
       <span class="<%= tag_class(wiki_page.tag) %>"><%= link_to_wiki wiki_page.title %></span>
     <% end %>
-    <% t.column "Last edited" do |wiki_page| %>
+    <% t.column t("wiki_pages.index.column_last_edited"), column: "last-edited" do |wiki_page| %>
       <%= time_ago_in_words_tagged(wiki_page.updated_at) %>
     <% end %>
   <% end %>

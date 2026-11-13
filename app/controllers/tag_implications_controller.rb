@@ -19,6 +19,6 @@ class TagImplicationsController < ApplicationController
     @tag_implication = authorize TagImplication.find(params[:id])
     @tag_implication.reject!(CurrentUser.user)
 
-    respond_with(@tag_implication, location: tag_implications_path, notice: "Tag implication was deleted")
+    respond_with(@tag_implication, location: tag_implications_path, notice: I18n.t("tag_implications.flash.deleted"))
   end
 end

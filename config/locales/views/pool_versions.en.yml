@@ -1,0 +1,35 @@
+en:
+  pool_versions:
+    index:
+      title: "Pool History"
+    diff:
+      page_title: "Pool Comparison: %{name}"
+      heading_html: "Pool Version Comparison: %{link}"
+      between_html: "Showing differences between %{this_time} (%{this_user}) and %{other_time} (%{other_user})"
+      no_description_changes: "No changes to description."
+      latest_version: "Version is latest!"
+      no_versions: "No versions to compare!"
+    listing:
+      column_pool: "Pool"
+      column_post_changes: "Post Changes"
+      column_post_count: "Post Count"
+      column_changes: "Changes"
+      column_updated: "Updated"
+      revert_to: "Revert to"
+    search:
+      title: "Search Changes"
+      updater: "Updater"
+      pool: "Pool"
+      category: "Category"
+      category_series: "Series"
+      category_collection: "Collection"
+      is_new: "New?"
+      name_changed: "Name changed?"
+      description_changed: "Description changed?"
+      deleted: "Deleted?"
+      'yes': "Yes"
+      'no': "No"
+      submit: "Search"
+    secondary_links:
+      listing: "Listing"
+      search: "Search"

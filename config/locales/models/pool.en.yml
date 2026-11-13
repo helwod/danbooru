@@ -1,0 +1,12 @@
+en:
+  pool:
+    reserved_name: "cannot be any of the following names: %{names}"
+    cannot_update_deleted: "You cannot update pools that are deleted"
+    name_commas: "cannot contain commas"
+    name_asterisks: "cannot contain asterisks"
+    name_leading_underscore: "cannot begin with an underscore"
+    name_trailing_underscore: "cannot end with an underscore"
+    name_consecutive_underscores: "cannot contain consecutive underscores"
+    name_non_printable: "cannot contain non-printable characters"
+    name_blank: "cannot be blank"
+    name_only_digits: "cannot contain only digits"

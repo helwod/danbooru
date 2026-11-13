@@ -1,0 +1,12 @@
+"zh-CN":
+  post:
+    too_many_new_tags: "每 %{max_new_tags_interval} 最多创建 %{max_new_tags} 个新标签，请稍后再试。"
+    same_source_and_destination: "源作品与目标作品相同。"
+    no_notes: "没有批注。"
+    cannot_be_own_parent: "作品不能以自身作为父作品。"
+    parent_chain_too_deep: "父子层级不能超过 %{max_parent_depth} 层。"
+    parent_too_many_children: "作品 #%{parent_id} 的子作品数量不能超过 %{max_child_posts} 个。"
+    upload_limit_reached: "已达到上传上限，请等待待审作品通过后再上传。"
+    post_failed: "作品处理失败，请稍后重试。"
+    too_many_changed_tags: "每 %{max_changed_tags_interval} 最多增删 %{max_changed_tags} 个标签，请稍后再试。"
+    too_many_tags: "作品标签数量不能超过 %{max_tag_count} 个。"

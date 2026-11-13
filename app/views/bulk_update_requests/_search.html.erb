@@ -1,10 +1,10 @@
 <%= search_form_for(bulk_update_requests_path) do |f| %>
-  <%= f.input :user_name, label: "Creator", input_html: { value: params[:search][:user_name], data: { autocomplete: "user" } } %>
-  <%= f.input :approver_name, label: "Approver", input_html: { value: params[:search][:approver_name], data: { autocomplete: "user" } } %>
-  <%= f.input :tags_include_any, label: "Tags", input_html: { value: params[:search][:tags_include_any], data: { autocomplete: "tag-query" } } %>
+  <%= f.input :user_name, label: t("bulk_update_requests.search.creator"), input_html: { value: params[:search][:user_name], data: { autocomplete: "user" } } %>
+  <%= f.input :approver_name, label: t("bulk_update_requests.search.approver"), input_html: { value: params[:search][:approver_name], data: { autocomplete: "user" } } %>
+  <%= f.input :tags_include_any, label: t("bulk_update_requests.search.tags"), input_html: { value: params[:search][:tags_include_any], data: { autocomplete: "tag-query" } } %>
   <%= f.input :score, input_html: { value: params[:search][:score] } %>
-  <%= f.input :status, label: "Status", collection: %w[pending approved rejected processing failed], include_blank: true, selected: params[:search][:status] %>
-  <%= f.input :can_approve, label: "Can approve?", collection: [["Yes", "true"], ["No", "false"]], include_blank: true, selected: params[:search][:can_approve] %>
-  <%= f.input :order, collection: [%w[Newest id_desc], %w[Oldest id_asc], %w[Last\ updated updated_at_desc], %w[Status status_desc], %w[Score\ (highest) score_desc], %w[Score\ (lowest) score_asc]], include_blank: true, selected: params[:search][:order] %>
-  <%= f.submit "Search" %>
+  <%= f.input :status, label: t("bulk_update_requests.search.status"), collection: %w[pending approved rejected processing failed].map { |s| [t("bulk_update_requests.status.#{s}", default: s.titleize), s] }, include_blank: true, selected: params[:search][:status] %>
+  <%= f.input :can_approve, label: t("bulk_update_requests.search.can_approve"), collection: [[t("bulk_update_requests.search.yes"), "true"], [t("bulk_update_requests.search.no"), "false"]], include_blank: true, selected: params[:search][:can_approve] %>
+  <%= f.input :order, collection: [[t("bulk_update_requests.search.order_newest"), "id_desc"], [t("bulk_update_requests.search.order_oldest"), "id_asc"], [t("bulk_update_requests.search.order_last_updated"), "updated_at_desc"], [t("bulk_update_requests.search.order_status"), "status_desc"], [t("bulk_update_requests.search.order_score_desc"), "score_desc"], [t("bulk_update_requests.search.order_score_asc"), "score_asc"]], include_blank: true, selected: params[:search][:order] %>
+  <%= f.submit t("bulk_update_requests.search.submit") %>
 <% end %>

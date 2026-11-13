@@ -1,0 +1,75 @@
+en:
+  wiki_pages:
+    index:
+      title: "Wiki"
+      column_title: "Title"
+      column_last_edited: "Last edited"
+    new:
+      title: "New Wiki Page"
+      notice_html: "This wiki page does not yet exist. The form below will allow you to create a new page for %{title}. It will act as an explanation on how to use the tag for other users on the site."
+    edit:
+      title: "Edit Wiki"
+    show:
+      page_title: "%{title} Wiki"
+      locked: "(locked)"
+      deleted: "(deleted)"
+      not_exist: "This wiki page does not exist."
+      create_new: "Create new wiki page"
+      view_artist: "View artist"
+      deprecated: "deprecated"
+      deprecated_html: "This tag is %{link} and can't be added to new posts."
+    form:
+      title_hint: "Change to rename this wiki page. Update any wikis linking to this page first."
+      other_names_label_html: "Other names (%{link})"
+      other_names_help: "help"
+      other_names_hint: "Names used for this tag on other sites such as Pixiv. Separate with spaces."
+      locked: "Locked"
+      locked_hint: "Locked wikis can only be edited by Builders."
+      deleted: "Deleted"
+      deleted_hint: "Check to mark this wiki page as deleted."
+    search:
+      title: "Title"
+      other_names: "Other names"
+      text: "Text"
+      linked_to_hint: "Find wikis linking to this wiki"
+      locked: "Locked?"
+      deleted: "Deleted?"
+      has_images: "Has images?"
+      order_newest: "Newest"
+      order_title: "Title"
+      order_posts: "Posts"
+      submit: "Search"
+    secondary_links:
+      search: "Search"
+      new: "New"
+      changes: "Changes"
+      help: "Help"
+      posts_count: "Posts (%{count})"
+      history: "History"
+      undelete: "Undelete"
+      delete: "Delete"
+      edit: "Edit"
+      diff: "Diff"
+      revert_to: "Revert to"
+      confirm_undelete: "Are you sure you want to undelete this wiki?"
+      confirm_delete: "Are you sure you want to delete this wiki?"
+      confirm_revert: "Are you sure you want to revert to this version?"
+    sidebar:
+      options: "Options"
+      recent_changes: "Recent Changes"
+      all: "all"
+      tag_history: "Tag History"
+      post_history: "Post History"
+      wiki_history: "Wiki History"
+      discussions: "Discussions"
+      what_links_here: "What Links Here"
+      mistagged_posts: "Mistagged Posts"
+      untagged_posts: "Untagged Posts"
+    posts_heading: "Posts"
+    flash:
+      reverted: "Page was reverted"
+
+  activerecord:
+    attributes:
+      tag:
+        category: "Category"

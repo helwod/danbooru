@@ -1,0 +1,10 @@
+"zh-CN":
+  user:
+    private_favorites_requires_gold: "需要黄金账户。"
+    too_many_blacklist_rules: "黑名单规则不能超过 %{max_blacklist_rules} 条。"
+    too_many_blacklisted_tags: "黑名单标签不能超过 %{max_blacklist_tags} 个。"
+    too_many_favorite_tags: "收藏标签不能超过 1000 个。"
+    cannot_reset_deleted_password: "不能重置已删除账户的密码。"
+    no_backup_codes: "没有备用码。"
+    no_email_address: "没有邮箱地址。"
+    custom_style_syntax_error: "存在语法错误，可用 https://codebeautify.org/cssvalidate 校验。"

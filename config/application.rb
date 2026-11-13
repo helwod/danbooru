@@ -75,6 +75,16 @@ module Danbooru
     config.time_zone = "Eastern Time (US & Canada)"
     config.active_model.i18n_customize_full_message = true
 
+    # UI languages. English is the default; Simplified Chinese is selected with
+    # ?locale=zh-CN, a cookie, or the Accept-Language request header. Fallbacks
+    # let us translate strings incrementally without missing-translation errors.
+    # Translation files are sharded per view directory under config/locales/views/
+    # so that several people can translate different areas without conflicts.
+    config.i18n.load_path += Dir[Rails.root.join("config/locales/**/*.{rb,yml}")]
+    config.i18n.available_locales = [:en, :"zh-CN"]
+    config.i18n.default_locale = :en
+    config.i18n.fallbacks = true
+
     # Hide sensitive model attributes and request params in exception messages
     # and logs. Symbols are substring matches, so they match any attribute or
     # request param containing the word 'password' etc.

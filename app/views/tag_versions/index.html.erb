@@ -1,25 +1,25 @@
 <div id="c-tag-versions">
   <div id="a-index">
     <% if @tag %>
-      <h1>Tag History: <%= link_to_search @tag %></h1>
-      <%= link_to "« Back", tag_versions_path, class: "text-xs" %>
+      <h1><%= t("tag_versions.index.title_with_tag_html", link: link_to_search(@tag)).html_safe %></h1>
+      <%= link_to t("tag_versions.index.back"), tag_versions_path, class: "text-xs" %>
     <% elsif @updater %>
-      <h1>Tag History: <%= link_to_user @updater %></h1>
-      <%= link_to "« Back", tag_versions_path, class: "text-xs" %>
+      <h1><%= t("tag_versions.index.title_with_user_html", link: link_to_user(@updater)).html_safe %></h1>
+      <%= link_to t("tag_versions.index.back"), tag_versions_path, class: "text-xs" %>
     <% else %>
-      <h1>Tag History</h1>
+      <h1><%= t("tag_versions.index.title") %></h1>
     <% end %>
 
     <%= search_form_for(tag_versions_path) do |f| %>
-      <%= f.input :name_matches, label: "Tag", input_html: { value: @tag&.name, "data-autocomplete": "tag" } %>
-      <%= f.input :updater_name, label: "User", input_html: { value: @updater&.name, "data-autocomplete": "user" } %>
-      <%= f.input :order, collection: [%w[Newest updated_at], %w[Oldest updated_at_asc]], include_blank: true, selected: params[:search][:order] %>
-      <%= f.submit "Search" %>
+      <%= f.input :name_matches, label: t("tag_versions.index.search_tag"), input_html: { value: @tag&.name, "data-autocomplete": "tag" } %>
+      <%= f.input :updater_name, label: t("tag_versions.index.search_user"), input_html: { value: @updater&.name, "data-autocomplete": "user" } %>
+      <%= f.input :order, collection: [[t("tag_versions.index.order_newest"), "updated_at"], [t("tag_versions.index.order_oldest"), "updated_at_asc"]], include_blank: true, selected: params[:search][:order] %>
+      <%= f.submit t("tag_versions.index.submit") %>
     <% end %>
 
     <div id="p-<%= listing_type(:tag_id, :updater_id) %>-listing" class="mt-4">
       <%= table_for @tag_versions, class: "striped autofit", width: "100%" do |t| %>
-        <% t.column "Tag" do |tag_version| %>
+        <% t.column t("tag_versions.index.column_tag"), column: "tag" do |tag_version| %>
           <span class="<%= tag_class(tag_version) %>">
             <%= link_to_wiki "?", tag_version.tag.name %>
             <%= link_to tag_version.tag.name, posts_path(tags: tag_version.tag.name) %>
@@ -27,29 +27,29 @@
           </span>
         <% end %>
 
-        <% t.column "Change", td: { class: "col-expand" } do |tag_version| %>
+        <% t.column t("tag_versions.index.column_change"), column: "change", td: { class: "col-expand" } do |tag_version| %>
           <% if tag_version.first_version? && tag_version.created_at - tag_version.tag.created_at < 1.minute %>
-            Anonymous created <%= link_to_search tag_version %>.
+            <%= t("tag_versions.index.anonymous_created_html", tag: link_to_search(tag_version)).html_safe %>
           <% elsif tag_version.first_version? %>
-            Anonymous updated <%= link_to_search tag_version %>.
+            <%= t("tag_versions.index.anonymous_updated_html", tag: link_to_search(tag_version)).html_safe %>
           <% else %>
             <% if !tag_version.previous_version.is_deprecated? && tag_version.is_deprecated? %>
-              <%= link_to_user tag_version.updater %> deprecated <%= link_to_search tag_version %>.
+              <%= t("tag_versions.index.deprecated_html", user: link_to_user(tag_version.updater), tag: link_to_search(tag_version)).html_safe %>
             <% elsif tag_version.previous_version.is_deprecated? && !tag_version.is_deprecated? %>
-              <%= link_to_user tag_version.updater %> undeprecated <%= link_to_search tag_version %>.
+              <%= t("tag_versions.index.undeprecated_html", user: link_to_user(tag_version.updater), tag: link_to_search(tag_version)).html_safe %>
             <% end %>
 
             <% if tag_version.previous_version.category != tag_version.category %>
-              <%= link_to_user tag_version.updater %> changed <%= link_to_search tag_version %> from <%= tag_version.previous_version.category_name.downcase %> to <%= tag_version.category_name.downcase %>.
+              <%= t("tag_versions.index.category_changed_html", user: link_to_user(tag_version.updater), tag: link_to_search(tag_version), from: tag_version.previous_version.category_name.downcase, to: tag_version.category_name.downcase).html_safe %>
             <% end %>
           <% end %>
         <% end %>
 
-        <% t.column "Date" do |tag_version| %>
+        <% t.column t("tag_versions.index.column_date"), column: "date" do |tag_version| %>
           <%= time_ago_in_words_tagged(tag_version.updated_at) %>
         <% end %>
 
-        <% t.column "User" do |tag_version| %>
+        <% t.column t("tag_versions.index.column_user"), column: "user" do |tag_version| %>
           <%= link_to_user tag_version.updater %>
           <%= link_to "»", tag_versions_path(search: { **search_params, updater_id: tag_version.updater_id }) %>
         <% end %>
@@ -58,13 +58,13 @@
           <%= render PopupMenuComponent.new do |menu| %>
             <% if policy(tag_version.tag).update? %>
               <% menu.with_item do %>
-                <%= link_to "Edit tag", edit_tag_path(tag_version.tag) %>
+                <%= link_to t("tag_versions.index.edit_tag"), edit_tag_path(tag_version.tag) %>
               <% end %>
             <% end %>
 
             <% unless @tag %>
               <% menu.with_item do %>
-                <%= link_to "Tag history", tag_versions_path(search: { tag_id: tag_version.tag_id }) %>
+                <%= link_to t("tag_versions.index.tag_history"), tag_versions_path(search: { tag_id: tag_version.tag_id }) %>
               <% end %>
             <% end %>
           <% end %>

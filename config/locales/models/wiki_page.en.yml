@@ -1,0 +1,4 @@
+en:
+  wiki_page:
+    artist_wiki_no_other_names: "An artist wiki can't have other names"
+    other_names_too_long: "can't have names more than 100 characters long"

@@ -1,0 +1,7 @@
+"zh-CN":
+  saved_search:
+    too_many_saved_searches:
+      one: "最多只能保存 %{count} 个搜索。"
+      other: "最多只能保存 %{count} 个搜索。"
+    too_many_tags: "标签数量不能超过 %{max_tags} 个。"
+    labels_too_long: "标签说明不能超过 100 个字符。"

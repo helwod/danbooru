@@ -36,7 +36,7 @@ class PostAppealsController < ApplicationController
     @post_appeal = authorize PostAppeal.new(creator: CurrentUser.user, **permitted_attributes(PostAppeal))
     @post_appeal.save
 
-    respond_with(@post_appeal, notice: "Post appealed")
+    respond_with(@post_appeal, notice: I18n.t("post_appeals.flash.appealed"))
   end
 
   def update

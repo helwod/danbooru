@@ -21,52 +21,52 @@
     <% if post_count.value > 0 %>
       <%= tag.div "x-data": { showReason: ban.delete_posts }.to_json do %>
         <div class="flex gap-2">
-          <%= f.input :delete_posts, as: :boolean, wrapper: "inline-checkbox", label: "Delete #{post_count.value} pending posts", input_html: { "x-model": "showReason" } %>
-          <span class="leading-normal">(<%= link_to "list", posts_path(tags: "user:#{ban.user.name} status:pending date:#{created_at_iso}..") %>)</span>
+          <%= f.input :delete_posts, as: :boolean, wrapper: "inline-checkbox", label: t("bans.delete_pending_posts", count: post_count.value), input_html: { "x-model": "showReason" } %>
+          <span class="leading-normal">(<%= link_to t("bans.list"), posts_path(tags: "user:#{ban.user.name} status:pending date:#{created_at_iso}..") %>)</span>
         </div>
 
-        <%= f.input :post_deletion_reason, as: :string, label: "With reason", wrapper_html: { "x-show": "showReason", "x-cloak": true } %>
+        <%= f.input :post_deletion_reason, as: :string, label: t("bans.with_reason"), wrapper_html: { "x-show": "showReason", "x-cloak": true } %>
       <% end %>
     <% end %>
 
     <% if comment_count.value > 0 %>
       <div class="flex gap-2">
-        <%= f.input :delete_comments, as: :boolean, wrapper: "inline-checkbox", label: "Delete #{comment_count.value} comments" %>
-        <span class="leading-normal">(<%= link_to "list", comments_path(search: { creator_id: ban.user.id, created_at: "#{created_at_iso}.." }) %>)</span>
+        <%= f.input :delete_comments, as: :boolean, wrapper: "inline-checkbox", label: t("bans.delete_comments", count: comment_count.value) %>
+        <span class="leading-normal">(<%= link_to t("bans.list"), comments_path(search: { creator_id: ban.user.id, created_at: "#{created_at_iso}.." }) %>)</span>
       </div>
     <% end %>
 
     <% if forum_post_count.value > 0 || forum_topic_count.value > 0 %>
       <div class="flex gap-2">
-        <%= f.input :delete_forum_posts, as: :boolean, wrapper: "inline-checkbox", label: tag.span("Delete #{forum_post_count.value} forum posts #{"and #{forum_topic_count.value} forum topics" if forum_topic_count.value > 0}".squeeze) %>
-        <span class="leading-normal">(<%= link_to "list", forum_posts_path(search: { creator_id: ban.user.id, created_at: "#{created_at_iso}.." }) %>)</span>
+        <%= f.input :delete_forum_posts, as: :boolean, wrapper: "inline-checkbox", label: tag.span("#{t("bans.delete_forum_posts", count: forum_post_count.value)} #{(t("bans.and_forum_topics", count: forum_topic_count.value) if forum_topic_count.value > 0)}".squeeze) %>
+        <span class="leading-normal">(<%= link_to t("bans.list"), forum_posts_path(search: { creator_id: ban.user.id, created_at: "#{created_at_iso}.." }) %>)</span>
       </div>
     <% end %>
 
     <% if post_vote_count.value > 0 && policy(PostVote.new).destroy? %>
       <div class="flex gap-2">
-        <%= f.input :delete_post_votes, as: :boolean, wrapper: "inline-checkbox", label: "Delete #{post_vote_count.value} post votes" %>
-        <span class="leading-normal">(<%= link_to "list", post_votes_path(search: { user_id: ban.user.id, created_at: "#{created_at_iso}.." }) %>)</span>
+        <%= f.input :delete_post_votes, as: :boolean, wrapper: "inline-checkbox", label: t("bans.delete_post_votes", count: post_vote_count.value) %>
+        <span class="leading-normal">(<%= link_to t("bans.list"), post_votes_path(search: { user_id: ban.user.id, created_at: "#{created_at_iso}.." }) %>)</span>
       </div>
     <% end %>
 
     <% if comment_vote_count.value > 0 && policy(CommentVote.new).destroy? %>
       <div class="flex gap-2">
-        <%= f.input :delete_comment_votes, as: :boolean, wrapper: "inline-checkbox", label: "Delete #{comment_vote_count.value} comment votes" %>
-        <span class="leading-normal">(<%= link_to "list", comment_votes_path(search: { user_id: ban.user.id, created_at: "#{created_at_iso}.." }) %>)</span>
+        <%= f.input :delete_comment_votes, as: :boolean, wrapper: "inline-checkbox", label: t("bans.delete_comment_votes", count: comment_vote_count.value) %>
+        <span class="leading-normal">(<%= link_to t("bans.list"), comment_votes_path(search: { user_id: ban.user.id, created_at: "#{created_at_iso}.." }) %>)</span>
       </div>
     <% end %>
   <% end %>
 
   <div>
     <% if @ban.new_record? %>
-      <%= f.submit "Ban", class: "button-danger", disabled: @ban.user&.is_banned? %>
+      <%= f.submit t("bans.ban"), class: "button-danger", disabled: @ban.user&.is_banned? %>
     <% else %>
       <%= f.submit_button disabled: @ban.expired? %>
     <% end %>
 
     <% if @ban.persisted? %>
-      <%= f.submit "Unban", form: "delete-ban", class: "button-outline-danger", disabled: @ban.expired?, "data-confirm": "Are you sure you want to unban this user?" %>
+      <%= f.submit t("bans.unban"), form: "delete-ban", class: "button-outline-danger", disabled: @ban.expired?, "data-confirm": t("bans.unban_confirm") %>
     <% end %>
   </div>
 <% end %>

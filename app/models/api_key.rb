@@ -47,19 +47,19 @@ class ApiKey < ApplicationRecord
 
   def validate_max_api_keys
     if user.api_keys.count >= 20
-      errors.add(:base, "You can't have more than 20 API keys.")
+      errors.add(:base, I18n.t("api_key.too_many_api_keys"))
     end
   end
 
   def validate_ip_addresses
     permitted_ip_addresses.each do |ip_addr|
       if ip_addr.is_local?
-        errors.add(:permitted_ip_addresses, "can't include private IP address '#{ip_addr}'")
+        errors.add(:permitted_ip_addresses, I18n.t("api_key.private_ip_address", ip_addr: ip_addr))
       end
 
       permitted_ip_addresses.without(ip_addr).each do |other_ip|
         if other_ip.in?([ip_addr])
-          errors.add(:permitted_ip_addresses, "can't include overlapping IP address ranges (#{other_ip} is a subnet of #{ip_addr})")
+          errors.add(:permitted_ip_addresses, I18n.t("api_key.overlapping_ip_ranges", other_ip: other_ip, ip_addr: ip_addr))
           break
         end
       end
@@ -100,7 +100,7 @@ class ApiKey < ApplicationRecord
     def validate_permissions
       permissions.each do |permission|
         if !permission.in?(ApiKey.permissions_list)
-          errors.add(:permissions, "can't allow invalid permission '#{permission}'")
+          errors.add(:permissions, I18n.t("api_key.invalid_permission", permission: permission))
         end
       end
     end

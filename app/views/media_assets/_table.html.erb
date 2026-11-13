@@ -1,5 +1,5 @@
 <%= table_for @media_assets, class: "striped autofit" do |t| %>
-  <% t.column "File", td: { class: "text-center" } do |media_asset| %>
+  <% t.column t("media_assets.table.column_file"), td: { class: "text-center" }, column: "file" do |media_asset| %>
     <% if policy(media_asset).can_see_image? %>
       <%= render MediaAssetPreviewComponent.new(media_asset: media_asset, save_data: CurrentUser.save_data) %>
     <% end %>
@@ -10,11 +10,11 @@
   <% t.column :file_size %>
   <% t.column :file_ext %>
 
-  <% t.column "Metadata" do |media_asset| %>
-    <%= link_to pluralize(media_asset.metadata.size, "tags"), media_asset %>
+  <% t.column t("media_assets.table.column_metadata"), column: "metadata" do |media_asset| %>
+    <%= link_to t("media_assets.table.tag_count", count: media_asset.metadata.size), media_asset %>
   <% end %>
 
-  <% t.column "Created" do |media_asset| %>
+  <% t.column t("media_assets.table.column_created"), column: "created" do |media_asset| %>
     <%= time_ago_in_words_tagged(media_asset.created_at) %>
   <% end %>
 <% end %>

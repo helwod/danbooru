@@ -1,7 +1,7 @@
 <%= render "sidebar" %>
 
 <% content_for(:content) do %>
-  <h1>Edit Wiki</h1>
+  <h1><%= t("wiki_pages.edit.title") %></h1>
 
   <%= render "form" %>
 <% end %>

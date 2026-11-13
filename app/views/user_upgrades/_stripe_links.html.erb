@@ -1,9 +1,9 @@
 <%# user_upgrade %>
 
 <% if policy(user_upgrade).receipt? %>
-  <%= link_to "View Receipt", receipt_user_upgrade_path(user_upgrade), target: "_blank" %>
+  <%= link_to t("user_upgrades.action.view_receipt"), receipt_user_upgrade_path(user_upgrade), target: "_blank" %>
 <% end %>
 
 <% if policy(user_upgrade).payment? %>
-  | <%= link_to "View Payment", payment_user_upgrade_path(user_upgrade), target: "_blank" %>
+  | <%= link_to t("user_upgrades.action.view_payment"), payment_user_upgrade_path(user_upgrade), target: "_blank" %>
 <% end %>

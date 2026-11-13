@@ -8,11 +8,11 @@
     <%= quick_search_form_for(:creator_name, url_for, "user", autocomplete: "user") %>
   <% end %>
 
-  <%= subnav_link_to "Events", post_events_path %>
-  <%= subnav_link_to "Appeals", post_appeals_path %>
-  <%= subnav_link_to "Approvals", post_approvals_path %>
-  <%= subnav_link_to "Disapprovals", post_disapprovals_path %>
-  <%= subnav_link_to "Flags", post_flags_path %>
-  <%= subnav_link_to "Replacements", post_replacements_path %>
-  <%= subnav_link_to "Mod Actions", mod_actions_path(search: { subject_type: "Post" }) %>
+  <%= subnav_link_to t("post_events.secondary_links.events"), post_events_path, id: "events" %>
+  <%= subnav_link_to t("post_events.secondary_links.appeals"), post_appeals_path, id: "appeals" %>
+  <%= subnav_link_to t("post_events.secondary_links.approvals"), post_approvals_path, id: "approvals" %>
+  <%= subnav_link_to t("post_events.secondary_links.disapprovals"), post_disapprovals_path, id: "disapprovals" %>
+  <%= subnav_link_to t("post_events.secondary_links.flags"), post_flags_path, id: "flags" %>
+  <%= subnav_link_to t("post_events.secondary_links.replacements"), post_replacements_path, id: "replacements" %>
+  <%= subnav_link_to t("post_events.secondary_links.mod_actions"), mod_actions_path(search: { subject_type: "Post" }), id: "mod-actions" %>
 <% end %>

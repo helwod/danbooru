@@ -1,0 +1,26 @@
+"zh-CN":
+  forum_posts:
+    edit:
+      title: "编辑论坛帖子"
+    new:
+      title: "发表论坛帖子"
+      reply_to: "回复 %{title}"
+    index:
+      column_topic: "主题"
+      column_excerpt: "摘要"
+      column_creator: "作者"
+      column_date: "日期"
+    form:
+      topic_id: "主题 ID"
+      submit: "发表"
+    search:
+      title: "搜索论坛"
+      topic_title: "标题"
+      body: "内容"
+      creator: "作者"
+      tag: "标签"
+      tag_hint: "查找提到某个标签的帖子"
+      submit: "搜索"
+    flash:
+      deleted: "帖子已删除"
+      undeleted: "帖子已恢复"

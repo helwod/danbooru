@@ -2,7 +2,7 @@
   <% sockpuppet_accounts = user.sockpuppet_accounts(CurrentUser.user) %>
 
   <% if sockpuppet_accounts[:session_ids].present? || sockpuppet_accounts[:ip_addresses].present? %>
-    <strong>Other Accounts</strong>
+    <strong><%= t("users.other_accounts") %></strong>
 
     <div class="flex flex-wrap sm:flex-col gap-2 mb-2 fixed-width-container">
       <% sockpuppet_accounts[:session_ids].each do |session_id, users| %>
@@ -39,7 +39,7 @@
     </div>
 
     <% if sockpuppet_accounts[:ip_addresses].present? %>
-      <p class="fineprint">Accounts with the same IP may not be the same user.</p>
+      <p class="fineprint"><%= t("users.same_ip_notice") %></p>
     <% end %>
   <% end %>
 <% end %>

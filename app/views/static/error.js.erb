@@ -3,5 +3,5 @@ console.error(<%= raw @api_response.to_json %>);
 <% if @message.present? %>
   Danbooru.Notice.error("<%= j @message %>");
 <% else %>
-  Danbooru.Notice.error("<%= j "Unexpected error: #{@exception.class}" %>");
+  Danbooru.Notice.error("<%= j t("static.unexpected_error", class: @exception.class) %>");
 <% end %>

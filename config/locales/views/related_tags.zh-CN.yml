@@ -1,0 +1,27 @@
+"zh-CN":
+  related_tags:
+    related: "相关："
+    all: "全部"
+    wiki: "维基"
+    columns:
+      suggested: "建议"
+      frequent: "常用"
+      recent: "最近"
+      translated: "已翻译"
+    show:
+      page_title: "相关标签"
+      search_tag: "标签"
+      search_sample_size: "搜索样本数"
+      tag_sample_size: "标签样本数"
+      submit: "搜索"
+      column_name: "名称"
+      order_cosine: "余弦相似度"
+      order_jaccard: "杰卡德相似度"
+      order_overlap: "重叠系数"
+      order_frequency: "共现频率"
+      categories:
+        general: "通用"
+        artist: "画师"
+        copyright: "版权"
+        character: "角色"
+        meta: "元信息"

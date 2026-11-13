@@ -1,0 +1,4 @@
+en:
+  post_appeal:
+    appeal_limit_reached: "have reached your appeal limit"
+    cannot_be_appealed: "cannot be appealed"

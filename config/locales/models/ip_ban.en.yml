@@ -1,0 +1,8 @@
+en:
+  ip_ban:
+    must_be_public: "must be a public address"
+    subnet_too_big_moderator_v4: "may not have a subnet bigger than /24"
+    subnet_too_big_admin_v4: "may not have a subnet bigger than /8"
+    subnet_too_big_moderator_v6: "may not have a subnet bigger than /48"
+    subnet_too_big_admin_v6: "may not have a subnet bigger than /20"
+    already_banned: "is already banned"

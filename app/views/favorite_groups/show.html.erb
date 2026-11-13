@@ -1,14 +1,14 @@
-<% page_title "Favgroup: #{@favorite_group.pretty_name}" %>
+<% page_title t("favorite_groups.show.page_title", name: @favorite_group.pretty_name) %>
 <%= render "secondary_links" %>
 
 <div id="c-favorite-groups">
   <div id="a-show">
     <h1>
-      Favorite Group:
+      <%= t("favorite_groups.show.heading") %>
       <%= link_to @favorite_group.pretty_name, posts_path(:tags => "favgroup:#{@favorite_group.id} status:any") %>
     </h1>
 
-    Creator: <%= link_to_user @favorite_group.creator %>
+    <%= t("favorite_groups.show.creator", name: link_to_user(@favorite_group.creator)).html_safe %>
     <br>
     <br>
 

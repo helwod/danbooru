@@ -1,0 +1,8 @@
+"zh-CN":
+  counts:
+    posts:
+      page_title: "作品数量"
+      search_tags: "标签"
+      submit: "搜索"
+      count_for_html: "%{link} 的作品数量："
+      timed_out: "统计超时"

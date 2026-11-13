@@ -1,11 +1,11 @@
 <%= search_form_for(mod_actions_path) do |f| %>
-  <%= f.input :creator_name, label: "Creator", input_html: { value: params[:search][:creator_name], data: { autocomplete: "user" } } %>
-  <%= f.input :description_matches, label: "Description", input_html: { value: params[:search][:description_matches] } %>
+  <%= f.input :creator_name, label: t("mod_actions.labels.creator"), input_html: { value: params[:search][:creator_name], data: { autocomplete: "user" } } %>
+  <%= f.input :description_matches, label: t("mod_actions.labels.description"), input_html: { value: params[:search][:description_matches] } %>
   <% if params[:search][:subject_id].present? && params[:search][:subject_type] %>
-    <%= f.input :subject_id, label: "#{params[:search][:subject_type].titleize} ID", input_html: { value: params[:search][:subject_id] } %>
+    <%= f.input :subject_id, label: t("mod_actions.subject_id", type: t("mod_actions.model_types.#{params[:search][:subject_type]}", default: params[:search][:subject_type].titleize)), input_html: { value: params[:search][:subject_id] } %>
   <% end %>
-  <%= f.input :subject_type, label: "Subject", collection: ModAction.model_types.map { |k, v| [k.titleize, k] }, include_blank: true, selected: params[:search][:subject_type] %>
-  <%= f.input :category, label: "Category", collection: ModAction.categories.map { |k, v| [k.capitalize.tr("_", " "), k] }, include_blank: true, selected: params[:search][:category] %>
-  <%= f.input :order, collection: [%w[Newest created_at], %w[Oldest created_at_asc]], include_blank: true, selected: params[:search][:order] %>
-  <%= f.submit "Search" %>
+  <%= f.input :subject_type, label: t("mod_actions.labels.subject"), collection: ModAction.model_types.map { |type| [t("mod_actions.model_types.#{type}", default: type.titleize), type] }, include_blank: true, selected: params[:search][:subject_type] %>
+  <%= f.input :category, label: t("mod_actions.labels.category"), collection: ModAction.categories.map { |k, _v| [t("mod_actions.categories.#{k}", default: k.capitalize.tr("_", " ")), k] }, include_blank: true, selected: params[:search][:category] %>
+  <%= f.input :order, collection: [[t("mod_actions.order.newest"), "created_at"], [t("mod_actions.order.oldest"), "created_at_asc"]], include_blank: true, selected: params[:search][:order] %>
+  <%= f.submit t("mod_actions.labels.search") %>
 <% end %>

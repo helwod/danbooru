@@ -1,18 +1,18 @@
-<% page_title "#{@artist.pretty_name.startcase} | Artist Profile" %>
+<% page_title t("artists.show.page_title", name: @artist.pretty_name.startcase) %>
 <% noindex if @artist.is_banned? %>
 <%= render "secondary_links" %>
 
 <div id="c-artists">
   <div id="a-show">
     <% if @artist.is_banned? && !policy(@artist).can_view_banned? %>
-      <p>This page has been removed because of a takedown request.</p>
+      <p><%= t("artists.summary.takedown_notice") %></p>
     <% else %>
       <%= render "artists/summary", artist: @artist %>
 
       <% if @artist.tag.present? && @artist.tag.post_count > 0 %>
         <div class="recent-posts">
           <h2 class="recent-posts-header">
-            <%= link_to "Posts", posts_path(tags: @artist.name) %>
+            <%= link_to t("artists.show.posts_heading"), posts_path(tags: @artist.name) %>
           </h2>
 
           <%= render BlacklistComponent.new(user: CurrentUser.user, inline: true) %>

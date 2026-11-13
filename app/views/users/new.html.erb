@@ -1,28 +1,28 @@
-<% page_title "Sign up" %>
-<% meta_description "Create a new account for free on #{Danbooru.config.app_name}." %>
+<% page_title t("users.sign_up") %>
+<% meta_description t("users.sign_up_description", app_name: Danbooru.config.app_name) %>
 
 <%= render "sessions/secondary_links" %>
 
 <div id="c-users">
   <div id="a-new">
     <div class="card mt-8 p-4 max-w-360px mx-auto flex flex-col items-center">
-      <h1 class="pb-4">Sign Up</h1>
+      <h1 class="pb-4"><%= t("users.sign_up") %></h1>
 
       <%= edit_form_for(@user, validate: true, formatted_errors: true, html: { id: "signup-form", class: "w-full stacked-form stacked-hints", "data-validate-form": "true" }) do |f| %>
         <%= f.input :url, as: :hidden, input_html: { value: @url } %>
-        <%= f.input :name, as: :string, label: "Username", input_html: { autocapitalize: "none", minlength: UserNameValidator::MIN_LENGTH, maxlength: UserNameValidator::MAX_LENGTH }, required: true %>
+        <%= f.input :name, as: :string, label: t("users.username"), input_html: { autocapitalize: "none", minlength: UserNameValidator::MIN_LENGTH, maxlength: UserNameValidator::MAX_LENGTH }, required: true %>
         <%= f.simple_fields_for(@user.email_address || @user.build_email_address) do |fa| %>
-          <%= fa.input :address, label: "Email", required: false, as: :email, input_html: { value: fa.object.address, pattern: Danbooru::EmailAddress::EMAIL_REGEX, placeholder: "your.name@example.com" }, hint: "Optional" %>
+          <%= fa.input :address, label: t("users.email"), required: false, as: :email, input_html: { value: fa.object.address, pattern: Danbooru::EmailAddress::EMAIL_REGEX, placeholder: t("users.email_placeholder") }, hint: t("users.optional") %>
         <% end %>
         <%= f.input :password, input_html: { value: @user.password, autocomplete: "new-password", minlength: User::MIN_PASSWORD_LENGTH }, required: true %>
-        <%= f.input :password_confirmation, label: "Confirm password", input_html: { value: @user.password_confirmation, autocomplete: "new-password" }, required: true %>
+        <%= f.input :password_confirmation, label: t("users.confirm_password"), input_html: { value: @user.password_confirmation, autocomplete: "new-password" }, required: true %>
 
         <%= captcha_tag class: "mb-4", action: :signup %>
-        <%= f.submit_button "Sign up", disabled: true %>
+        <%= f.submit_button t("users.sign_up"), disabled: true %>
       <% end %>
 
       <p class="fineprint">
-        Already have an account? <%= link_to "Login here", login_path(url: @url) %>.
+        <%= t("users.already_have_account") %> <%= link_to t("users.login_here"), login_path(url: @url) %>.
       </p>
     </div>
   </div>

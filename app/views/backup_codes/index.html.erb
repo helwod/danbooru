@@ -1,20 +1,19 @@
-<% page_title "Backup Codes" %>
+<% page_title t("backup_codes.title") %>
 
 <%= render "users/secondary_links" %>
 
 <div id="c-totp">
   <div id="a-new">
     <div class="card mt-8 p-4 max-w-540px mx-auto flex flex-col gap-4 items-center">
-      <h1>Backup Codes</h1>
+      <h1><%= t("backup_codes.title") %></h1>
 
       <div class="prose">
         <p>
-          Backup codes let you login in case you lose your phone or two-factor authentication app.
+          <%= t("backup_codes.intro") %>
         </p>
 
         <p>
-          Save these codes. If you lose your phone and don't have your
-          backup codes, then you will be locked out of your account permanently.
+          <%= t("backup_codes.save_warning") %>
         </p>
 
         <hr>
@@ -27,15 +26,15 @@
 
         <div class="flex justify-center gap-4" x-data>
           <%= link_to user_backup_codes_path(@user, format: :txt), class: "button-outline-primary", download: "danbooru-backup-codes.txt" do %>
-            <%= download_icon %> Download
+            <%= download_icon %> <%= t("backup_codes.download") %>
           <% end %>
 
           <%= tag.button class: "button-outline-primary", "x-on:click": "$printPage('#{j user_backup_codes_path(@user, format: :txt)}')" do %>
-            <%= print_icon %> Print
+            <%= print_icon %> <%= t("backup_codes.print") %>
           <% end %>
 
           <%= tag.button class: "button-outline-primary", "x-on:click": "$copyToClipboard('#{j @backup_codes.join("\n")}')" do %>
-            <%= copy_icon %> Copy
+            <%= copy_icon %> <%= t("backup_codes.copy") %>
           <% end %>
         </div>
 
@@ -43,16 +42,16 @@
       </div>
 
       <% if @continue %>
-        <%= link_to "Continue", settings_path, class: "button-primary" %>
+        <%= link_to t("backup_codes.continue"), settings_path, class: "button-primary" %>
       <% else %>
         <%= edit_form_for(:backup_codes, url: user_backup_codes_path(@user), method: "post") do |f| %>
-          <%= f.submit_button "Generate new codes" %>
+          <%= f.submit_button t("backup_codes.generate") %>
         <% end %>
       <% end %>
     </div>
 
     <div class="mt-4 flex justify-center">
-      <%= link_to "Back to settings", settings_path %>
+      <%= link_to t("backup_codes.back_to_settings"), settings_path %>
     </div>
   </div>
 </div>

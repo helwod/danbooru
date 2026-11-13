@@ -1,0 +1,30 @@
+en:
+  explore:
+    posts:
+      prev: "« prev"
+      next: "next »"
+      previous: "< Previous"
+      next_day: "Next >"
+      popular:
+        page_title: "Popular Posts"
+        meta_description: "The most popular posts of %{range}"
+        heading: "Popular: %{range}"
+      searches:
+        page_title: "Popular Searches"
+        heading: "Popular Searches - %{date}"
+        column_tags: "Tags"
+        column_count: "Count"
+      missed_searches:
+        page_title: "Missed Searches"
+        subtitle: "Over the past seven days."
+        column_tags: "Tags"
+        column_wiki: "Wiki"
+        column_count: "Count"
+      viewed:
+        page_title: "Most Viewed"
+        meta_description: "The most viewed posts per %{scale}"
+        heading: "Most Viewed - %{date}"
+    scales:
+      day: "Day"
+      week: "Week"
+      month: "Month"

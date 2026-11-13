@@ -1,25 +1,25 @@
 <div id="c-tags">
   <div id="a-edit">
-    <h1>Tag: <%= @tag.name %></h1>
+    <h1><%= t("tags.edit.title", name: @tag.name) %></h1>
 
     <%= edit_form_for(@tag) do |f| %>
       <% if policy(@tag).can_change_category? %>
         <%= f.input :category, collection: TagCategory.canonical_mapping.to_a, include_blank: false %>
       <% elsif @tag.artist.present? %>
-        <p>Cannot change the category of an artist tag. Rename the artist first.</p>
+        <p><%= t("tags.edit.cannot_change_artist_category") %></p>
       <% else %>
-        <p>Create a <%= link_to "bulk update request", new_bulk_update_request_path(bulk_update_request: { script: "category #{@tag.name} -> general" }) %> to change this tag's category.</p>
+        <p><%= t("tags.edit.request_category_change_html", link: link_to(t("tags.edit.bulk_update_request"), new_bulk_update_request_path(bulk_update_request: { script: "category #{@tag.name} -> general" }))).html_safe %></p>
       <% end %>
 
       <% if policy(@tag).can_change_deprecated_status? %>
-        <%= f.input :is_deprecated, :collection => [["No", "false"], ["Yes", "true"]], :include_blank => false %>
+        <%= f.input :is_deprecated, :collection => [[t("tags.edit.no"), "false"], [t("tags.edit.yes"), "true"]], :include_blank => false %>
       <% else %>
         <% if @tag.is_deprecated? %>
-          <p>Create a <%= link_to "bulk update request", new_bulk_update_request_path(bulk_update_request: { script: "undeprecate #{@tag.name}" }) %> to mark this tag as not deprecated.</p>
+          <p><%= t("tags.edit.request_undeprecate_html", link: link_to(t("tags.edit.bulk_update_request"), new_bulk_update_request_path(bulk_update_request: { script: "undeprecate #{@tag.name}" }))).html_safe %></p>
         <% elsif @tag.wiki_page.blank? %>
-          <p>This tag needs a wiki page to be marked as deprecated. <%= link_to "Click here", new_wiki_page_path(wiki_page: { title: @tag.name} ) %> to create one.</p>
+          <p><%= t("tags.edit.needs_wiki_html", link: link_to(t("tags.edit.click_here"), new_wiki_page_path(wiki_page: { title: @tag.name} ))).html_safe %></p>
         <% else %>
-          <p>Create a <%= link_to "bulk update request", new_bulk_update_request_path(bulk_update_request: { script: "deprecate #{@tag.name}" }) %> to mark this tag as deprecated.</p>
+          <p><%= t("tags.edit.request_deprecate_html", link: link_to(t("tags.edit.bulk_update_request"), new_bulk_update_request_path(bulk_update_request: { script: "deprecate #{@tag.name}" }))).html_safe %></p>
         <% end %>
       <% end %>
       <%= f.submit_button %>

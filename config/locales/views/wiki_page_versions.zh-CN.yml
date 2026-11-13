@@ -1,0 +1,26 @@
+"zh-CN":
+  wiki_page_versions:
+    index:
+      title: "维基页面历史"
+    diff:
+      page_title: "维基对比：%{title}"
+      changes_between: "比较"
+      and: "与"
+      no_body_changes: "正文没有变化。"
+      latest_version: "这已是最新版本！"
+      no_versions: "没有可对比的版本！"
+    show:
+      edited: "编辑于"
+      created: "创建于"
+      by: "编辑者 %{name}"
+      previously_edited: "上一次编辑于 %{time}，编辑者 %{name}"
+    listing:
+      column_title: "标题"
+      column_changes: "状态变更"
+      column_updated: "修改者"
+      diff: "对比"
+    navbar:
+      newer: "‹ 更新"
+      older: "更早 ›"
+    flash:
+      select_version: "必须至少选择一个版本进行对比"

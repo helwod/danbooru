@@ -86,18 +86,18 @@ class PostFlag < ApplicationRecord
   end
 
   def validate_creator_is_not_limited
-    errors.add(:creator, "have reached your flag limit") if creator.is_flag_limited? && !is_deletion
+    errors.add(:creator, I18n.t("post_flag.flag_limit_reached")) if creator.is_flag_limited? && !is_deletion
   end
 
   def validate_post
-    errors.add(:post, "is pending and cannot be flagged") if post.is_pending? && !is_deletion
-    errors.add(:post, "is deleted and cannot be flagged") if post.is_deleted? && creator != User.system # DanbooruBot is allowed to prune expired appeals
-    errors.add(:post, "is already flagged") if post.is_flagged? && !is_deletion
-    errors.add(:post, "cannot be flagged") if !post.visible?(creator)
+    errors.add(:post, I18n.t("post_flag.pending_cannot_be_flagged")) if post.is_pending? && !is_deletion
+    errors.add(:post, I18n.t("post_flag.deleted_cannot_be_flagged")) if post.is_deleted? && creator != User.system # DanbooruBot is allowed to prune expired appeals
+    errors.add(:post, I18n.t("post_flag.already_flagged")) if post.is_flagged? && !is_deletion
+    errors.add(:post, I18n.t("post_flag.cannot_be_flagged")) if !post.visible?(creator)
 
     flag = post.flags.in_cooldown.last
     if !is_deletion && !creator.is_approver? && flag.present?
-      errors.add(:post, "cannot be flagged more than once every #{Danbooru.config.moderation_period.inspect} (last flagged: #{flag.created_at.to_fs(:long)})")
+      errors.add(:post, I18n.t("post_flag.flag_cooldown", config_moderation_period: Danbooru.config.moderation_period.inspect, created_at_long: flag.created_at.to_fs(:long)))
     end
   end
 

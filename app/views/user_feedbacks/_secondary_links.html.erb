@@ -1,24 +1,24 @@
 <% content_for(:secondary_links) do %>
   <%= quick_search_form_for(:user_name, user_feedbacks_path, "users", autocomplete: "user") %>
-  <%= subnav_link_to "Listing", user_feedbacks_path %>
+  <%= subnav_link_to t("user_feedbacks.listing"), user_feedbacks_path, id: "listing" %>
   <% if policy(IpBan).index? %>
-    <%= subnav_link_to "IP Bans", ip_bans_path %>
+    <%= subnav_link_to t("user_feedbacks.ip_bans"), ip_bans_path, id: "ip-bans" %>
   <% end %>
-  <%= subnav_link_to "Bans", bans_path %>
+  <%= subnav_link_to t("user_feedbacks.bans"), bans_path, id: "bans" %>
   <% if policy(UserFeedback.new).create? %>
     <% if @user_feedback.present? && policy(@user_feedback).create? %>
       <%= subnav_divider %>
-      <%= subnav_link_to "New", new_user_feedback_path(:user_feedback => {:user_id => @user_feedback.user_id}) %>
+      <%= subnav_link_to t("user_feedbacks.new"), new_user_feedback_path(:user_feedback => {:user_id => @user_feedback.user_id}), id: "new" %>
     <% elsif params[:search] && params[:search][:user_id] %>
       <%= subnav_divider %>
-      <%= subnav_link_to "New", new_user_feedback_path(:user_feedback => {:user_id => params[:search][:user_id]}) %>
+      <%= subnav_link_to t("user_feedbacks.new"), new_user_feedback_path(:user_feedback => {:user_id => params[:search][:user_id]}), id: "new" %>
     <% else %>
       <%= subnav_divider %>
-      <%= subnav_link_to "New", new_user_feedback_path %>
+      <%= subnav_link_to t("user_feedbacks.new"), new_user_feedback_path, id: "new" %>
     <% end %>
 
     <% if @user_feedback.present? && @user_feedback.persisted? && policy(@user_feedback).update? %>
-      <%= subnav_link_to "Edit", edit_user_feedback_path(@user_feedback) %>
+      <%= subnav_link_to t("user_feedbacks.edit_link"), edit_user_feedback_path(@user_feedback), id: "edit" %>
     <% end %>
   <% end %>
 <% end %>

@@ -1,0 +1,4 @@
+"zh-CN":
+  tag:
+    artist_tag_wrong_category: "画师标签必须属于画师分类。"
+    cannot_change_aliased_category: "不能修改已被别名的标签分类。"

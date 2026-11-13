@@ -1,17 +1,17 @@
 <div id="c-rate-limits">
   <div id="a-index">
     <%= table_for @rate_limits, class: "striped autofit" do |t| %>
-      <% t.column :action %>
+      <% t.column :action, column: "action", name: t("rate_limits.action") %>
 
-      <% t.column :key %>
+      <% t.column :key, column: "key", name: t("rate_limits.key") %>
 
-      <% t.column :points do |rate_limit| %>
+      <% t.column :points, column: "points", name: t("rate_limits.points") do |rate_limit| %>
         <%= rate_limit.points.round(2) %>
       <% end %>
 
-      <% t.column :limited? %>
+      <% t.column :limited?, column: "limited", name: t("rate_limits.limited") %>
 
-      <% t.column :updated_at do |rate_limit| %>
+      <% t.column :updated_at, column: "updated-at", name: t("rate_limits.updated_at") do |rate_limit| %>
         <%= time_ago_in_words_tagged rate_limit.updated_at %>
       <% end %>
     <% end %>

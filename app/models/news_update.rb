@@ -35,11 +35,11 @@ class NewsUpdate < ApplicationRecord
   end
 
   def validate_active
-    errors.add(:base, "Can't have more than one active news update at a time") if NewsUpdate.active.exists?
+    errors.add(:base, I18n.t("news_update.only_one_active")) if NewsUpdate.active.exists?
   end
 
   def validate_duration
-    errors.add(:duration, "must be between 1 and 30 days") unless Array(1..30).map(&:days).include?(duration)
+    errors.add(:duration, I18n.t("news_update.duration_range")) unless Array(1..30).map(&:days).include?(duration)
   end
 
   def create_mod_action

@@ -1,9 +1,9 @@
 $("<%= j render "static/dtext_help" %>").dialog({
-  title: "DText Help",
+  title: "<%= j t("static.dtext_help_title") %>",
   width: 700,
   modal: true,
   buttons: {
-    "Close": function() {
+    "<%= j t("static.close") %>": function() {
       $(this).dialog("close");
     }
   }

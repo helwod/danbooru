@@ -1,7 +1,7 @@
 <% content_for(:secondary_links) do %>
   <%= quick_search_form_for(:text_matches, artist_commentaries_path, "commentaries") %>
-  <%= subnav_link_to "Commentaries", artist_commentaries_path %>
-  <%= subnav_link_to "Changes", artist_commentary_versions_path %>
-  <%= subnav_link_to "Translation requests", artist_commentaries_path(:search => {:post_tags_match => "commentary_request"}) %>
-  <%= subnav_link_to "Help", wiki_page_path("help:artist_commentary") %>
+  <%= subnav_link_to t("artist_commentaries.secondary_links.commentaries"), artist_commentaries_path, id: "commentaries" %>
+  <%= subnav_link_to t("artist_commentaries.secondary_links.changes"), artist_commentary_versions_path, id: "changes" %>
+  <%= subnav_link_to t("artist_commentaries.secondary_links.translation_requests"), artist_commentaries_path(:search => {:post_tags_match => "commentary_request"}), id: "translation-requests" %>
+  <%= subnav_link_to t("artist_commentaries.secondary_links.help"), wiki_page_path("help:artist_commentary"), id: "help" %>
 <% end %>

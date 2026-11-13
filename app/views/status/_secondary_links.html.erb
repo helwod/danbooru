@@ -1,4 +1,4 @@
 <% content_for(:secondary_links) do %>
-  <%= subnav_link_to "Site status", status_path %>
-  <%= subnav_link_to "Statistics", statistics_path %>
+  <%= subnav_link_to t("status.site_status"), status_path, id: "site-status" %>
+  <%= subnav_link_to t("status.statistics"), statistics_path, id: "statistics" %>
 <% end %>

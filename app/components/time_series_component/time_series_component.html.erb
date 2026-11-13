@@ -1,20 +1,20 @@
 <div class="flex justify-end text-xs mb-2">
   <% if mode == :table %>
-    <%= link_to "Chart", current_page_path(search: { **search_params, mode: "chart" }) %>
+    <%= link_to I18n.t("components.common.chart"), current_page_path(search: { **search_params, mode: "chart" }) %>
   <% else %>
-    <%= link_to "Table", current_page_path(search: { **search_params, mode: "table" }) %>
+    <%= link_to I18n.t("components.common.table"), current_page_path(search: { **search_params, mode: "table" }) %>
   <% end %>
 </div>
 
 <% if dataframe.empty? %>
-  <p>No results found. Try modifying your search or expanding your time range.</p>
+  <p><%= I18n.t("components.time_series.empty") %></p>
 <% elsif mode == :chart && x_axis.present? %>
   <%= tag.div class: "line-chart", style: "width: 100%; height: max(90vh, #{chart_height.to_i}px);", "data-options": chart_options.to_json %>
 <% else %>
   <table class="striped autofit" width="100%">
     <thead>
       <% dataframe.types.keys.each do |column| %>
-        <%= tag.th(column == "date" ? "Date" : column.to_s, class: ("col-expand" if column == dataframe.types.keys.last)) %>
+        <%= tag.th(column == "date" ? I18n.t("components.time_series.date") : column.to_s, class: ("col-expand" if column == dataframe.types.keys.last)) %>
       <% end %>
     </thead>
 

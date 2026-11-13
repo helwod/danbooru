@@ -1,5 +1,5 @@
 <% content_for(:secondary_links) do %>
-  <%= subnav_link_to "Listing", bulk_update_requests_path %>
-  <%= subnav_link_to "New", new_bulk_update_request_path %>
-  <%= subnav_link_to "Help", wiki_page_path("help:bulk_update_requests") %>
+  <%= subnav_link_to t("bulk_update_requests.secondary_links.listing"), bulk_update_requests_path, id: "listing" %>
+  <%= subnav_link_to t("bulk_update_requests.secondary_links.new"), new_bulk_update_request_path, id: "new" %>
+  <%= subnav_link_to t("bulk_update_requests.secondary_links.help"), wiki_page_path("help:bulk_update_requests"), id: "help" %>
 <% end %>

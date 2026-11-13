@@ -1,0 +1,82 @@
+"zh-CN":
+  bulk_update_requests:
+    destroy:
+      rejected: "已拒绝"
+    approve:
+      queued: "已排队"
+    index:
+      title: "批量更新请求"
+    new:
+      title: "新建批量更新请求"
+    edit:
+      title: "编辑批量更新请求"
+    show:
+      title: "批量更新请求"
+      forum: "论坛主题"
+      none: "无"
+      creator: "提交者"
+      date: "提交时间"
+      status: "状态"
+      approver: "审批员"
+      votes: "投票"
+      approve: "批准"
+      reject: "驳回"
+      edit: "编辑"
+      confirm_approve: "确定要批准这个批量更新请求吗？"
+      confirm_reject: "确定要驳回这个批量更新请求吗？"
+    form:
+      help_summary: "帮助：如何提交批量更新请求"
+      attached_to_html: "此请求将附加到 %{link}"
+      topic_link: "主题 #%{id}：%{title}"
+      will_create_topic: "此请求会新建一个论坛主题。若想附加到已有主题，请找到该主题并点击页面顶部的「申请别名/关联」。"
+      forum_title: "论坛标题"
+      request: "请求内容"
+      reason_placeholder: "在这里说明你的请求理由。"
+    listing:
+      column_request: "请求"
+      topic_link: "主题 #%{id}：%{title}"
+      column_votes: "投票"
+      column_status: "状态"
+      by: "由 %{name} 批准"
+      column_created: "提交者"
+      view: "查看"
+    search:
+      creator: "提交者"
+      approver: "审批员"
+      tags: "标签"
+      status: "状态"
+      can_approve: "可批准？"
+      'yes': "是"
+      'no': "否"
+      order_newest: "最新"
+      order_oldest: "最早"
+      order_last_updated: "最近更新"
+      order_status: "状态"
+      order_score_desc: "评分（高到低）"
+      order_score_asc: "评分（低到高）"
+      submit: "搜索"
+    status:
+      pending: "待处理"
+      approved: "已批准"
+      rejected: "已驳回"
+      processing: "处理中"
+      failed: "失败"
+    secondary_links:
+      listing: "全部请求"
+      new: "新建"
+      help: "帮助"
+    flash:
+      updated: "批量更新请求 #%{id} 已更新"
+      approved: "批量更新请求 #%{id} 已批准"
+      rejected: "批量更新请求 #%{id} 已驳回"
+
+  activerecord:
+    attributes:
+      bulk_update_request:
+        script: "请求内容"
+        reason: "理由"
+        title: "论坛标题"
+        forum_topic_id: "论坛主题"
+        forum_post_id: "论坛帖子"
+        score: "评分"
+        status: "状态"

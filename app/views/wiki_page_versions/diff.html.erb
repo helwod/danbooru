@@ -1,4 +1,4 @@
-<% page_title "Wiki Comparison: #{@thispage.pretty_title.startcase}" %>
+<% page_title t("wiki_page_versions.diff.page_title", title: @thispage.pretty_title.startcase) %>
 
 <%= render "wiki_pages/secondary_links" %>
 <%= render "wiki_pages/sidebar" %>
@@ -12,10 +12,10 @@
     <% if @otherpage.present? %>
       <% if @thispage.id != @otherpage.id %>
         <p class="fineprint">
-          Changes between
+          <%= t("wiki_page_versions.diff.changes_between") %>
 
           <%= link_to_if @thispage.next, humanized_time(@thispage.updated_at), diff_wiki_page_versions_path(thispage: @thispage.next&.id, otherpage: @thispage.id) %> (<%= link_to_user @thispage.updater %>)
-          and
+          <%= t("wiki_page_versions.diff.and") %>
           <%= link_to_if @otherpage.previous, humanized_time(@otherpage.updated_at), diff_wiki_page_versions_path(thispage: @otherpage.id, otherpage: @otherpage.previous&.id) %> (<%= link_to_user @otherpage.updater %>)
         </p>
 
@@ -28,13 +28,13 @@
             <%= diff_body_html(@thispage, @otherpage, :body) %>
           </div>
         <% else %>
-          <p><em>No changes to body.</em></p>
+          <p><em><%= t("wiki_page_versions.diff.no_body_changes") %></em></p>
         <% end %>
       <% else %>
-        <p><em>Version is latest!</em></p>
+        <p><em><%= t("wiki_page_versions.diff.latest_version") %></em></p>
       <% end %>
     <% else %>
-      <p><em>No versions to compare!</em></p>
+      <p><em><%= t("wiki_page_versions.diff.no_versions") %></em></p>
     <% end %>
   </div>
 <% end %>

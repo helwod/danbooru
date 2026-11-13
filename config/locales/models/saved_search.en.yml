@@ -1,0 +1,7 @@
+en:
+  saved_search:
+    too_many_saved_searches:
+      one: "can only have up to %{count} saved search"
+      other: "can only have up to %{count} saved searches"
+    too_many_tags: "can't have more than %{max_tags} tags"
+    labels_too_long: "can't have labels more than 100 characters long"

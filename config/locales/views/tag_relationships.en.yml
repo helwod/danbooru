@@ -1,0 +1,27 @@
+en:
+  tag_relationships:
+    alias_and_implication:
+      learn_more: "learn more"
+      aliased_to_html: "This tag has been aliased to %{tag} (%{learn_more})."
+      tags_aliased_to_this_html: "The following tags are aliased to this tag: %{tags} (%{learn_more})."
+      automatic_adds_html: "This tag automatically adds %{tags} (%{learn_more})."
+      implicates_html: "This tag implicates %{tags} (%{learn_more})."
+      tags_implicating_this_html: "The following tags implicate this tag: %{tags} (%{learn_more})."
+    search:
+      from: "From"
+      to: "To"
+      reason: "Reason"
+      from_category: "From Category"
+      to_category: "To Category"
+      status: "Status"
+      order: "Order"
+      order_created: "Created"
+      order_updated: "Updated"
+      order_name: "Name"
+      order_from_tag_count: "From tag count"
+      order_to_tag_count: "To tag count"
+      submit: "Search"
+    status:
+      active: "Active"
+      deleted: "Deleted"
+      retired: "Retired"

@@ -1,18 +1,18 @@
 <% content_for(:secondary_links) do %>
   <%= quick_search_form_for(:name_matches, tags_path, "tags", autocomplete: "tag") %>
-  <%= subnav_link_to "Tags", tags_path %>
-  <%= subnav_link_to "Changes", tag_versions_path %>
-  <%= subnav_link_to("Aliases", tag_aliases_path) %>
-  <%= subnav_link_to("Implications", tag_implications_path) %>
-  <%= subnav_link_to "Request alias/implication", new_bulk_update_request_path %>
-  <%= subnav_link_to "AI tags", ai_tags_path %>
-  <%= subnav_link_to "Related tags", related_tag_path %>
-  <%= subnav_link_to "Help", wiki_page_path("help:tags") %>
+  <%= subnav_link_to t("tags.secondary_links.tags"), tags_path, id: "tags" %>
+  <%= subnav_link_to t("tags.secondary_links.changes"), tag_versions_path, id: "changes" %>
+  <%= subnav_link_to(t("tags.secondary_links.aliases"), tag_aliases_path, id: "aliases") %>
+  <%= subnav_link_to(t("tags.secondary_links.implications"), tag_implications_path, id: "implications") %>
+  <%= subnav_link_to t("tags.secondary_links.request_alias_implication"), new_bulk_update_request_path, id: "request-aliasimplication" %>
+  <%= subnav_link_to t("tags.secondary_links.ai_tags"), ai_tags_path, id: "ai-tags" %>
+  <%= subnav_link_to t("tags.secondary_links.related_tags"), related_tag_path, id: "related-tags" %>
+  <%= subnav_link_to t("tags.secondary_links.help"), wiki_page_path("help:tags"), id: "help" %>
 
   <% if @tag %>
     <%= subnav_divider %>
-    <%= subnav_link_to "Posts (#{@tag.post_count})", posts_path(:tags => @tag.name) %>
-    <%= subnav_link_to "Edit", edit_tag_path(@tag) %>
-    <%= subnav_link_to "History", tag_versions_path(search: { tag_id: @tag.id }) %>
+    <%= subnav_link_to t("tags.secondary_links.posts_count", count: @tag.post_count), posts_path(:tags => @tag.name), id: "posts" %>
+    <%= subnav_link_to t("tags.secondary_links.edit"), edit_tag_path(@tag), id: "edit" %>
+    <%= subnav_link_to t("tags.secondary_links.history"), tag_versions_path(search: { tag_id: @tag.id }), id: "history" %>
   <% end %>
 <% end %>

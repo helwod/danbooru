@@ -1,0 +1,64 @@
+en:
+  favorite_groups:
+    destroy:
+      deleted: "Favorite group deleted."
+    remove_post:
+      removed: "Removed post from favorite group %{name}"
+    add_post:
+      added: "Added post to favorite group %{name}"
+    edit:
+      title: "Edit Favorite Group: %{name}"
+    new:
+      title: "New Favorite Group"
+    show:
+      page_title: "Favgroup: %{name}"
+      heading: "Favorite Group:"
+      creator: "Creator: %{name}"
+    form:
+      posts: "Posts"
+      private: "Private"
+      private_hint: "Don't allow others to view this favgroup."
+      private_locked_hint_html: "Don't allow others to view this favgroup. Warning: if you disable this, you can't re-enable it without %{upgrade_link}. (%{learn_more})"
+      upgrading_to_gold: "upgrading to Gold"
+      learn_more: "learn more"
+      upgrade_to_enable: "Upgrade to Gold to enable private favgroups"
+    add_to_dialog:
+      new_group_html: "Add this post to a new favorite group (%{link}):"
+      existing_group: "Or add it to an existing favorite group:"
+    index:
+      search_name: "Name"
+      search_creator: "Creator"
+      order_created: "Created"
+      order_updated: "Updated"
+      order_name: "Name"
+      order_post_count: "Post count"
+      submit: "Search"
+      column_name: "Name"
+      column_creator: "Creator"
+      column_created: "Created"
+      column_updated: "Updated"
+      page: "page %{page}"
+      edit: "Edit"
+      delete: "Delete"
+      confirm_delete: "Are you sure you want to delete this favgroup? This cannot be undone."
+    secondary_links:
+      listing: "Listing"
+      new: "New"
+      help: "Help"
+      show: "Show"
+      posts: "Posts"
+      edit: "Edit"
+      delete: "Delete"
+      order: "Order"
+      confirm_delete: "Are you sure you want to delete this favorite group?"
+    flash:
+      updated: "Favorite group updated"
+      deleted: "Favorite group deleted"
+
+  activerecord:
+    attributes:
+      favorite_group:
+        name: "Name"
+        post_count: "Posts"
+        post_ids_string: "Posts"
+        is_private: "Private"

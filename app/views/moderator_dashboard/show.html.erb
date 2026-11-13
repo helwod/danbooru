@@ -1,14 +1,14 @@
-<% page_title "Mod Dashboard" %>
+<% page_title t("moderator_dashboard.page_title") %>
 
 <div id="c-moderator-dashboard">
   <div id="a-show">
-    <h1>Moderator Dashboard</h1>
+    <h1><%= t("moderator_dashboard.heading") %></h1>
 
     <div id="activity-search">
       <%= search_form_for(moderator_dashboard_path) do |f| %>
         <%= f.input :min_date, as: :date, html5: true, input_html: { value: @dashboard.min_date } %>
         <%= f.input :max_level, collection: User.level_hash.to_a, include_blank: true, selected: @dashboard.max_level %>
-        <%= f.submit "Search" %>
+        <%= f.submit t("moderator_dashboard.search") %>
       <% end %>
     </div>
 

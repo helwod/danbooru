@@ -1,0 +1,5 @@
+"zh-CN":
+  post_approval:
+    already_active: "已处于生效状态，无法通过审核。"
+    cannot_approve_own_upload: "不能审核自己上传的作品。"
+    already_approved: "你此前已通过该作品的审核，不能重复操作。"

@@ -1,0 +1,12 @@
+en:
+  post:
+    too_many_new_tags: "You can't create more than %{max_new_tags} new tags per %{max_new_tags_interval}. Wait a while and try again"
+    same_source_and_destination: "Source and destination posts are the same"
+    no_notes: "has no notes"
+    cannot_be_own_parent: "Post cannot have itself as a parent"
+    parent_chain_too_deep: "Post cannot have a parent-child chain more than %{max_parent_depth} levels deep"
+    parent_too_many_children: "post #%{parent_id} cannot have more than %{max_child_posts} child posts"
+    upload_limit_reached: "have reached your upload limit. Please wait for your pending uploads to be approved before uploading more"
+    post_failed: "Post failed, try again later"
+    too_many_changed_tags: "You can't add or remove more than %{max_changed_tags} tags per %{max_changed_tags_interval}. Wait a while and try again"
+    too_many_tags: "Post cannot have more than %{max_tag_count} tags"

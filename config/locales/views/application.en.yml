@@ -1,0 +1,10 @@
+en:
+  application:
+    update_notice:
+      deleted: "Deleted"
+      updated: "Updated"
+      by_moderator: "%{action} by a moderator %{time}"
+      by_user_html: "%{action} by %{user} %{time}"
+      by_time: "%{action} %{time}"
+    flash:
+      change_username_required: "You must change your username to continue using %{app_name}"

@@ -1,4 +1,4 @@
-<% page_title "Message: #{@dmail.title}" %>
+<% page_title t("dmails.message_title", title: @dmail.title) %>
 <%= render "secondary_links" %>
 
 <div id="c-dmails">
@@ -7,9 +7,9 @@
       <h1><%= @dmail.title %></h1>
 
       <ul style="margin-bottom: 1em;">
-        <li><strong>Sender</strong>: <%= link_to_user @dmail.from %></li>
-        <li><strong>Recipient</strong>: <%= link_to_user @dmail.to %></li>
-        <li><strong>Date</strong>: <%= compact_time(@dmail.created_at) %></li>
+        <li><strong><%= t("dmails.sender") %></strong>: <%= link_to_user @dmail.from %></li>
+        <li><strong><%= t("dmails.recipient") %></strong>: <%= link_to_user @dmail.to %></li>
+        <li><strong><%= t("dmails.date") %></strong>: <%= compact_time(@dmail.created_at) %></li>
       </ul>
 
       <div class="prose">
@@ -17,7 +17,7 @@
 
         <% if @dmail.is_automated? %>
           <p class="fineprint">
-            This is an automated message. Responses will not be seen. If you have any questions either message a moderator or ask in the forum.
+            <%= t("dmails.automated_notice") %>
           </p>
         <% end %>
       </div>
@@ -25,13 +25,13 @@
       <% if CurrentUser.user == @dmail.owner %>
         <div class="mt-4">
         <% if !@dmail.is_automated? %>
-          <%= link_to "Respond", new_dmail_path(:respond_to_id => @dmail), id: "dmail-respond" %>
+          <%= link_to t("dmails.respond"), new_dmail_path(:respond_to_id => @dmail), id: "dmail-respond" %>
           |
         <% end %>
-            <%= link_to "Forward", new_dmail_path(:respond_to_id => @dmail, :forward => true), id: "dmail-forward" %>
-          | <%= link_to "Share", dmail_path(@dmail, key: @dmail.key), title: "Anyone with this link will be able to view this dmail.", id: "dmail-share" %>
+            <%= link_to t("dmails.forward"), new_dmail_path(:respond_to_id => @dmail, :forward => true), id: "dmail-forward" %>
+          | <%= link_to t("dmails.share"), dmail_path(@dmail, key: @dmail.key), title: t("dmails.share_title"), id: "dmail-share" %>
         <% if policy(@dmail).reportable? %>
-          | <%= link_to "Report", new_moderation_report_path(moderation_report: { model_type: "Dmail", model_id: @dmail.id }), remote: true, title: "Report this dmail to the moderators", id: "dmail-report" %>
+          | <%= link_to t("dmails.report"), new_moderation_report_path(moderation_report: { model_type: "Dmail", model_id: @dmail.id }), remote: true, title: t("dmails.report_title"), id: "dmail-report" %>
         <% end %>
         </div>
       <% end %>

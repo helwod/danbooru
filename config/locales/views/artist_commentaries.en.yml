@@ -1,0 +1,54 @@
+en:
+  artist_commentaries:
+    index:
+      title: "Artist Commentary"
+      search_text: "Text"
+      search_tags: "Tags"
+      original: "Original?"
+      translated: "Translated?"
+      deleted: "Deleted?"
+      'yes': "Yes"
+      'no': "No"
+      order_newest: "Newest"
+      order_oldest: "Oldest"
+      order_updated: "Updated"
+      order_uploaded: "Uploaded"
+      submit: "Search"
+      column_post: "Post"
+      column_original: "Original"
+      column_translated: "Translated"
+    show:
+      heading: "Artist's commentary"
+      original: "Original"
+      translated: "Translated"
+    commentary_tags:
+      commentary: "Commentary"
+      check_commentary: "Check Commentary"
+      partial_commentary: "Partial Commentary"
+      commentary_request: "Commentary Request"
+      untranslatable_commentary: "Untranslatable Commentary"
+    form:
+      intro_html: "If the artist posted additional information about this work, you can copy it here (%{link})."
+      learn_more: "learn more"
+      copy_from: "Copy from"
+      source: "Source"
+      post: "Post"
+      source_placeholder: "Enter source URL"
+      post_placeholder: "Enter post ID"
+      fetch: "Fetch"
+      none: "None"
+      cancel: "Cancel"
+    secondary_links:
+      commentaries: "Commentaries"
+      changes: "Changes"
+      translation_requests: "Translation requests"
+      help: "Help"
+
+  activerecord:
+    attributes:
+      artist_commentary:
+        original_title: "Original title"
+        original_description: "Original description"
+        translated_title: "Translated title"
+        translated_description: "Translated description"
+        commentary_tags: "Commentary tags"

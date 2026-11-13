@@ -10,7 +10,7 @@
     Danbooru.PostModeMenu.close_edit_form();
   <% end %>
 <% else %>
-  Danbooru.Notice.error(`Post #<%= @post.id %>: <%= j @post.errors.full_messages.join("; ") %>`);
+  Danbooru.Notice.error(`<%= j t("posts.update_error", id: @post.id, message: @post.errors.full_messages.join("; ")) %>`);
 <% end %>
 
 $(document).trigger("danbooru:post-preview-updated", <%= raw @post.to_json %>);

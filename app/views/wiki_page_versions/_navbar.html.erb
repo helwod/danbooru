@@ -6,17 +6,17 @@
   <% end %>
 
   <% if wiki_page_version.next %>
-    <%= link_to "‹ Newer", wiki_page_version_path(wiki_page_version.next.id), "data-shortcut": "a left" %>
+    <%= link_to t("wiki_page_versions.navbar.newer"), wiki_page_version_path(wiki_page_version.next.id), "data-shortcut": "a left" %>
   <% else %>
-    <span class="text-muted">‹ Newer</span>
+    <span class="text-muted"><%= t("wiki_page_versions.navbar.newer") %></span>
   <% end %>
 
   <%= link_to humanized_time(wiki_page_version.updated_at), wiki_page_version_path(wiki_page_version.id), class: "mx-2" %>
 
   <% if wiki_page_version.previous %>
-    <%= link_to "Older ›", wiki_page_version_path(wiki_page_version.previous.id), "data-shortcut": "d right" %>
+    <%= link_to t("wiki_page_versions.navbar.older"), wiki_page_version_path(wiki_page_version.previous.id), "data-shortcut": "d right" %>
   <% else %>
-    <span class="text-muted">Older ›</span>
+    <span class="text-muted"><%= t("wiki_page_versions.navbar.older") %></span>
   <% end %>
 
   <% if wiki_page_version != wiki_page_version.wiki_page.versions.first %>

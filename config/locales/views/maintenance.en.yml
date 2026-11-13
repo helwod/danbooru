@@ -1,0 +1,11 @@
+en:
+  maintenance:
+    refresh_counts: "Refresh Counts"
+    refresh_counts_body: "If you believe the upload or post changes statistics on your profile are incorrect, you can request a refresh to recalculate them."
+    continue: "Continue"
+    unsubscribe: "Unsubscribe"
+    unsubscribe_confirm: "Do you wish to stop receiving all email notifications?"
+    unsubscribed: "You have been unsubscribed from all email notifications."
+    confirm_yes: "Yes"
+    flash:
+      counts_refreshed: "Counts have been refreshed"

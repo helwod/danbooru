@@ -38,14 +38,14 @@ class FavoriteGroupsController < ApplicationController
     @favorite_group = authorize FavoriteGroup.find(params[:id])
     @favorite_group.update(permitted_attributes(@favorite_group))
 
-    respond_with(@favorite_group, notice: "Favorite group updated")
+    respond_with(@favorite_group, notice: I18n.t("favorite_groups.flash.updated"))
   end
 
   def destroy
     @favorite_group = authorize FavoriteGroup.find(params[:id])
     @favorite_group.destroy!
 
-    respond_with(@favorite_group, notice: "Favorite group deleted", location: favorite_groups_path(search: { creator_name: CurrentUser.user.name }))
+    respond_with(@favorite_group, notice: I18n.t("favorite_groups.flash.deleted"), location: favorite_groups_path(search: { creator_name: CurrentUser.user.name }))
   end
 
   def add_post

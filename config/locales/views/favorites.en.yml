@@ -1,0 +1,19 @@
+en:
+  favorites:
+    update:
+      already_favorited: "You have already favorited this post"
+    index:
+      title: "Favorites"
+      column_post: "Post"
+      column_tags: "Tags"
+      column_uploader: "Uploader"
+      column_favoriter: "Favoriter"
+      hidden: "hidden"
+    search:
+      favoriter: "Favoriter"
+      post: "Post"
+      tags: "Tags"
+      submit: "Search"
+    flash:
+      favorited: "You have favorited this post"
+      unfavorited: "You have unfavorited this post"

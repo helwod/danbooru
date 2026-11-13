@@ -2,7 +2,7 @@
   Danbooru.Notice.error("<%= j @bulk_update_request.errors.full_messages.join(',') %>");
 <% else %>
   if ($("#a-index").length) {
-    $("#request-status-for-<%= @bulk_update_request.id %>").html("queued");
+    $("#request-status-for-<%= @bulk_update_request.id %>").html("<%= j t("bulk_update_requests.approve.queued") %>");
   } else {
     location.reload();
   }

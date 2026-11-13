@@ -1,13 +1,13 @@
 <% content_for(:secondary_links) do %>
   <%= quick_search_form_for(:message_matches, dmails_path, "dmails") %>
-  <%= subnav_link_to "All", dmails_path(search: { folder: "all" }) %>
-  <%= subnav_link_to "Received", dmails_path(search: { folder: "received" }) %>
-  <%= subnav_link_to "Unread", dmails_path(search: { folder: "unread" }) %>
-  <%= subnav_link_to "Sent", dmails_path(search: { folder: "sent" }) %>
-  <%= subnav_link_to "Deleted", dmails_path(search: { folder: "deleted" }) %>
+  <%= subnav_link_to t("dmails.folders.all"), dmails_path(search: { folder: "all" }), id: "all" %>
+  <%= subnav_link_to t("dmails.folders.received"), dmails_path(search: { folder: "received" }), id: "received" %>
+  <%= subnav_link_to t("dmails.folders.unread"), dmails_path(search: { folder: "unread" }), id: "unread" %>
+  <%= subnav_link_to t("dmails.folders.sent"), dmails_path(search: { folder: "sent" }), id: "sent" %>
+  <%= subnav_link_to t("dmails.folders.deleted"), dmails_path(search: { folder: "deleted" }), id: "deleted" %>
   <%= subnav_divider %>
-  <%= subnav_link_to "New", new_dmail_path %>
-  <%= subnav_link_to "Mark all as read", {:controller => "dmails", :action => "mark_all_as_read"}, :method => :post, :remote => true %></li>
+  <%= subnav_link_to t("dmails.new"), new_dmail_path, id: "new" %>
+  <%= subnav_link_to t("dmails.mark_all_as_read"), {:controller => "dmails", :action => "mark_all_as_read"}, :method => :post, :remote => true, id: "mark-all-as-read" %></li>
   <%= subnav_divider %>
-  <%= subnav_link_to "Help", wiki_page_path("help:dmail") %>
+  <%= subnav_link_to t("dmails.help"), wiki_page_path("help:dmail"), id: "help" %>
 <% end %>

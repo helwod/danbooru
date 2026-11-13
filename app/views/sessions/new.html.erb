@@ -1,5 +1,5 @@
-<% page_title "Login" %>
-<% meta_description "Login to #{Danbooru.config.app_name}" %>
+<% page_title t("sessions.login") %>
+<% meta_description t("sessions.login_description", app_name: Danbooru.config.app_name) %>
 <% seo_canonical_url login_path %>
 
 <%= render "sessions/secondary_links" %>
@@ -7,18 +7,18 @@
 <div id="c-sessions">
   <div id="a-new">
     <div class="card mt-8 p-4 max-w-360px mx-auto flex flex-col items-center">
-      <h1 class="pb-4">Login</h1>
+      <h1 class="pb-4"><%= t("sessions.login") %></h1>
 
       <%= edit_form_for(@session, as: :session, url: session_path, html: { class: "w-full stacked-form stacked-hints", "data-validate-form": "true" }) do |f| %>
         <%= f.input :url, as: :hidden, input_html: { value: @url } %>
-        <%= f.input :name, label: "Name or Email", input_html: { autofocus: true, autocapitalize: "none", value: params.dig(:session, :name) } %>
-        <%= f.input :password, hint: link_to("Forgot password?", password_reset_path), input_html: { autocomplete: "current-password" } %>
+        <%= f.input :name, label: t("sessions.name_or_email"), input_html: { autofocus: true, autocapitalize: "none", value: params.dig(:session, :name) } %>
+        <%= f.input :password, hint: link_to(t("sessions.forgot_password"), password_reset_path), input_html: { autocomplete: "current-password" } %>
         <%= captcha_tag class: "mb-4", action: :login %>
-        <%= f.submit_button "Login" %>
+        <%= f.submit_button t("sessions.login") %>
       <% end %>
 
       <p class="fineprint">
-        Don't have an account? <%= link_to "Create a new account", new_user_path(url: @url) %>.
+        <%= t("sessions.no_account") %> <%= link_to t("sessions.create_account"), new_user_path(url: @url) %>.
       </p>
     </div>
   </div>

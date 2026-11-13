@@ -8,7 +8,7 @@ class UserMailer < ApplicationMailer
     mail_user(
       @user,
       from: "#{Danbooru.config.canonical_app_name} <#{Danbooru.config.notification_email}>",
-      subject: "#{Danbooru.config.canonical_app_name}: #{dmail.from.name} sent you a message",
+      subject: I18n.t("user_mailer.subjects.dmail_notice", app_name: Danbooru.config.canonical_app_name, name: dmail.from.name),
       require_verified_email: true,
     )
   end
@@ -19,7 +19,7 @@ class UserMailer < ApplicationMailer
     mail_user(
       @user,
       from: "#{Danbooru.config.canonical_app_name} <#{Danbooru.config.account_security_email}>",
-      subject: "#{Danbooru.config.app_name} password reset request",
+      subject: I18n.t("user_mailer.subjects.password_reset", app_name: Danbooru.config.app_name),
       require_verified_email: false,
     )
   end
@@ -30,7 +30,7 @@ class UserMailer < ApplicationMailer
     mail_user(
       @user,
       from: "#{Danbooru.config.canonical_app_name} <#{Danbooru.config.account_security_email}>",
-      subject: "Confirm your email address",
+      subject: I18n.t("user_mailer.subjects.email_change_confirmation"),
       require_verified_email: false,
     )
   end
@@ -45,7 +45,7 @@ class UserMailer < ApplicationMailer
     mail_user(
       @user,
       from: "#{Danbooru.config.canonical_app_name} <#{Danbooru.config.account_security_email}>",
-      subject: "Verify login from new location",
+      subject: I18n.t("user_mailer.subjects.login_verification"),
       require_verified_email: false,
     )
   end
@@ -56,7 +56,7 @@ class UserMailer < ApplicationMailer
     mail_user(
       @user,
       from: "#{Danbooru.config.canonical_app_name} <#{Danbooru.config.welcome_user_email}>",
-      subject: "Welcome to #{Danbooru.config.app_name}! Confirm your email address",
+      subject: I18n.t("user_mailer.subjects.welcome_user", app_name: Danbooru.config.app_name),
       require_verified_email: false,
     )
   end
@@ -69,7 +69,7 @@ class UserMailer < ApplicationMailer
     mail_user(
       @user,
       from: "#{Danbooru.config.canonical_app_name} <#{Danbooru.config.account_security_email}>",
-      subject: "Your account recovery code",
+      subject: I18n.t("user_mailer.subjects.send_backup_code"),
       require_verified_email: false,
     )
   end
@@ -79,7 +79,7 @@ class UserMailer < ApplicationMailer
     mail(
       from: Danbooru.config.dmca_email,
       to: to,
-      subject: "DMCA complaint",
+      subject: I18n.t("user_mailer.subjects.dmca_complaint"),
     )
   end
 end

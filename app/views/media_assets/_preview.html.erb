@@ -2,7 +2,7 @@
   <% preview.with_footer do %>
     <div class="text-center text-xs h-8">
       <% if media_asset.post.present? %>
-        <%= link_to "post ##{media_asset.post.id}", media_asset.post %>
+        <%= link_to t("media_assets.preview.post_link", id: media_asset.post.id), media_asset.post %>
       <% end %>
     </div>
   <% end %>

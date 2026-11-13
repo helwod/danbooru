@@ -1,0 +1,18 @@
+"zh-CN":
+  iqdb_queries:
+    show:
+      page_title: "相似图片搜索"
+      heading: "以图搜图"
+      intro: "粘贴链接或上传文件，即可在 %{app_name} 上以图搜图。"
+      post_id: "作品 ID"
+      hash_placeholder: "有效的 IQDB 哈希"
+      similar_tab_html: "相似 %{count}"
+      submit: "搜索"
+
+  activerecord:
+    attributes:
+      iqdb_query:
+        post_id: "作品 ID"
+        url: "链接"
+        hash: "哈希"
+        file: "文件"

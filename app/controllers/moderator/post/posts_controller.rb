@@ -26,14 +26,14 @@ module Moderator
         @post = authorize ::Post.find(params[:id])
         @post.ban!(CurrentUser.user)
 
-        respond_with(@post, notice: "Post was banned")
+        respond_with(@post, notice: I18n.t("moderator.flash.post_banned"))
       end
 
       def unban
         @post = authorize ::Post.find(params[:id])
         @post.unban!(CurrentUser.user)
 
-        respond_with(@post, notice: "Post was unbanned")
+        respond_with(@post, notice: I18n.t("moderator.flash.post_unbanned"))
       end
     end
   end

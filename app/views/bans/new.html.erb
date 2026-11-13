@@ -2,9 +2,9 @@
   <div class="a-new">
     <div class="card mt-4 p-4 max-w-540px mx-auto flex flex-col gap-2">
       <% if @ban.user.present? %>
-        <h1 class="text-center">Ban: <%= link_to_user @ban.user %></h1>
+        <h1 class="text-center"><%= t("bans.new_heading_html", user: link_to_user(@ban.user)) %></h1>
       <% else %>
-        <h1 class="text-center">New Ban</h1>
+        <h1 class="text-center"><%= t("bans.new_title") %></h1>
       <% end %>
 
       <%= render "users/sockpuppets", user: @ban.user %>

@@ -1,25 +1,25 @@
 <div id="c-upgrade-codes">
   <div id="a-index">
     <%= search_form_for(upgrade_codes_path) do |f| %>
-      <%= f.input :redeemer_name, label: "Redeemer", input_html: { value: params[:search][:redeemer_name], data: { autocomplete: "user" } } %>
-      <%= f.input :status, collection: UpgradeCode.statuses, include_blank: true, selected: params[:search][:status] %>
-      <%= f.submit "Search" %>
+      <%= f.input :redeemer_name, label: t("upgrade_codes.redeemer"), input_html: { value: params[:search][:redeemer_name], data: { autocomplete: "user" } } %>
+      <%= f.input :status, label: t("upgrade_codes.status"), collection: UpgradeCode.statuses, include_blank: true, selected: params[:search][:status] %>
+      <%= f.submit t("upgrade_codes.search") %>
     <% end %>
 
     <%= table_for @upgrade_codes, class: "striped autofit" do |t| %>
-      <% t.column :code do |user_upgrade| %>
+      <% t.column :code, column: "code", name: t("upgrade_codes.code") do |user_upgrade| %>
         <%= tag.span user_upgrade.code, class: "font-monospace" %>
       <% end %>
 
-      <% t.column "Redeemer" do |upgrade_code| %>
+      <% t.column t("upgrade_codes.redeemer"), column: "redeemer" do |upgrade_code| %>
         <% if upgrade_code.redeemer.present? %>
           <%= link_to_user(upgrade_code.redeemer) %>
         <% end %>
       <% end %>
 
-      <% t.column :status %>
+      <% t.column :status, column: "status", name: t("upgrade_codes.status") %>
 
-      <% t.column "Updated" do |upgrade_code| %>
+      <% t.column t("upgrade_codes.updated"), column: "updated" do |upgrade_code| %>
         <%= time_ago_in_words_tagged(upgrade_code.updated_at) %>
       <% end %>
     <% end %>

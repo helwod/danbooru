@@ -1,0 +1,55 @@
+en:
+  user_mailer:
+    greeting_html: "Hi %{user},"
+    greeting_plain: "Hi %{user},"
+    click_here: "Click here"
+    unsubscribe: "Unsubscribe"
+    verify_email_address: "Verify email address"
+    subjects:
+      dmail_notice: "%{app_name}: %{name} sent you a message"
+      password_reset: "%{app_name} password reset request"
+      email_change_confirmation: "Confirm your email address"
+      login_verification: "Verify login from new location"
+      welcome_user: "Welcome to %{app_name}! Confirm your email address"
+      send_backup_code: "Your account recovery code"
+      dmca_complaint: "DMCA complaint"
+    dmail_notice:
+      sent_message_html: "%{from} sent you a message on %{app_name}:"
+      reply: "Reply"
+      view_message: "View message"
+      notice_html: "You received this email because you chose to receive notifications whenever someone sends you a message on %{app_name}. %{link} to unsubscribe from these emails."
+    dmca_complaint:
+      submitted: "Your DMCA notice has been submitted. Please allow up to 48 hours for it to be processed. You may not receive a response unless further information is needed from you. You may contact %{email} if you have any further questions."
+      name: "Name: %{name}"
+      email: "Email: %{email}"
+      address: "Address: %{address}"
+      infringing_urls: "Infringing URLs:"
+      original_urls: "Original URLs:"
+      proof: "Proof that you are the artist: %{proof}"
+      signature: "Signature: %{signature}"
+    email_change_confirmation:
+      changed_html: "You changed your email address on %{app_name}. Click the link below to verify your new email address:"
+      notice_html: "You received this email because someone changed their email to this address on %{app_name}. If this wasn't you, you may ignore this email."
+    login_verification:
+      intro: "Someone tried to log into your %{app_name} account from a new location. If this is you, click the link below to verify the login."
+      location: "Location"
+      ip_address: "IP Address"
+      device: "Device"
+      verify_login: "Verify login"
+      not_you: "If this wasn't you, you should login to your account and change your password immediately."
+    password_reset:
+      requested_html: "You requested that your %{app_name} password be reset. Click the link below to reset your password:"
+      reset_password: "Reset password"
+      notice_line1_html: "You received this email because someone requested a password reset for your account on %{app_name}."
+      notice_line2: "If this wasn't you, you may ignore this email. This link will expire in 30 minutes."
+    send_backup_code:
+      here_is_code: "Here is your backup code:"
+      usage: "You can use this code to login to your account and change your two-factor authentication settings. You can only use this code once, so be sure to update your two-factor authentication settings after using it."
+      after_change: "After changing your two-factor authentication settings, be sure to write down your new backup codes."
+      login: "Login"
+      update_2fa: "Update 2FA"
+      view_backup_codes: "View backup codes"
+      notice: "You received this email because someone requested an account recovery for your account. If this wasn't you, you should login to your account and change your password immediately."
+    welcome_user:
+      welcome_html: "Welcome to %{app_name}! Click the link below to verify your email address:"
+      notice_html: "You received this email because someone signed up for %{app_name} with your address. %{link} to disable email notifications."

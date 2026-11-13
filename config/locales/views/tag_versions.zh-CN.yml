@@ -1,0 +1,23 @@
+"zh-CN":
+  tag_versions:
+    index:
+      title: "标签历史"
+      title_with_tag_html: "标签历史：%{link}"
+      title_with_user_html: "标签历史：%{link}"
+      back: "« 返回"
+      search_tag: "标签"
+      search_user: "用户"
+      order_newest: "最新"
+      order_oldest: "最早"
+      submit: "搜索"
+      column_tag: "标签"
+      column_change: "变更"
+      column_date: "时间"
+      column_user: "用户"
+      anonymous_created_html: "匿名用户创建了 %{tag}。"
+      anonymous_updated_html: "匿名用户更新了 %{tag}。"
+      deprecated_html: "%{user} 把 %{tag} 标记为已弃用。"
+      undeprecated_html: "%{user} 取消了 %{tag} 的弃用状态。"
+      category_changed_html: "%{user} 把 %{tag} 的分类从 %{from} 改为 %{to}。"
+      edit_tag: "编辑标签"
+      tag_history: "标签历史"

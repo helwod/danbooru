@@ -1,4 +1,4 @@
-<% page_title "#{@wiki_page.pretty_title.startcase} Wiki" %>
+<% page_title t("wiki_pages.show.page_title", title: @wiki_page.pretty_title.startcase) %>
 <% meta_description DText.new(@wiki_page.body).excerpt %>
 <% seo_canonical_url wiki_page_path(@wiki_page) %>
 
@@ -14,11 +14,11 @@
     <%= link_to @wiki_page.pretty_title, posts_path(tags: @wiki_page.title), class: tag_class(@wiki_page.tag) %>
 
     <% if @wiki_page.is_locked? %>
-      (locked)
+      <%= t("wiki_pages.show.locked") %>
     <% end %>
 
     <% if @wiki_page.is_deleted? %>
-      (deleted)
+      <%= t("wiki_pages.show.deleted") %>
     <% end %>
   </h1>
 
@@ -28,9 +28,9 @@
 
   <div id="wiki-page-body" class="prose">
     <% if @wiki_page.new_record? %>
-      <p>This wiki page does not exist.
+      <p><%= t("wiki_pages.show.not_exist") %>
         <% if policy(@wiki_page).create? %>
-          <%= link_to "Create new wiki page", new_wiki_page_path(wiki_page: { title: @wiki_page.title }), rel: "nofollow" %>.</p>
+          <%= link_to t("wiki_pages.show.create_new"), new_wiki_page_path(wiki_page: { title: @wiki_page.title }), rel: "nofollow" %>.</p>
         <% end %>
       </p>
     <% else %>
@@ -38,13 +38,13 @@
     <% end %>
 
     <% if @wiki_page.artist.present? && !@wiki_page.artist.is_deleted? %>
-      <p><%= link_to "View artist", @wiki_page.artist %></p>
+      <p><%= link_to t("wiki_pages.show.view_artist"), @wiki_page.artist %></p>
     <% end %>
 
     <%= render "tag_relationships/alias_and_implication_list", tag: @wiki_page.tag %>
 
     <% if @wiki_page.tag&.is_deprecated? %>
-      <p class="fineprint">This tag is <%= link_to "deprecated", wiki_page_path("help:deprecation_notice") %> and can't be added to new posts.</p>
+      <p class="fineprint"><%= t("wiki_pages.show.deprecated_html", link: link_to(t("wiki_pages.show.deprecated"), wiki_page_path("help:deprecation_notice"))).html_safe %></p>
     <% end %>
 
     <%= render_tag_change_notice(tag: @wiki_page.tag, current_user: CurrentUser.user) %>

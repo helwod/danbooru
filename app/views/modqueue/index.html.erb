@@ -1,20 +1,20 @@
-<% page_title "Moderation Queue" %>
+<% page_title t("modqueue.title") %>
 
 <% content_for(:top_content) do %>
-  <h1 class="mb-4">Moderation Queue</h1>
+  <h1 class="mb-4"><%= t("modqueue.title") %></h1>
 
   <div class="prose mb-4">
     <details>
-      <summary>Guidelines</summary>
+      <summary><%= t("modqueue.guidelines") %></summary>
 
       <div>
         <ul>
-          <li>You should approve anything you think is good quality. A good rule of thumb is to approve things you would upload yourself.</li>
-          <li>If you're unsure whether something should be approved, you can skip it and let other approvers take a look.</li>
-          <li>You can reject a post as "Poor quality" or "Breaks rules" to tell other approvers that you think the post shouldn't be approved.</li>
-          <li>You can give a "Detailed rejection" to explain why you think a post shouldn't be approved. This message is seen by the uploader, so don't be rude.</li>
-          <li>Posts should only be manually deleted if they clearly break the <%= link_to_wiki "help:upload rules" %> or are extremely bad (so bad they shouldn't stay up the full 3 days).</li>
-          <li>If you haven't approved at least 30 posts in the last 45 days, you will lose approver privileges for inactivity.</li>
+          <li><%= t("modqueue.guideline_approve") %></li>
+          <li><%= t("modqueue.guideline_skip") %></li>
+          <li><%= t("modqueue.guideline_reject") %></li>
+          <li><%= t("modqueue.guideline_detailed_rejection") %></li>
+          <li><%= t("modqueue.guideline_delete_html", link: link_to_wiki(t("modqueue.upload_rules"), "help:upload rules")) %></li>
+          <li><%= t("modqueue.guideline_inactivity") %></li>
         <ul>
       </div>
     </details>
@@ -24,17 +24,17 @@
 <% content_for(:content) do %>
   <div class="tab-panel-component horizontal-tab-panel">
     <div class="tab-list">
-      <%= link_to "New", current_page_path(search: search_params.except(:modqueue, :order)), class: [(search_params[:modqueue].nil? ? "tab active-tab" : "tab")] %>
-      <%= link_to "Seen", current_page_path(search: search_params.merge(modqueue: :seen, order: "disapproved")), class: [(search_params[:modqueue] == "seen" ? "tab active-tab" : "tab")] %>
+      <%= link_to t("modqueue.tab_new"), current_page_path(search: search_params.except(:modqueue, :order)), class: [(search_params[:modqueue].nil? ? "tab active-tab" : "tab")] %>
+      <%= link_to t("modqueue.tab_seen"), current_page_path(search: search_params.merge(modqueue: :seen, order: "disapproved")), class: [(search_params[:modqueue] == "seen" ? "tab active-tab" : "tab")] %>
 
       <span class="flex-grow-1"></span>
 
       <%= render PreviewSizeMenuComponent.new(current_size: preview_size) %>
 
       <% if @mode == "gallery" %>
-        <%= link_to list_icon, current_page_path(mode: "list"), title: "List", class: "tab" %>
+        <%= link_to list_icon, current_page_path(mode: "list"), title: t("modqueue.list"), class: "tab" %>
       <% else %>
-        <%= link_to grid_icon, current_page_path(mode: nil), title: "Gallery", class: "tab" %>
+        <%= link_to grid_icon, current_page_path(mode: nil), title: t("modqueue.gallery"), class: "tab" %>
       <% end %>
     </div>
   </div>

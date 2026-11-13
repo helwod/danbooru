@@ -30,13 +30,13 @@ class BansController < ApplicationController
   def create
     @ban = authorize Ban.new(banner: CurrentUser.user, **permitted_attributes(Ban))
     @ban.save
-    respond_with(@ban, notice: "Banned user", location: @ban.user)
+    respond_with(@ban, notice: I18n.t("bans.flash.banned"), location: @ban.user)
   end
 
   def update
     @ban = authorize Ban.find(params[:id])
     @ban.update(updater: CurrentUser.user, **permitted_attributes(@ban))
-    respond_with(@ban, notice: "Ban updated", location: @ban.user)
+    respond_with(@ban, notice: I18n.t("bans.flash.updated"), location: @ban.user)
   end
 
   def destroy

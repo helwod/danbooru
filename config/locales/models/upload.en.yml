@@ -1,0 +1,13 @@
+en:
+  upload:
+    source_too_long: "is too long (maximum is 2000 characters)"
+    source_invalid_url: "is not a valid URL"
+    file_and_source: "Can't give both a file and a source"
+    no_file_or_source: "No file or source given"
+    too_many_queued: "You have too many images queued for upload (queued: %{queued_asset_count}; limit: %{max_queued_assets}). Try again later."
+    unsupported_file_type: "'%{filename}' is not a supported file type"
+    too_many_files_in_archive: "'%{filename}' contains too many files (max %{max_files_per_upload} files per upload)"
+    archive_too_large: "'%{filename}' is too large (uncompressed size: %{archive_uncompressed_size}; max size: %{MediaAsset})"
+    invalid_archive_path: "'%{entry_pathname_utf8}' in '%{filename}' can't start with '/'"
+    non_regular_file: "'%{entry_pathname_utf8}' in '%{filename}' isn't a regular file"
+    too_many_files: "Can't upload more than %{max_files_per_upload} files at a time (total: %{total_files})"

@@ -1,6 +1,6 @@
 <div id="c-favorite-groups">
   <div id="a-edit">
-    <h1>Edit Favorite Group: <%= @favorite_group.pretty_name %></h1>
+    <h1><%= t("favorite_groups.edit.title", name: @favorite_group.pretty_name) %></h1>
 
     <%= render "form" %>
   </div>

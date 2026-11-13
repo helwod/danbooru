@@ -1,12 +1,12 @@
 <% content_for(:secondary_links) do %>
   <%= quick_search_form_for(:user_name, bans_path, "users", autocomplete: "user") %>
-  <%= subnav_link_to "Listing", bans_path %>
+  <%= subnav_link_to t("bans.listing"), bans_path, id: "listing" %>
   <% if policy(IpBan).index? %>
-    <%= subnav_link_to "IP Bans", ip_bans_path %>
+    <%= subnav_link_to t("bans.ip_bans"), ip_bans_path, id: "ip-bans" %>
   <% end %>
-  <%= subnav_link_to "Feedbacks", user_feedbacks_path %>
+  <%= subnav_link_to t("bans.feedbacks"), user_feedbacks_path, id: "feedbacks" %>
   <% if policy(Ban.new).create? %>
     <%= subnav_divider %>
-    <%= subnav_link_to "Ban", new_ban_path %>
+    <%= subnav_link_to t("bans.ban"), new_ban_path, id: "ban" %>
   <% end %>
 <% end %>

@@ -22,7 +22,7 @@ class FavoritesController < ApplicationController
     @favorite.save
     @post = @favorite.post.reload
 
-    respond_with(@post, notice: "You have favorited this post")
+    respond_with(@post, notice: I18n.t("favorites.flash.favorited"))
   end
 
   def destroy
@@ -30,6 +30,6 @@ class FavoritesController < ApplicationController
     @favorite.destroy
     @post = @favorite.post.reload
 
-    respond_with(@post, notice: "You have unfavorited this post")
+    respond_with(@post, notice: I18n.t("favorites.flash.unfavorited"))
   end
 end

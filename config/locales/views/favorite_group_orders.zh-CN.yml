@@ -1,0 +1,6 @@
+"zh-CN":
+  favorite_group_orders:
+    edit:
+      title: "调整收藏夹顺序：%{name}"
+      drag_hint: "拖动下方列表即可调整顺序。"
+      hidden_post: "已隐藏：作品 #%{id}"

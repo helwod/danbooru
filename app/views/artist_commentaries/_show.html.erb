@@ -1,13 +1,13 @@
-<h2>Artist's commentary</h2>
+<h2><%= t("artist_commentaries.show.heading") %></h2>
 
 <menu id="commentary-sections">
   <% if artist_commentary.original_present? && artist_commentary.translated_present? %>
-    <li><a href="#original">Original</a></li> |
-    <li class="active"><a href="#translated">Translated</a></li>
+    <li><a href="#original"><%= t("artist_commentaries.show.original") %></a></li> |
+    <li class="active"><a href="#translated"><%= t("artist_commentaries.show.translated") %></a></li>
   <% elsif artist_commentary.original_present? %>
-    <li><b>Original</b></li>
+    <li><b><%= t("artist_commentaries.show.original") %></b></li>
   <% elsif artist_commentary.translated_present? %>
-    <li><b>Translated</b></li>
+    <li><b><%= t("artist_commentaries.show.translated") %></b></li>
   <% end %>
 </menu>
 

@@ -1,0 +1,23 @@
+"zh-CN":
+  notes:
+    index:
+      title: "批注"
+      search_note: "批注内容"
+      search_tags: "标签"
+      submit: "搜索"
+      column_post: "作品"
+      column_note: "批注"
+      column_text: "内容"
+      column_created: "创建时间"
+      deleted: "（已删除）"
+    secondary_links:
+      notes: "全部批注"
+      posts: "作品"
+      changes: "变更"
+      requests: "翻译请求"
+      help: "帮助"
+
+  activerecord:
+    attributes:
+      note:
+        body: "内容"

@@ -72,7 +72,7 @@ class Artist < ApplicationRecord
 
     def validate_urls
       if urls.any?(&:new_record?) && urls.size > 150
-        errors.add(:urls, "can't have more than 150 URLs")
+        errors.add(:urls, I18n.t("artist.too_many_urls"))
       end
     end
 
@@ -187,21 +187,21 @@ class Artist < ApplicationRecord
       return unless !is_deleted? && name_changed?
 
       if tag.present? && tag.category_name != "Artist" && !tag.empty?
-        errors.add(:name, "'#{name}' is a #{tag.category_name.downcase} tag; artist entries can only be created for artist tags")
+        errors.add(:name, I18n.t("artist.not_artist_category", name: name, tag_category_name: tag.category_name.downcase))
       end
 
       if tag&.is_deprecated?
-        errors.add(:name, "'#{name}' is an ambiguous tag; try another name")
+        errors.add(:name, I18n.t("artist.ambiguous_tag", name: name))
       end
 
       if tag_alias.present?
-        errors.add(:name, "'#{name}' is aliased to '#{tag_alias.consequent_name}'")
+        errors.add(:name, I18n.t("artist.aliased_tag", name: name, tag_alias_consequent_name: tag_alias.consequent_name))
       end
     end
 
     def validate_other_names
       if other_names.any? { |name| name.length > 80 }
-        errors.add(:other_names, "can't have names more than 80 characters long")
+        errors.add(:other_names, I18n.t("artist.other_names_too_long"))
       end
     end
 

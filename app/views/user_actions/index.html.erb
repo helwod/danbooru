@@ -1,134 +1,134 @@
 <div id="c-user-actions">
   <div id="a-index">
     <% if @user %>
-      <h1>User Actions: <%= link_to_user @user %></h1>
-      <%= link_to "« Back", user_actions_path, class: "text-xs" %>
+      <h1><%= t("user_actions.title_for_html", user: link_to_user(@user)) %></h1>
+      <%= link_to t("user_actions.back"), user_actions_path, class: "text-xs" %>
     <% else %>
-      <h1>User Actions</h1>
+      <h1><%= t("user_actions.title") %></h1>
     <% end %>
 
     <%= search_form_for(user_actions_path) do |f| %>
-      <%= f.input :user_name, label: "User", input_html: { value: @user&.name, "data-autocomplete": "user" } %>
-      <%= f.input :model_type, label: "Category", collection: UserAction.model_types.map { |type| [type.delete_suffix("Version").titleize, type] }, include_blank: true, selected: params[:search][:model_type] %>
-      <%= f.input :order, collection: [%w[Newest event_at], %w[Oldest event_at_asc]], include_blank: true, selected: params[:search][:order] %>
-      <%= f.submit "Search" %>
+      <%= f.input :user_name, label: t("user_actions.user"), input_html: { value: @user&.name, "data-autocomplete": "user" } %>
+      <%= f.input :model_type, label: t("user_actions.category"), collection: UserAction.model_types.map { |type| [t("user_actions.model_types.#{type}", default: type.delete_suffix("Version").titleize), type] }, include_blank: true, selected: params[:search][:model_type] %>
+      <%= f.input :order, label: t("user_actions.order"), collection: [[t("user_actions.order_by.newest"), "event_at"], [t("user_actions.order_by.oldest"), "event_at_asc"]], include_blank: true, selected: params[:search][:order] %>
+      <%= f.submit t("user_actions.search") %>
     <% end %>
 
     <div>
       <%= table_for @user_actions, class: "striped autofit", width: "100%" do |t| %>
-        <% t.column "Event", td: { class: "col-expand" } do |user_action| %>
+        <% t.column t("user_actions.event"), td: { class: "col-expand" }, column: "event" do |user_action| %>
           <% model = user_action.model %>
           <% user = user_action.user %>
           <% event_type = user_action.event_type %>
 
           <% case user_action.model_type %>
           <% when "ArtistVersion" %>
-            <%= link_to_user user %> <%= link_to "updated", model %> the artist <%= link_to model.artist.pretty_name, model.artist, class: "tag-type-#{Tag.categories.artist}" %>.
+            <%= t("user_actions.artist_version_html", user: link_to_user(user), action: link_to(t("user_actions.updated"), model), artist: link_to(model.artist.pretty_name, model.artist, class: "tag-type-#{Tag.categories.artist}")) %>
           <% when "ArtistCommentaryVersion" %>
-            <%= link_to_user user %> updated the <%= link_to "commentary", model %> for <%= link_to model.post.dtext_shortlink, model.post %>.
+            <%= t("user_actions.artist_commentary_version_html", user: link_to_user(user), commentary: link_to(t("user_actions.commentary"), model), post: link_to(model.post.dtext_shortlink, model.post)) %>
           <% when "NoteVersion" %>
-            <%= link_to_user user %> <%= link_to "updated", model %> a <%= link_to "note", model.note %> on <%= link_to model.post.dtext_shortlink, model.post %>.
+            <%= t("user_actions.note_version_html", user: link_to_user(user), action: link_to(t("user_actions.updated"), model), note: link_to(t("user_actions.note"), model.note), post: link_to(model.post.dtext_shortlink, model.post)) %>
           <% when "TagVersion" %>
-            <%= link_to_user user %> updated the tag <%= link_to model.tag.name, model, class: tag_class(model) %>.
+            <%= t("user_actions.tag_version_html", user: link_to_user(user), tag: link_to(model.tag.name, model, class: tag_class(model))) %>
           <% when "WikiPageVersion" %>
-            <%= link_to_user user %> <%= link_to "updated", model %> the <%= link_to_wiki model.title %> wiki.
+            <%= t("user_actions.wiki_page_version_html", user: link_to_user(user), action: link_to(t("user_actions.updated"), model), wiki: link_to_wiki(model.title)) %>
           <% when "Ban" %>
             <div class="prose">
-              <%= link_to_user user %> was <%= link_to (model.forever? ? "banned forever" : "banned for #{model.humanized_duration}"), model %> by <%= link_to_user model.banner %> (<%= format_text(model.reason.chomp(".").strip, inline: true) %>).
+              <%= t("user_actions.ban_html", user: link_to_user(user), action: link_to(model.forever? ? t("user_actions.banned_forever") : t("user_actions.banned_for", duration: model.humanized_duration), model), banner: link_to_user(model.banner), reason: format_text(model.reason.chomp(".").strip, inline: true)) %>
             </div>
           <% when "BulkUpdateRequest" %>
-            <%= link_to_user user %> created a <%= link_to "new BUR", model %> in <%= link_to model.forum_topic.title, model.forum_post %>.
+            <%= t("user_actions.bulk_update_request_html", user: link_to_user(user), action: link_to(t("user_actions.new_bur"), model), topic: link_to(model.forum_topic.title, model.forum_post)) %>
           <% when "Comment" %>
             <% if model.is_deleted? && !policy(model).can_see_deleted? %>
-              [deleted] posted a <%= link_to "deleted comment", model %> on <%= link_to model.post.dtext_shortlink, model.post %>.
+              <%= t("user_actions.comment_deleted_html", action: link_to(t("user_actions.deleted_comment"), model), post: link_to(model.post.dtext_shortlink, model.post)) %>
             <% else %>
-              <%= link_to_user user %> <%= link_to "commented", model %> on <%= link_to model.post.dtext_shortlink, model.post %>.
+              <%= t("user_actions.comment_html", user: link_to_user(user), action: link_to(t("user_actions.commented"), model), post: link_to(model.post.dtext_shortlink, model.post)) %>
             <% end %>
           <% when "CommentVote" %>
-            <%= link_to_user user %> <%= model.is_positive? ? "upvoted" : "downvoted" %> a <%= link_to "comment", model.comment %> by <%= link_to_user model.comment.creator %> on <%= link_to model.comment.post.dtext_shortlink, model.comment.post %>.
+            <%= t("user_actions.comment_vote_html", user: link_to_user(user), vote: model.is_positive? ? t("user_actions.upvoted") : t("user_actions.downvoted"), comment: link_to(t("user_actions.comment"), model.comment), creator: link_to_user(model.comment.creator), post: link_to(model.comment.post.dtext_shortlink, model.comment.post)) %>
           <% when "Dmail" %>
-            <%= link_to_user user %> sent a dmail to <%= link_to_user model.to %> (<%= link_to model.title.strip, model %>).
+            <%= t("user_actions.dmail_html", user: link_to_user(user), to: link_to_user(model.to), title: link_to(model.title.strip, model)) %>
           <% when "FavoriteGroup" %>
-            <%= link_to_user user %> create <%= model.is_public? ? "public" : "private" %> favgroup <%= link_to model.pretty_name, model %>.
+            <%= t("user_actions.favorite_group_html", user: link_to_user(user), visibility: model.is_public? ? t("user_actions.public") : t("user_actions.private"), group: link_to(model.pretty_name, model)) %>
           <% when "ForumPost" %>
-            <%= link_to_user user %> <%= link_to "posted", model %> in topic <%= link_to model.topic.title.chomp(".").strip, model.topic %>.
+            <%= t("user_actions.forum_post_html", user: link_to_user(user), action: link_to(t("user_actions.posted"), model), topic: link_to(model.topic.title.chomp(".").strip, model.topic)) %>
           <% when "ForumTopic" %>
-            <%= link_to_user user %> created topic "<%= link_to model.title.strip, model %>".
+            <%= t("user_actions.forum_topic_html", user: link_to_user(user), title: link_to(model.title.strip, model)) %>
           <% when "ForumPostVote" %>
             <% if model&.bulk_update_request.present? %>
-              <%= link_to_user user %> <%= model.vote_type %>voted a <%= link_to "BUR", model.bulk_update_request %> in topic <%= link_to model.forum_post.topic.title.strip, model.forum_post %>.
+              <%= t("user_actions.forum_post_vote_bur_html", user: link_to_user(user), vote: t("user_actions.votes.#{model.vote_type}", default: "#{model.vote_type}voted"), bur: link_to(t("user_actions.bur"), model.bulk_update_request), topic: link_to(model.forum_post.topic.title.strip, model.forum_post)) %>
             <% else %>
-              <%= link_to_user user %> <%= model.vote_type %>voted a <%= link_to "post", model.forum_post %> in topic <%= link_to model.forum_post.topic.title.strip, model.forum_post %>.
+              <%= t("user_actions.forum_post_vote_html", user: link_to_user(user), vote: t("user_actions.votes.#{model.vote_type}", default: "#{model.vote_type}voted"), post: link_to(t("user_actions.post"), model.forum_post), topic: link_to(model.forum_post.topic.title.strip, model.forum_post)) %>
             <% end %>
           <% when "ModAction" %>
             <div class="prose">
-              <%= link_to_user user %> <%= format_text(model.description.chomp(".").strip, inline: true) %>.
+              <%= t("user_actions.mod_action_html", user: link_to_user(user), description: format_text(model.description.chomp(".").strip, inline: true)) %>
             </div>
           <% when "ModerationReport" %>
             <div class="prose">
-              <%= link_to_user user %> <%= link_to "reported", model %> a <%= link_to model.model.class.name.titleize.downcase, model.model %> by <%= link_to_user model.reported_user %> (<%= format_text(model.reason.chomp(".").strip, inline: true) %>).
+              <%= t("user_actions.moderation_report_html", user: link_to_user(user), action: link_to(t("user_actions.reported"), model), reported_model: link_to(t("user_actions.model_types.#{model.model.class.name}", default: model.model.class.name.titleize.downcase).downcase, model.model), reported_user: link_to_user(model.reported_user), reason: format_text(model.reason.chomp(".").strip, inline: true)) %>
             </div>
           <% when "TagAlias" %>
-            <%= link_to_user user %> aliased <%= link_to_search model.antecedent_tag %> to <%= link_to_search model.consequent_tag %>.
+            <%= t("user_actions.tag_alias_html", user: link_to_user(user), antecedent: link_to_search(model.antecedent_tag), consequent: link_to_search(model.consequent_tag)) %>
           <% when "TagImplication" %>
-            <%= link_to_user user %> implied <%= link_to_search model.antecedent_tag %> to <%= link_to_search model.consequent_tag %>.
+            <%= t("user_actions.tag_implication_html", user: link_to_user(user), antecedent: link_to_search(model.antecedent_tag), consequent: link_to_search(model.consequent_tag)) %>
           <% when "Post" %>
-            <%= link_to_user user %> created <%= link_to model.dtext_shortlink, model %>.
+            <%= t("user_actions.post_html", user: link_to_user(user), post: link_to(model.dtext_shortlink, model)) %>
           <% when "PostAppeal" %>
-            <%= link_to_user user %> appealed <%= link_to model.post.dtext_shortlink, model.post %>.
+            <%= t("user_actions.post_appeal_html", user: link_to_user(user), post: link_to(model.post.dtext_shortlink, model.post)) %>
           <% when "PostApproval" %>
-            <%= link_to_user user %> approved <%= link_to model.post.dtext_shortlink, model.post %>.
+            <%= t("user_actions.post_approval_html", user: link_to_user(user), post: link_to(model.post.dtext_shortlink, model.post)) %>
           <% when "PostDisapproval" %>
             <div class="prose">
               <% if policy(model).can_view_creator? %>
-                <%= link_to_user user %> disapproved <%= link_to model.post.dtext_shortlink, model.post %> (<%= model.reason.titleize.downcase %><%= ": ".html_safe + format_text(model.message.chomp(".").strip, inline: true) if model.message.present? %>).
+                <%= t("user_actions.post_disapproval_html", user: link_to_user(user), post: link_to(model.post.dtext_shortlink, model.post), reason: "#{t("user_actions.disapproval_reasons.#{model.reason}", default: model.reason.titleize.downcase)}#{": ".html_safe + format_text(model.message.chomp(".").strip, inline: true) if model.message.present?}") %>
               <% else %>
-                <%= link_to model.post.dtext_shortlink, model.post %> was disapproved (<%= model.reason.titleize.downcase %><%= ": ".html_safe + format_text(model.message.chomp(".").strip, inline: true) if model.message.present? %>).
+                <%= t("user_actions.post_disapproved_html", post: link_to(model.post.dtext_shortlink, model.post), reason: "#{t("user_actions.disapproval_reasons.#{model.reason}", default: model.reason.titleize.downcase)}#{": ".html_safe + format_text(model.message.chomp(".").strip, inline: true) if model.message.present?}") %>
               <% end %>
             </div>
           <% when "PostFlag" %>
             <div class="prose">
               <% if policy(model).can_view_flagger? %>
-                <%= link_to_user user %> flagged <%= link_to model.post.dtext_shortlink, model.post %> (<%= format_text(model.reason.chomp(".").strip, inline: true) %>).
+                <%= t("user_actions.post_flag_html", user: link_to_user(user), post: link_to(model.post.dtext_shortlink, model.post), reason: format_text(model.reason.chomp(".").strip, inline: true)) %>
               <% else %>
-                <%= link_to model.post.dtext_shortlink, model.post %> was flagged (<%= format_text(model.reason.chomp(".").strip, inline: true) %>).
+                <%= t("user_actions.post_flagged_html", post: link_to(model.post.dtext_shortlink, model.post), reason: format_text(model.reason.chomp(".").strip, inline: true)) %>
               <% end %>
             </div>
           <% when "PostReplacement" %>
-            <%= link_to_user user %> replaced <%= link_to model.post.dtext_shortlink, model.post %> with <%= external_link_to Source::URL.page_url(model.replacement_url) || model.replacement_url %>.
+            <%= t("user_actions.post_replacement_html", user: link_to_user(user), post: link_to(model.post.dtext_shortlink, model.post), url: external_link_to(Source::URL.page_url(model.replacement_url) || model.replacement_url)) %>
           <% when "PostVote" %>
-            <%= link_to_user user %> <%= model.is_positive? ? "upvoted" : "downvoted" %> <%= link_to model.post.dtext_shortlink, model.post %>.
+            <%= t("user_actions.post_vote_html", user: link_to_user(user), vote: model.is_positive? ? t("user_actions.upvoted") : t("user_actions.downvoted"), post: link_to(model.post.dtext_shortlink, model.post)) %>
           <% when "SavedSearch" %>
-            <%= link_to_user user %> saved search <%= link_to model.query, posts_path(tag: model.query) %>.
+            <%= t("user_actions.saved_search_html", user: link_to_user(user), query: link_to(model.query, posts_path(tag: model.query))) %>
           <% when "Upload" %>
-            <%= link_to_user user %> created <%= link_to model.dtext_shortlink, model %>.
+            <%= t("user_actions.upload_html", user: link_to_user(user), upload: link_to(model.dtext_shortlink, model)) %>
           <% when "User" %>
-            <%= link_to_user user %> created their account.
+            <%= t("user_actions.user_html", user: link_to_user(user)) %>
           <% when "UserEvent" %>
             <%= render "user_events/description", user_event: model %>
           <% when "UserFeedback" %>
             <% case event_type %>
             <% when "create" %>
-              <%= link_to_user model.creator %> created a <%= link_to "#{model.category} feedback", model %> for <%= link_to_user model.user %>.
+              <%= t("user_actions.user_feedback_created_html", creator: link_to_user(model.creator), feedback: link_to(model.category, model), user: link_to_user(model.user)) %>
             <% when "subject" %>
-              <%= link_to_user model.user %> received a <%= link_to "#{model.category} feedback", model %> from <%= link_to_user model.creator %>.
+              <%= t("user_actions.user_feedback_received_html", user: link_to_user(model.user), feedback: link_to(model.category, model), creator: link_to_user(model.creator)) %>
             <% end %>
           <% when "UserNameChangeRequest" %>
-            <%= link_to_user model.user %> <%= link_to "changed their name", model %> from <%= model.original_name %> to <%= model.desired_name %>.
+            <%= t("user_actions.user_name_change_request_html", user: link_to_user(model.user), action: link_to(t("user_actions.changed_their_name"), model), original: model.original_name, desired: model.desired_name) %>
           <% when "UserUpgrade" %>
             <% if model.complete? %>
-              <%= link_to_user model.purchaser %> <%= link_to "upgraded", model %> <%= link_to_user model.recipient if model.is_gift? %> to <%= model.level_string %>.
+              <%= t("user_actions.user_upgrade_html", purchaser: link_to_user(model.purchaser), action: link_to(t("user_actions.upgraded"), model), recipient: (link_to_user(model.recipient) if model.is_gift?), level: model.level_string) %>
             <% elsif model.refunded? %>
-              <%= link_to_user model.purchaser %> <%= link_to "upgraded", model %> <%= link_to_user model.recipient if model.is_gift? %> to <%= model.level_string %> (refunded).
+              <%= t("user_actions.user_upgrade_refunded_html", purchaser: link_to_user(model.purchaser), action: link_to(t("user_actions.upgraded"), model), recipient: (link_to_user(model.recipient) if model.is_gift?), level: model.level_string) %>
             <% end %>
           <% end %>
         <% end %>
 
-        <% t.column "Category" do |user_action| %>
-          <%= link_to user_action.model_type.delete_suffix("Version").titleize, current_page_path(page: nil, search: { model_type: user_action.model_type }) %>
+        <% t.column t("user_actions.category"), column: "category" do |user_action| %>
+          <%= link_to t("user_actions.model_types.#{user_action.model_type}", default: user_action.model_type.delete_suffix("Version").titleize), current_page_path(page: nil, search: { model_type: user_action.model_type }) %>
         <% end %>
 
-        <% t.column "Date" do |user_action| %>
+        <% t.column t("user_actions.date"), column: "date" do |user_action| %>
           <% if policy(user_action).can_see_user? %>
             <%= link_to_user user_action.user %> <%= link_to "»", user_user_actions_path(user_action.user) %>
           <% end %>

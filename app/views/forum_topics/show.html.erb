@@ -10,19 +10,19 @@
       <%= @forum_topic.title %>
 
       <% if @forum_topic.is_private? %>
-        <span class="level-topic">(<%= @forum_topic.min_level.downcase %>+ only)</span>
+        <span class="level-topic"><%= t("forum_topics.show.min_level_only", level: @forum_topic.min_level.downcase) %></span>
       <% end %>
 
       <% if @forum_topic.is_deleted? %>
-        <span class="locked-topic">(deleted)</span>
+        <span class="locked-topic"><%= t("forum_topics.show.deleted") %></span>
       <% end %>
     </h1>
 
-    <p class="fineprint">Posted under <%= link_to @forum_topic.category, forum_topics_path(search: { category_id: @forum_topic.category_id }) %></p>
+    <p class="fineprint"><%= t("forum_topics.show.posted_under_html", link: link_to(@forum_topic.category, forum_topics_path(search: { category_id: @forum_topic.category_id }))).html_safe %></p>
 
     <% if @forum_topic.is_locked? %>
       <div class="notice">
-        <p>This topic has been locked.</p>
+        <p><%= t("forum_topics.show.locked_notice") %></p>
       </div>
     <% end %>
 
@@ -31,7 +31,7 @@
     </div>
 
     <% if policy(ForumPost.new(topic: @forum_topic)).create? %>
-      <p><%= link_to "Post reply", new_forum_post_path(topic_id: @forum_topic.id), id: "new-response-link" %></p>
+      <p><%= link_to t("forum_topics.show.post_reply"), new_forum_post_path(topic_id: @forum_topic.id), id: "new-response-link" %></p>
 
       <div style="display: none;" id="topic-response">
         <%= render "forum_posts/partials/new/form", forum_post: ForumPost.new(topic_id: @forum_topic.id), inline: true %>

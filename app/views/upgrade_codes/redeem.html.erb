@@ -1,29 +1,30 @@
-<% page_title "Redeem upgrade code" %>
+<% page_title t("upgrade_codes.title") %>
 
 <%= render "users/secondary_links" %>
 
 <div id="c-user-upgrades">
   <div id="a-redeem" class="fixed-width-container mx-auto">
-    <h1 class="text-center mb-4">Redeem upgrade code</h1>
+    <h1 class="text-center mb-4"><%= t("upgrade_codes.title") %></h1>
 
     <% if CurrentUser.user.level <= User::Levels::MEMBER %>
-      <p>Enter your upgrade code below to upgrade your account to Gold. Look for the code on the order confirmation
-      page or in your email.
+      <p><%= t("upgrade_codes.intro") %>
 
-      <p>If you don't have a code, go to the <%= link_to "upgrade page", new_user_upgrade_path %> to buy one,
-      then come back here to redeem it. If you have any questions, <%= link_to "contact us", contact_path %>.</p>
+      <p><%= t("upgrade_codes.where_to_buy_html",
+                upgrade_page: link_to(t("upgrade_codes.upgrade_page"), new_user_upgrade_path),
+                contact: link_to(t("upgrade_codes.contact_us"), contact_path)) %></p>
 
       <% if CurrentUser.user.is_anonymous? %>
-        <p>You must <%= link_to "login", login_path(url: redeem_upgrade_codes_path) %> or
-        <%= link_to "create a new account", new_user_path(url: redeem_upgrade_codes_path) %> first before you can redeem your upgrade code.</p>
+        <p><%= t("upgrade_codes.login_required_html",
+                login: link_to(t("upgrade_codes.login"), login_path(url: redeem_upgrade_codes_path)),
+                create_account: link_to(t("upgrade_codes.create_account"), new_user_path(url: redeem_upgrade_codes_path))) %></p>
       <% else %>
         <%= simple_form_for(:upgrade_code, url: upgrade_upgrade_codes_path, remote: true) do |f| %>
           <%= f.input :code, placeholder: "abcd1234", input_html: { value: params[:code] } %>
-          <%= f.submit "Upgrade account", class: "button-primary" %>
+          <%= f.submit t("upgrade_codes.upgrade_account"), class: "button-primary" %>
         <% end %>
       <% end %>
     <% else %>
-      <p class="text-center">Your account has already been upgraded.</p>
+      <p class="text-center"><%= t("upgrade_codes.already_upgraded") %></p>
     <% end %>
   </div>
 </div>

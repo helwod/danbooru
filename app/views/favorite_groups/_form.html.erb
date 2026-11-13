@@ -1,12 +1,12 @@
 <%= edit_form_for(@favorite_group) do |f| %>
   <%= f.input :name, as: :string, required: true, input_html: { value: @favorite_group.pretty_name } %>
-  <%= f.input :post_ids_string, label: "Posts", as: :text %>
+  <%= f.input :post_ids_string, label: t("favorite_groups.form.posts"), as: :text %>
   <% if policy(@favorite_group).can_enable_privacy? %>
-    <%= f.input :is_private, label: "Private", as: :boolean, hint: "Don't allow others to view this favgroup." %>
+    <%= f.input :is_private, label: t("favorite_groups.form.private"), as: :boolean, hint: t("favorite_groups.form.private_hint") %>
   <% elsif @favorite_group.is_private? %>
-    <%= f.input :is_private, label: "Private", as: :boolean, hint: "Don't allow others to view this favgroup. Warning: if you disable this, you can't re-enable it without ".html_safe + link_to("upgrading to Gold", new_user_upgrade_path) + ". (".html_safe + link_to_wiki("learn more", "help:privacy_mode") + ")".html_safe %>
+    <%= f.input :is_private, label: t("favorite_groups.form.private"), as: :boolean, hint: t("favorite_groups.form.private_locked_hint_html", upgrade_link: link_to(t("favorite_groups.form.upgrading_to_gold"), new_user_upgrade_path), learn_more: link_to_wiki(t("favorite_groups.form.learn_more"), "help:privacy_mode")).html_safe %>
   <% else %>
-    <%= f.input :is_private, label: "Private", as: :boolean, hint: link_to("Upgrade to Gold to enable private favgroups", new_user_upgrade_path), input_html: { disabled: true } %>
+    <%= f.input :is_private, label: t("favorite_groups.form.private"), as: :boolean, hint: link_to(t("favorite_groups.form.upgrade_to_enable"), new_user_upgrade_path), input_html: { disabled: true } %>
   <% end %>
   <%= f.submit_button %>
 <% end %>

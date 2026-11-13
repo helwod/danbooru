@@ -82,39 +82,39 @@ class FavoriteGroup < ApplicationRecord
     nonexisting_post_ids = added_post_ids - existing_post_ids
 
     if nonexisting_post_ids.present?
-      errors.add(:base, "Cannot add invalid post(s) to favgroup: #{nonexisting_post_ids.to_sentence}")
+      errors.add(:base, I18n.t("favorite_group.invalid_posts", nonexisting_post_ids: nonexisting_post_ids.to_sentence))
     end
 
     duplicate_post_ids = post_ids.group_by(&:itself).transform_values(&:size).select { |_id, count| count > 1 }.keys
     if duplicate_post_ids.present?
-      errors.add(:base, "Favgroup already contains post #{duplicate_post_ids.to_sentence}")
+      errors.add(:base, I18n.t("favorite_group.duplicate_posts", duplicate_post_ids: duplicate_post_ids.to_sentence))
     end
   end
 
   def validate_can_enable_privacy
     if is_public_change == [true, false] && !Pundit.policy!(creator, self).can_enable_privacy?
-      errors.add(:base, "Can't enable privacy without a Gold account")
+      errors.add(:base, I18n.t("favorite_group.privacy_requires_gold"))
     end
   end
 
   def validate_name
     case name
     when /\A(any|none)\z/i
-      errors.add(:name, "cannot be '#{name}'")
+      errors.add(:name, I18n.t("favorite_group.invalid_name", name: name))
     when /,/
-      errors.add(:name, "cannot contain commas")
+      errors.add(:name, I18n.t("favorite_group.name_commas"))
     when /\*/
-      errors.add(:name, "cannot contain asterisks")
+      errors.add(:name, I18n.t("favorite_group.name_asterisks"))
     when /\A_/
-      errors.add(:name, "cannot begin with an underscore")
+      errors.add(:name, I18n.t("favorite_group.name_leading_underscore"))
     when /_\z/
-      errors.add(:name, "cannot end with an underscore")
+      errors.add(:name, I18n.t("favorite_group.name_trailing_underscore"))
     when /__/
-      errors.add(:name, "cannot contain consecutive underscores")
+      errors.add(:name, I18n.t("favorite_group.name_consecutive_underscores"))
     when /[^[:graph:]]/
-      errors.add(:name, "cannot contain non-printable characters")
+      errors.add(:name, I18n.t("favorite_group.name_non_printable"))
     when /\A[0-9]+\z/
-      errors.add(:name, "cannot contain only digits")
+      errors.add(:name, I18n.t("favorite_group.name_only_digits"))
     end
   end
 

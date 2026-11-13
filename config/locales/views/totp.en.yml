@@ -1,0 +1,17 @@
+en:
+  totp:
+    setup_title: "Setup Two-Factor Authentication"
+    heading: "Two-Factor Authentication"
+    enabled_html: "Two-factor authentication (2FA) is <b>enabled</b> for your account. To add a new device, scan the QR code below."
+    disable_hint_html: "To disable 2FA, click <b>Disable</b> below."
+    enable_intro: "Enable two-factor authentication (2FA) to make it so you need both a password and a security code to login to your account. This protects you in case your password gets stolen."
+    get_started_html: "To get started, install an authenticator app like %{google} or %{microsoft}, then use it to scan the QR code below."
+    cannot_scan: "Can't scan the code?"
+    manual_entry: "If you can't scan the QR code, then you can enter this code into your app instead:"
+    code_hint: "Enter the 6-digit code from your app"
+    enable_notice: "Enabling 2FA will log you out on all other devices."
+    disable: "Disable"
+    enable: "Enable"
+    back_to_settings: "Back to settings"
+    flash:
+      two_factor_disabled: "Two-factor authentication disabled"

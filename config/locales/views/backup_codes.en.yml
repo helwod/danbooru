@@ -1,0 +1,25 @@
+en:
+  backup_codes:
+    title: "Backup Codes"
+    intro: "Backup codes let you login in case you lose your phone or two-factor authentication app."
+    save_warning: "Save these codes. If you lose your phone and don't have your backup codes, then you will be locked out of your account permanently."
+    download: "Download"
+    print: "Print"
+    copy: "Copy"
+    continue: "Continue"
+    generate: "Generate new codes"
+    back_to_settings: "Back to settings"
+    send_title: "Send backup code"
+    send_heading_html: "Send backup code: %{user}"
+    send_button: "Send backup code"
+    send_intro: "Sending someone their backup code will let them bypass 2FA to login to their account and change their 2FA settings."
+    send_email_hint: "If they don't have access to their email, you can change their email address first."
+    send_warning_html: "Don't send someone their backup code unless you've verified from their %{link} that they are the real account owner."
+    login_history: "login history"
+    text:
+      intro: "These are your backup codes for your %{app_name} account. If you lose your phone or your two-factor authentication app, you can use these codes to login to your account."
+      warning: "Keep these codes in a safe place. If you lose both your authenticator app and your backup codes, then you will be locked out of your account permanently."
+      one_use: "Each code is one-use only. After you use a code, be sure to cross it out and go to your account settings and get a new code."
+    flash:
+      regenerated: "Backup codes regenerated"
+      sent: "Backup code sent"

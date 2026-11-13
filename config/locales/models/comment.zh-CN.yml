@@ -1,0 +1,4 @@
+"zh-CN":
+  comment:
+    rating_mismatch_post: "不能在%{post_pretty_rating}作品里插入%{embedded_post_pretty_rating}图片。"
+    rating_mismatch_asset: "不能在%{post_pretty_rating}作品里插入%{embedded_asset_pretty_ai_rating}图片。"

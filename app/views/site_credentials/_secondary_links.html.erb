@@ -1,5 +1,5 @@
 <% content_for(:secondary_links) do %>
-  <%= subnav_link_to "Listing", site_credentials_path %>
+  <%= subnav_link_to t("site_credentials.listing"), site_credentials_path, id: "listing" %>
   <%= subnav_divider %>
-  <%= subnav_link_to "New", new_site_credential_path %>
+  <%= subnav_link_to t("site_credentials.new"), new_site_credential_path, id: "new" %>
 <% end %>

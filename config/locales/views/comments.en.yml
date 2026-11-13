@@ -1,0 +1,48 @@
+en:
+  comments:
+    index:
+      title: "Comments"
+      meta_description: "See comments on %{app_name}."
+      all: "Comments"
+      on_my_uploads: "On My Uploads"
+      search: "Search"
+      votes: "Votes"
+      help: "Help"
+    new:
+      title: "New Comment"
+    edit:
+      title: "Edit Comment"
+    form:
+      body_placeholder: "Post a comment"
+      submit: "Comment"
+      update: "Update"
+      cancel: "Cancel"
+      do_not_bump: "No bump"
+    search:
+      commenter: "Commenter"
+      text: "Text"
+      tags: "Tags"
+      edited: "Edited?"
+      deleted: "Deleted?"
+      stickied: "Stickied?"
+      bumped: "Bumped?"
+      'yes': "Yes"
+      'no': "No"
+      order_newest: "Newest"
+      order_oldest: "Oldest"
+      order_updated: "Updated"
+      order_score_desc: "Score (highest)"
+      order_score_asc: "Score (lowest)"
+      submit: "Search"
+    header:
+      date: "Date"
+      uploader: "Uploader"
+      rating: "Rating"
+      tags: "Tags"
+    flash:
+      posted: "Comment posted"
+
+  activerecord:
+    attributes:
+      comment:
+        score: "Score"

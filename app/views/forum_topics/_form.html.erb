@@ -9,8 +9,8 @@
 
     <% if policy(forum_topic).moderate? %>
       <%= f.input :min_level, collection: ForumTopic.min_levels.keys, selected: forum_topic.min_level %>
-      <%= f.input :is_sticky, :label => "Sticky" %>
-      <%= f.input :is_locked, :label => "Locked" %>
+      <%= f.input :is_sticky, :label => t("forum_topics.form.sticky") %>
+      <%= f.input :is_locked, :label => t("forum_topics.form.locked") %>
     <% end %>
 
     <%= f.submit_button %>

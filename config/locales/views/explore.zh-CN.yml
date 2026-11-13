@@ -1,0 +1,30 @@
+"zh-CN":
+  explore:
+    posts:
+      prev: "« 上一个"
+      next: "下一个 »"
+      previous: "< 前一天"
+      next_day: "后一天 >"
+      popular:
+        page_title: "流行作品"
+        meta_description: "%{range}最受欢迎的作品"
+        heading: "流行：%{range}"
+      searches:
+        page_title: "热门搜索"
+        heading: "热门搜索 - %{date}"
+        column_tags: "标签"
+        column_count: "次数"
+      missed_searches:
+        page_title: "零结果搜索"
+        subtitle: "统计最近七天。"
+        column_tags: "标签"
+        column_wiki: "维基"
+        column_count: "次数"
+      viewed:
+        page_title: "最多浏览"
+        meta_description: "按%{scale}统计的浏览最多的作品"
+        heading: "最多浏览 - %{date}"
+    scales:
+      day: "日"
+      week: "周"
+      month: "月"

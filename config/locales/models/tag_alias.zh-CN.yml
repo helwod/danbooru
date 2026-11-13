@@ -1,0 +1,3 @@
+"zh-CN":
+  tag_alias:
+    already_aliased: "%{tag_alias_antecedent_name} 已被别名到 %{tag_alias_consequent_name}。"

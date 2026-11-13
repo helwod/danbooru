@@ -1,0 +1,46 @@
+en:
+  post_appeals:
+    new:
+      dialog_title: "Appeal post"
+    index:
+      title: "Appeals"
+      column_post: "Post"
+      column_reason: "Reason"
+      column_appeals: "Appeals"
+      column_status: "Status"
+      column_uploaded: "Uploaded"
+      column_appealed: "Appealed"
+      column_approver: "Approver"
+      none: "none"
+    edit:
+      dialog_title: "Edit appeal"
+      title: "Edit Appeal"
+      description_html: "Editing appeal for %{link}."
+      post_link: "post #%{id}"
+    form:
+      remaining: "Remaining appeals"
+      reason_placeholder: "Briefly explain why the post should be undeleted (optional)"
+      ctrl_enter: "Ctrl+Enter to submit"
+      submit: "Appeal"
+      cancel: "Cancel"
+    reasons:
+      edit: "edit"
+      no_reason: "no reason"
+    search:
+      reason: "Reason"
+      tags: "Tags"
+      post_id: "Post ID"
+      creator: "Creator"
+      submit: "Search"
+    status:
+      pending: "Pending"
+      succeeded: "Succeeded"
+      rejected: "Rejected"
+    flash:
+      appealed: "Post appealed"
+
+  activerecord:
+    attributes:
+      post_appeal:
+        reason: "Reason"
+        status: "Status"

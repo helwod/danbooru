@@ -1,14 +1,14 @@
 <div id="c-pools">
   <div id="c-new">
-    <h1>New Pool</h1>
+    <h1><%= t("pools.new.title") %></h1>
 
     <%= embed_wiki("help:pool_notice") %>
 
     <%= edit_form_for(@pool) do |f| %>
       <%= f.input :name, :as => :string, :required => true %>
       <%= f.input :description, as: :dtext %>
-      <%= f.input :post_ids_string, as: :text, label: "Posts" %>
-      <%= f.input :category, :collection => ["series", "collection"], :include_blank => true, :selected => "", :required => true %>
+      <%= f.input :post_ids_string, as: :text, label: t("pools.form.posts") %>
+      <%= f.input :category, :collection => [[t("pools.category_series"), "series"], [t("pools.category_collection"), "collection"]], :include_blank => true, :selected => "", :required => true %>
       <%= f.submit_button %>
     <% end %>
   </div>

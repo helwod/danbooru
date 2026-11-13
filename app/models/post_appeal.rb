@@ -37,11 +37,11 @@ class PostAppeal < ApplicationRecord
   extend SearchMethods
 
   def validate_creator_is_not_limited
-    errors.add(:creator, "have reached your appeal limit") if creator.upload_limit.appeal_limited?
+    errors.add(:creator, I18n.t("post_appeal.appeal_limit_reached")) if creator.upload_limit.appeal_limited?
   end
 
   def validate_post_is_appealable
-    errors.add(:post, "cannot be appealed") if !post.is_appealable?
+    errors.add(:post, I18n.t("post_appeal.cannot_be_appealed")) if !post.is_appealable?
   end
 
   def self.available_includes

@@ -1,0 +1,53 @@
+en:
+  post_flags:
+    new:
+      dialog_title: "Flag post"
+    index:
+      title: "Flags"
+      column_post: "Post"
+      column_reason: "Reason"
+      column_flags: "Flags"
+      column_category: "Category"
+      column_status: "Status"
+      column_uploaded: "Uploaded"
+      column_flagged: "Flagged"
+      column_approver: "Approver"
+      none: "none"
+    edit:
+      dialog_title: "Edit flag"
+      title: "Edit Flag"
+      description_html: "Editing flag for %{link}."
+      post_link: "post #%{id}"
+    form:
+      remaining: "Remaining flags"
+      reason_placeholder: "Briefly explain why the post should be deleted"
+      ctrl_enter: "Ctrl+Enter to submit"
+      submit: "Flag"
+      cancel: "Cancel"
+    reasons:
+      edit: "edit"
+    search:
+      reason: "Reason"
+      tags: "Tags"
+      post_id: "Post ID"
+      creator: "Creator"
+      category: "Category"
+      submit: "Search"
+    categories:
+      normal: "Normal"
+      unapproved: "Unapproved"
+      rejected: "Rejected"
+      deleted: "Deleted"
+    status:
+      pending: "Pending"
+      succeeded: "Succeeded"
+      rejected: "Rejected"
+    flash:
+      flagged: "Post flagged"
+
+  activerecord:
+    attributes:
+      post_flag:
+        reason: "Reason"
+        category: "Category"
+        status: "Status"

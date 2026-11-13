@@ -1,0 +1,10 @@
+"zh-CN":
+  application:
+    update_notice:
+      deleted: "已删除"
+      updated: "已更新"
+      by_moderator: "%{time}由版主%{action}"
+      by_user_html: "%{time}由 %{user} %{action}"
+      by_time: "%{time}%{action}"
+    flash:
+      change_username_required: "你必须先修改用户名才能继续使用 %{app_name}"

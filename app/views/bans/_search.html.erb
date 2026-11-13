@@ -1,8 +1,8 @@
 <%= search_form_for(bans_path) do |f| %>
-  <%= f.input :user_name, label: "User", input_html: { value: params[:search][:user_name], data: { autocomplete: "user" } } %>
-  <%= f.input :banner_name, label: "Banner", input_html: { value: params[:search][:banner_name], data: { autocomplete: "user" } } %>
-  <%= f.input :reason_matches, label: "Reason", input_html: { value: params[:search][:reason_matches] } %>
-  <%= f.input :expired, label: "Expired?", collection: [["Yes", true], ["No", false]], include_blank: true, selected: params[:search][:expired] %>
-  <%= f.input :order, include_blank: false, collection: [%w[Created id_desc], %w[Expiration expires_at_desc]], selected: params[:search][:order] %>
-  <%= f.submit "Search" %>
+  <%= f.input :user_name, label: t("bans.user"), input_html: { value: params[:search][:user_name], data: { autocomplete: "user" } } %>
+  <%= f.input :banner_name, label: t("bans.banner"), input_html: { value: params[:search][:banner_name], data: { autocomplete: "user" } } %>
+  <%= f.input :reason_matches, label: t("bans.reason"), input_html: { value: params[:search][:reason_matches] } %>
+  <%= f.input :expired, label: t("bans.expired"), collection: [[t("bans.yes_label"), true], [t("bans.no_label"), false]], include_blank: true, selected: params[:search][:expired] %>
+  <%= f.input :order, label: t("bans.order"), include_blank: false, collection: [[t("bans.order_by.created"), "id_desc"], [t("bans.order_by.expiration"), "expires_at_desc"]], selected: params[:search][:order] %>
+  <%= f.submit t("bans.search") %>
 <% end %>

@@ -1,0 +1,6 @@
+"zh-CN":
+  api_key:
+    too_many_api_keys: "API 密钥数量最多为 20 个。"
+    private_ip_address: "不能包含私有 IP 地址「%{ip_addr}」。"
+    overlapping_ip_ranges: "不能包含重叠的 IP 地址段（%{other_ip} 是 %{ip_addr} 的子网）。"
+    invalid_permission: "不能包含无效权限「%{permission}」。"

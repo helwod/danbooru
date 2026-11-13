@@ -1,0 +1,16 @@
+en:
+  ip_geolocations:
+    ip_address: "IP Address"
+    proxy: "Proxy?"
+    asn: "ASN"
+    network: "Network"
+    organization: "Organization"
+    is_proxy: "Proxy?"
+    continent: "Continent"
+    country: "Country"
+    region: "Region"
+    city: "City"
+    updated: "Updated"
+    created: "Created"
+    search: "Search"
+    ip_info: "IP Info"

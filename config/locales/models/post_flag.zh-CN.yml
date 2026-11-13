@@ -1,0 +1,8 @@
+"zh-CN":
+  post_flag:
+    flag_limit_reached: "已达到举报上限。"
+    pending_cannot_be_flagged: "作品处于待审状态，无法举报。"
+    deleted_cannot_be_flagged: "作品已被删除，无法举报。"
+    already_flagged: "作品已被举报。"
+    cannot_be_flagged: "该作品无法举报。"
+    flag_cooldown: "每 %{config_moderation_period} 只能举报一次（上次举报：%{created_at_long}）。"

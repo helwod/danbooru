@@ -416,7 +416,7 @@ class Post < ApplicationRecord
       new_tags = post_edit.effective_added_tag_names.reject { |name| Tag.exists?(name: name) }
 
       if RateLimiter.limited?(action: "post:validate_new_tags", user: CurrentUser.user, cost: new_tags.size, rate: MAX_NEW_TAGS.to_f / MAX_NEW_TAGS_INTERVAL, burst: MAX_NEW_TAGS, minimum_points: -0.1)
-        errors.add(:base, "You can't create more than #{MAX_NEW_TAGS.to_i} new tags per #{MAX_NEW_TAGS_INTERVAL.inspect}. Wait a while and try again")
+        errors.add(:base, I18n.t("post.too_many_new_tags", max_new_tags: MAX_NEW_TAGS.to_i, max_new_tags_interval: MAX_NEW_TAGS_INTERVAL.inspect))
         throw :abort # XXX This causes a transaction rollback which means the rate limit doesn't get properly updated.
       end
     end
@@ -964,11 +964,11 @@ class Post < ApplicationRecord
     def copy_notes_to(other_post, copy_tags: NOTE_COPY_TAGS)
       transaction do
         if id == other_post.id
-          errors.add(:base, "Source and destination posts are the same")
+          errors.add(:base, I18n.t("post.same_source_and_destination"))
           return false
         end
         unless has_notes?
-          errors.add(:post, "has no notes")
+          errors.add(:post, I18n.t("post.no_notes"))
           return false
         end
 
@@ -1873,7 +1873,7 @@ class Post < ApplicationRecord
       return unless parent_id_changed?
 
       if in?(ancestors)
-        errors.add(:base, "Post cannot have itself as a parent")
+        errors.add(:base, I18n.t("post.cannot_be_own_parent"))
         throw :abort # Abort to avoid additional error about parent-child chain being more than 4 levels deep
       end
     end
@@ -1882,7 +1882,7 @@ class Post < ApplicationRecord
       return unless parent_id_changed?
 
       if parent_hierarchy_depth > MAX_PARENT_DEPTH
-        errors.add(:base, "Post cannot have a parent-child chain more than #{MAX_PARENT_DEPTH} levels deep")
+        errors.add(:base, I18n.t("post.parent_chain_too_deep", max_parent_depth: MAX_PARENT_DEPTH))
       end
     end
 
@@ -1890,13 +1890,13 @@ class Post < ApplicationRecord
       return unless parent_id_changed? && parent.present?
 
       if parent.children.count >= MAX_CHILD_POSTS
-        errors.add(:base, "post ##{parent_id} cannot have more than #{MAX_CHILD_POSTS} child posts")
+        errors.add(:base, I18n.t("post.parent_too_many_children", parent_id: parent_id, max_child_posts: MAX_CHILD_POSTS))
       end
     end
 
     def uploader_is_not_limited
       if uploader.upload_limit.limited?
-        errors.add(:uploader, "have reached your upload limit. Please wait for your pending uploads to be approved before uploading more")
+        errors.add(:uploader, I18n.t("post.upload_limit_reached"))
         throw :abort # Don't bother returning other validation errors if we're upload-limited.
       end
     end
@@ -1906,7 +1906,7 @@ class Post < ApplicationRecord
 
       blocked_tags = Danbooru.config.new_uploader_blocked_ai_tags
       if blocked_tags.present? && ai_tags_match?(blocked_tags)
-        errors.add(:base, "Post failed, try again later")
+        errors.add(:base, I18n.t("post.post_failed"))
         throw :abort # Don't bother returning other validation errors
       end
     end
@@ -1917,14 +1917,14 @@ class Post < ApplicationRecord
       changed_tags = added_tags + removed_tags
 
       if RateLimiter.limited?(action: "post:validate_changed_tags", user: CurrentUser.user, cost: changed_tags.size, rate: MAX_CHANGED_TAGS.to_f / MAX_CHANGED_TAGS_INTERVAL, burst: MAX_CHANGED_TAGS, minimum_points: -0.1)
-        errors.add(:base, "You can't add or remove more than #{MAX_CHANGED_TAGS.to_i} tags per #{MAX_CHANGED_TAGS_INTERVAL.inspect}. Wait a while and try again")
+        errors.add(:base, I18n.t("post.too_many_changed_tags", max_changed_tags: MAX_CHANGED_TAGS.to_i, max_changed_tags_interval: MAX_CHANGED_TAGS_INTERVAL.inspect))
         throw :abort
       end
     end
 
     def validate_tag_count
       if tag_array.size > MAX_TAG_COUNT
-        errors.add(:base, "Post cannot have more than #{MAX_TAG_COUNT} tags")
+        errors.add(:base, I18n.t("post.too_many_tags", max_tag_count: MAX_TAG_COUNT))
       end
     end
 

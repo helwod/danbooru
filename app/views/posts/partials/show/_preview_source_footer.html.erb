@@ -7,7 +7,7 @@
 <% elsif post.text_source? %>
   <%= link_to file_pen_icon(class: "h-3"), posts_path(tags: %{source:"#{post.source.gsub(/"/, '\\"')}"}), title: post.source, class: "align-top" %>
 <% else %>
-  <%= link_to link_slash_icon(class: "h-2"), posts_path(tags: "source:none"), title: "no source", class: "align-top" %>
+  <%= link_to link_slash_icon(class: "h-2"), posts_path(tags: "source:none"), title: t("posts.show.no_source"), class: "align-top" %>
 <% end %>
 
 <%= link_to_media_asset post.media_asset %>

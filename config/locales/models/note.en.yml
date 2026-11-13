@@ -1,0 +1,5 @@
+en:
+  note:
+    must_be_inside_image: "must be inside the image"
+    post_cannot_have_notes: "cannot have notes"
+    too_many_notes: "can't have more than %{max_notes_per_post} notes"

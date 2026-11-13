@@ -3,5 +3,5 @@
 <% elsif @error %>
   Danbooru.Notice.error("<%= j @error.to_s %>");
 <% else %>
-  Danbooru.Notice.info("Post was permanently deleted");
+  Danbooru.Notice.info("<%= j t("moderator.post_permanently_deleted") %>");
 <% end %>

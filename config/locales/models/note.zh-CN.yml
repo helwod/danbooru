@@ -1,0 +1,5 @@
+"zh-CN":
+  note:
+    must_be_inside_image: "必须在图片范围内。"
+    post_cannot_have_notes: "不允许有批注。"
+    too_many_notes: "批注数量不能超过 %{max_notes_per_post} 个。"

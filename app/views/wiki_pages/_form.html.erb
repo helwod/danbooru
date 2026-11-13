@@ -1,18 +1,18 @@
 <div id="form-content">
   <%= edit_form_for(@wiki_page, url: wiki_page_path(@wiki_page.id)) do |f| %>
-    <%= f.input :title, error: false, input_html: { data: { autocomplete: "tag" } }, hint: "Change to rename this wiki page. Update any wikis linking to this page first." %>
+    <%= f.input :title, error: false, input_html: { data: { autocomplete: "tag" } }, hint: t("wiki_pages.form.title_hint") %>
 
     <% if !@wiki_page.tag&.artist? || @wiki_page.other_names.present? %>
-      <%= f.input :other_names_string, as: :string, label: "Other names (#{link_to_wiki "help", "help:translated_tags"})".html_safe, hint: "Names used for this tag on other sites such as Pixiv. Separate with spaces." %>
+      <%= f.input :other_names_string, as: :string, label: t("wiki_pages.form.other_names_label_html", link: link_to_wiki(t("wiki_pages.form.other_names_help"), "help:translated_tags")).html_safe, hint: t("wiki_pages.form.other_names_hint") %>
     <% end %>
 
     <%= f.input :body, as: :dtext, editor_html: { class: "dtext-editor-large" }, input_html: { autofocus: "true" } %>
 
     <% if policy(@wiki_page).can_edit_locked? %>
-      <%= f.input :is_locked, label: "Locked", hint: "Locked wikis can only be edited by Builders." %>
+      <%= f.input :is_locked, label: t("wiki_pages.form.locked"), hint: t("wiki_pages.form.locked_hint") %>
     <% end %>
 
-    <%= f.input :is_deleted, label: "Deleted", hint: "Check to mark this wiki page as deleted." %>
+    <%= f.input :is_deleted, label: t("wiki_pages.form.deleted"), hint: t("wiki_pages.form.deleted_hint") %>
 
     <%= f.submit_button %>
   <% end %>

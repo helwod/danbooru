@@ -1,17 +1,17 @@
-<% page_title "Missed Searches" %>
+<% page_title t("explore.posts.missed_searches.page_title") %>
 <%= render "posts/partials/common/secondary_links" %>
 
 <div id="c-explore-posts">
   <div id="a-missed-searches">
-    <h1>Missed Searches</h1>
-    <p>Over the past seven days.</p>
+    <h1><%= t("explore.posts.missed_searches.page_title") %></h1>
+    <p><%= t("explore.posts.missed_searches.subtitle") %></p>
 
     <table class="striped" width="100%">
       <thead>
         <tr>
-          <th width="80%">Tags</th>
-          <th width="10%">Wiki</th>
-          <th width="10%" style="text-align: right;">Count</th>
+          <th width="80%"><%= t("explore.posts.missed_searches.column_tags") %></th>
+          <th width="10%"><%= t("explore.posts.missed_searches.column_wiki") %></th>
+          <th width="10%" style="text-align: right;"><%= t("explore.posts.missed_searches.column_count") %></th>
         </tr>
       </thead>
       <tbody>

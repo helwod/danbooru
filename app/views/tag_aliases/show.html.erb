@@ -1,24 +1,24 @@
 <div id="c-tag-aliases">
   <div id="a-show">
-    <h1>Tag Alias: <%= @tag_alias.antecedent_name %> -&gt; <%= @tag_alias.consequent_name %></h1>
+    <h1><%= t("tag_aliases.show.title", from: @tag_alias.antecedent_name, to: @tag_alias.consequent_name) %></h1>
 
     <ul>
-      <li><strong>From</strong> <%= link_to @tag_alias.antecedent_name, posts_path(:tags => @tag_alias.antecedent_name) %></li>
-      <li><strong>To</strong> <%= link_to @tag_alias.consequent_name, posts_path(:tags => @tag_alias.consequent_name) %></li>
+      <li><strong><%= t("tag_aliases.show.from") %></strong> <%= link_to @tag_alias.antecedent_name, posts_path(:tags => @tag_alias.antecedent_name) %></li>
+      <li><strong><%= t("tag_aliases.show.to") %></strong> <%= link_to @tag_alias.consequent_name, posts_path(:tags => @tag_alias.consequent_name) %></li>
       <% if @tag_alias.forum_topic_id %>
-        <li><strong>Reference</strong> <%= link_to "topic ##{@tag_alias.forum_topic_id}", forum_topic_path(@tag_alias.forum_topic_id) %></li>
+        <li><strong><%= t("tag_aliases.show.reference") %></strong> <%= link_to t("tag_aliases.show.topic_link", id: @tag_alias.forum_topic_id), forum_topic_path(@tag_alias.forum_topic_id) %></li>
       <% end %>
-      <li><strong>Creator</strong> <%= link_to_user @tag_alias.creator %></li>
-      <li><strong>Date</strong> <%= @tag_alias.created_at %></li>
+      <li><strong><%= t("tag_aliases.show.creator") %></strong> <%= link_to_user @tag_alias.creator %></li>
+      <li><strong><%= t("tag_aliases.show.date") %></strong> <%= @tag_alias.created_at %></li>
       <% if @tag_alias.reason.present? %>
         <li>
-          <strong>Reason</strong>
+          <strong><%= t("tag_aliases.show.reason") %></strong>
           <div class="prose">
             <%= @tag_alias.dtext_reason.format_text %>
           </div>
         </li>
       <% end %>
-      <li><strong>Status</strong> <%= @tag_alias.status %></li>
+      <li><strong><%= t("tag_aliases.show.status") %></strong> <%= @tag_alias.status %></li>
     </ul>
   </div>
 </div>

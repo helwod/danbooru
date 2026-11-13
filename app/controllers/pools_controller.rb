@@ -41,14 +41,14 @@ class PoolsController < ApplicationController
     @pool = authorize Pool.new(permitted_attributes(Pool))
     @pool.save
 
-    respond_with(@pool, notice: "Pool created")
+    respond_with(@pool, notice: I18n.t("pools.flash.created"))
   end
 
   def update
     @pool = authorize Pool.find(params[:id])
     @pool.update(permitted_attributes(@pool))
 
-    respond_with(@pool, notice: "Pool updated")
+    respond_with(@pool, notice: I18n.t("pools.flash.updated"))
   end
 
   def destroy
@@ -56,7 +56,7 @@ class PoolsController < ApplicationController
     @pool.update(is_deleted: true)
     @pool.create_mod_action_for_delete
 
-    respond_with(@pool, notice: "Pool deleted")
+    respond_with(@pool, notice: I18n.t("pools.flash.deleted"))
   end
 
   def undelete
@@ -64,7 +64,7 @@ class PoolsController < ApplicationController
     @pool.update(is_deleted: false)
     @pool.create_mod_action_for_undelete
 
-    respond_with(@pool, notice: "Pool undeleted")
+    respond_with(@pool, notice: I18n.t("pools.flash.undeleted"))
   end
 
   def revert
@@ -72,7 +72,7 @@ class PoolsController < ApplicationController
     @version = @pool.versions.find(params[:version_id])
     @pool.revert_to!(@version)
 
-    respond_with(@pool, notice: "Pool reverted") do |format|
+    respond_with(@pool, notice: I18n.t("pools.flash.reverted")) do |format|
       format.js
     end
   end

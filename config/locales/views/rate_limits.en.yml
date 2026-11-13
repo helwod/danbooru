@@ -1,0 +1,7 @@
+en:
+  rate_limits:
+    action: "Action"
+    key: "Key"
+    points: "Points"
+    limited: "Limited?"
+    updated_at: "Updated At"

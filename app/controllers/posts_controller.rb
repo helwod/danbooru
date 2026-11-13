@@ -71,9 +71,9 @@ class PostsController < ApplicationController
       # Don't let users edit posts they can't see, so they can't make them visible by removing restricted tags or changing the rating.
       if policy(@original_post).update?
         @original_post.update(rating: @post.rating.presence || @original_post.rating, parent_id: @post.parent_id || @original_post.parent_id, tag_string: "#{@original_post.tag_string} #{params.dig(:post, :tag_string)}")
-        flash[:notice] = "Duplicate of post ##{@original_post.id}; merging tags"
+        flash[:notice] = I18n.t("posts.flash.duplicate_merging", id: @original_post.id)
       else
-        flash[:notice] = "Duplicate of post ##{@original_post.id}"
+        flash[:notice] = I18n.t("posts.flash.duplicate", id: @original_post.id)
       end
 
       redirect_to @original_post
@@ -95,7 +95,7 @@ class PostsController < ApplicationController
     if params[:commit] == "Delete"
       move_favorites = params.dig(:post, :move_favorites).to_s.truthy?
       @post.delete!(params.dig(:post, :reason), move_favorites: move_favorites, user: CurrentUser.user)
-      flash[:notice] = "Post deleted" if @post.errors.empty?
+      flash[:notice] = I18n.t("posts.flash.deleted") if @post.errors.empty?
     end
 
     respond_with_post_after_update(@post)

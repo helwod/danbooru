@@ -1,0 +1,13 @@
+en:
+  sessions:
+    confirm_password: "Confirm password"
+    confirm_password_hint: "Enter your password to continue."
+    confirm_password_with_totp_hint: "Enter your password and the 6-digit code from your authenticator app to continue."
+    verify_login: "Verify Login"
+    verify_login_hint: "Enter the 6-digit code from your authenticator app to continue."
+    backup_code_hint: "Lost your phone? You can enter a backup code instead."
+    continue: "Continue"
+    logout: "Logout"
+    flash:
+      login_expired: "Login expired. Login again to continue"
+      logged_out: "You are now logged out"

@@ -1,0 +1,12 @@
+"zh-CN":
+  tag_implication:
+    circular_relation: "标签蕴含不能与其他蕴含形成循环。"
+    already_implied: "%{antecedent_name} 已通过另一条蕴含关系蕴含了 %{consequent_name}。"
+    antecedent_aliased: "前件标签不能已被别名到其他标签。"
+    consequent_aliased: "后件标签不能已被别名到其他标签。"
+    category_mismatch: "不能把%{antecedent_tag_category_name}标签蕴含到%{consequent_tag_category_name}标签。"
+    antecedent_too_few_posts: "[[%{antecedent_name}]] 至少需要 %{minimum_tag_count} 个作品。"
+    antecedent_below_percentage: "[[%{antecedent_name}]] 至少需要 %{consequent_tag_post_count} 个作品。"
+    antecedent_above_percentage: "[[%{antecedent_name}]] 占 [[%{consequent_name}]] 的比例不能超过 %{maximum_tag_percentage}%。"
+    antecedent_needs_wiki: "[[%{antecedent_name}]] 必须有维基页面。"
+    consequent_needs_wiki: "[[%{consequent_name}]] 必须有维基页面。"

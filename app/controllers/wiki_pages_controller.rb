@@ -72,7 +72,7 @@ class WikiPagesController < ApplicationController
     @version = @wiki_page.versions.find(params[:version_id])
     @wiki_page.revert_to!(@version)
 
-    respond_with(@wiki_page, notice: "Page was reverted")
+    respond_with(@wiki_page, notice: I18n.t("wiki_pages.flash.reverted"))
   end
 
   def show_or_new

@@ -21,7 +21,7 @@ class WikiPageVersionsController < ApplicationController
     if params[:thispage].blank? || params[:otherpage].blank?
       page_id = params[:thispage] || params[:otherpage]
       if page_id.blank?
-        redirect_back fallback_location: wiki_pages_path, notice: "You must select at least one version to diff"
+        redirect_back fallback_location: wiki_pages_path, notice: I18n.t("wiki_page_versions.flash.select_version")
         skip_authorization
         return
       end

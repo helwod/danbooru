@@ -37,18 +37,18 @@ class Note < ApplicationRecord
   def validate_note_within_image
     return false unless post.present?
     if x < 0 || y < 0 || (x > post.image_width) || (y > post.image_height) || width < 0 || height < 0 || (x + width > post.image_width) || (y + height > post.image_height)
-      errors.add(:note, "must be inside the image")
+      errors.add(:note, I18n.t("note.must_be_inside_image"))
     end
   end
 
   def validate_post_can_have_notes
-    errors.add(:post, "cannot have notes") if post.present? && !post.can_have_notes?
+    errors.add(:post, I18n.t("note.post_cannot_have_notes")) if post.present? && !post.can_have_notes?
   end
 
   def validate_notes_per_post
     return if post.blank?
 
-    errors.add(:post, "can't have more than #{MAX_NOTES_PER_POST} notes") if post.notes.active.where.not(id: id).count >= MAX_NOTES_PER_POST
+    errors.add(:post, I18n.t("note.too_many_notes", max_notes_per_post: MAX_NOTES_PER_POST)) if post.notes.active.where.not(id: id).count >= MAX_NOTES_PER_POST
   end
 
   def rescale!(x_scale, y_scale)

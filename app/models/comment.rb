@@ -86,11 +86,11 @@ class Comment < ApplicationRecord
 
   def validate_body
     if (embedded_post = dtext_body.embedded_posts.find { |embedded_post| embedded_post.rating_id > post.rating_id })
-      errors.add(:body, "can't include a #{embedded_post.pretty_rating.downcase} image on a #{post.pretty_rating.downcase} post")
+      errors.add(:body, I18n.t("comment.rating_mismatch_post", embedded_post_pretty_rating: embedded_post.pretty_rating.downcase, post_pretty_rating: post.pretty_rating.downcase))
     end
 
     if (embedded_asset = dtext_body.embedded_media_assets.find { |embedded_asset| embedded_asset.ai_rating_id > post.rating_id && embedded_asset.is_ai_nsfw? })
-      errors.add(:body, "can't include a #{embedded_asset.pretty_ai_rating.downcase} image on a #{post.pretty_rating.downcase} post")
+      errors.add(:body, I18n.t("comment.rating_mismatch_asset", embedded_asset_pretty_ai_rating: embedded_asset.pretty_ai_rating.downcase, post_pretty_rating: post.pretty_rating.downcase))
     end
   end
 

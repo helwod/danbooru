@@ -1,0 +1,75 @@
+"zh-CN":
+  wiki_pages:
+    index:
+      title: "维基"
+      column_title: "标题"
+      column_last_edited: "最后编辑"
+    new:
+      title: "新建维基页面"
+      notice_html: "这个维基页面还不存在。你可以在下方为 %{title} 创建页面，用它向站内其他用户说明该标签的用法。"
+    edit:
+      title: "编辑维基"
+    show:
+      page_title: "%{title} 维基"
+      locked: "（已锁定）"
+      deleted: "（已删除）"
+      not_exist: "这个维基页面不存在。"
+      create_new: "新建维基页面"
+      view_artist: "查看画师"
+      deprecated: "已弃用"
+      deprecated_html: "此标签%{link}，不能再添加到新作品中。"
+    form:
+      title_hint: "修改后会重命名这个维基页面。请先更新所有链接到此页面的维基。"
+      other_names_label_html: "其他名称（%{link}）"
+      other_names_help: "帮助"
+      other_names_hint: "该标签在 Pixiv 等外部网站上使用的名称，用空格分隔。"
+      locked: "锁定"
+      locked_hint: "锁定的维基只有 Builders 可以编辑。"
+      deleted: "删除"
+      deleted_hint: "勾选后将该维基页面标记为已删除。"
+    search:
+      title: "标题"
+      other_names: "其他名称"
+      text: "内容"
+      linked_to_hint: "查找链接到此维基页面的维基"
+      locked: "已锁定？"
+      deleted: "已删除？"
+      has_images: "含图片？"
+      order_newest: "最新"
+      order_title: "标题"
+      order_posts: "作品数"
+      submit: "搜索"
+    secondary_links:
+      search: "搜索"
+      new: "新建"
+      changes: "变更"
+      help: "帮助"
+      posts_count: "作品（%{count}）"
+      history: "历史版本"
+      undelete: "恢复"
+      delete: "删除"
+      edit: "编辑"
+      diff: "对比"
+      revert_to: "回退到"
+      confirm_undelete: "确定要恢复这个维基页面吗？"
+      confirm_delete: "确定要删除这个维基页面吗？"
+      confirm_revert: "确定要回退到这个版本吗？"
+    sidebar:
+      options: "选项"
+      recent_changes: "最近变更"
+      all: "全部"
+      tag_history: "标签历史"
+      post_history: "作品历史"
+      wiki_history: "维基历史"
+      discussions: "讨论"
+      what_links_here: "反向链接"
+      mistagged_posts: "标签错误的作品"
+      untagged_posts: "未打标签的作品"
+    posts_heading: "作品"
+    flash:
+      reverted: "页面已回退"
+
+  activerecord:
+    attributes:
+      tag:
+        category: "分类"

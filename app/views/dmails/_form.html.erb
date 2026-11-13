@@ -1,6 +1,6 @@
 <%= edit_form_for(dmail) do |f| %>
-  <%= f.input :to_name, :label => "To", :input_html => { value: dmail.to.try(:name), data: { autocomplete: "user" } } %>
+  <%= f.input :to_name, :label => t("dmails.to"), :input_html => { value: dmail.to.try(:name), data: { autocomplete: "user" } } %>
   <%= f.input :title, :as => :string %>
   <%= f.input :body, as: :dtext %>
-  <%= f.submit_button "Send", data: { disable_with: "Sending..." } %>
+  <%= f.submit_button t("dmails.send"), data: { disable_with: t("dmails.sending") } %>
 <% end %>

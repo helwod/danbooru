@@ -1,0 +1,18 @@
+"zh-CN":
+  ip_addresses:
+    title: "IP 地址：%{ip}"
+    location: "位置"
+    network: "网段"
+    info: "详情"
+    proxy: "是否代理？"
+    tor: "是否 Tor？"
+    ip_banned: "是否 IP 封禁？"
+    asn: "ASN"
+    organization: "所属机构"
+    mobile_carrier: "移动运营商"
+    details: "详细信息"
+    yes_label: "是"
+    no_label: "否"
+    ip_bans: "IP 封禁"
+    bans: "封禁"
+    feedbacks: "反馈记录"

@@ -1,0 +1,4 @@
+"zh-CN":
+  forum_post:
+    cannot_delete_original: "必须先删除主题才能删除首帖。"
+    cannot_undelete_original: "必须先恢复主题才能恢复首帖。"

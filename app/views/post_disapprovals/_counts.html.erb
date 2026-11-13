@@ -1,17 +1,17 @@
 <% if (CurrentUser.is_approver? || post.created_at < Danbooru.config.moderation_period.ago) && disapprovals.length > 0 %>
   <p>
-    It has been reviewed by <%= pluralize disapprovals.length, "approver" %>.
+    <%= t("post_disapprovals.counts.reviewed", count: disapprovals.length) %>
 
     <% if disapprovals.map(&:reason).grep("breaks_rules").count > 0 %>
-      <%= disapprovals.map(&:reason).grep("breaks_rules").count %> believe it breaks the rules.
+      <%= t("post_disapprovals.counts.breaks_rules", count: disapprovals.map(&:reason).grep("breaks_rules").count) %>
     <% end %>
 
     <% if disapprovals.map(&:reason).grep("poor_quality").count > 0 %>
-      <%= disapprovals.map(&:reason).grep("poor_quality").count %> believe it has poor quality.
+      <%= t("post_disapprovals.counts.poor_quality", count: disapprovals.map(&:reason).grep("poor_quality").count) %>
     <% end %>
 
     <% if disapprovals.map(&:message).any?(&:present?) %>
-      Messages:
+      <%= t("post_disapprovals.counts.messages") %>
       <span class="prose">
         <%= disapprovals.select { _1.message.present? }.map { |disapproval| %{"#{disapproval.dtext_message.format_text}"} }.to_sentence.html_safe %>.
       </span>

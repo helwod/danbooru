@@ -122,10 +122,10 @@ class ArtistURL < ApplicationRecord
 
   def validate_url_format
     if Source::URL.parse!(url).host.exclude?(".")
-      errors.add(:url, "'#{url}' is not a valid URL")
+      errors.add(:url, I18n.t("artist_url.invalid_url", url: url))
     end
   rescue StandardError
-    errors.add(:url, "'#{url}' is not a valid URL")
+    errors.add(:url, I18n.t("artist_url.invalid_url", url: url))
   end
 
   def self.available_includes

@@ -1,0 +1,4 @@
+"zh-CN":
+  metrics:
+    statistics: "统计"
+    updated: "更新于 %{time}。"

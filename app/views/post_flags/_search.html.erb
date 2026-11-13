@@ -1,11 +1,11 @@
 <%= search_form_for(post_flags_path) do |f| %>
-  <%= f.input :reason_matches, label: "Reason", input_html: { value: params[:search][:reason_matches] } %>
-  <%= f.input :post_tags_match, label: "Tags", input_html: { value: params[:search][:post_tags_match], data: { autocomplete: "tag-query" } } %>
-  <%= f.input :post_id, label: "Post ID", input_html: { value: params[:search][:post_id] } %>
+  <%= f.input :reason_matches, label: t("post_flags.search.reason"), input_html: { value: params[:search][:reason_matches] } %>
+  <%= f.input :post_tags_match, label: t("post_flags.search.tags"), input_html: { value: params[:search][:post_tags_match], data: { autocomplete: "tag-query" } } %>
+  <%= f.input :post_id, label: t("post_flags.search.post_id"), input_html: { value: params[:search][:post_id] } %>
   <% if policy(PostFlag).can_search_flagger? %>
-    <%= f.input :creator_name, label: "Creator", input_html: { value: params[:search][:creator_name], data: { autocomplete: "user" } } %>
+    <%= f.input :creator_name, label: t("post_flags.search.creator"), input_html: { value: params[:search][:creator_name], data: { autocomplete: "user" } } %>
   <% end %>
-  <%= f.input :category, label: "Category", collection: ["normal", "unapproved", "rejected", "deleted"], include_blank: true, selected: params[:search][:category] %>
-  <%= f.input :status, collection: PostFlag.statuses, include_blank: true, selected: params[:search][:status] %>
-  <%= f.submit "Search" %>
+  <%= f.input :category, label: t("post_flags.search.category"), collection: %w[normal unapproved rejected deleted].map { |c| [t("post_flags.categories.#{c}", default: c.titleize), c] }, include_blank: true, selected: params[:search][:category] %>
+  <%= f.input :status, collection: PostFlag.statuses.map { |name, value| [t("post_flags.status.#{name}", default: name.titleize), value] }, include_blank: true, selected: params[:search][:status] %>
+  <%= f.submit t("post_flags.search.submit") %>
 <% end %>

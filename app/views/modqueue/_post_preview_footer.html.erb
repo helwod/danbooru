@@ -15,7 +15,7 @@
     <% %w[poor_quality breaks_rules].each do |reason| %>
       <% if post.disapprovals.map(&:reason).grep(reason).count > 0 %>
         <span class="inline-block rounded px-2 mb-1 text-inverse bg:error-color">
-          <%= reason.titleize %>: <%= post.disapprovals.map(&:reason).grep(reason).count %>
+          <%= t("modqueue.reasons.#{reason}", default: reason.humanize) %>: <%= post.disapprovals.map(&:reason).grep(reason).count %>
         </span>
       <% end %>
     <% end %>
@@ -27,7 +27,7 @@
     <% end %>
 
     <% if post.source.blank? %>
-      <span class="inline-block rounded px-2 mb-1 text-inverse bg:error-color">No Source</span>
+      <span class="inline-block rounded px-2 mb-1 text-inverse bg:error-color"><%= t("modqueue.no_source") %></span>
     <% end %>
   </div>
 </div>

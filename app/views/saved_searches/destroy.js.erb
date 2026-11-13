@@ -1,4 +1,4 @@
-Danbooru.Notice.info("Search '<%= j @saved_search.query %>' was deleted");
+Danbooru.Notice.info("<%= j t("saved_searches.destroy.deleted", query: @saved_search.query) %>");
 $("#saved-searches-nav").html("<%= j render('saved_searches/interface', :saved_searches => CurrentUser.user.saved_searches) %>");
 $(window).trigger("danbooru:initialize_saved_searches");
 $("#saved-search-<%= @saved_search.id %>").remove();

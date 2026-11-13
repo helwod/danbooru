@@ -1,0 +1,9 @@
+en:
+  pool_orders:
+    edit:
+      page_title: "Order Pool"
+      title: "Order Pool: %{name}"
+      drag_hint: "Drag and drop the list below to determine ordering."
+      text_hint: "Reorder the post IDs in the text box below to reorder the pool."
+      posts: "Posts"
+      hidden_post: "Hidden: Post #%{id}"

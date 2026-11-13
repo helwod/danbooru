@@ -1,0 +1,55 @@
+"zh-CN":
+  user_mailer:
+    greeting_html: "你好，%{user}："
+    greeting_plain: "你好，%{user}："
+    click_here: "点击这里"
+    unsubscribe: "退订"
+    verify_email_address: "验证邮箱地址"
+    subjects:
+      dmail_notice: "%{app_name}：%{name} 给你发送了一条站内信"
+      password_reset: "%{app_name} 密码重置请求"
+      email_change_confirmation: "请确认你的邮箱地址"
+      login_verification: "请验证来自新位置的登录"
+      welcome_user: "欢迎加入 %{app_name}！请确认你的邮箱地址"
+      send_backup_code: "你的账户找回验证码"
+      dmca_complaint: "DMCA 投诉"
+    dmail_notice:
+      sent_message_html: "%{from} 在 %{app_name} 上给你发送了一条站内信："
+      reply: "回复"
+      view_message: "查看站内信"
+      notice_html: "你会收到这封邮件，是因为你开启了站内信提醒。%{link}即可退订此类邮件。"
+    dmca_complaint:
+      submitted: "你的 DMCA 通知已提交，最多需要 48 小时处理。除非需要我们进一步联系你，否则可能不会收到回复。如有其他疑问，可以联系 %{email}。"
+      name: "姓名：%{name}"
+      email: "邮箱：%{email}"
+      address: "地址：%{address}"
+      infringing_urls: "侵权链接："
+      original_urls: "原始链接："
+      proof: "作者身份证明：%{proof}"
+      signature: "签名：%{signature}"
+    email_change_confirmation:
+      changed_html: "你在 %{app_name} 上修改了邮箱地址。请点击下面的链接验证新邮箱："
+      notice_html: "你会收到这封邮件，是因为有人把 %{app_name} 账户的邮箱改成了这个地址。如果不是你本人操作，可以忽略此邮件。"
+    login_verification:
+      intro: "有人从新位置尝试登录你的 %{app_name} 账户。如果确实是你本人，请点击下面的链接验证本次登录。"
+      location: "位置"
+      ip_address: "IP 地址"
+      device: "设备"
+      verify_login: "验证登录"
+      not_you: "如果不是你本人操作，请立即登录账户并修改密码。"
+    password_reset:
+      requested_html: "你申请重置 %{app_name} 的密码。请点击下面的链接重置密码："
+      reset_password: "重置密码"
+      notice_line1_html: "你会收到这封邮件，是因为有人为你在 %{app_name} 上的账户申请了密码重置。"
+      notice_line2: "如果不是你本人操作，可以忽略此邮件。此链接将在 30 分钟后失效。"
+    send_backup_code:
+      here_is_code: "这是你的备用码："
+      usage: "你可以用这个码登录账户并修改两步验证设置。每个备用码只能使用一次，使用后请记得更新两步验证设置。"
+      after_change: "修改两步验证设置后，请务必记下新的备用码。"
+      login: "登录"
+      update_2fa: "修改两步验证"
+      view_backup_codes: "查看备用码"
+      notice: "你会收到这封邮件，是因为有人为你的账户申请了账户找回。如果不是你本人操作，请立即登录账户并修改密码。"
+    welcome_user:
+      welcome_html: "欢迎加入 %{app_name}！请点击下面的链接验证你的邮箱地址："
+      notice_html: "你会收到这封邮件，是因为有人用你的邮箱注册了 %{app_name}。%{link}即可关闭邮件通知。"

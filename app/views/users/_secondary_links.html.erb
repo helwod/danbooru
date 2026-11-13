@@ -1,33 +1,33 @@
 <% content_for(:secondary_links) do %>
   <%= quick_search_form_for(:name_matches, users_path, "users", autocomplete: "user", redirect: true) %>
-  <%= subnav_link_to "Listing", users_path %>
+  <%= subnav_link_to t("users.listing"), users_path, id: "listing" %>
 
   <% if CurrentUser.user.is_anonymous? %>
-    <%= subnav_link_to "Sign up", new_user_path %>
+    <%= subnav_link_to t("users.sign_up"), new_user_path, id: "sign-up" %>
   <% end %>
 
   <% if @user && !@user.new_record? && !CurrentUser.user.is_anonymous? %>
     <%= subnav_divider %>
     <% if @user.id == CurrentUser.user.id %>
-      <%= subnav_link_to "Profile", profile_path %>
-      <%= subnav_link_to "Settings", settings_path %>
-      <%= subnav_link_to "Messages #{unread_dmail_indicator(CurrentUser.user)}", dmails_path(search: { folder: "received" }) %>
-      <%= subnav_link_to "My Uploads", user_uploads_path(CurrentUser.user.id.to_i) %>
+      <%= subnav_link_to t("users.profile"), profile_path, id: "profile" %>
+      <%= subnav_link_to t("users.settings"), settings_path, id: "settings" %>
+      <%= subnav_link_to t("users.messages", indicator: unread_dmail_indicator(CurrentUser.user)), dmails_path(search: { folder: "received" }), id: "messages" %>
+      <%= subnav_link_to t("users.my_uploads"), user_uploads_path(CurrentUser.user.id.to_i), id: "my-uploads" %>
 
       <% if !@user.is_gold? %>
-        <%= subnav_link_to "Upgrade", new_user_upgrade_path %>
+        <%= subnav_link_to t("users.upgrade"), new_user_upgrade_path, id: "upgrade" %>
       <% end %>
 
       <%= subnav_divider %>
-      <%= subnav_link_to "Log out", session_path, method: "delete", "data-confirm": "Are you sure you want to log out?" %>
+      <%= subnav_link_to t("users.log_out"), session_path, method: "delete", "data-confirm": t("users.log_out_confirm"), id: "log-out" %>
     <% else %>
-      <%= subnav_link_to "Send message", new_dmail_path(:dmail => {:to_id => @user.id}) %>
+      <%= subnav_link_to t("users.send_message"), new_dmail_path(:dmail => {:to_id => @user.id}), id: "send-message" %>
       <% if !@user.is_gold? %>
-        <%= subnav_link_to "Gift upgrade", new_user_upgrade_path(:user_id => @user.id) %>
+        <%= subnav_link_to t("users.gift_upgrade"), new_user_upgrade_path(:user_id => @user.id), id: "gift-upgrade" %>
       <% end %>
 
       <% if policy(CurrentUser.user).promote? %>
-        <%= subnav_link_to "Manage user", edit_admin_user_path(@user) %>
+        <%= subnav_link_to t("users.manage_user"), edit_admin_user_path(@user), id: "manage-user" %>
       <% end %>
     <% end %>
   <% end %>

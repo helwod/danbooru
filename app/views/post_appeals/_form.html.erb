@@ -2,15 +2,15 @@
   <%= embed_wiki("help:appeal_notice", classes: "mb-4") %>
 
   <% if CurrentUser.user.post_appeals.pending.count > 0 %>
-    <p><b>Remaining appeals</b>: <%= CurrentUser.user.upload_limit.remaining_appeals %></p>
+    <p><b><%= t("post_appeals.form.remaining") %></b>: <%= CurrentUser.user.upload_limit.remaining_appeals %></p>
   <% end %>
 
   <%= edit_form_for(post_appeal, format: :js, remote: true) do |f| %>
     <%= f.hidden_field :post_id if post_appeal.new_record? %>
-    <%= f.input :reason, hint: tag.span("Ctrl+Enter to submit", class: "desktop-only"), as: :dtext, inline: true, placeholder: "Briefly explain why the post should be undeleted (optional)", input_html: { autofocus: true } %>
+    <%= f.input :reason, hint: tag.span(t("post_appeals.form.ctrl_enter"), class: "desktop-only"), as: :dtext, inline: true, placeholder: t("post_appeals.form.reason_placeholder"), input_html: { autofocus: true } %>
     <div class="dialog-buttons">
-      <%= f.submit_button create: "Appeal" %>
-      <%= f.cancel_button if local_assigns[:inline] %>
+      <%= f.submit_button create: t("post_appeals.form.submit") %>
+      <%= f.cancel_button t("post_appeals.form.cancel") if local_assigns[:inline] %>
     </div>
   <% end %>
 </div>

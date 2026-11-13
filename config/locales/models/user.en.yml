@@ -1,0 +1,10 @@
+en:
+  user:
+    private_favorites_requires_gold: "require a Gold account"
+    too_many_blacklist_rules: "can't have more than %{max_blacklist_rules} blacklist rules"
+    too_many_blacklisted_tags: "can't have more than %{max_blacklist_tags} blacklisted tags"
+    too_many_favorite_tags: "can't have more than 1000 favorite tags"
+    cannot_reset_deleted_password: "You can't reset the password of a deleted account"
+    no_backup_codes: "doesn't have backup codes"
+    no_email_address: "doesn't have an email address"
+    custom_style_syntax_error: "contains a syntax error. Validate it with https://codebeautify.org/cssvalidate"

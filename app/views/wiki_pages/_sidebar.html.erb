@@ -3,30 +3,30 @@
   <%= render "wiki_pages/recent_changes" %>
 
   <% if @wiki_page.present? && @wiki_page.title.present? %>
-    <h2>Options</h2>
+    <h2><%= t("wiki_pages.sidebar.options") %></h2>
 
     <ul>
       <% unless @wiki_page.is_meta_wiki? %>
         <% if @wiki_page.tag.present? %>
-          <li><%= link_to "Tag History", tag_versions_path(search: { tag_id: @wiki_page.tag&.id }) %></li>
+          <li><%= link_to t("wiki_pages.sidebar.tag_history"), tag_versions_path(search: { tag_id: @wiki_page.tag&.id }) %></li>
         <% end %>
 
-        <li><%= link_to "Post History", post_versions_path(search: { changed_tags: @wiki_page.title }) %></li>
+        <li><%= link_to t("wiki_pages.sidebar.post_history"), post_versions_path(search: { changed_tags: @wiki_page.title }) %></li>
       <% end %>
 
       <% if @wiki_page.id.present? %>
-        <li><%= link_to "Wiki History", wiki_page_versions_path(search: { wiki_page_id: @wiki_page.id }) %></li>
+        <li><%= link_to t("wiki_pages.sidebar.wiki_history"), wiki_page_versions_path(search: { wiki_page_id: @wiki_page.id }) %></li>
       <% end %>
 
       <% if Danbooru.config.forum_enabled?.to_s.truthy? %>
-        <li><%= link_to "Discussions", forum_posts_path(search: { linked_to: @wiki_page.title }) %></li>
+        <li><%= link_to t("wiki_pages.sidebar.discussions"), forum_posts_path(search: { linked_to: @wiki_page.title }) %></li>
       <% end %>
 
-      <li><%= link_to "What Links Here", wiki_pages_path(search: { linked_to: @wiki_page.title }) %></li>
+      <li><%= link_to t("wiki_pages.sidebar.what_links_here"), wiki_pages_path(search: { linked_to: @wiki_page.title }) %></li>
 
       <% if @wiki_page.tag.present? && !@wiki_page.tag.is_deprecated? && !@wiki_page.tag.meta? && !@wiki_page.tag.artist? %>
-        <li><%= link_to "Mistagged Posts", posts_path(tags: "#{@wiki_page.tag.name} ai:#{@wiki_page.tag.name},0%") %></li>
-        <li><%= link_to "Untagged Posts", ai_tags_path(search: { tag_name: @wiki_page.tag.name, post_tags_match: "-#{@wiki_page.tag.name}", is_posted: true, order: "score_desc" }) %></li>
+        <li><%= link_to t("wiki_pages.sidebar.mistagged_posts"), posts_path(tags: "#{@wiki_page.tag.name} ai:#{@wiki_page.tag.name},0%") %></li>
+        <li><%= link_to t("wiki_pages.sidebar.untagged_posts"), ai_tags_path(search: { tag_name: @wiki_page.tag.name, post_tags_match: "-#{@wiki_page.tag.name}", is_posted: true, order: "score_desc" }) %></li>
       <% end %>
     </ul>
   <% end %>

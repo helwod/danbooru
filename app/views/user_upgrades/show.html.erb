@@ -1,52 +1,50 @@
-<% page_title "User Upgrade Status" %>
+<% page_title t("user_upgrades.show_page_title") %>
 <%= render "users/secondary_links" %>
 
 <div id="c-user-upgrades">
   <div id="a-show">
-    <h1>User Upgrade</h1>
+    <h1><%= t("user_upgrades.show_title") %></h1>
 
     <p>
       <ul>
         <li>
-          <strong>Purchased</strong>
-          by <%= link_to_user @user_upgrade.purchaser %>
+          <strong><%= t("user_upgrades.show.purchased") %></strong>
+          <%= t("user_upgrades.show.by_html", purchaser: link_to_user(@user_upgrade.purchaser)).html_safe %>
           <% if @user_upgrade.is_gift? %>
-            for <%= link_to_user @user_upgrade.recipient %>
+            <%= t("user_upgrades.show.for_html", recipient: link_to_user(@user_upgrade.recipient)).html_safe %>
           <% end %>
         </li>
         <li>
-          <strong>Updated</strong>
+          <strong><%= t("user_upgrades.show.updated") %></strong>
           <%= time_ago_in_words_tagged @user_upgrade.updated_at %>
         </li>
         <li>
-          <strong>Upgrade Type</strong>
-          <%= @user_upgrade.upgrade_type.humanize %>
+          <strong><%= t("user_upgrades.show.upgrade_type") %></strong>
+          <%= t("user_upgrades.upgrade_types.#{@user_upgrade.upgrade_type}", default: @user_upgrade.upgrade_type.humanize) %>
         </li>
         <li>
-          <strong>Status</strong>
-          <%= @user_upgrade.status.humanize %>
+          <strong><%= t("user_upgrades.show.status") %></strong>
+          <%= t("user_upgrades.statuses.#{@user_upgrade.status}", default: @user_upgrade.status.humanize) %>
         </li>
       </ul>
     </p>
 
     <% if @user_upgrade.complete? %>
       <% if @user_upgrade.is_gift? && CurrentUser.user == @user_upgrade.recipient %>
-        <p><%= link_to_user @user_upgrade.purchaser %> has upgraded your account to <%= @user_upgrade.level_string %>. Enjoy your new account!</p>
+        <p><%= t("user_upgrades.show.gift_recipient_html", purchaser: link_to_user(@user_upgrade.purchaser), level: @user_upgrade.level_string).html_safe %></p>
       <% elsif @user_upgrade.is_gift? && CurrentUser.user == @user_upgrade.purchaser %>
-        <p><%= link_to_user @user_upgrade.recipient %> is now a <%= @user_upgrade.level_string %> user. Thanks for supporting the site! A receipt has been sent to your email.</p>
+        <p><%= t("user_upgrades.show.gift_purchaser_html", recipient: link_to_user(@user_upgrade.recipient), level: @user_upgrade.level_string).html_safe %></p>
       <% else %>
-        <p>You are now a <%= @user_upgrade.level_string %> user. Thanks for supporting the site! A receipt has been sent to your email.</p>
+        <p><%= t("user_upgrades.show.self_upgrade_html", level: @user_upgrade.level_string).html_safe %></p>
       <% end %>
     <% elsif @user_upgrade.refunded? %>
-      <p>This purchase has been refunded. A receipt has been sent to your email. It can take up to
-      5-10 days for the refund to appear on your credit card or bank statement. If it takes longer,
-      please contact your bank for assistance.</p>
+      <p><%= t("user_upgrades.show.refunded") %></p>
     <% else %>
       <%= content_for :html_header do %>
         <meta http-equiv="refresh" content="5">
       <% end %>
 
-      <p>This order is still being processed. You will be notified as soon as the order is complete.</p>
+      <p><%= t("user_upgrades.show.processing") %></p>
     <% end %>
   </div>
 </div>

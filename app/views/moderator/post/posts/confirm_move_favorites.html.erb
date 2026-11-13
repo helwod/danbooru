@@ -1,12 +1,16 @@
-<h1>Move Favorites to Parent</h1>
+<h1><%= t("moderator.move_favorites_title") %></h1>
 
 <div>
   <%= post_preview(@post, show_deleted: true) %>
 </div>
 
-<p style="clear: both;">This will move all the post's favorites to its parent post. Are you sure?</p>
+<p style="clear: both;"><%= t("moderator.move_favorites_confirm") %></p>
 
 <%= form_tag(move_favorites_moderator_post_post_path, :style => "clear: both;", :class => "simple_form") do %>
-  <%= submit_tag "Submit" %>
-  <%= submit_tag "Cancel" %>
+  <%# The controller branches on params[:commit] == "Submit", so the submitted value stays untranslated. %>
+  <%# Each button carries its own name/value pair: only the clicked button is submitted, so a request %>
+  <%# always holds exactly one "commit" parameter. A hidden input plus a named submit button would send %>
+  <%# "commit" twice, and Rack would turn it into an array that never equals "Submit". %>
+  <%= button_tag t("moderator.submit"), name: "commit", value: "Submit" %>
+  <%= button_tag t("moderator.cancel"), name: "commit", value: "Cancel" %>
 <% end %>

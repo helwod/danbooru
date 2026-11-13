@@ -1,0 +1,13 @@
+en:
+  favorite_group:
+    invalid_posts: "Cannot add invalid post(s) to favgroup: %{nonexisting_post_ids}"
+    duplicate_posts: "Favgroup already contains post %{duplicate_post_ids}"
+    privacy_requires_gold: "Can't enable privacy without a Gold account"
+    invalid_name: "cannot be '%{name}'"
+    name_commas: "cannot contain commas"
+    name_asterisks: "cannot contain asterisks"
+    name_leading_underscore: "cannot begin with an underscore"
+    name_trailing_underscore: "cannot end with an underscore"
+    name_consecutive_underscores: "cannot contain consecutive underscores"
+    name_non_printable: "cannot contain non-printable characters"
+    name_only_digits: "cannot contain only digits"

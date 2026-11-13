@@ -3,7 +3,7 @@
 <%= render MediaAssetPreviewComponent.new(media_asset: media_asset, size: size, link_target: [upload_media_asset.upload, upload_media_asset], classes: ["upload-media-asset-preview", ("upload-media-asset-loading" if upload_media_asset.loading?)], html: { **data_attributes_for(upload_media_asset), "data-is-posted": upload_media_asset.post.present? }) do |preview| %>
   <% preview.with_missing_image do %>
     <% if upload_media_asset.failed? %>
-      Failed
+      <%= t("upload_media_assets.preview.failed") %>
     <% else %>
       <%= spinner_icon(class: "h-8") %>
     <% end %>
@@ -12,7 +12,7 @@
   <% preview.with_footer do %>
     <div class="text-center text-xs h-8">
       <% if upload_media_asset.post.present? %>
-        <%= link_to "post ##{upload_media_asset.post.id}", upload_media_asset.post %>
+        <%= link_to t("upload_media_assets.preview.post_link", id: upload_media_asset.post.id), upload_media_asset.post %>
       <% end %>
     </div>
   <% end %>

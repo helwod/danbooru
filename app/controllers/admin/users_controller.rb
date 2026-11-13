@@ -13,7 +13,7 @@ module Admin
 
       @user.promote_to!(@level, CurrentUser.user)
 
-      redirect_to edit_admin_user_path(@user), notice: "User updated"
+      redirect_to edit_admin_user_path(@user), notice: I18n.t("admin.flash.user_updated")
     end
   end
 end

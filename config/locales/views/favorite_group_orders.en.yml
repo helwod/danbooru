@@ -1,0 +1,6 @@
+en:
+  favorite_group_orders:
+    edit:
+      title: "Order Favorite Group: %{name}"
+      drag_hint: "Drag and drop the list below to determine ordering."
+      hidden_post: "Hidden: Post #%{id}"

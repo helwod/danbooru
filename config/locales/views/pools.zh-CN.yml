@@ -1,0 +1,58 @@
+"zh-CN":
+  pools:
+    category_series: "系列"
+    category_collection: "图集"
+    meta_description: "在 %{app_name} 上浏览成千上万部已翻译的漫画、图集、同人志等作品。"
+    edit:
+      title: "编辑合集：%{name}"
+    new:
+      title: "新建合集"
+    form:
+      posts: "作品"
+    gallery:
+      page_title: "合集画廊"
+    index:
+      page_title: "合集"
+      column_name: "名称"
+      column_count: "作品数"
+      deleted: "（已删除）"
+      page: "第 %{page} 页"
+    show:
+      meta_description: "%{count} 个作品。%{excerpt}"
+    search:
+      name: "名称"
+      description: "简介"
+      post_tags: "作品标签"
+      deleted: "已删除？"
+      order_last_updated: "最近更新"
+      order_name: "名称"
+      order_recently_created: "最近创建"
+      order_post_count: "作品数"
+      submit: "搜索"
+    secondary_links:
+      gallery: "画廊"
+      listing: "全部合集"
+      new: "新建"
+      changes: "变更"
+      help: "帮助"
+      posts: "作品"
+      edit: "编辑"
+      undelete: "恢复"
+      delete: "删除"
+      history: "历史版本"
+      order: "排序"
+      confirm_delete: "确定要删除这个合集吗？"
+    flash:
+      created: "合集已创建"
+      updated: "合集已更新"
+      deleted: "合集已删除"
+      undeleted: "合集已恢复"
+      reverted: "合集已回退"
+
+  activerecord:
+    attributes:
+      pool:
+        name: "名称"
+        description: "简介"
+        category: "分类"
+        post_ids_string: "作品"

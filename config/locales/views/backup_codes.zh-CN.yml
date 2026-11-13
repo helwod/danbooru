@@ -1,0 +1,25 @@
+"zh-CN":
+  backup_codes:
+    title: "备用码"
+    intro: "备用码用于在手机或两步验证应用丢失时登录账户。"
+    save_warning: "请妥善保存这些备用码。如果手机丢失又找不到备用码，你将永久失去账户的访问权限。"
+    download: "下载"
+    print: "打印"
+    copy: "复制"
+    continue: "继续"
+    generate: "生成新的备用码"
+    back_to_settings: "返回设置"
+    send_title: "发送备用码"
+    send_heading_html: "发送备用码：%{user}"
+    send_button: "发送备用码"
+    send_intro: "向他人发送备用码，等于让他在登录时可以绕过两步验证，并修改两步验证设置。"
+    send_email_hint: "如果对方已无法访问自己的邮箱，你可以先为他修改邮箱地址。"
+    send_warning_html: "请先通过对方的%{link}确认其确为账户本人，否则不要发送备用码。"
+    login_history: "登录记录"
+    text:
+      intro: "以下是你的 %{app_name} 账户备用码。如果你丢失了手机或两步验证应用，可以用这些备用码登录账户。"
+      warning: "请把这些备用码保存在安全的地方。如果验证器应用和备用码同时丢失，你将永久失去账户的访问权限。"
+      one_use: "每个备用码只能使用一次。用掉一个后请记得划掉它，然后到账户设置里获取新的备用码。"
+    flash:
+      regenerated: "备用码已重新生成"
+      sent: "备用码已发送"

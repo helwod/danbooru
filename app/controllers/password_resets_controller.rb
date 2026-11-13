@@ -6,11 +6,11 @@ class PasswordResetsController < ApplicationController
   verify_captcha only: :create
 
   rescue_from ActiveSupport::MessageVerifier::InvalidSignature do
-    redirect_to password_reset_path, notice: "Password reset link is invalid or expired. Request a new one.", status: 303
+    redirect_to password_reset_path, notice: I18n.t("password_resets.flash.invalid_link"), status: 303
   end
 
   rescue_from Pundit::NotAuthorizedError do
-    redirect_to profile_path, notice: "Already logged in"
+    redirect_to profile_path, notice: I18n.t("password_resets.flash.already_logged_in")
   end
 
   # Show the password reset request page.
@@ -31,9 +31,9 @@ class PasswordResetsController < ApplicationController
     @user&.request_password_reset!(request)
 
     if Danbooru::EmailAddress.is_valid?(name_or_email)
-      flash[:notice] = "Check your email. You will be sent a password reset link if an account with this email exists"
+      flash[:notice] = I18n.t("password_resets.flash.email_exists")
     else
-      flash[:notice] = "Check your email. You will be sent a password reset link if this account has an email address"
+      flash[:notice] = I18n.t("password_resets.flash.email_address_exists")
     end
 
     redirect_to password_reset_path
@@ -52,7 +52,7 @@ class PasswordResetsController < ApplicationController
 
     if success
       SessionLoader.new(request).login_user(@user, :login)
-      notice = "Password updated"
+      notice = I18n.t("password_resets.flash.password_updated")
     end
 
     respond_with(@user, notice: notice)

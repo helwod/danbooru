@@ -1,0 +1,13 @@
+"zh-CN":
+  artist_commentary_versions:
+    index:
+      title: "画师说明历史"
+    listing:
+      column_post: "作品"
+      column_version: "版本"
+      column_original: "原文"
+      column_translated: "译文"
+      column_changes: "状态变更"
+      column_updated: "修改者"
+      revert_to: "回退到"
+      confirm_revert: "确定要回退到这个版本吗？"

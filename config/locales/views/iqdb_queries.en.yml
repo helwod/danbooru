@@ -1,0 +1,18 @@
+en:
+  iqdb_queries:
+    show:
+      page_title: "Similar Images Search"
+      heading: "Reverse Images Search"
+      intro: "Paste a URL or upload a file to perform a reverse image search on %{app_name}."
+      post_id: "Post ID"
+      hash_placeholder: "A valid IQDB hash"
+      similar_tab_html: "Similar %{count}"
+      submit: "Search"
+
+  activerecord:
+    attributes:
+      iqdb_query:
+        post_id: "Post ID"
+        url: "URL"
+        hash: "Hash"
+        file: "File"

@@ -18,16 +18,16 @@
       <% if post.nil? %>
         <% # no button %>
       <% elsif !policy(ai_tag).update? %>
-        <%= button_to "Add", nil, class: "button-primary button-sm", disabled: true %>
+        <%= button_to t("ai_tags.add"), nil, class: "button-primary button-sm", disabled: true %>
       <% elsif post.saved_change_to_rating? && "rating:#{post.rating_before_last_save}" != ai_tag.tag.name %>
         <% previous_rating = "rating:#{post.rating_before_last_save}" %>
-        <%= button_to "Remove", tag_ai_tag_path(media_asset_id: ai_tag.media_asset, tag_id: ai_tag.tag), remote: true, method: :put, params: { tag: previous_rating }, class: "button-outline-danger button-sm", title: "Revert to #{previous_rating}" %>
+        <%= button_to t("ai_tags.remove"), tag_ai_tag_path(media_asset_id: ai_tag.media_asset, tag_id: ai_tag.tag), remote: true, method: :put, params: { tag: previous_rating }, class: "button-outline-danger button-sm", title: t("ai_tags.revert_to", tag: previous_rating) %>
       <% elsif ai_tag.post_tagged? && ai_tag.tag.rating? %>
-        <%= button_to "Remove", nil, class: "button-primary button-sm", disabled: true %>
+        <%= button_to t("ai_tags.remove"), nil, class: "button-primary button-sm", disabled: true %>
       <% elsif ai_tag.post_tagged? %>
-        <%= button_to "Remove", tag_ai_tag_path(media_asset_id: ai_tag.media_asset, tag_id: ai_tag.tag), remote: true, method: :put, params: { mode: "remove" }, class: "button-outline-danger button-sm", title: "Remove the tag from the post" %>
+        <%= button_to t("ai_tags.remove"), tag_ai_tag_path(media_asset_id: ai_tag.media_asset, tag_id: ai_tag.tag), remote: true, method: :put, params: { mode: "remove" }, class: "button-outline-danger button-sm", title: t("ai_tags.remove_title") %>
       <% else %>
-        <%= button_to "Add", tag_ai_tag_path(media_asset_id: ai_tag.media_asset, tag_id: ai_tag.tag), remote: true, method: :put, params: { mode: "add" }, class: "button-primary button-sm", title: "Add the tag to the post" %>
+        <%= button_to t("ai_tags.add"), tag_ai_tag_path(media_asset_id: ai_tag.media_asset, tag_id: ai_tag.tag), remote: true, method: :put, params: { mode: "add" }, class: "button-primary button-sm", title: t("ai_tags.add_title") %>
       <% end %>
     </div>
   <% end %>

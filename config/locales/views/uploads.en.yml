@@ -1,0 +1,53 @@
+en:
+  uploads:
+    index:
+      title: "My Uploads"
+      search_tags: "Tags"
+      search_source: "Source"
+      submit: "Search"
+      order_newest: "Newest"
+      order_oldest: "Oldest"
+      order_random: "Random"
+      tab_all: "All"
+      tab_posted: "Posted"
+      tab_unposted: "Unposted"
+      view_gallery: "Gallery"
+      view_table: "Table"
+    new:
+      title: "Upload"
+    show:
+      error: "Error: %{message}."
+      processing: "Processing upload..."
+    preview:
+      upload_failed: "Upload failed"
+      loading: "Loading"
+      post_link: "post #%{id}"
+      posted_count: "%{posted}/%{total} posted"
+    table:
+      column_upload: "Upload"
+      column_info: "Info"
+      column_uploader: "Uploader"
+      upload: "Upload"
+      source: "Source"
+      referrer: "Referrer"
+      error: "Error"
+      none: "none"
+    status:
+      pending: "pending"
+      completed: "completed"
+      error: "error"
+    secondary_links:
+      upload: "Upload"
+      my_uploads: "My Uploads"
+      all_uploads: "All Uploads"
+      reverse_image_search: "Reverse Image Search"
+      source_info: "Source Info"
+      help: "Help"
+      bookmarklet: "Bookmarklet"
+    flash:
+      duplicate: "Duplicate of post #%{id}"
+
+  activerecord:
+    attributes:
+      upload:
+        status: "Status"

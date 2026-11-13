@@ -1,23 +1,23 @@
 <%= table_for forum_topics, width: "100%" do |t| %>
-  <% t.column "Title" do |topic| %>
+  <% t.column t("forum_topics.listing.column_title"), column: "title" do |topic| %>
     <% if !topic.is_read? %>
-      <%= link_to "New", forum_topics_path(search: { is_read: false }), class: "topic-status label new" %>
+      <%= link_to t("forum_topics.listing.new"), forum_topics_path(search: { is_read: false }), class: "topic-status label new" %>
     <% end %>
 
     <% if topic.is_sticky? %>
-      <%= link_to sticky_icon, forum_topics_path(search: { is_sticky: true }), class: "topic-status icon stickied", title: "Stickied" %>
+      <%= link_to sticky_icon, forum_topics_path(search: { is_sticky: true }), class: "topic-status icon stickied", title: t("forum_topics.listing.stickied") %>
     <% end %>
 
     <% if topic.is_locked? %>
-      <%= link_to lock_icon, forum_topics_path(search: { is_locked: true }), class: "topic-status icon locked", title: "Locked" %>
+      <%= link_to lock_icon, forum_topics_path(search: { is_locked: true }), class: "topic-status icon locked", title: t("forum_topics.listing.locked") %>
     <% end %>
 
     <% if topic.is_deleted? %>
-      <%= link_to delete_icon, forum_topics_path(search: { is_deleted: true }), class: "topic-status icon deleted", title: "Deleted" %>
+      <%= link_to delete_icon, forum_topics_path(search: { is_deleted: true }), class: "topic-status icon deleted", title: t("forum_topics.listing.deleted") %>
     <% end %>
 
     <% if topic.is_private? %>
-      <%= link_to private_icon, forum_topics_path(search: { is_private: true }), class: "topic-status icon private", title: "#{topic.min_level} only" %>
+      <%= link_to private_icon, forum_topics_path(search: { is_private: true }), class: "topic-status icon private", title: t("forum_topics.listing.min_level_only", level: topic.min_level) %>
     <% end %>
 
     <% if forum_topic_status(topic).present? %>
@@ -27,10 +27,10 @@
     <% end %>
 
     <% if topic.response_count > Danbooru.config.posts_per_page %>
-      <%= link_to "page #{topic.last_page}", forum_topic_path(topic, :page => topic.last_page), :class => "last-page" %>
+      <%= link_to t("forum_topics.listing.page", page: topic.last_page), forum_topic_path(topic, :page => topic.last_page), :class => "last-page" %>
     <% end %>
   <% end %>
-  <% t.column "Status", width: "1%", td: { class: "whitespace-nowrap text-right" } do |topic| %>
+  <% t.column t("forum_topics.listing.column_status"), width: "1%", td: { class: "whitespace-nowrap text-right" }, column: "status" do |topic| %>
     <% status = forum_topic_status(topic) %>
     <% if status.present? %>
       <%= link_to forum_topics_path(search: { status: status }), class: "topic-status label #{status}" do %>
@@ -43,13 +43,13 @@
     <% else %>
     <% end %>
   <% end %>
-  <% t.column "Creator", width: "8%", th: { class: "desktop-only"}, td: { class: "whitespace-nowrap desktop-only" } do |topic| %>
+  <% t.column t("forum_topics.listing.column_creator"), width: "8%", th: { class: "desktop-only"}, td: { class: "whitespace-nowrap desktop-only" }, column: "creator" do |topic| %>
     <%= link_to_user topic.creator %>
   <% end %>
-  <% t.column "Updated by", width: "8%", th: { class: "desktop-only"}, td: { class: "whitespace-nowrap desktop-only" } do |topic| %>
+  <% t.column t("forum_topics.listing.column_updated_by"), width: "8%", th: { class: "desktop-only"}, td: { class: "whitespace-nowrap desktop-only" }, column: "updated-by" do |topic| %>
     <%= link_to_user topic.updater %>
   <% end %>
-  <% t.column "Updated at", width: "8%", th: { class: "desktop-only"}, td: { class: "whitespace-nowrap desktop-only" } do |topic| %>
+  <% t.column t("forum_topics.listing.column_updated_at"), width: "8%", th: { class: "desktop-only"}, td: { class: "whitespace-nowrap desktop-only" }, column: "updated-at" do |topic| %>
     <%= compact_time topic.updated_at %>
   <% end %>
 <% end %>

@@ -8,6 +8,11 @@ class ApplicationController < ActionController::Base
   # Max length of a GET parameter value.
   MAX_GET_PARAMETER_LENGTH = 16.kilobytes
 
+  # Languages the UI can be displayed in. Keep in sync with config/locales/*.yml
+  # and config.i18n.available_locales in config/application.rb.
+  AVAILABLE_LOCALES = %w[en zh-CN].freeze
+  LOCALE_COOKIE = :danbooru_locale
+
   include Pundit::Authorization
 
   helper_method :search_params, :permitted_attributes, :show_votes?, :preview_size
@@ -15,6 +20,7 @@ class ApplicationController < ActionController::Base
   self.responder = ApplicationResponder
 
   skip_forgery_protection if: -> { SessionLoader.new(request).has_api_authentication? }
+  around_action :switch_locale
   before_action :check_get_body
   before_action :check_oversized_get_params
   before_action :reset_current_user
@@ -54,6 +60,41 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  # Runs the whole request inside I18n.with_locale so that every t() call in
+  # views, components, mailers, and model error messages uses the same language.
+  #
+  # Locale priority: ?locale= parameter > danbooru_locale cookie >
+  # Accept-Language header > default locale (English). An explicit ?locale=
+  # param is remembered in a cookie, so all following links keep working
+  # without having to carry the parameter around.
+  def switch_locale(&action)
+    locale = requested_locale
+
+    if AVAILABLE_LOCALES.include?(params[:locale].to_s)
+      cookies[LOCALE_COOKIE] = { value: locale.to_s, expires: 1.year.from_now, same_site: :lax }
+    end
+
+    # Public page caches must not serve a Chinese page to an English visitor.
+    vary = response.headers["Vary"].to_s.split(/,\s*/).reject(&:blank?)
+    response.headers["Vary"] = (vary | ["Accept-Language", "Cookie"]).join(", ")
+
+    I18n.with_locale(locale, &action)
+  end
+
+  def requested_locale
+    requested = [params[:locale], cookies[LOCALE_COOKIE]].find do |value|
+      AVAILABLE_LOCALES.include?(value.to_s)
+    end
+
+    (requested.presence || preferred_language).to_s.to_sym
+  end
+
+  def preferred_language
+    accept_language = request.headers["Accept-Language"].to_s
+    return "zh-CN" if accept_language.match?(/\bzh\b|\bzh[-_](CN|Hans|SG|Hant|TW|HK)\b/i)
+    "en"
+  end
 
   # Responds to a request and returns either an HTML, JS, JSON, or XML response, depending on the requested response format.
   #
@@ -323,7 +364,7 @@ class ApplicationController < ActionController::Base
 
   def redirect_if_name_invalid?
     if request.format.html? && !CurrentUser.user.is_anonymous? && CurrentUser.user.name_invalid?
-      flash[:notice] = "You must change your username to continue using #{Danbooru.config.app_name}"
+      flash[:notice] = I18n.t("application.flash.change_username_required", app_name: Danbooru.config.app_name)
       redirect_to change_name_user_path(CurrentUser.user)
     end
   end

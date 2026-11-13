@@ -1,0 +1,23 @@
+"zh-CN":
+  forum_post_votes:
+    destroy:
+      unvoted: "已取消投票"
+    create:
+      voted: "已投票"
+    index:
+      search_voter: "投票者"
+      search_forum_poster: "发帖者"
+      search_forum_post: "论坛帖子"
+      search_score: "评分"
+      submit: "搜索"
+      column_forum_post: "论坛帖子"
+      column_forum_topic: "论坛主题"
+      column_score: "评分"
+      column_forum_poster: "发帖者"
+      column_voter: "投票者"
+      forum_post_link: "论坛 #%{id}"
+      unvote: "取消投票"
+    list:
+      vote_up: "支持"
+      vote_meh: "中立"
+      vote_down: "反对"

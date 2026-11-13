@@ -1,21 +1,21 @@
 <div id="c-mod-actions">
   <div id="a-index">
-    <h1>Mod Actions</h1>
+    <h1><%= t("mod_actions.title") %></h1>
 
     <%= render "search" %>
 
     <%= table_for @mod_actions, class: "striped autofit" do |t| %>
-      <% t.column "Description", td: { class: "col-expand" } do |mod_action| %>
+      <% t.column :description, column: "description", name: t("mod_actions.columns.description"), td: { class: "col-expand" } do |mod_action| %>
         <div class="prose">
           <%= link_to_user mod_action.creator %> <%= format_text(mod_action.description.chomp(".").strip, inline: true, references: @dtext_references) %>.
         </div>
       <% end %>
 
-      <% t.column "Category" do |mod_action| %>
-        <%= link_to mod_action.category.humanize, mod_actions_path(search: { category: mod_action.category }) %>
+      <% t.column :category, column: "category", name: t("mod_actions.columns.category") do |mod_action| %>
+        <%= link_to t("mod_actions.categories.#{mod_action.category}", default: mod_action.category.humanize), mod_actions_path(search: { category: mod_action.category }) %>
       <% end %>
 
-      <% t.column "Created" do |mod_action| %>
+      <% t.column :created, column: "created", name: t("mod_actions.columns.created") do |mod_action| %>
         <%= link_to_user mod_action.creator %>
         <%= link_to "»", mod_actions_path(search: { creator_name: mod_action.creator.name }) %>
         <div><%= time_ago_in_words_tagged(mod_action.created_at) %></div>
@@ -25,11 +25,11 @@
         <% if mod_action.subject_id.present? %>
           <%= render PopupMenuComponent.new do |menu| %>
             <% menu.with_item do %>
-              <%= link_to "Details", mod_action.subject %>
+              <%= link_to t("mod_actions.details"), mod_action.subject %>
             <% end %>
 
             <% menu.with_item do %>
-              <%= link_to "#{mod_action.subject_type.titleize.humanize} history", mod_actions_path(search: { subject_type: mod_action.subject_type, subject_id: mod_action.subject_id }) %>
+              <%= link_to t("mod_actions.history", type: t("mod_actions.model_types.#{mod_action.subject_type}", default: mod_action.subject_type.titleize.humanize)), mod_actions_path(search: { subject_type: mod_action.subject_type, subject_id: mod_action.subject_id }) %>
             <% end %>
           <% end %>
         <% end %>

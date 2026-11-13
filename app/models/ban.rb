@@ -67,12 +67,12 @@ class Ban < ApplicationRecord
 
   def validate_ban_is_editable
     if created_at + duration_was < Time.zone.now
-      errors.add(:base, "You can't update an expired ban")
+      errors.add(:base, I18n.t("ban.cannot_update_expired"))
     end
   end
 
   def validate_user_is_bannable
-    errors.add(:user, "is already banned") if user&.is_banned? || user&.bans&.active&.exists?
+    errors.add(:user, I18n.t("ban.already_banned")) if user&.is_banned? || user&.bans&.active&.exists?
   end
 
   def validate_deletions
@@ -81,11 +81,11 @@ class Ban < ApplicationRecord
     end
 
     if delete_post_votes && !Pundit.policy!(banner, PostVote.new).destroy?
-      errors.add(:delete_post_votes, "is not allowed by #{banner.level_string}")
+      errors.add(:delete_post_votes, I18n.t("ban.delete_post_votes_not_allowed", banner_level_string: banner.level_string))
     end
 
     if delete_comment_votes && !Pundit.policy!(banner, CommentVote.new).destroy?
-      errors.add(:delete_comment_votes, "is not allowed by #{banner.level_string}")
+      errors.add(:delete_comment_votes, I18n.t("ban.delete_comment_votes_not_allowed", banner_level_string: banner.level_string))
     end
   end
 

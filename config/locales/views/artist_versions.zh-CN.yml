@@ -1,0 +1,24 @@
+"zh-CN":
+  artist_versions:
+    index:
+      title: "画师历史"
+    search:
+      title: "搜索变更"
+      updater: "修改者"
+      artist: "画师"
+      submit: "搜索"
+    listing:
+      updater: "修改者"
+      artist: "画师"
+      order_id: "ID"
+      order_created: "创建时间"
+      order_updated: "更新时间"
+      order_name: "名称"
+      submit: "搜索"
+      column_name: "名称"
+      column_other_names: "其他名称"
+      column_urls: "链接"
+      column_changes: "状态变更"
+      column_updated: "修改者"
+      revert_to: "回退到"
+      confirm_revert: "确定要回退到这个版本吗？"

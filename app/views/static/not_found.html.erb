@@ -1,9 +1,9 @@
-<% page_title "Page not found" %>
+<% page_title t("static.not_found_title") %>
 
 <div id="c-static">
   <div id="a-not-found">
     <div class="flex flex-col gap-4 items-center">
-      <h1>Page not found</h1>
+      <h1><%= t("static.not_found_title") %></h1>
 
       <% if @post.present? && @artist.present? %>
         <%= link_to @post do %>
@@ -11,14 +11,14 @@
         <% end %>
 
         <p class="fineprint">
-          <%= link_to "post ##{@post.id}", @post %>
-          by <%= link_to @artist.name, posts_path(tags: @artist.name), class: tag_class(@artist) %>
+          <%= link_to t("static.post_label", id: @post.id), @post %>
+          <%= t("static.by") %> <%= link_to @artist.name, posts_path(tags: @artist.name), class: tag_class(@artist) %>
         </p>
       <% else %>
-        <p>Nobody here but us chickens!</p>
+        <p><%= t("static.nobody_here") %></p>
       <% end %>
 
-      <%= link_to "Return to previous page", :back %>
+      <%= link_to t("static.return_to_previous_page"), :back %>
     </div>
   </div>
 </div>

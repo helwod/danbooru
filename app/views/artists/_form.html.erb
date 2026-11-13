@@ -1,13 +1,13 @@
 <%= edit_form_for(@artist, formatted_errors: true) do |f| %>
   <%= f.input :name, as: :string, input_html: { "data-autocomplete": "tag" } %>
 
-  <%= f.input :other_names_string, label: "Other names", as: :string, hint: "Separate names with spaces, not commas. Use underscores for spaces inside names." %>
+  <%= f.input :other_names_string, label: t("artists.form.other_names"), as: :string, hint: t("artists.form.other_names_hint") %>
   <%= f.input :group_name %>
-  <%= f.input :url_string, label: "URLs", as: :text, input_html: { value: params.dig(:artist, :url_string) || @artist.sorted_urls.join("\n")}, hint: "You can prefix a URL with - to mark it as dead." %>
+  <%= f.input :url_string, label: t("artists.form.urls"), as: :text, input_html: { value: params.dig(:artist, :url_string) || @artist.sorted_urls.join("\n")}, hint: t("artists.form.urls_hint") %>
 
   <% if @artist.tag&.artist? && @artist.wiki_page.present? %>
     <div class="input">
-      <label>Wiki (<%= link_to "Edit", edit_wiki_page_path(@artist.wiki_page) %>)</label>
+      <label><%= t("artists.form.wiki_label_html", link: link_to(t("artists.form.edit"), edit_wiki_page_path(@artist.wiki_page))).html_safe %></label>
     </div>
 
     <div class="prose">

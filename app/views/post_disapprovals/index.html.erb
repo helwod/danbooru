@@ -1,32 +1,32 @@
 <div id="c-post-disapprovals">
   <div id="a-index">
-    <h1>Disapprovals</h1>
+    <h1><%= t("post_disapprovals.index.title") %></h1>
 
     <%= search_form_for(post_disapprovals_path) do |f| %>
-      <%= f.input :user_name, label: "Creator", input_html: { value: params[:search][:user_name], "data-autocomplete": "user" } %>
-      <%= f.input :post_id, label: "Post ID", input_html: { value: params[:search][:post_id] } %>
-      <%= f.input :post_tags_match, label: "Tags", input_html: { value: params[:search][:post_tags_match], data: { autocomplete: "tag-query" } } %>
-      <%= f.input :message_matches, label: "Message", input_html: { value: params[:search][:message_matches] } %>
-      <%= f.input :reason, label: "Reason", collection: PostDisapproval::REASONS.map { |x| [x.humanize, x] }, include_blank: true, selected: params[:search][:reason] %>
-      <%= f.input :has_message, label: "Has Message?", collection: %w[Yes No], include_blank: true, selected: params[:search][:has_message] %>
-      <%= f.input :order, collection: [["ID", "id_desc"], ["Post ID", "post_id_desc"]], selected: params[:search][:order] %>
-      <%= f.submit "Search" %>
+      <%= f.input :user_name, label: t("post_disapprovals.index.search_creator"), input_html: { value: params[:search][:user_name], "data-autocomplete": "user" } %>
+      <%= f.input :post_id, label: t("post_disapprovals.index.search_post_id"), input_html: { value: params[:search][:post_id] } %>
+      <%= f.input :post_tags_match, label: t("post_disapprovals.index.search_tags"), input_html: { value: params[:search][:post_tags_match], data: { autocomplete: "tag-query" } } %>
+      <%= f.input :message_matches, label: t("post_disapprovals.index.search_message"), input_html: { value: params[:search][:message_matches] } %>
+      <%= f.input :reason, label: t("post_disapprovals.index.search_reason"), collection: PostDisapproval::REASONS.map { |x| [t("post_disapprovals.reasons.#{x}", default: x.humanize), x] }, include_blank: true, selected: params[:search][:reason] %>
+      <%= f.input :has_message, label: t("post_disapprovals.index.has_message"), collection: [[t("post_disapprovals.index.yes"), "Yes"], [t("post_disapprovals.index.no"), "No"]], include_blank: true, selected: params[:search][:has_message] %>
+      <%= f.input :order, collection: [[t("post_disapprovals.index.order_id"), "id_desc"], [t("post_disapprovals.index.order_post_id"), "post_id_desc"]], selected: params[:search][:order] %>
+      <%= f.submit t("post_disapprovals.index.submit") %>
     <% end %>
 
     <%= table_for @post_disapprovals, class: "striped autofit", width: "100%" do |t| %>
-      <% t.column "Post" do |post_disapproval| %>
-        <%= format_text("post ##{post_disapproval.post_id}", inline: true) %>
+      <% t.column t("post_disapprovals.index.column_post"), column: "post" do |post_disapproval| %>
+        <%= format_text(t("post_disapprovals.index.post_link", id: post_disapproval.post_id), inline: true) %>
         <%= link_to "»", post_disapprovals_path(search: params[:search].merge(post_id: post_disapproval.post_id)) %>
       <% end %>
-      <% t.column "Message", td: {class: "col-expand"} do |post_disapproval| %>
+      <% t.column t("post_disapprovals.index.column_message"), td: {class: "col-expand"}, column: "message" do |post_disapproval| %>
         <div class="prose">
           <%= post_disapproval.dtext_message.format_text %>
         </div>
       <% end %>
-      <% t.column "Reason" do |post_disapproval| %>
-        <%= link_to post_disapproval.reason.humanize, post_disapprovals_path(search: params[:search].merge(reason: post_disapproval.reason)) %>
+      <% t.column t("post_disapprovals.index.column_reason"), column: "reason" do |post_disapproval| %>
+        <%= link_to t("post_disapprovals.reasons.#{post_disapproval.reason}", default: post_disapproval.reason.humanize), post_disapprovals_path(search: params[:search].merge(reason: post_disapproval.reason)) %>
       <% end %>
-      <% t.column "Created" do |post_disapproval| %>
+      <% t.column t("post_disapprovals.index.column_created"), column: "created" do |post_disapproval| %>
         <% if policy(post_disapproval).can_view_creator? %>
           <%= link_to_user post_disapproval.user %>
           <%= link_to "»", post_disapprovals_path(search: params[:search].merge(user_name: post_disapproval.user&.name)) %>

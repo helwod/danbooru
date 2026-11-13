@@ -249,16 +249,16 @@ class SiteCredential < ApplicationRecord
 
   def validate_credential
     if !credential.is_a?(Hash)
-      errors.add(:credential, "must be a hash of key-value pairs")
+      errors.add(:credential, I18n.t("site_credential.credential_not_hash"))
       return
     end
 
     credential_names.each do |name|
-      errors.add(:credential, "must include #{name}") if credential[name].blank?
+      errors.add(:credential, I18n.t("site_credential.credential_missing_field", name: name)) if credential[name].blank?
     end
 
     credential.each_key do |name|
-      errors.add(:credential, "contains unrecognized field '#{name}'") if !name.to_s.in?(credential_names)
+      errors.add(:credential, I18n.t("site_credential.credential_unknown_field", name: name)) if !name.to_s.in?(credential_names)
     end
   end
 

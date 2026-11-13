@@ -1,0 +1,3 @@
+en:
+  artist_url:
+    invalid_url: "'%{url}' is not a valid URL"

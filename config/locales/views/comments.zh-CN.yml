@@ -1,0 +1,48 @@
+"zh-CN":
+  comments:
+    index:
+      title: "评论"
+      meta_description: "查看 %{app_name} 上的评论。"
+      all: "全部评论"
+      on_my_uploads: "我上传的作品"
+      search: "搜索"
+      votes: "投票"
+      help: "帮助"
+    new:
+      title: "发表评论"
+    edit:
+      title: "编辑评论"
+    form:
+      body_placeholder: "写下你的评论"
+      submit: "发表评论"
+      update: "更新评论"
+      cancel: "取消"
+      do_not_bump: "不顶帖"
+    search:
+      commenter: "评论者"
+      text: "内容"
+      tags: "标签"
+      edited: "已编辑？"
+      deleted: "已删除？"
+      stickied: "已置顶？"
+      bumped: "已顶帖？"
+      'yes': "是"
+      'no': "否"
+      order_newest: "最新"
+      order_oldest: "最早"
+      order_updated: "最近更新"
+      order_score_desc: "评分（高到低）"
+      order_score_asc: "评分（低到高）"
+      submit: "搜索"
+    header:
+      date: "日期"
+      uploader: "上传者"
+      rating: "分级"
+      tags: "标签"
+    flash:
+      posted: "评论已发表"
+
+  activerecord:
+    attributes:
+      comment:
+        score: "评分"

@@ -41,7 +41,7 @@ class CommentVote < ApplicationRecord
   # allow duplicate deleted votes but not duplicate active votes
   def validate_vote_is_unique
     if !is_deleted? && CommentVote.active.where.not(id: id).exists?(comment_id: comment_id, user_id: user_id)
-      errors.add(:user, "have already voted for this comment")
+      errors.add(:user, I18n.t("comment_vote.already_voted"))
     end
   end
 

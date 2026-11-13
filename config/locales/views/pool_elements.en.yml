@@ -1,0 +1,7 @@
+en:
+  pool_elements:
+    new:
+      pool_name: "Pool Name"
+      ctrl_enter: "Ctrl+Enter to submit"
+      add: "Add"
+      cancel: "Cancel"

@@ -1,0 +1,8 @@
+en:
+  post_flag:
+    flag_limit_reached: "have reached your flag limit"
+    pending_cannot_be_flagged: "is pending and cannot be flagged"
+    deleted_cannot_be_flagged: "is deleted and cannot be flagged"
+    already_flagged: "is already flagged"
+    cannot_be_flagged: "cannot be flagged"
+    flag_cooldown: "cannot be flagged more than once every %{config_moderation_period} (last flagged: %{created_at_long})"

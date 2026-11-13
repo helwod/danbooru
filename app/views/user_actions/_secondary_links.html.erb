@@ -1,11 +1,11 @@
 <% content_for(:secondary_links) do %>
   <%= quick_search_form_for(:user_name, user_actions_path, "users", autocomplete: "user") %>
-  <%= subnav_link_to "Mod Actions", mod_actions_path %>
-  <%= subnav_link_to "User Actions", user_actions_path %>
-  <%= subnav_link_to "User Events", user_events_path %>
-  <%= subnav_link_to "Bans", bans_path %>
-  <%= subnav_link_to "IP Bans", ip_bans_path %>
-  <%= subnav_link_to "Feedbacks", user_feedbacks_path %>
-  <%= subnav_link_to "Mod Reports", moderation_reports_path %>
-  <%= subnav_link_to "Modqueue", modqueue_index_path %>
+  <%= subnav_link_to t("user_actions.secondary_links.mod_actions"), mod_actions_path, id: "mod-actions" %>
+  <%= subnav_link_to t("user_actions.secondary_links.user_actions"), user_actions_path, id: "user-actions" %>
+  <%= subnav_link_to t("user_actions.secondary_links.user_events"), user_events_path, id: "user-events" %>
+  <%= subnav_link_to t("user_actions.secondary_links.bans"), bans_path, id: "bans" %>
+  <%= subnav_link_to t("user_actions.secondary_links.ip_bans"), ip_bans_path, id: "ip-bans" %>
+  <%= subnav_link_to t("user_actions.secondary_links.feedbacks"), user_feedbacks_path, id: "feedbacks" %>
+  <%= subnav_link_to t("user_actions.secondary_links.mod_reports"), moderation_reports_path, id: "mod-reports" %>
+  <%= subnav_link_to t("user_actions.secondary_links.modqueue"), modqueue_index_path, id: "modqueue" %>
 <% end %>

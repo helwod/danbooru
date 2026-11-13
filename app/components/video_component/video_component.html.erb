@@ -28,7 +28,7 @@
   <span class="playback-rate-indicator absolute p-4 rounded text-xl text-inverse select-none" x-text="player.playbackRate.toFixed(2) + 'x'" x-cloak x-show="player._showPlaybackRate"></span>
 
   <div class="video-component-error-message @container flex flex-col justify-center absolute inset-0 p-4 rounded text-inverse text-center leading-normal" x-cloak x-show="player.state === 'error'">
-    <p class="text-xl @max-270px:text-sm">An error occurred while loading the video.</p>
+    <p class="text-xl @max-270px:text-sm"><%= I18n.t("components.video.error") %></p>
     <p class="text-sm @max-270px:text-xs text-muted" x-text="player._error"></p>
   </div>
 
@@ -62,14 +62,14 @@
     <div class="shortcuts-help relative h-full @max-120px:hidden">
       <%= help_icon class: "w-6 h-full py-2 cursor-pointer select-none" %>
       <ul class="shortcuts-popup absolute p-2 rounded text-sm whitespace-nowrap select-none space-y-1">
-        <li class="flex items-center gap-1"><kbd class="key">Space</kbd> Play/Pause</li>
+        <li class="flex items-center gap-1"><kbd class="key">Space</kbd> <%= I18n.t("components.video.play_pause") %></li>
         <% if media_asset.has_sound? %>
-          <li class="flex items-center gap-1"><kbd class="key">m</kbd> Mute</li>
-          <li class="flex items-center gap-1"><kbd class="key">&uarr;</kbd> <kbd class="key">&darr;</kbd> Volume</li>
+          <li class="flex items-center gap-1"><kbd class="key">m</kbd> <%= I18n.t("components.video.mute") %></li>
+          <li class="flex items-center gap-1"><kbd class="key">&uarr;</kbd> <kbd class="key">&darr;</kbd> <%= I18n.t("components.video.volume") %></li>
         <% end %>
-        <li class="flex items-center gap-1"><kbd class="key">&larr;</kbd> <kbd class="key">&rarr;</kbd> Seek</li>
-        <li class="flex items-center gap-1"><kbd class="key">0</kbd>-<kbd class="key">9</kbd> Seek to 0-90%</li>
-        <li class="flex items-center gap-1"><kbd class="key">&lt;</kbd> <kbd class="key">&gt;</kbd> Change speed</li>
+        <li class="flex items-center gap-1"><kbd class="key">&larr;</kbd> <kbd class="key">&rarr;</kbd> <%= I18n.t("components.video.seek") %></li>
+        <li class="flex items-center gap-1"><kbd class="key">0</kbd>-<kbd class="key">9</kbd> <%= I18n.t("components.video.seek_to_percent") %></li>
+        <li class="flex items-center gap-1"><kbd class="key">&lt;</kbd> <kbd class="key">&gt;</kbd> <%= I18n.t("components.video.change_speed") %></li>
       </ul>
     </div>
 
@@ -80,7 +80,7 @@
         <% end %>
 
         <% menu.with_item class: "px-3 py-1 text-center" do %>
-          <span class="text-sm whitespace-nowrap select-none">Quality</span>
+          <span class="text-sm whitespace-nowrap select-none"><%= I18n.t("components.video.quality") %></span>
         <% end %>
 
         <% menu.with_item class: "p-0" do %>

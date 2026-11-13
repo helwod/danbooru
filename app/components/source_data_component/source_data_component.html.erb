@@ -1,5 +1,5 @@
 <div class="source-data card-outlined p-4 mt-4 mb-4">
-  <%= link_to "Fetch source data", source_path, class: "source-data-fetch" %>
+  <%= link_to I18n.t("components.source_data.fetch"), source_path, class: "source-data-fetch" %>
   <%= spinner_icon class: "source-data-loading" %>
 
   <% if @source.present? %>
@@ -8,7 +8,7 @@
         <% if @source.artists.present? %>
           <% @source.artists.each do |artist| %>
             <tr>
-              <th>Artist</th>
+              <th><%= I18n.t("components.source_data.artist") %></th>
               <td>
                 <%= link_to artist.name, artist_path(artist), class: tag_class(artist.tag) %>
 
@@ -23,25 +23,25 @@
         <% else %>
           <% if @source.artist_name.blank? %>
             <tr>
-              <th>Artist</th>
-              <td><em>None</em></td>
+              <th><%= I18n.t("components.source_data.artist") %></th>
+              <td><em><%= I18n.t("components.source_data.none") %></em></td>
             </tr>
           <% else %>
             <tr>
-              <th>Artist</th>
+              <th><%= I18n.t("components.source_data.artist") %></th>
               <td>
                 <%= external_link_to @source.profile_url, @source.artist_name %>
-                (<%= link_to "Create new artist", new_artist_path(artist: { source: @source.page_url || @source.url }) %>)
+                (<%= link_to I18n.t("components.source_data.create_artist"), new_artist_path(artist: { source: @source.page_url || @source.url }) %>)
               </td>
             </tr>
           <% end %>
         <% end %>
 
         <tr class="source-data-tags">
-          <th>Tags</th>
+          <th><%= I18n.t("components.source_data.tags") %></th>
           <td>
             <% if @source.tags.empty? %>
-              <em>None</em>
+              <em><%= I18n.t("components.source_data.none") %></em>
             <% else %>
               <div class="flex flex-wrap gap-1">
                 <% @source.tags.each do |tag, href| %>
@@ -53,10 +53,10 @@
         </tr>
 
         <tr class="source-data-published-at">
-          <th>Published</th>
+          <th><%= I18n.t("components.source_data.published") %></th>
           <td>
             <% if @source.published_at.blank? %>
-              <em>None</em>
+              <em><%= I18n.t("components.source_data.none") %></em>
             <% else %>
               <%= helpers.compact_time(@source.published_at) %>
             <% end %>
@@ -65,10 +65,10 @@
 
         <% if @source.updated_at != @source.published_at %>
           <tr class="source-data-updated-at">
-            <th>Updated</th>
+            <th><%= I18n.t("components.source_data.updated") %></th>
             <td>
               <% if @source.updated_at.blank? %>
-                <em>None</em>
+                <em><%= I18n.t("components.source_data.none") %></em>
               <% else %>
                 <%= helpers.compact_time(@source.updated_at) %>
               <% end %>

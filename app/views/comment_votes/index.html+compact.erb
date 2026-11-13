@@ -5,20 +5,20 @@
     <%= render "search" %>
 
     <%= table_for @comment_votes, class: "striped autofit" do |t| %>
-      <% t.column "Score" do |vote| %>
+      <% t.column t("comment_votes.columns.score"), column: "score" do |vote| %>
         <%= link_to sprintf("%+d", vote.score), comment_votes_path(search: { score: vote.score }) %>
       <% end %>
 
-      <% t.column "Voter" do |vote| %>
+      <% t.column t("comment_votes.columns.voter"), column: "voter" do |vote| %>
         <%= link_to_user vote.user %>
         <%= link_to "»", comment_votes_path(search: { user_name: vote.user.name }) %>
       <% end %>
 
-      <% t.column "Status" do |vote| %>
-        <%= "Deleted" if vote.is_deleted? %>
+      <% t.column t("comment_votes.columns.status"), column: "status" do |vote| %>
+        <%= t("comment_votes.deleted") if vote.is_deleted? %>
       <% end %>
 
-      <% t.column "Created" do |vote| %>
+      <% t.column t("comment_votes.columns.created"), column: "created" do |vote| %>
         <%= time_ago_in_words_tagged(vote.created_at) %>
       <% end %>
 
@@ -26,7 +26,7 @@
         <% if policy(vote).destroy? %>
           <%= render PopupMenuComponent.new do |menu| %>
             <% menu.with_item do %>
-              <%= link_to "Remove", comment_vote_path(vote, variant: "listing"), remote: true, method: :delete %>
+              <%= link_to t("comment_votes.remove"), comment_vote_path(vote, variant: "listing"), remote: true, method: :delete %>
             <% end %>
           <% end %>
         <% end %>

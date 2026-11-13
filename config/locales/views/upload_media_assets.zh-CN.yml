@@ -1,0 +1,12 @@
+"zh-CN":
+  upload_media_assets:
+    index:
+      title: "上传"
+      tab_all: "全部"
+      tab_posted: "已投稿"
+      tab_unposted: "未投稿"
+    preview:
+      failed: "失败"
+      post_link: "作品 #%{id}"
+    flash:
+      duplicate: "与作品 #%{id} 重复"

@@ -1,22 +1,22 @@
 <div class="comments-for-post" data-post-id="<%= post.id %>">
   <% if has_unloaded_comments? %>
-    <%= link_to "Show #{pluralize unloaded_comment_count, "more comment"}", comments_path(post_id: post.id), class: "show-all-comments-link", remote: true %>
+    <%= link_to I18n.t("components.comment_section.show_more", count: unloaded_comment_count), comments_path(post_id: post.id), class: "show-all-comments-link", remote: true %>
   <% end %>
 
   <div class="list-of-comments list-of-messages">
     <% if comments.present? %>
       <%= render CommentComponent.with_collection(comments, current_user: current_user, context: :index_by_post, dtext_references: dtext_references) %>
     <% else %>
-      <p>There are no comments.</p>
+      <p><%= I18n.t("components.comment_section.empty") %></p>
     <% end %>
   </div>
 
   <div class="new-comment">
     <% if policy(Comment.new(post: post)).create? %>
-      <p><%= link_to "Leave a comment", new_comment_path(comment: { post_id: post.id }), class: "expand-comment-response" %></p>
+      <p><%= link_to I18n.t("components.comment_section.leave_comment"), new_comment_path(comment: { post_id: post.id }), class: "expand-comment-response" %></p>
       <%= render "comments/form", comment: post.comments.new, hidden: true %>
     <% elsif current_user.is_anonymous? %>
-      <p><%= link_to "Leave a comment", login_path(url: request.fullpath) %></p>
+      <p><%= link_to I18n.t("components.comment_section.leave_comment"), login_path(url: request.fullpath) %></p>
     <% end %>
   </div>
 </div>

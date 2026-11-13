@@ -54,7 +54,7 @@ class PostVote < ApplicationRecord
 
   def validate_vote_is_unique
     if !is_deleted? && PostVote.active.where.not(id: id).exists?(post: post, user: user)
-      errors.add(:user, "have already voted for this post")
+      errors.add(:user, I18n.t("post_vote.already_voted"))
     end
   end
 

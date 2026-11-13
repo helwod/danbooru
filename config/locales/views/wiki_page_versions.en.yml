@@ -1,0 +1,26 @@
+en:
+  wiki_page_versions:
+    index:
+      title: "Wiki Page History"
+    diff:
+      page_title: "Wiki Comparison: %{title}"
+      changes_between: "Changes between"
+      and: "and"
+      no_body_changes: "No changes to body."
+      latest_version: "Version is latest!"
+      no_versions: "No versions to compare!"
+    show:
+      edited: "Edited"
+      created: "Created"
+      by: "by %{name}"
+      previously_edited: "Previously edited %{time} by %{name}"
+    listing:
+      column_title: "Title"
+      column_changes: "Changes"
+      column_updated: "Updated"
+      diff: "Diff"
+    navbar:
+      newer: "‹ Newer"
+      older: "Older ›"
+    flash:
+      select_version: "You must select at least one version to diff"
